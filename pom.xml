@@ -7,18 +7,6 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>se.hirt.pi.adafruit.pwm</groupId>
-            <artifactId>pwm</artifactId>
-            <version>0.1.1</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.pi4j</groupId>
-            <artifactId>pi4j-core</artifactId>
-            <version>1.1</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
             <version>4.1.0</version>
@@ -27,17 +15,6 @@
             <groupId>net.sprenkle.messages</groupId>
             <artifactId>messages</artifactId>
             <version>0.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.hopding.jrpicam</groupId>
-            <artifactId>jrpicam</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sprenkle</groupId>
-            <artifactId>Messages</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
         </dependency>
     </dependencies>
     <properties>
