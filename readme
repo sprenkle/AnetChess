@@ -1,0 +1,25 @@
+mvn install:install-file -Dfile="/home/pi/java/pwm.jar" -DgroupId=se.hirt.pi.adafruit.pwm -DartifactId=pwm -Dversion=0.1.1 -Dpackaging=jar -DgeneratePom=true
+
+<dependency>
+    <groupId>se.hirt.pi.adafruit.pwm</groupId>
+    <artifactId>pwm</artifactId>
+    <version>0.1.1</version>
+</dependency>
+
+
+mvn install:install-file -Dfile="/home/pi/java/Messages-1.0-SNAPSHOT.jar" -DgroupId=net.sprenkle.messages -DartifactId=messages -Dversion=0.1.1 -Dpackaging=jar -DgeneratePom=true
+
+<dependency>
+    <groupId>net.sprenkle.messages</groupId>
+    <artifactId>messages</artifactId>
+    <version>0.1.1</version>
+</dependency>
+
+
+mvn install:install-file -Dfile="/home/pi/java/jrpicam-1.1.1-release/lib/jrpicam-1.1.1.jar" -DgroupId=com.hopding.jrpicam -DartifactId=jrpicam -Dversion=1.1.1 -Dpackaging=jar -DgeneratePom=true
+
+<dependency>
+    <groupId>com.hopding.jrpicam</groupId>
+    <artifactId>jrpicam</artifactId>
+    <version>1.1.1</version>
+</dependency>
