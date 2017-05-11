@@ -13,14 +13,14 @@ import javax.swing.SwingUtilities;
  */
 public class ChessDialog extends javax.swing.JFrame {
 
-    ChessEngine engine;
+    ChessController engine;
 
     /**
      * Creates new form ChessDialog
      */
     public ChessDialog() {
         initComponents();
-        engine = new ChessEngine(new StockFishUCI());
+        engine = new ChessController();
         //   (new Thread(engine)).start();
         engine.newGame();
     }

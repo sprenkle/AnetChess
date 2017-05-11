@@ -16,7 +16,7 @@ import net.sprenkle.chess.exceptions.InvalidMoveException;
  *
  * @author David
  */
-public class Board {
+public class Board implements BoardInterface {
 
     public static int WHITE = 0;
     public static int BLACK = 1;
@@ -36,10 +36,30 @@ public class Board {
         //setupStartingPosition();
     }
 
+    public void consoleOut() {
+        System.out.println("++++++++++++++++++++++++");
+        for (int y = 0; y < 8; y++) {
+            StringBuffer sb = new StringBuffer();
+            for (int x = 0; x < 8; x++) {
+                sb.append("+");
+                if (board[x][y] == null) {
+                    sb.append("  ");
+                } else {
+                    sb.append(board[x][y].name);
+                }
+            }
+            sb.append("+");
+            System.out.println(sb.toString());
+            System.out.println("+++++++++++++++++++++++++");
+        }
+    }
+
+    @Override
     public void setStartingPositionBoard() {
         setupStartingPosition();
     }
 
+    @Override
     public ChessPiece getPiece(int x, int y) {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
             return null;
@@ -47,6 +67,7 @@ public class Board {
         return board[x][y];
     }
 
+    @Override
     public ChessPiece removePiece(int x, int y) {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
             return null;
@@ -55,6 +76,7 @@ public class Board {
         return removePiece(rp);
     }
 
+    @Override
     public ChessPiece removePiece(ChessPiece rp) {
         if (rp == null) {
             return null;
@@ -65,21 +87,22 @@ public class Board {
         return rp;
     }
 
-    public ArrayList<ChessPiece>[] getActivePieces(){
+    @Override
+    public ArrayList<ChessPiece>[] getActivePieces() {
         return activePieces;
     }
-    
+
+    @Override
     public boolean isKingInCheck(int color) {
         int opponentColor = color == 0 ? 1 : 0;
 
-        for (ChessPiece piece : activePieces[opponentColor]) {
-            if (piece.isValidMoveTo(this, king[color].getLocation())) {
-                return true;
-            }
+        if (activePieces[opponentColor].stream().anyMatch((piece) -> (piece.isValidMoveTo(this, king[color].getLocation())))) {
+            return true;
         }
         return false;
     }
 
+    @Override
     public boolean isAbleToMove(int color) {
         int opponentColor = color == 1 ? 0 : 1;
         ArrayList<ChessPiece> tl = (ArrayList<ChessPiece>) activePieces[color].clone();
@@ -108,7 +131,8 @@ public class Board {
 
         return false;
     }
-    
+
+    @Override
     public void addPiece(ChessPiece piece) {
         addPieceToBoard(piece);
         if (piece.getClass() != Empty.class) {
@@ -119,27 +143,42 @@ public class Board {
         }
     }
 
-    public boolean makeMove(PieceLocation from, PieceLocation to) {
+    @Override
+    public boolean makeMove(PieceLocation from, PieceLocation to, String promoteTo){
         if (validMove(from, to)) {
             ChessPiece fromPiece = getPiece(from.getX(), from.getY());
             ChessPiece toPiece = getPiece(to.getX(), to.getY());
-            
+
             // Castle
-            if(fromPiece.getClass() == King.class 
-                    && !fromPiece.getHasMoved() 
-                        && (to.getX() == 2 || to.getX() == 6)){
-                if(to.getX() == 2){
+            if (fromPiece.getClass() == King.class
+                    && !fromPiece.getHasMoved()
+                    && (to.getX() == 2 || to.getX() == 6)) {
+                if (to.getX() == 2) {
                     try {
-                        makeMove(new PieceLocation(0, to.getY()), new PieceLocation(3, to.getY()));
+                        makeMove(new PieceLocation(0, to.getY()), new PieceLocation(3, to.getY()), null);
                     } catch (InvalidLocationException ex) {
                         Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else{
+                } else {
                     try {
-                        makeMove(new PieceLocation(7, to.getY()), new PieceLocation(5, to.getY()));
+                        makeMove(new PieceLocation(7, to.getY()), new PieceLocation(5, to.getY()), null);
                     } catch (InvalidLocationException ex) {
                         Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                }
+            }
+            
+            // Check if pawn pomotion
+            if(fromPiece.getClass() == Pawn.class && (to.getY() == 0 || to.getY() ==7)){
+                try {
+                    if(promoteTo == null || promoteTo.isEmpty()) throw new Exception("Pawn Promotion without declaring piece");
+                    switch(promoteTo){
+                        case "q" : fromPiece = new Queen(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                        case "r" : fromPiece = new Rook(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                        case "b" : fromPiece = new Bishop(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                        case "n" : fromPiece = new Knight(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                    }} catch (Exception ex) {
+                    Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -155,19 +194,22 @@ public class Board {
         return false;
     }
 
+    @Override
     public boolean makeMove(String move) throws InvalidMoveException {
         String[] location = ChessUtil.ConvertChessMove(move);
         try {
             int[] from = ChessUtil.ConvertLocation(location[0]);
             int[] to = ChessUtil.ConvertLocation(location[1]);
-
-            return makeMove(new PieceLocation(from[0], from[1]), new PieceLocation(to[0], to[1]));
+            return makeMove(new PieceLocation(from[0], from[1]), new PieceLocation(to[0], to[1]), location[2]);
         } catch (InvalidLocationException ex) {
+            throw new InvalidMoveException();
+        } catch (Exception ex) {
             throw new InvalidMoveException();
         }
     }
 
-    private boolean validMove(PieceLocation from, PieceLocation to) {
+    @Override
+    public boolean validMove(PieceLocation from, PieceLocation to) {
         try {
 
             // Check if piece can actually move there
@@ -188,7 +230,7 @@ public class Board {
             addPiece(fromPiece);
             if (orginalDestPiece != null) {
                 addPiece(orginalDestPiece);
-            }else{
+            } else {
                 board[to.getX()][to.getY()] = null;
             }
 
@@ -251,20 +293,20 @@ public class Board {
 
         }
     }
-    
+
     private ChessPiece capturePiece(ChessPiece rp) {
         if (rp == null) {
             return null;
         }
         activePieces[rp.getColor()].remove(rp);
         capturedPieces[rp.getColor()].add(rp);
-        
+
         removePieceFromBoard(rp);
         return null;
     }
 
-    private void addToActiveList(ChessPiece cp){
-        if(!activePieces[cp.getColor()].contains(cp)){
+    private void addToActiveList(ChessPiece cp) {
+        if (!activePieces[cp.getColor()].contains(cp)) {
             activePieces[cp.getColor()].add(cp);
         }
     }

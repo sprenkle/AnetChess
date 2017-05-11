@@ -66,7 +66,7 @@ public class StockFishUCI implements UCIInterface {
             bw.write(line + "\n");
             bw.flush();
         } catch (IOException ex) {
-            Logger.getLogger(ChessEngine.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

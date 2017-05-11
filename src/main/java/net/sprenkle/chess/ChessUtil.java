@@ -19,14 +19,15 @@ public class ChessUtil {
 
     public static String[] ConvertChessMove(String move) throws InvalidMoveException {
         
-        Pattern pattern = Pattern.compile("([abcdefgh][12345678])([abcdefgh][12345678])");
+        Pattern pattern = Pattern.compile("([abcdefgh][12345678])([abcdefgh][12345678])([rknqb]{0,1})");
         Matcher matcher = pattern.matcher(move);
         
         if(!matcher.matches()) throw new InvalidMoveException();
         
-        String[] rv = new String[2];
+        String[] rv = new String[3];
         rv[0] = matcher.group(1);
         rv[1] = matcher.group(2);
+        rv[2] = matcher.group(3);
         return rv;
     }
 

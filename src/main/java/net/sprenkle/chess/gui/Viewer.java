@@ -1,0 +1,315 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package net.sprenkle.chess.gui;
+
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Consumer;
+import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.Envelope;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import net.sprenkle.chess.imaging.BoardCalculator;
+import net.sprenkle.imageutils.BlackWhite;
+import net.sprenkle.messages.MessageHolder;
+import net.sprenkle.messages.images.RequestImage;
+
+/**
+ *
+ * @author david
+ */
+public class Viewer extends javax.swing.JFrame {
+
+    private BufferedImage bi;
+    private static final String EXCHANGE_NAME = "images";
+    private static final String IMAGE_UPDATE = "images_update";
+    private Connection connection;
+    private Channel sendChannel;
+
+    /**
+     * Creates new form Viewer
+     *
+     * @throws java.io.IOException
+     * @throws java.util.concurrent.TimeoutException
+     */
+    public Viewer() throws IOException, TimeoutException {
+        initComponents();
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.1.90");
+        connection = factory.newConnection();
+
+        sendChannel = connection.createChannel();
+        sendChannel.exchangeDeclare(IMAGE_UPDATE, BuiltinExchangeType.FANOUT);
+        startListening();
+    }
+
+    private void startListening() throws IOException, TimeoutException {
+//        ConnectionFactory factory = new ConnectionFactory();
+//        factory.setHost("192.168.1.90");
+//        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        String queueName = channel.queueDeclare().getQueue();
+        channel.queueBind(queueName, EXCHANGE_NAME, "");
+
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+        BoardCalculator boardCalculator = new BoardCalculator();
+
+        Consumer consumer = new DefaultConsumer(channel) {
+            @Override
+            public void handleDelivery(String consumerTag, Envelope envelope,
+                    AMQP.BasicProperties properties, byte[] body) throws IOException {
+                System.out.println("Image recieved");
+                InputStream in = new ByteArrayInputStream(body);
+                BufferedImage bImageFromConvert = ImageIO.read(in);
+             //   bImageFromConvert = createRotated(bImageFromConvert);
+                if (showPieces.isSelected()) {
+                    try{
+                    boardCalculator.detectCircle(bImageFromConvert);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                } else if (initialzieRdo.isSelected()) {
+                    try {
+                        boardCalculator.initialLines(bImageFromConvert);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try{
+                    BlackWhite.convertImage(bImageFromConvert, blackPercent);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+
+                //new ImageIcon(bImageFromConvert);
+                imageLbl.setIcon(new ImageIcon(bImageFromConvert));
+            }
+        };
+        channel.basicConsume(queueName, true, consumer);
+    }
+
+    private static BufferedImage createRotated(BufferedImage image)
+    {
+        AffineTransform at = AffineTransform.getRotateInstance(
+            Math.PI, image.getWidth()/2, image.getHeight()/2.0);
+        return createTransformed(image, at);
+    }
+
+    private static BufferedImage createTransformed(
+        BufferedImage image, AffineTransform at)
+    {
+        BufferedImage newImage = new BufferedImage(
+            image.getWidth(), image.getHeight(),
+            BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = newImage.createGraphics();
+        g.transform(at);
+        g.drawImage(image, 0, 0, null);
+        g.dispose();
+        return newImage;
+    }
+
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        imageLbl = new javax.swing.JLabel();
+        showPieces = new javax.swing.JRadioButton();
+        showBlackWhite = new javax.swing.JRadioButton();
+        initialzieRdo = new javax.swing.JRadioButton();
+        imageAdjustTxt = new javax.swing.JTextField();
+        adjustImageBtn = new javax.swing.JButton();
+        getImageBtn = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        buttonGroup1.add(showPieces);
+        showPieces.setText("Pieces");
+        showPieces.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPiecesActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(showBlackWhite);
+        showBlackWhite.setSelected(true);
+        showBlackWhite.setText("BlackWhite");
+
+        buttonGroup1.add(initialzieRdo);
+        initialzieRdo.setText("initialize");
+
+        imageAdjustTxt.setText("0 ");
+
+        adjustImageBtn.setText("Adjust Image");
+        adjustImageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adjustImageBtnActionPerformed(evt);
+            }
+        });
+
+        getImageBtn.setText("Get Image");
+        getImageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getImageBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(initialzieRdo)
+                                    .addComponent(showBlackWhite)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(showPieces)))
+                        .addGap(0, 193, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(getImageBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(imageAdjustTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adjustImageBtn)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(initialzieRdo)
+                        .addGap(13, 13, 13)
+                        .addComponent(showPieces)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(showBlackWhite)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(imageAdjustTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(adjustImageBtn))
+                        .addGap(26, 26, 26)
+                        .addComponent(getImageBtn)))
+                .addGap(0, 82, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void showPiecesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPiecesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showPiecesActionPerformed
+
+    private double blackPercent = .35;
+    private void adjustImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustImageBtnActionPerformed
+        blackPercent = Double.parseDouble(imageAdjustTxt.getText());
+        requestImage();
+    }//GEN-LAST:event_adjustImageBtnActionPerformed
+
+    private void getImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getImageBtnActionPerformed
+        requestImage();
+    }//GEN-LAST:event_getImageBtnActionPerformed
+
+    private void requestImage() {
+        try {
+            MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
+            sendChannel.basicPublish(IMAGE_UPDATE, "", null, mh.toBytes());
+        } catch (IOException ex) {
+            Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Viewer.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Viewer.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Viewer.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Viewer.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new Viewer().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (TimeoutException ex) {
+                    Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adjustImageBtn;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton getImageBtn;
+    private javax.swing.JTextField imageAdjustTxt;
+    private javax.swing.JLabel imageLbl;
+    private javax.swing.JRadioButton initialzieRdo;
+    private javax.swing.JRadioButton showBlackWhite;
+    private javax.swing.JRadioButton showPieces;
+    // End of variables declaration//GEN-END:variables
+}

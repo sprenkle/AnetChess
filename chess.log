@@ -1,0 +1,946 @@
+DEBUG   2017-05-07 13:02:02,241 [pool-3-thread-4] net.sprenkle.chess.Chess  - Message received StartGame
+DEBUG   2017-05-07 13:04:51,131 [pool-3-thread-4] net.sprenkle.chess.Chess  - Message received StartGame
+DEBUG   2017-05-07 13:11:25,033 [pool-3-thread-4] net.sprenkle.chess.Chess  - Message received StartGame
+DEBUG   2017-05-07 13:11:25,152 [pool-3-thread-5] net.sprenkle.chess.Chess  - Request move for White Robot
+DEBUG   2017-05-07 13:11:35,510 [pool-3-thread-5] net.sprenkle.chess.Chess  - White to move, d2d3
+DEBUG   2017-05-07 13:13:25,142 [pool-3-thread-7] net.sprenkle.chess.Chess  - Request move for White Robot
+DEBUG   2017-05-07 13:13:38,648 [pool-3-thread-7] net.sprenkle.chess.Chess  - White to move, d2d4
+DEBUG   2017-05-07 13:15:06,474 [pool-3-thread-9] net.sprenkle.chess.Chess  - Message received StartGame
+DEBUG   2017-05-07 13:15:06,564 [pool-3-thread-5] net.sprenkle.chess.Chess  - Request move for White Robot
+DEBUG   2017-05-07 13:15:16,949 [pool-3-thread-5] net.sprenkle.chess.Chess  - White to move, e2e3
+DEBUG   2017-05-07 13:15:25,149 [pool-3-thread-7] net.sprenkle.chess.Chess  - Request move for White Robot
+DEBUG   2017-05-07 13:15:50,512 [pool-3-thread-7] net.sprenkle.chess.Chess  - White to move, e2e4
+DEBUG   2017-05-07 13:17:05,585 [pool-3-thread-4] net.sprenkle.chess.Chess  - Message received StartGame
+DEBUG   2017-05-07 13:17:05,685 [pool-3-thread-5] net.sprenkle.chess.Chess  - Request move for White Robot ae19f9da-e490-4756-abb7-97f9338dfbc3
+DEBUG   2017-05-07 13:17:16,148 [pool-3-thread-5] net.sprenkle.chess.Chess  - White to move, e2e4 Id=ae19f9da-e490-4756-abb7-97f9338dfbc3
+2017-05-07 13:18:37,461 Message received StartGame
+2017-05-07 13:18:37,565 Request move for White Robot 792648d3-c895-4c6b-b400-d839538f3b2a
+2017-05-07 13:18:48,024 White to move, e2e4 Id=792648d3-c895-4c6b-b400-d839538f3b2a
+2017-05-07 13:20:26,757 Message received StartGame
+2017-05-07 13:20:26,850 Request move for White Robot add2aa72-7431-4928-b238-75d2478a47c0
+2017-05-07 13:20:37,190 White to move, e2e4 Id=add2aa72-7431-4928-b238-75d2478a47c0
+2017-05-07 13:22:26,856 Request move for White Robot 1e8e9d5f-42e1-4441-a330-91451823fe2e
+DEBUG   2017-05-07 13:23:03,821 [pool-3-thread-4] net.sprenkle.chess.Chess  - Message received StartGame
+DEBUG   2017-05-07 13:23:03,935 [pool-3-thread-5] net.sprenkle.chess.Chess  - Request move for White Robot 27feccc9-568a-4cdd-91b9-396bff8b8082
+DEBUG   2017-05-07 13:23:15,386 [pool-3-thread-5] net.sprenkle.chess.Chess  - White to move, e2e3 Id=27feccc9-568a-4cdd-91b9-396bff8b8082
+2017-05-07 13:25:05,961 net.sprenkle.chess.Chess  - Message received StartGame
+2017-05-07 13:25:06,062 net.sprenkle.chess.Chess  - Request move for White Robot 68bf20c3-d6f4-4cf7-aebe-b508cf27cbed
+2017-05-07 13:25:19,256 net.sprenkle.chess.Chess  - White to move, e2e4 Id=68bf20c3-d6f4-4cf7-aebe-b508cf27cbed
+2017-05-07 13:26:37,904 net.sprenkle.chess.Chess  - Message received StartGame
+2017-05-07 13:26:37,989 net.sprenkle.chess.Chess  - Request move for White Robot a242fc0c-6bfe-4718-84b4-bfddb18b1e87
+2017-05-07 13:26:48,265 net.sprenkle.chess.Chess  - White to move, e2e4 Id=a242fc0c-6bfe-4718-84b4-bfddb18b1e87
+2017-05-07 13:28:37,988 net.sprenkle.chess.Chess  - Request move for White Robot 8bec812f-16e9-4823-9802-61d08730c041
+2017-05-07 13:29:03,768 net.sprenkle.chess.Chess  - White to move, e2e4 Id=8bec812f-16e9-4823-9802-61d08730c041
+2017-05-07 13:30:38,007 net.sprenkle.chess.Chess  - Request move for White Robot d9fa7cc2-6be7-498a-b773-7a4decf8d498
+2017-05-07 13:30:58,678 net.sprenkle.chess.Chess  - White to move, g1f3 Id=d9fa7cc2-6be7-498a-b773-7a4decf8d498
+2017-05-07 13:32:29,805 net.sprenkle.chess.Chess  - Message received StartGame
+2017-05-07 13:32:29,905 net.sprenkle.chess.Chess  - Request move for White Robot b94aae41-303a-4932-98f6-047f153c3b0a
+2017-05-07 13:32:40,348 net.sprenkle.chess.Chess  - White to move, e2e4 Id=b94aae41-303a-4932-98f6-047f153c3b0a
+2017-05-07 13:32:40,787 net.sprenkle.chess.Chess  - Message received StartGame
+2017-05-07 13:32:40,803 net.sprenkle.chess.Chess  - Request move for White Robot 6727089a-5879-42b0-b10c-5f673cc24eb4
+2017-05-07 13:32:51,180 net.sprenkle.chess.Chess  - White to move, d2d3 Id=6727089a-5879-42b0-b10c-5f673cc24eb4
+2017-05-07 13:34:50,957 Chess  - Message received StartGame
+2017-05-07 13:34:52,611 RobotMover  - Request move for White Robot 8179490d-3789-4ab2-953f-e53222793efe
+2017-05-07 13:35:03,162 RobotMover  - White to move, d2d3 Id=8179490d-3789-4ab2-953f-e53222793efe
+2017-05-07 13:36:19,502 Chess  - Message received StartGame
+2017-05-07 13:36:19,586 RobotMover  - Request move for White Robot 8a405fbb-7a0c-47da-93da-0732de4c6af2
+2017-05-07 13:36:29,986 RobotMover  - White to move, e2e4 Id=8a405fbb-7a0c-47da-93da-0732de4c6af2
+2017-05-07 13:38:19,593 RobotMover  - Request move for White Robot 40e86f7b-03ed-4cdd-b244-74de2d9b8dee
+2017-05-07 13:38:46,084 RobotMover  - White to move, g1f3 Id=40e86f7b-03ed-4cdd-b244-74de2d9b8dee
+2017-05-07 13:42:16,963 Chess  - Message received StartGame
+2017-05-07 13:42:16,980 ChessController  - New Game
+2017-05-07 13:42:17,048 RobotMover  - Request move for White Robot 117fffb1-19ad-4c37-b4ec-40e4051f6520
+2017-05-07 13:42:27,327 RobotMover  - White to move, e2e4 Id=117fffb1-19ad-4c37-b4ec-40e4051f6520
+2017-05-07 13:44:17,055 RobotMover  - Request move for White Robot a47b10dc-4b56-4c52-83b0-7144c08cfb21
+2017-05-07 13:44:42,316 RobotMover  - White to move, e2e3 Id=a47b10dc-4b56-4c52-83b0-7144c08cfb21
+2017-05-07 13:46:13,560 Chess  - Message received StartGame
+2017-05-07 13:46:13,560 ChessController  - New Game
+2017-05-07 13:46:13,644 Chess  - Request move for White Robot a2d4a9e5-ac06-4d5a-bea9-deca2d36f50a
+2017-05-07 13:46:13,644 RobotMover  - Request move for White Robot a2d4a9e5-ac06-4d5a-bea9-deca2d36f50a
+2017-05-07 13:46:24,053 RobotMover  - White to move, d2d3 Id=a2d4a9e5-ac06-4d5a-bea9-deca2d36f50a
+2017-05-07 13:48:13,647 Chess  - Request move for White Robot b4d256a7-5881-4015-9066-0de687fa0b07
+2017-05-07 13:48:13,647 RobotMover  - Request move for White Robot b4d256a7-5881-4015-9066-0de687fa0b07
+2017-05-07 13:48:25,941 RobotMover  - White to move, d2d4 Id=b4d256a7-5881-4015-9066-0de687fa0b07
+2017-05-07 13:49:08,658 Chess  - Message received StartGame
+2017-05-07 13:49:08,678 ChessController  - New Game
+2017-05-07 13:49:08,758 Chess  - Request move for White Robot 8d151afd-53ac-474b-bb7f-cef782ef7036
+2017-05-07 13:49:08,777 RobotMover  - Request move for White Robot 8d151afd-53ac-474b-bb7f-cef782ef7036
+2017-05-07 13:49:20,357 RobotMover  - White to move, d2d4 Id=8d151afd-53ac-474b-bb7f-cef782ef7036
+2017-05-07 13:49:20,375 Chess  - Received Unknown move 8d151afd-53ac-474b-bb7f-cef782ef7036  Expected 8d151afd-53ac-474b-bb7f-cef782ef7036
+2017-05-07 13:50:59,596 Chess  - Message received StartGame
+2017-05-07 13:50:59,596 ChessController  - New Game
+2017-05-07 13:50:59,664 Chess  - Request move for White Robot a34a69ff-8528-4028-a599-91f47692b880
+2017-05-07 13:50:59,680 RobotMover  - Request move for White Robot a34a69ff-8528-4028-a599-91f47692b880
+2017-05-07 13:51:10,385 RobotMover  - White to move, e2e4 Id=a34a69ff-8528-4028-a599-91f47692b880
+2017-05-07 13:51:10,385 Chess  - Message received ChessMove White to move, e2e4 Id=a34a69ff-8528-4028-a599-91f47692b880
+2017-05-07 13:51:10,385 ChessController  - e2e4
+2017-05-07 13:51:10,385 Chess  - Request move for Black Robot 4909130f-f3e9-4bc0-b3d2-8b7179c325a3
+2017-05-07 13:51:10,385 RobotMover  - Request move for Black Robot 4909130f-f3e9-4bc0-b3d2-8b7179c325a3
+2017-05-07 13:51:42,784 RobotMover  - Black to move, d7d6 Id=4909130f-f3e9-4bc0-b3d2-8b7179c325a3
+2017-05-07 13:51:42,784 Chess  - Message received ChessMove Black to move, d7d6 Id=4909130f-f3e9-4bc0-b3d2-8b7179c325a3
+2017-05-07 13:51:42,784 ChessController  - d7d6
+2017-05-07 13:51:42,784 Chess  - Request move for White Robot 5b4f6fb2-1519-485b-a53b-7e1cbc53beb6
+2017-05-07 13:51:42,784 RobotMover  - Request move for White Robot 5b4f6fb2-1519-485b-a53b-7e1cbc53beb6
+2017-05-07 13:51:50,611 RobotMover  - White to move, g1f3 Id=5b4f6fb2-1519-485b-a53b-7e1cbc53beb6
+2017-05-07 13:51:50,613 Chess  - Message received ChessMove White to move, g1f3 Id=5b4f6fb2-1519-485b-a53b-7e1cbc53beb6
+2017-05-07 13:51:50,614 ChessController  - g1f3
+2017-05-07 13:51:50,615 Chess  - Request move for Black Robot 95b082ef-8599-4e4b-abef-06af3c1e9b96
+2017-05-07 13:51:50,621 RobotMover  - Request move for Black Robot 95b082ef-8599-4e4b-abef-06af3c1e9b96
+2017-05-07 13:52:27,634 RobotMover  - Black to move, e7e5 Id=95b082ef-8599-4e4b-abef-06af3c1e9b96
+2017-05-07 13:52:27,634 Chess  - Message received ChessMove Black to move, e7e5 Id=95b082ef-8599-4e4b-abef-06af3c1e9b96
+2017-05-07 13:52:27,634 ChessController  - e7e5
+2017-05-07 13:52:27,634 Chess  - Request move for White Robot fe7ffaf2-d15c-4e55-af0c-5361a3129f27
+2017-05-07 13:52:27,634 RobotMover  - Request move for White Robot fe7ffaf2-d15c-4e55-af0c-5361a3129f27
+2017-05-07 13:54:27,640 Chess  - Request move for White Robot 3b5871dc-0066-49bf-be55-d51816458690
+2017-05-07 13:54:27,703 RobotMover  - Request move for White Robot 3b5871dc-0066-49bf-be55-d51816458690
+2017-05-07 13:54:40,797 RobotMover  - White to move, d2d3 Id=3b5871dc-0066-49bf-be55-d51816458690
+2017-05-07 13:54:40,797 Chess  - Message received ChessMove White to move, d2d3 Id=3b5871dc-0066-49bf-be55-d51816458690
+2017-05-07 13:54:40,797 ChessController  - d2d3
+2017-05-07 13:54:40,797 Chess  - Request move for Black Robot 6ac091e3-c120-4052-bc97-3044b98d1475
+2017-05-07 13:54:40,797 RobotMover  - Request move for Black Robot 6ac091e3-c120-4052-bc97-3044b98d1475
+2017-05-07 13:55:01,247 RobotMover  - Black to move, g8f6 Id=6ac091e3-c120-4052-bc97-3044b98d1475
+2017-05-07 13:55:01,249 Chess  - Message received ChessMove Black to move, g8f6 Id=6ac091e3-c120-4052-bc97-3044b98d1475
+2017-05-07 13:55:01,250 ChessController  - g8f6
+2017-05-07 13:55:01,250 Chess  - Request move for White Robot ec4b71aa-994f-43b0-a432-1847214db335
+2017-05-07 13:55:01,255 RobotMover  - Request move for White Robot ec4b71aa-994f-43b0-a432-1847214db335
+2017-05-07 13:55:06,142 RobotMover  - White to move, c1g5 Id=ec4b71aa-994f-43b0-a432-1847214db335
+2017-05-07 13:55:06,144 Chess  - Message received ChessMove White to move, c1g5 Id=ec4b71aa-994f-43b0-a432-1847214db335
+2017-05-07 13:55:06,144 ChessController  - c1g5
+2017-05-07 13:55:06,145 Chess  - Request move for Black Robot 769434ff-1dcd-4de1-a73f-4231724a8930
+2017-05-07 13:55:06,149 RobotMover  - Request move for Black Robot 769434ff-1dcd-4de1-a73f-4231724a8930
+2017-05-07 13:55:21,950 RobotMover  - Black to move, c7c5 Id=769434ff-1dcd-4de1-a73f-4231724a8930
+2017-05-07 13:55:21,950 Chess  - Message received ChessMove Black to move, c7c5 Id=769434ff-1dcd-4de1-a73f-4231724a8930
+2017-05-07 13:55:21,966 ChessController  - c7c5
+2017-05-07 13:55:21,966 Chess  - Request move for White Robot 4b0784b2-de47-4d79-8c9e-9b4523b4f2b7
+2017-05-07 13:55:21,966 RobotMover  - Request move for White Robot 4b0784b2-de47-4d79-8c9e-9b4523b4f2b7
+2017-05-07 13:55:36,472 RobotMover  - White to move, c2c4 Id=4b0784b2-de47-4d79-8c9e-9b4523b4f2b7
+2017-05-07 13:55:36,473 Chess  - Message received ChessMove White to move, c2c4 Id=4b0784b2-de47-4d79-8c9e-9b4523b4f2b7
+2017-05-07 13:55:36,474 ChessController  - c2c4
+2017-05-07 13:55:36,474 Chess  - Request move for Black Robot 56eb8423-b95d-4ada-9f84-6e0f4e0ed10d
+2017-05-07 13:55:36,478 RobotMover  - Request move for Black Robot 56eb8423-b95d-4ada-9f84-6e0f4e0ed10d
+2017-05-07 13:55:45,745 RobotMover  - Black to move, h7h6 Id=56eb8423-b95d-4ada-9f84-6e0f4e0ed10d
+2017-05-07 13:55:45,745 Chess  - Message received ChessMove Black to move, h7h6 Id=56eb8423-b95d-4ada-9f84-6e0f4e0ed10d
+2017-05-07 13:55:45,745 ChessController  - h7h6
+2017-05-07 13:55:45,745 Chess  - Request move for White Robot 3d9043d1-abf7-4ce9-8f4d-93e5db4e3ac3
+2017-05-07 13:55:45,760 RobotMover  - Request move for White Robot 3d9043d1-abf7-4ce9-8f4d-93e5db4e3ac3
+2017-05-07 13:56:06,269 RobotMover  - White to move, g5e3 Id=3d9043d1-abf7-4ce9-8f4d-93e5db4e3ac3
+2017-05-07 13:56:06,271 Chess  - Message received ChessMove White to move, g5e3 Id=3d9043d1-abf7-4ce9-8f4d-93e5db4e3ac3
+2017-05-07 13:56:06,272 ChessController  - g5e3
+2017-05-07 13:56:06,274 Chess  - Request move for Black Robot d3583e11-4355-49fe-be08-6411ee7b6a81
+2017-05-07 13:56:06,277 RobotMover  - Request move for Black Robot d3583e11-4355-49fe-be08-6411ee7b6a81
+2017-05-07 13:56:22,064 RobotMover  - Black to move, b8c6 Id=d3583e11-4355-49fe-be08-6411ee7b6a81
+2017-05-07 13:56:22,064 Chess  - Message received ChessMove Black to move, b8c6 Id=d3583e11-4355-49fe-be08-6411ee7b6a81
+2017-05-07 13:56:22,080 ChessController  - b8c6
+2017-05-07 13:56:22,080 Chess  - Request move for White Robot 1967290e-6eff-4afd-bc47-9d68c09b8e3c
+2017-05-07 13:56:22,080 RobotMover  - Request move for White Robot 1967290e-6eff-4afd-bc47-9d68c09b8e3c
+2017-05-07 13:57:05,978 RobotMover  - White to move, h2h3 Id=1967290e-6eff-4afd-bc47-9d68c09b8e3c
+2017-05-07 13:57:05,980 Chess  - Message received ChessMove White to move, h2h3 Id=1967290e-6eff-4afd-bc47-9d68c09b8e3c
+2017-05-07 13:57:05,980 ChessController  - h2h3
+2017-05-07 13:57:05,981 Chess  - Request move for Black Robot 0934b29a-78d3-42fe-969c-e25e4aa20d4a
+2017-05-07 13:57:05,984 RobotMover  - Request move for Black Robot 0934b29a-78d3-42fe-969c-e25e4aa20d4a
+2017-05-07 13:57:10,902 RobotMover  - Black to move, a7a6 Id=0934b29a-78d3-42fe-969c-e25e4aa20d4a
+2017-05-07 13:57:10,902 Chess  - Message received ChessMove Black to move, a7a6 Id=0934b29a-78d3-42fe-969c-e25e4aa20d4a
+2017-05-07 13:57:10,902 ChessController  - a7a6
+2017-05-07 13:57:10,918 Chess  - Request move for White Robot 9ccb6f2b-a65c-441f-b9a8-c357bbf52723
+2017-05-07 13:57:10,933 RobotMover  - Request move for White Robot 9ccb6f2b-a65c-441f-b9a8-c357bbf52723
+2017-05-07 13:57:55,572 RobotMover  - White to move, f1e2 Id=9ccb6f2b-a65c-441f-b9a8-c357bbf52723
+2017-05-07 13:57:55,574 Chess  - Message received ChessMove White to move, f1e2 Id=9ccb6f2b-a65c-441f-b9a8-c357bbf52723
+2017-05-07 13:57:55,575 ChessController  - f1e2
+2017-05-07 13:57:55,576 Chess  - Request move for Black Robot 8e00e488-5a99-4eac-8e6a-22b23b9e0bcd
+2017-05-07 13:57:55,582 RobotMover  - Request move for Black Robot 8e00e488-5a99-4eac-8e6a-22b23b9e0bcd
+2017-05-07 13:58:04,803 RobotMover  - Black to move, a8b8 Id=8e00e488-5a99-4eac-8e6a-22b23b9e0bcd
+2017-05-07 13:58:04,803 Chess  - Message received ChessMove Black to move, a8b8 Id=8e00e488-5a99-4eac-8e6a-22b23b9e0bcd
+2017-05-07 13:58:04,803 ChessController  - a8b8
+2017-05-07 13:58:04,803 Chess  - Request move for White Robot a20c7179-119c-4e74-8800-1dfe902e9b54
+2017-05-07 13:58:04,803 RobotMover  - Request move for White Robot a20c7179-119c-4e74-8800-1dfe902e9b54
+2017-05-07 13:58:10,256 RobotMover  - White to move, a2a4 Id=a20c7179-119c-4e74-8800-1dfe902e9b54
+2017-05-07 13:58:10,258 Chess  - Message received ChessMove White to move, a2a4 Id=a20c7179-119c-4e74-8800-1dfe902e9b54
+2017-05-07 13:58:10,259 ChessController  - a2a4
+2017-05-07 13:58:10,260 Chess  - Request move for Black Robot 97c7ceb1-0a3c-47c6-902a-6f0f3267c533
+2017-05-07 13:58:10,264 RobotMover  - Request move for Black Robot 97c7ceb1-0a3c-47c6-902a-6f0f3267c533
+2017-05-07 13:58:16,971 RobotMover  - Black to move, f8e7 Id=97c7ceb1-0a3c-47c6-902a-6f0f3267c533
+2017-05-07 13:58:16,971 Chess  - Message received ChessMove Black to move, f8e7 Id=97c7ceb1-0a3c-47c6-902a-6f0f3267c533
+2017-05-07 13:58:16,971 ChessController  - f8e7
+2017-05-07 13:58:16,971 Chess  - Request move for White Robot e58a1706-76ae-4434-bee6-31fa5752083d
+2017-05-07 13:58:16,971 RobotMover  - Request move for White Robot e58a1706-76ae-4434-bee6-31fa5752083d
+2017-05-07 13:58:46,412 RobotMover  - White to move, b1c3 Id=e58a1706-76ae-4434-bee6-31fa5752083d
+2017-05-07 13:58:46,414 Chess  - Message received ChessMove White to move, b1c3 Id=e58a1706-76ae-4434-bee6-31fa5752083d
+2017-05-07 13:58:46,414 ChessController  - b1c3
+2017-05-07 13:58:46,415 Chess  - Request move for Black Robot c1e85d9e-15e0-4500-b0a7-0c62f6ed44a0
+2017-05-07 13:58:46,418 RobotMover  - Request move for Black Robot c1e85d9e-15e0-4500-b0a7-0c62f6ed44a0
+2017-05-07 13:58:54,107 RobotMover  - Black to move, c8e6 Id=c1e85d9e-15e0-4500-b0a7-0c62f6ed44a0
+2017-05-07 13:58:54,109 Chess  - Message received ChessMove Black to move, c8e6 Id=c1e85d9e-15e0-4500-b0a7-0c62f6ed44a0
+2017-05-07 13:58:54,109 ChessController  - c8e6
+2017-05-07 13:58:54,110 Chess  - Request move for White Robot f49ae975-c658-4adc-bc7b-7a64541f744d
+2017-05-07 13:58:54,114 RobotMover  - Request move for White Robot f49ae975-c658-4adc-bc7b-7a64541f744d
+2017-05-07 13:59:41,229 RobotMover  - White to move, c3d5 Id=f49ae975-c658-4adc-bc7b-7a64541f744d
+2017-05-07 13:59:41,231 Chess  - Message received ChessMove White to move, c3d5 Id=f49ae975-c658-4adc-bc7b-7a64541f744d
+2017-05-07 13:59:41,232 ChessController  - c3d5
+2017-05-07 13:59:41,232 Chess  - Request move for Black Robot 6d7bb6a4-428b-4bb1-a343-1a565743a057
+2017-05-07 13:59:41,236 RobotMover  - Request move for Black Robot 6d7bb6a4-428b-4bb1-a343-1a565743a057
+2017-05-07 14:00:04,542 RobotMover  - Black to move, b7b5 Id=6d7bb6a4-428b-4bb1-a343-1a565743a057
+2017-05-07 14:00:04,542 Chess  - Message received ChessMove Black to move, b7b5 Id=6d7bb6a4-428b-4bb1-a343-1a565743a057
+2017-05-07 14:00:04,542 ChessController  - b7b5
+2017-05-07 14:00:04,542 Chess  - Request move for White Robot a192e0c8-0bf4-4dd8-9851-ef60751fe862
+2017-05-07 14:00:04,542 RobotMover  - Request move for White Robot a192e0c8-0bf4-4dd8-9851-ef60751fe862
+2017-05-07 14:00:27,656 RobotMover  - White to move, e1g1 Id=a192e0c8-0bf4-4dd8-9851-ef60751fe862
+2017-05-07 14:00:27,658 Chess  - Message received ChessMove White to move, e1g1 Id=a192e0c8-0bf4-4dd8-9851-ef60751fe862
+2017-05-07 14:00:27,658 ChessController  - e1g1
+2017-05-07 14:00:27,659 Chess  - Request move for Black Robot efb6e9e8-ec1a-44f2-b69c-e094aa41a4e9
+2017-05-07 14:00:27,663 RobotMover  - Request move for Black Robot efb6e9e8-ec1a-44f2-b69c-e094aa41a4e9
+2017-05-07 14:00:35,559 RobotMover  - Black to move, b5b4 Id=efb6e9e8-ec1a-44f2-b69c-e094aa41a4e9
+2017-05-07 14:00:35,559 Chess  - Message received ChessMove Black to move, b5b4 Id=efb6e9e8-ec1a-44f2-b69c-e094aa41a4e9
+2017-05-07 14:00:35,559 ChessController  - b5b4
+2017-05-07 14:00:35,559 Chess  - Request move for White Robot 65aebde4-bf1b-481e-854e-8cf94b58f9a1
+2017-05-07 14:00:35,559 RobotMover  - Request move for White Robot 65aebde4-bf1b-481e-854e-8cf94b58f9a1
+2017-05-07 14:01:03,251 RobotMover  - White to move, b2b3 Id=65aebde4-bf1b-481e-854e-8cf94b58f9a1
+2017-05-07 14:01:03,251 Chess  - Message received ChessMove White to move, b2b3 Id=65aebde4-bf1b-481e-854e-8cf94b58f9a1
+2017-05-07 14:01:03,251 ChessController  - b2b3
+2017-05-07 14:01:03,251 Chess  - Request move for Black Robot f2a80f27-9792-4b2a-9beb-9a766f83d791
+2017-05-07 14:01:03,251 RobotMover  - Request move for Black Robot f2a80f27-9792-4b2a-9beb-9a766f83d791
+2017-05-07 14:01:17,572 RobotMover  - Black to move, f6d7 Id=f2a80f27-9792-4b2a-9beb-9a766f83d791
+2017-05-07 14:01:17,575 Chess  - Message received ChessMove Black to move, f6d7 Id=f2a80f27-9792-4b2a-9beb-9a766f83d791
+2017-05-07 14:01:17,575 ChessController  - f6d7
+2017-05-07 14:01:17,576 Chess  - Request move for White Robot ced739a3-4c62-4802-ab4a-bac3860168e2
+2017-05-07 14:01:17,581 RobotMover  - Request move for White Robot ced739a3-4c62-4802-ab4a-bac3860168e2
+2017-05-07 14:02:07,550 RobotMover  - White to move, d1c2 Id=ced739a3-4c62-4802-ab4a-bac3860168e2
+2017-05-07 14:02:07,550 Chess  - Message received ChessMove White to move, d1c2 Id=ced739a3-4c62-4802-ab4a-bac3860168e2
+2017-05-07 14:02:07,550 ChessController  - d1c2
+2017-05-07 14:02:07,550 Chess  - Request move for Black Robot a42cfc33-2966-4553-afbb-ab832e2276b7
+2017-05-07 14:02:07,566 RobotMover  - Request move for Black Robot a42cfc33-2966-4553-afbb-ab832e2276b7
+2017-05-07 14:04:07,551 Chess  - Request move for Black Robot 1379e131-aba1-412f-bea1-95be15cd94bb
+2017-05-07 14:04:07,617 RobotMover  - Request move for Black Robot 1379e131-aba1-412f-bea1-95be15cd94bb
+2017-05-07 14:04:18,030 RobotMover  - Black to move, e8g8 Id=1379e131-aba1-412f-bea1-95be15cd94bb
+2017-05-07 14:04:18,031 Chess  - Message received ChessMove Black to move, e8g8 Id=1379e131-aba1-412f-bea1-95be15cd94bb
+2017-05-07 14:04:18,031 ChessController  - e8g8
+2017-05-07 14:04:18,032 Chess  - Request move for White Robot 713c3c56-7e99-4b21-9c34-0cf05b2d25cf
+2017-05-07 14:04:18,034 RobotMover  - Request move for White Robot 713c3c56-7e99-4b21-9c34-0cf05b2d25cf
+2017-05-07 14:05:09,069 RobotMover  - White to move, a1e1 Id=713c3c56-7e99-4b21-9c34-0cf05b2d25cf
+2017-05-07 14:05:09,071 Chess  - Message received ChessMove White to move, a1e1 Id=713c3c56-7e99-4b21-9c34-0cf05b2d25cf
+2017-05-07 14:05:09,072 ChessController  - a1e1
+2017-05-07 14:05:09,072 Chess  - Request move for Black Robot ad113dad-2a97-4f3c-ac80-39635ca1f2f6
+2017-05-07 14:05:09,078 RobotMover  - Request move for Black Robot ad113dad-2a97-4f3c-ac80-39635ca1f2f6
+2017-05-07 14:05:25,833 RobotMover  - Black to move, a6a5 Id=ad113dad-2a97-4f3c-ac80-39635ca1f2f6
+2017-05-07 14:05:25,835 Chess  - Message received ChessMove Black to move, a6a5 Id=ad113dad-2a97-4f3c-ac80-39635ca1f2f6
+2017-05-07 14:05:25,835 ChessController  - a6a5
+2017-05-07 14:05:25,836 Chess  - Request move for White Robot f838f48a-2a8c-44d1-8203-23768aa8c572
+2017-05-07 14:05:25,845 RobotMover  - Request move for White Robot f838f48a-2a8c-44d1-8203-23768aa8c572
+2017-05-07 14:06:17,976 RobotMover  - White to move, c2b2 Id=f838f48a-2a8c-44d1-8203-23768aa8c572
+2017-05-07 14:06:17,979 Chess  - Message received ChessMove White to move, c2b2 Id=f838f48a-2a8c-44d1-8203-23768aa8c572
+2017-05-07 14:06:17,979 ChessController  - c2b2
+2017-05-07 14:06:17,980 Chess  - Request move for Black Robot 0164b8b6-b805-4f27-9d35-a38e2daeab31
+2017-05-07 14:06:17,986 RobotMover  - Request move for Black Robot 0164b8b6-b805-4f27-9d35-a38e2daeab31
+2017-05-07 14:06:31,191 RobotMover  - Black to move, c6d4 Id=0164b8b6-b805-4f27-9d35-a38e2daeab31
+2017-05-07 14:06:31,192 Chess  - Message received ChessMove Black to move, c6d4 Id=0164b8b6-b805-4f27-9d35-a38e2daeab31
+2017-05-07 14:06:31,193 ChessController  - c6d4
+2017-05-07 14:06:31,193 Chess  - Request move for White Robot 98274cac-e1cc-4171-8ec5-656a6cbc454a
+2017-05-07 14:06:31,198 RobotMover  - Request move for White Robot 98274cac-e1cc-4171-8ec5-656a6cbc454a
+2017-05-07 14:07:24,480 RobotMover  - White to move, f3d4 Id=98274cac-e1cc-4171-8ec5-656a6cbc454a
+2017-05-07 14:07:24,483 Chess  - Message received ChessMove White to move, f3d4 Id=98274cac-e1cc-4171-8ec5-656a6cbc454a
+2017-05-07 14:07:24,483 ChessController  - f3d4
+2017-05-07 14:07:24,484 Chess  - Request move for Black Robot 82d6bac6-99fa-4640-b77b-4e42733fc6e4
+2017-05-07 14:07:24,530 RobotMover  - Request move for Black Robot 82d6bac6-99fa-4640-b77b-4e42733fc6e4
+2017-05-07 14:07:31,146 RobotMover  - Black to move, c5d4 Id=82d6bac6-99fa-4640-b77b-4e42733fc6e4
+2017-05-07 14:07:31,149 Chess  - Message received ChessMove Black to move, c5d4 Id=82d6bac6-99fa-4640-b77b-4e42733fc6e4
+2017-05-07 14:07:31,149 ChessController  - c5d4
+2017-05-07 14:07:31,150 Chess  - Request move for White Robot 4ec75527-0f9a-49df-b892-10b4bb088cca
+2017-05-07 14:07:31,154 RobotMover  - Request move for White Robot 4ec75527-0f9a-49df-b892-10b4bb088cca
+2017-05-07 14:08:14,963 RobotMover  - White to move, e3c1 Id=4ec75527-0f9a-49df-b892-10b4bb088cca
+2017-05-07 14:08:14,967 Chess  - Message received ChessMove White to move, e3c1 Id=4ec75527-0f9a-49df-b892-10b4bb088cca
+2017-05-07 14:08:14,968 ChessController  - e3c1
+2017-05-07 14:08:14,968 Chess  - Request move for Black Robot f5a5c951-3e16-4215-a5d0-7cb39b2589c2
+2017-05-07 14:08:14,971 RobotMover  - Request move for Black Robot f5a5c951-3e16-4215-a5d0-7cb39b2589c2
+2017-05-07 14:08:32,487 RobotMover  - Black to move, e6d5 Id=f5a5c951-3e16-4215-a5d0-7cb39b2589c2
+2017-05-07 14:08:32,488 Chess  - Message received ChessMove Black to move, e6d5 Id=f5a5c951-3e16-4215-a5d0-7cb39b2589c2
+2017-05-07 14:08:32,489 ChessController  - e6d5
+2017-05-07 14:08:32,489 Chess  - Request move for White Robot c658bdb9-6a6c-4ea3-8bed-70c6c1cbac71
+2017-05-07 14:08:32,493 RobotMover  - Request move for White Robot c658bdb9-6a6c-4ea3-8bed-70c6c1cbac71
+2017-05-07 14:09:00,197 RobotMover  - White to move, c4d5 Id=c658bdb9-6a6c-4ea3-8bed-70c6c1cbac71
+2017-05-07 14:09:00,200 Chess  - Message received ChessMove White to move, c4d5 Id=c658bdb9-6a6c-4ea3-8bed-70c6c1cbac71
+2017-05-07 14:09:00,201 ChessController  - c4d5
+2017-05-07 14:09:00,201 Chess  - Request move for Black Robot e2c3b97d-99ac-4231-aa94-d7224d856719
+2017-05-07 14:09:00,205 RobotMover  - Request move for Black Robot e2c3b97d-99ac-4231-aa94-d7224d856719
+2017-05-07 14:09:08,361 RobotMover  - Black to move, d8c7 Id=e2c3b97d-99ac-4231-aa94-d7224d856719
+2017-05-07 14:09:08,362 Chess  - Message received ChessMove Black to move, d8c7 Id=e2c3b97d-99ac-4231-aa94-d7224d856719
+2017-05-07 14:09:08,363 ChessController  - d8c7
+2017-05-07 14:09:08,363 Chess  - Request move for White Robot 52d27018-c44c-44bf-8758-1c4fe573a4c8
+2017-05-07 14:09:08,368 RobotMover  - Request move for White Robot 52d27018-c44c-44bf-8758-1c4fe573a4c8
+2017-05-07 14:09:16,550 RobotMover  - White to move, c1d2 Id=52d27018-c44c-44bf-8758-1c4fe573a4c8
+2017-05-07 14:09:16,554 Chess  - Message received ChessMove White to move, c1d2 Id=52d27018-c44c-44bf-8758-1c4fe573a4c8
+2017-05-07 14:09:16,554 ChessController  - c1d2
+2017-05-07 14:09:16,554 Chess  - Request move for Black Robot 558939c6-6f8b-4853-a664-07b9c43f2d18
+2017-05-07 14:09:16,556 RobotMover  - Request move for Black Robot 558939c6-6f8b-4853-a664-07b9c43f2d18
+2017-05-07 14:09:29,285 RobotMover  - Black to move, e7g5 Id=558939c6-6f8b-4853-a664-07b9c43f2d18
+2017-05-07 14:09:29,287 Chess  - Message received ChessMove Black to move, e7g5 Id=558939c6-6f8b-4853-a664-07b9c43f2d18
+2017-05-07 14:09:29,287 ChessController  - e7g5
+2017-05-07 14:09:29,288 Chess  - Request move for White Robot b8384da8-39c5-4478-967d-e666353c106c
+2017-05-07 14:09:29,296 RobotMover  - Request move for White Robot b8384da8-39c5-4478-967d-e666353c106c
+2017-05-07 14:09:56,306 RobotMover  - White to move, e1b1 Id=b8384da8-39c5-4478-967d-e666353c106c
+2017-05-07 14:09:56,308 Chess  - Message received ChessMove White to move, e1b1 Id=b8384da8-39c5-4478-967d-e666353c106c
+2017-05-07 14:09:56,308 ChessController  - e1b1
+2017-05-07 14:09:56,308 Chess  - Request move for Black Robot fb7fcb73-8d76-44bb-9cb0-b6a6f92fabc0
+2017-05-07 14:09:56,313 RobotMover  - Request move for Black Robot fb7fcb73-8d76-44bb-9cb0-b6a6f92fabc0
+2017-05-07 14:10:18,930 RobotMover  - Black to move, g5d2 Id=fb7fcb73-8d76-44bb-9cb0-b6a6f92fabc0
+2017-05-07 14:10:18,931 Chess  - Message received ChessMove Black to move, g5d2 Id=fb7fcb73-8d76-44bb-9cb0-b6a6f92fabc0
+2017-05-07 14:10:18,931 ChessController  - g5d2
+2017-05-07 14:10:18,932 Chess  - Request move for White Robot b23cb78f-6dfe-4744-8dcd-3066aa360000
+2017-05-07 14:10:18,934 RobotMover  - Request move for White Robot b23cb78f-6dfe-4744-8dcd-3066aa360000
+2017-05-07 14:11:14,723 RobotMover  - White to move, b2d2 Id=b23cb78f-6dfe-4744-8dcd-3066aa360000
+2017-05-07 14:11:14,724 Chess  - Message received ChessMove White to move, b2d2 Id=b23cb78f-6dfe-4744-8dcd-3066aa360000
+2017-05-07 14:11:14,725 ChessController  - b2d2
+2017-05-07 14:11:14,725 Chess  - Request move for Black Robot c19c418e-141c-4768-9637-6c5ecef54471
+2017-05-07 14:11:14,730 RobotMover  - Request move for Black Robot c19c418e-141c-4768-9637-6c5ecef54471
+2017-05-07 14:11:25,240 RobotMover  - Black to move, c7c3 Id=c19c418e-141c-4768-9637-6c5ecef54471
+2017-05-07 14:11:25,241 Chess  - Message received ChessMove Black to move, c7c3 Id=c19c418e-141c-4768-9637-6c5ecef54471
+2017-05-07 14:11:25,242 ChessController  - c7c3
+2017-05-07 14:11:25,242 Chess  - Request move for White Robot 89b57f5c-d94b-4cd9-a9ed-a40c83fe51a5
+2017-05-07 14:11:25,245 RobotMover  - Request move for White Robot 89b57f5c-d94b-4cd9-a9ed-a40c83fe51a5
+2017-05-07 14:12:00,572 RobotMover  - White to move, d2d1 Id=89b57f5c-d94b-4cd9-a9ed-a40c83fe51a5
+2017-05-07 14:12:00,573 Chess  - Message received ChessMove White to move, d2d1 Id=89b57f5c-d94b-4cd9-a9ed-a40c83fe51a5
+2017-05-07 14:12:00,574 ChessController  - d2d1
+2017-05-07 14:12:00,574 Chess  - Request move for Black Robot 00186b52-b202-4a3e-8f80-d617d6643a9a
+2017-05-07 14:12:00,577 RobotMover  - Request move for Black Robot 00186b52-b202-4a3e-8f80-d617d6643a9a
+2017-05-07 14:12:12,046 RobotMover  - Black to move, f8c8 Id=00186b52-b202-4a3e-8f80-d617d6643a9a
+2017-05-07 14:12:12,049 Chess  - Message received ChessMove Black to move, f8c8 Id=00186b52-b202-4a3e-8f80-d617d6643a9a
+2017-05-07 14:12:12,049 ChessController  - f8c8
+2017-05-07 14:12:12,049 Chess  - Request move for White Robot 86eaa408-6b51-4e05-9319-9905c953f0b3
+2017-05-07 14:12:12,054 RobotMover  - Request move for White Robot 86eaa408-6b51-4e05-9319-9905c953f0b3
+2017-05-07 14:12:50,289 RobotMover  - White to move, e2g4 Id=86eaa408-6b51-4e05-9319-9905c953f0b3
+2017-05-07 14:12:50,293 Chess  - Message received ChessMove White to move, e2g4 Id=86eaa408-6b51-4e05-9319-9905c953f0b3
+2017-05-07 14:12:50,294 ChessController  - e2g4
+2017-05-07 14:12:50,294 Chess  - Request move for Black Robot 3f4422cd-bf4d-4739-ad6f-4ee38004fcbe
+2017-05-07 14:12:50,300 RobotMover  - Request move for Black Robot 3f4422cd-bf4d-4739-ad6f-4ee38004fcbe
+2017-05-07 14:13:53,507 RobotMover  - Black to move, c3c7 Id=3f4422cd-bf4d-4739-ad6f-4ee38004fcbe
+2017-05-07 14:13:53,509 Chess  - Message received ChessMove Black to move, c3c7 Id=3f4422cd-bf4d-4739-ad6f-4ee38004fcbe
+2017-05-07 14:13:53,510 ChessController  - c3c7
+2017-05-07 14:13:53,511 Chess  - Request move for White Robot 2ac52f54-ba4e-486a-90a3-7343d35dbeff
+2017-05-07 14:13:53,516 RobotMover  - Request move for White Robot 2ac52f54-ba4e-486a-90a3-7343d35dbeff
+2017-05-07 14:14:57,422 RobotMover  - White to move, b1b2 Id=2ac52f54-ba4e-486a-90a3-7343d35dbeff
+2017-05-07 14:14:57,424 Chess  - Message received ChessMove White to move, b1b2 Id=2ac52f54-ba4e-486a-90a3-7343d35dbeff
+2017-05-07 14:14:57,424 ChessController  - b1b2
+2017-05-07 14:14:57,425 Chess  - Request move for Black Robot db8a19f0-ae38-451c-94a4-420d3e2afcd0
+2017-05-07 14:14:57,430 RobotMover  - Request move for Black Robot db8a19f0-ae38-451c-94a4-420d3e2afcd0
+2017-05-07 14:15:08,823 RobotMover  - Black to move, c7b7 Id=db8a19f0-ae38-451c-94a4-420d3e2afcd0
+2017-05-07 14:15:08,867 Chess  - Received Unknown move db8a19f0-ae38-451c-94a4-420d3e2afcd0  Expected null
+2017-05-07 14:21:46,840 Chess  - Message received StartGame
+2017-05-07 14:21:46,856 ChessController  - New Game
+2017-05-07 14:21:46,969 Chess  - Request move for White Robot position startpos moves  b9f43fa3-8990-4183-926c-03d18cf96670
+2017-05-07 14:21:46,992 RobotMover  - Request move for White Robot position startpos moves  b9f43fa3-8990-4183-926c-03d18cf96670
+2017-05-07 14:21:58,611 RobotMover  - White to move, e2e4 Id=b9f43fa3-8990-4183-926c-03d18cf96670
+2017-05-07 14:21:58,613 Chess  - Message received ChessMove White to move, e2e4 Id=b9f43fa3-8990-4183-926c-03d18cf96670
+2017-05-07 14:21:58,615 ChessController  - e2e4
+2017-05-07 14:21:58,616 Chess  - Request move for Black Robot position startpos moves e2e4  889645b1-5f40-4970-b49f-72812ec332c6
+2017-05-07 14:21:58,619 RobotMover  - Request move for Black Robot position startpos moves e2e4  889645b1-5f40-4970-b49f-72812ec332c6
+2017-05-07 14:22:22,162 RobotMover  - Black to move, e7e6 Id=889645b1-5f40-4970-b49f-72812ec332c6
+2017-05-07 14:22:22,165 Chess  - Message received ChessMove Black to move, e7e6 Id=889645b1-5f40-4970-b49f-72812ec332c6
+2017-05-07 14:22:22,165 ChessController  - e7e6
+2017-05-07 14:22:22,166 Chess  - Request move for White Robot position startpos moves e2e4 e7e6  77b124d5-b8a9-4a1b-9745-fe1ce4520f45
+2017-05-07 14:22:22,169 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6  77b124d5-b8a9-4a1b-9745-fe1ce4520f45
+2017-05-07 14:22:34,143 RobotMover  - White to move, b1c3 Id=77b124d5-b8a9-4a1b-9745-fe1ce4520f45
+2017-05-07 14:22:34,146 Chess  - Message received ChessMove White to move, b1c3 Id=77b124d5-b8a9-4a1b-9745-fe1ce4520f45
+2017-05-07 14:22:34,147 ChessController  - b1c3
+2017-05-07 14:22:34,148 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3  71898866-b6ba-4ceb-984e-b1360c705bf3
+2017-05-07 14:22:34,153 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3  71898866-b6ba-4ceb-984e-b1360c705bf3
+2017-05-07 14:23:15,123 RobotMover  - Black to move, c7c5 Id=71898866-b6ba-4ceb-984e-b1360c705bf3
+2017-05-07 14:23:15,126 Chess  - Message received ChessMove Black to move, c7c5 Id=71898866-b6ba-4ceb-984e-b1360c705bf3
+2017-05-07 14:23:15,127 ChessController  - c7c5
+2017-05-07 14:23:15,128 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5  3b7406af-eb91-4cef-9c4a-ef48570c635c
+2017-05-07 14:23:15,131 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5  3b7406af-eb91-4cef-9c4a-ef48570c635c
+2017-05-07 14:23:29,410 RobotMover  - White to move, a2a3 Id=3b7406af-eb91-4cef-9c4a-ef48570c635c
+2017-05-07 14:23:29,412 Chess  - Message received ChessMove White to move, a2a3 Id=3b7406af-eb91-4cef-9c4a-ef48570c635c
+2017-05-07 14:23:29,413 ChessController  - a2a3
+2017-05-07 14:23:29,413 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3  05d6c8eb-128e-4570-a134-4d3516de01f5
+2017-05-07 14:23:29,416 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3  05d6c8eb-128e-4570-a134-4d3516de01f5
+2017-05-07 14:23:34,092 RobotMover  - Black to move, d7d5 Id=05d6c8eb-128e-4570-a134-4d3516de01f5
+2017-05-07 14:23:34,094 Chess  - Message received ChessMove Black to move, d7d5 Id=05d6c8eb-128e-4570-a134-4d3516de01f5
+2017-05-07 14:23:34,095 ChessController  - d7d5
+2017-05-07 14:23:34,096 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5  653f5cba-e7a9-4dd5-a895-7c5131ac9ad8
+2017-05-07 14:23:34,103 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5  653f5cba-e7a9-4dd5-a895-7c5131ac9ad8
+2017-05-07 14:23:50,789 RobotMover  - White to move, f1b5 Id=653f5cba-e7a9-4dd5-a895-7c5131ac9ad8
+2017-05-07 14:23:50,794 Chess  - Message received ChessMove White to move, f1b5 Id=653f5cba-e7a9-4dd5-a895-7c5131ac9ad8
+2017-05-07 14:23:50,795 ChessController  - f1b5
+2017-05-07 14:23:50,796 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5  2dffa3a8-3207-45e6-a254-a59bae2d149c
+2017-05-07 14:23:50,799 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5  2dffa3a8-3207-45e6-a254-a59bae2d149c
+2017-05-07 14:24:06,533 RobotMover  - Black to move, b8c6 Id=2dffa3a8-3207-45e6-a254-a59bae2d149c
+2017-05-07 14:24:06,535 Chess  - Message received ChessMove Black to move, b8c6 Id=2dffa3a8-3207-45e6-a254-a59bae2d149c
+2017-05-07 14:24:06,535 ChessController  - b8c6
+2017-05-07 14:24:06,538 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6  d126f9f9-22b3-4806-840d-fb985c6ef5d6
+2017-05-07 14:24:06,542 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6  d126f9f9-22b3-4806-840d-fb985c6ef5d6
+2017-05-07 14:24:49,049 RobotMover  - White to move, d2d4 Id=d126f9f9-22b3-4806-840d-fb985c6ef5d6
+2017-05-07 14:24:49,053 Chess  - Message received ChessMove White to move, d2d4 Id=d126f9f9-22b3-4806-840d-fb985c6ef5d6
+2017-05-07 14:24:49,053 ChessController  - d2d4
+2017-05-07 14:24:49,054 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4  3e9b006f-9ffe-4340-8beb-33770fc1d952
+2017-05-07 14:24:49,056 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4  3e9b006f-9ffe-4340-8beb-33770fc1d952
+2017-05-07 14:24:59,658 RobotMover  - Black to move, g8f6 Id=3e9b006f-9ffe-4340-8beb-33770fc1d952
+2017-05-07 14:24:59,660 Chess  - Message received ChessMove Black to move, g8f6 Id=3e9b006f-9ffe-4340-8beb-33770fc1d952
+2017-05-07 14:24:59,660 ChessController  - g8f6
+2017-05-07 14:24:59,661 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6  ad5892b9-7ef8-4ba9-9981-000456fdf93c
+2017-05-07 14:24:59,666 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6  ad5892b9-7ef8-4ba9-9981-000456fdf93c
+2017-05-07 14:25:37,617 RobotMover  - White to move, g1e2 Id=ad5892b9-7ef8-4ba9-9981-000456fdf93c
+2017-05-07 14:25:37,617 Chess  - Message received ChessMove White to move, g1e2 Id=ad5892b9-7ef8-4ba9-9981-000456fdf93c
+2017-05-07 14:25:37,617 ChessController  - g1e2
+2017-05-07 14:25:37,633 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2  216f95a1-c75d-4f5a-841a-9d28ec4f96c0
+2017-05-07 14:25:37,638 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2  216f95a1-c75d-4f5a-841a-9d28ec4f96c0
+2017-05-07 14:25:52,247 RobotMover  - Black to move, f6e4 Id=216f95a1-c75d-4f5a-841a-9d28ec4f96c0
+2017-05-07 14:25:52,247 Chess  - Message received ChessMove Black to move, f6e4 Id=216f95a1-c75d-4f5a-841a-9d28ec4f96c0
+2017-05-07 14:25:52,247 ChessController  - f6e4
+2017-05-07 14:25:52,247 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4  07d5859f-abb2-4bd6-8f22-8f297e309d55
+2017-05-07 14:25:52,247 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4  07d5859f-abb2-4bd6-8f22-8f297e309d55
+2017-05-07 14:26:03,286 RobotMover  - White to move, b5c6 Id=07d5859f-abb2-4bd6-8f22-8f297e309d55
+2017-05-07 14:26:03,288 Chess  - Message received ChessMove White to move, b5c6 Id=07d5859f-abb2-4bd6-8f22-8f297e309d55
+2017-05-07 14:26:03,288 ChessController  - b5c6
+2017-05-07 14:26:03,289 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6  6cc76656-2cf1-459f-83a2-b81560f7a0fc
+2017-05-07 14:26:03,291 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6  6cc76656-2cf1-459f-83a2-b81560f7a0fc
+2017-05-07 14:26:14,240 RobotMover  - Black to move, b7c6 Id=6cc76656-2cf1-459f-83a2-b81560f7a0fc
+2017-05-07 14:26:14,240 Chess  - Message received ChessMove Black to move, b7c6 Id=6cc76656-2cf1-459f-83a2-b81560f7a0fc
+2017-05-07 14:26:14,240 ChessController  - b7c6
+2017-05-07 14:26:14,240 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6  7878c16d-14d2-45ab-b884-1e38bc526d00
+2017-05-07 14:26:14,240 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6  7878c16d-14d2-45ab-b884-1e38bc526d00
+2017-05-07 14:26:44,910 RobotMover  - White to move, e1g1 Id=7878c16d-14d2-45ab-b884-1e38bc526d00
+2017-05-07 14:26:44,910 Chess  - Message received ChessMove White to move, e1g1 Id=7878c16d-14d2-45ab-b884-1e38bc526d00
+2017-05-07 14:26:44,910 ChessController  - e1g1
+2017-05-07 14:26:44,910 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1  484f8eab-8f7a-4a84-893b-e7fc9b1dbfdb
+2017-05-07 14:26:44,910 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1  484f8eab-8f7a-4a84-893b-e7fc9b1dbfdb
+2017-05-07 14:26:56,264 RobotMover  - Black to move, e4c3 Id=484f8eab-8f7a-4a84-893b-e7fc9b1dbfdb
+2017-05-07 14:26:56,264 Chess  - Message received ChessMove Black to move, e4c3 Id=484f8eab-8f7a-4a84-893b-e7fc9b1dbfdb
+2017-05-07 14:26:56,280 ChessController  - e4c3
+2017-05-07 14:26:56,280 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3  5c06dfba-7f31-41d2-bd68-2ef1e877c07d
+2017-05-07 14:26:56,280 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3  5c06dfba-7f31-41d2-bd68-2ef1e877c07d
+2017-05-07 14:27:09,401 RobotMover  - White to move, e2c3 Id=5c06dfba-7f31-41d2-bd68-2ef1e877c07d
+2017-05-07 14:27:09,402 Chess  - Message received ChessMove White to move, e2c3 Id=5c06dfba-7f31-41d2-bd68-2ef1e877c07d
+2017-05-07 14:27:09,403 ChessController  - e2c3
+2017-05-07 14:27:09,403 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3  2199238f-94b4-4dbe-9da8-eeaf9092596b
+2017-05-07 14:27:09,410 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3  2199238f-94b4-4dbe-9da8-eeaf9092596b
+2017-05-07 14:27:29,284 RobotMover  - Black to move, c5d4 Id=2199238f-94b4-4dbe-9da8-eeaf9092596b
+2017-05-07 14:27:29,286 Chess  - Message received ChessMove Black to move, c5d4 Id=2199238f-94b4-4dbe-9da8-eeaf9092596b
+2017-05-07 14:27:29,286 ChessController  - c5d4
+2017-05-07 14:27:29,287 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4  24274954-5bed-44f2-9118-9b3ceb3374c9
+2017-05-07 14:27:29,291 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4  24274954-5bed-44f2-9118-9b3ceb3374c9
+2017-05-07 14:27:43,692 RobotMover  - White to move, d1d4 Id=24274954-5bed-44f2-9118-9b3ceb3374c9
+2017-05-07 14:27:43,694 Chess  - Message received ChessMove White to move, d1d4 Id=24274954-5bed-44f2-9118-9b3ceb3374c9
+2017-05-07 14:27:43,694 ChessController  - d1d4
+2017-05-07 14:27:43,694 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4  672b7291-16c5-4202-b14a-50aef9e11eef
+2017-05-07 14:27:43,697 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4  672b7291-16c5-4202-b14a-50aef9e11eef
+2017-05-07 14:27:47,936 RobotMover  - Black to move, f7f6 Id=672b7291-16c5-4202-b14a-50aef9e11eef
+2017-05-07 14:27:47,936 Chess  - Message received ChessMove Black to move, f7f6 Id=672b7291-16c5-4202-b14a-50aef9e11eef
+2017-05-07 14:27:47,936 ChessController  - f7f6
+2017-05-07 14:27:47,936 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6  9260da62-553d-4bd2-be5b-aee175998bbe
+2017-05-07 14:27:47,951 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6  9260da62-553d-4bd2-be5b-aee175998bbe
+2017-05-07 14:28:35,047 RobotMover  - White to move, d4d1 Id=9260da62-553d-4bd2-be5b-aee175998bbe
+2017-05-07 14:28:35,063 Chess  - Message received ChessMove White to move, d4d1 Id=9260da62-553d-4bd2-be5b-aee175998bbe
+2017-05-07 14:28:35,063 ChessController  - d4d1
+2017-05-07 14:28:35,063 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1  25c160ad-3d4f-47bf-acf1-097a65c32d62
+2017-05-07 14:28:35,063 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1  25c160ad-3d4f-47bf-acf1-097a65c32d62
+2017-05-07 14:28:44,880 RobotMover  - Black to move, f8d6 Id=25c160ad-3d4f-47bf-acf1-097a65c32d62
+2017-05-07 14:28:44,880 Chess  - Message received ChessMove Black to move, f8d6 Id=25c160ad-3d4f-47bf-acf1-097a65c32d62
+2017-05-07 14:28:44,880 ChessController  - f8d6
+2017-05-07 14:28:44,880 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6  a0682c62-8cc6-4f98-b29f-cba0c5626e05
+2017-05-07 14:28:44,896 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6  a0682c62-8cc6-4f98-b29f-cba0c5626e05
+2017-05-07 14:29:19,792 RobotMover  - White to move, c3a4 Id=a0682c62-8cc6-4f98-b29f-cba0c5626e05
+2017-05-07 14:29:19,792 Chess  - Message received ChessMove White to move, c3a4 Id=a0682c62-8cc6-4f98-b29f-cba0c5626e05
+2017-05-07 14:29:19,792 ChessController  - c3a4
+2017-05-07 14:29:19,792 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4  676ac8bf-18a7-49a3-8f9a-fb67e250420c
+2017-05-07 14:29:19,792 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4  676ac8bf-18a7-49a3-8f9a-fb67e250420c
+2017-05-07 14:29:29,944 RobotMover  - Black to move, d8e7 Id=676ac8bf-18a7-49a3-8f9a-fb67e250420c
+2017-05-07 14:29:29,960 Chess  - Message received ChessMove Black to move, d8e7 Id=676ac8bf-18a7-49a3-8f9a-fb67e250420c
+2017-05-07 14:29:29,960 ChessController  - d8e7
+2017-05-07 14:29:29,960 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7  5d3ed7a6-30ab-4c0c-9a7f-577b5723e1e4
+2017-05-07 14:29:29,960 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7  5d3ed7a6-30ab-4c0c-9a7f-577b5723e1e4
+2017-05-07 14:29:34,822 RobotMover  - White to move, f1e1 Id=5d3ed7a6-30ab-4c0c-9a7f-577b5723e1e4
+2017-05-07 14:29:34,824 Chess  - Message received ChessMove White to move, f1e1 Id=5d3ed7a6-30ab-4c0c-9a7f-577b5723e1e4
+2017-05-07 14:29:34,825 ChessController  - f1e1
+2017-05-07 14:29:34,825 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1  695292af-263f-48db-9d0d-c7749ebfc793
+2017-05-07 14:29:34,828 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1  695292af-263f-48db-9d0d-c7749ebfc793
+2017-05-07 14:29:46,042 RobotMover  - Black to move, e8g8 Id=695292af-263f-48db-9d0d-c7749ebfc793
+2017-05-07 14:29:46,042 Chess  - Message received ChessMove Black to move, e8g8 Id=695292af-263f-48db-9d0d-c7749ebfc793
+2017-05-07 14:29:46,057 ChessController  - e8g8
+2017-05-07 14:29:46,057 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8  e2b5e0cb-0d65-4383-bf99-bd843245e0cb
+2017-05-07 14:29:46,057 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8  e2b5e0cb-0d65-4383-bf99-bd843245e0cb
+2017-05-07 14:30:20,730 RobotMover  - White to move, c1e3 Id=e2b5e0cb-0d65-4383-bf99-bd843245e0cb
+2017-05-07 14:30:20,745 Chess  - Message received ChessMove White to move, c1e3 Id=e2b5e0cb-0d65-4383-bf99-bd843245e0cb
+2017-05-07 14:30:20,745 ChessController  - c1e3
+2017-05-07 14:30:20,745 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3  9c28e87c-6587-4c6a-ab8d-12842ffb7603
+2017-05-07 14:30:20,761 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3  9c28e87c-6587-4c6a-ab8d-12842ffb7603
+2017-05-07 14:30:27,321 RobotMover  - Black to move, e7c7 Id=9c28e87c-6587-4c6a-ab8d-12842ffb7603
+2017-05-07 14:30:27,322 Chess  - Message received ChessMove Black to move, e7c7 Id=9c28e87c-6587-4c6a-ab8d-12842ffb7603
+2017-05-07 14:30:27,323 ChessController  - e7c7
+2017-05-07 14:30:27,324 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7  7205df8a-17ad-4d6a-a9f9-56c75a765484
+2017-05-07 14:30:27,356 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7  7205df8a-17ad-4d6a-a9f9-56c75a765484
+2017-05-07 14:31:18,382 RobotMover  - White to move, e3c5 Id=7205df8a-17ad-4d6a-a9f9-56c75a765484
+2017-05-07 14:31:18,382 Chess  - Message received ChessMove White to move, e3c5 Id=7205df8a-17ad-4d6a-a9f9-56c75a765484
+2017-05-07 14:31:18,382 ChessController  - e3c5
+2017-05-07 14:31:18,382 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5  ff727cc9-557c-405b-9f95-ec4ce6c22479
+2017-05-07 14:31:18,382 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5  ff727cc9-557c-405b-9f95-ec4ce6c22479
+2017-05-07 14:31:27,561 RobotMover  - Black to move, d6h2 Id=ff727cc9-557c-405b-9f95-ec4ce6c22479
+2017-05-07 14:31:27,561 Chess  - Message received ChessMove Black to move, d6h2 Id=ff727cc9-557c-405b-9f95-ec4ce6c22479
+2017-05-07 14:31:27,561 ChessController  - d6h2
+2017-05-07 14:31:27,561 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2  6700a535-a4d5-4764-b73b-075bd774b8a2
+2017-05-07 14:31:27,561 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2  6700a535-a4d5-4764-b73b-075bd774b8a2
+2017-05-07 14:31:42,008 RobotMover  - White to move, g1h1 Id=6700a535-a4d5-4764-b73b-075bd774b8a2
+2017-05-07 14:31:42,009 Chess  - Message received ChessMove White to move, g1h1 Id=6700a535-a4d5-4764-b73b-075bd774b8a2
+2017-05-07 14:31:42,010 ChessController  - g1h1
+2017-05-07 14:31:42,011 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1  025b8a09-42cf-4a05-875f-fbc1a9ba694a
+2017-05-07 14:31:42,039 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1  025b8a09-42cf-4a05-875f-fbc1a9ba694a
+2017-05-07 14:32:03,048 RobotMover  - Black to move, f8f7 Id=025b8a09-42cf-4a05-875f-fbc1a9ba694a
+2017-05-07 14:32:03,048 Chess  - Message received ChessMove Black to move, f8f7 Id=025b8a09-42cf-4a05-875f-fbc1a9ba694a
+2017-05-07 14:32:03,048 ChessController  - f8f7
+2017-05-07 14:32:03,048 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7  017df0d6-6a8a-4185-93a4-f29adeb7c7c1
+2017-05-07 14:32:03,048 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7  017df0d6-6a8a-4185-93a4-f29adeb7c7c1
+2017-05-07 14:32:56,339 RobotMover  - White to move, c2c3 Id=017df0d6-6a8a-4185-93a4-f29adeb7c7c1
+2017-05-07 14:32:56,340 Chess  - Message received ChessMove White to move, c2c3 Id=017df0d6-6a8a-4185-93a4-f29adeb7c7c1
+2017-05-07 14:32:56,340 ChessController  - c2c3
+2017-05-07 14:32:56,341 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3  e6eab83d-a83c-49c3-a3d1-6e0628d256f0
+2017-05-07 14:32:56,343 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3  e6eab83d-a83c-49c3-a3d1-6e0628d256f0
+2017-05-07 14:33:14,461 RobotMover  - Black to move, h2d6 Id=e6eab83d-a83c-49c3-a3d1-6e0628d256f0
+2017-05-07 14:33:14,463 Chess  - Message received ChessMove Black to move, h2d6 Id=e6eab83d-a83c-49c3-a3d1-6e0628d256f0
+2017-05-07 14:33:14,463 ChessController  - h2d6
+2017-05-07 14:33:14,464 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6  ecb12cc2-8940-40ee-8c5f-72d3d54f8385
+2017-05-07 14:33:14,466 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6  ecb12cc2-8940-40ee-8c5f-72d3d54f8385
+2017-05-07 14:34:08,945 RobotMover  - White to move, c3c4 Id=ecb12cc2-8940-40ee-8c5f-72d3d54f8385
+2017-05-07 14:34:08,946 Chess  - Message received ChessMove White to move, c3c4 Id=ecb12cc2-8940-40ee-8c5f-72d3d54f8385
+2017-05-07 14:34:08,946 ChessController  - c3c4
+2017-05-07 14:34:08,946 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4  de15beb4-e604-48cc-9c48-069d12540ee5
+2017-05-07 14:34:08,946 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4  de15beb4-e604-48cc-9c48-069d12540ee5
+2017-05-07 14:34:30,823 RobotMover  - Black to move, d6e5 Id=de15beb4-e604-48cc-9c48-069d12540ee5
+2017-05-07 14:34:30,824 Chess  - Message received ChessMove Black to move, d6e5 Id=de15beb4-e604-48cc-9c48-069d12540ee5
+2017-05-07 14:34:30,824 ChessController  - d6e5
+2017-05-07 14:34:30,825 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5  bde0c639-e0c9-4d8d-a61b-bfffdbc4083a
+2017-05-07 14:34:30,829 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5  bde0c639-e0c9-4d8d-a61b-bfffdbc4083a
+2017-05-07 14:35:16,988 RobotMover  - White to move, a1c1 Id=bde0c639-e0c9-4d8d-a61b-bfffdbc4083a
+2017-05-07 14:35:16,990 Chess  - Message received ChessMove White to move, a1c1 Id=bde0c639-e0c9-4d8d-a61b-bfffdbc4083a
+2017-05-07 14:35:16,990 ChessController  - a1c1
+2017-05-07 14:35:16,990 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1  2458fa59-1d2f-494d-923c-be1feb413312
+2017-05-07 14:35:16,994 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1  2458fa59-1d2f-494d-923c-be1feb413312
+2017-05-07 14:35:34,620 RobotMover  - Black to move, a8b8 Id=2458fa59-1d2f-494d-923c-be1feb413312
+2017-05-07 14:35:34,622 Chess  - Message received ChessMove Black to move, a8b8 Id=2458fa59-1d2f-494d-923c-be1feb413312
+2017-05-07 14:35:34,622 ChessController  - a8b8
+2017-05-07 14:35:34,622 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8  50ddf4f7-2521-43d3-ad75-412f90b916c5
+2017-05-07 14:35:34,625 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8  50ddf4f7-2521-43d3-ad75-412f90b916c5
+2017-05-07 14:36:31,640 RobotMover  - White to move, b2b3 Id=50ddf4f7-2521-43d3-ad75-412f90b916c5
+2017-05-07 14:36:31,640 Chess  - Message received ChessMove White to move, b2b3 Id=50ddf4f7-2521-43d3-ad75-412f90b916c5
+2017-05-07 14:36:31,640 ChessController  - b2b3
+2017-05-07 14:36:31,640 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3  0cc1fe3b-0d1d-4951-9c62-4595171e0997
+2017-05-07 14:36:31,640 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3  0cc1fe3b-0d1d-4951-9c62-4595171e0997
+2017-05-07 14:37:05,885 RobotMover  - Black to move, e5f4 Id=0cc1fe3b-0d1d-4951-9c62-4595171e0997
+2017-05-07 14:37:05,885 Chess  - Message received ChessMove Black to move, e5f4 Id=0cc1fe3b-0d1d-4951-9c62-4595171e0997
+2017-05-07 14:37:05,885 ChessController  - e5f4
+2017-05-07 14:37:05,885 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4  697bc4aa-cd04-4d20-abf1-6325b5d6babb
+2017-05-07 14:37:05,901 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4  697bc4aa-cd04-4d20-abf1-6325b5d6babb
+2017-05-07 14:37:56,153 RobotMover  - White to move, c4d5 Id=697bc4aa-cd04-4d20-abf1-6325b5d6babb
+2017-05-07 14:37:56,154 Chess  - Message received ChessMove White to move, c4d5 Id=697bc4aa-cd04-4d20-abf1-6325b5d6babb
+2017-05-07 14:37:56,154 ChessController  - c4d5
+2017-05-07 14:37:56,154 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5  17af7fbb-d58c-451a-ad65-e2b09b2cac5a
+2017-05-07 14:37:56,163 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5  17af7fbb-d58c-451a-ad65-e2b09b2cac5a
+2017-05-07 14:38:02,672 RobotMover  - Black to move, c6d5 Id=17af7fbb-d58c-451a-ad65-e2b09b2cac5a
+2017-05-07 14:38:02,674 Chess  - Message received ChessMove Black to move, c6d5 Id=17af7fbb-d58c-451a-ad65-e2b09b2cac5a
+2017-05-07 14:38:02,675 ChessController  - c6d5
+2017-05-07 14:38:02,678 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5  616eb54c-ea27-42fd-b33b-c762c1cec542
+2017-05-07 14:38:02,681 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5  616eb54c-ea27-42fd-b33b-c762c1cec542
+2017-05-07 14:38:20,157 RobotMover  - White to move, c1c2 Id=616eb54c-ea27-42fd-b33b-c762c1cec542
+2017-05-07 14:38:20,157 Chess  - Message received ChessMove White to move, c1c2 Id=616eb54c-ea27-42fd-b33b-c762c1cec542
+2017-05-07 14:38:20,173 ChessController  - c1c2
+2017-05-07 14:38:20,173 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2  173f2872-f6b4-4b26-86d2-b83864e9701b
+2017-05-07 14:38:20,173 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2  173f2872-f6b4-4b26-86d2-b83864e9701b
+2017-05-07 14:38:36,918 RobotMover  - Black to move, c7b7 Id=173f2872-f6b4-4b26-86d2-b83864e9701b
+2017-05-07 14:38:36,919 Chess  - Message received ChessMove Black to move, c7b7 Id=173f2872-f6b4-4b26-86d2-b83864e9701b
+2017-05-07 14:38:36,919 ChessController  - c7b7
+2017-05-07 14:38:36,920 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7  3ad9815b-258b-409b-81a1-b6998825d073
+2017-05-07 14:38:36,922 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7  3ad9815b-258b-409b-81a1-b6998825d073
+2017-05-07 14:39:38,013 RobotMover  - White to move, h1g1 Id=3ad9815b-258b-409b-81a1-b6998825d073
+2017-05-07 14:39:38,013 Chess  - Message received ChessMove White to move, h1g1 Id=3ad9815b-258b-409b-81a1-b6998825d073
+2017-05-07 14:39:38,013 ChessController  - h1g1
+2017-05-07 14:39:38,013 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1  51a73115-45dd-497e-bcbc-cf07b679facd
+2017-05-07 14:39:38,029 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1  51a73115-45dd-497e-bcbc-cf07b679facd
+2017-05-07 14:39:53,608 RobotMover  - Black to move, c8d7 Id=51a73115-45dd-497e-bcbc-cf07b679facd
+2017-05-07 14:39:53,608 Chess  - Message received ChessMove Black to move, c8d7 Id=51a73115-45dd-497e-bcbc-cf07b679facd
+2017-05-07 14:39:53,608 ChessController  - c8d7
+2017-05-07 14:39:53,608 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7  1630c58a-b0c3-4de7-b28b-9d988cae56cd
+2017-05-07 14:39:53,608 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7  1630c58a-b0c3-4de7-b28b-9d988cae56cd
+2017-05-07 14:40:56,119 RobotMover  - White to move, g2g3 Id=1630c58a-b0c3-4de7-b28b-9d988cae56cd
+2017-05-07 14:40:56,120 Chess  - Message received ChessMove White to move, g2g3 Id=1630c58a-b0c3-4de7-b28b-9d988cae56cd
+2017-05-07 14:40:56,120 ChessController  - g2g3
+2017-05-07 14:40:56,121 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3  567ef91a-a771-498c-b71a-b75ac820aa7d
+2017-05-07 14:40:56,123 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3  567ef91a-a771-498c-b71a-b75ac820aa7d
+2017-05-07 14:41:07,305 RobotMover  - Black to move, f4c7 Id=567ef91a-a771-498c-b71a-b75ac820aa7d
+2017-05-07 14:41:07,309 Chess  - Message received ChessMove Black to move, f4c7 Id=567ef91a-a771-498c-b71a-b75ac820aa7d
+2017-05-07 14:41:07,309 ChessController  - f4c7
+2017-05-07 14:41:07,310 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7  98a2e178-1592-4c92-93b5-2a1fb68955c6
+2017-05-07 14:41:07,312 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7  98a2e178-1592-4c92-93b5-2a1fb68955c6
+2017-05-07 14:41:35,871 RobotMover  - White to move, c5b4 Id=98a2e178-1592-4c92-93b5-2a1fb68955c6
+2017-05-07 14:41:35,871 Chess  - Message received ChessMove White to move, c5b4 Id=98a2e178-1592-4c92-93b5-2a1fb68955c6
+2017-05-07 14:41:35,871 ChessController  - c5b4
+2017-05-07 14:41:35,871 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4  86ad4db3-8bd7-4339-bf70-935f251ab597
+2017-05-07 14:41:35,871 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4  86ad4db3-8bd7-4339-bf70-935f251ab597
+2017-05-07 14:41:47,783 RobotMover  - Black to move, d5d4 Id=86ad4db3-8bd7-4339-bf70-935f251ab597
+2017-05-07 14:41:47,784 Chess  - Message received ChessMove Black to move, d5d4 Id=86ad4db3-8bd7-4339-bf70-935f251ab597
+2017-05-07 14:41:47,784 ChessController  - d5d4
+2017-05-07 14:41:47,785 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4  54f23027-9a7d-4a96-a178-1a9e7638e89b
+2017-05-07 14:41:47,787 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4  54f23027-9a7d-4a96-a178-1a9e7638e89b
+2017-05-07 14:41:58,301 RobotMover  - White to move, a4c5 Id=54f23027-9a7d-4a96-a178-1a9e7638e89b
+2017-05-07 14:41:58,317 Chess  - Message received ChessMove White to move, a4c5 Id=54f23027-9a7d-4a96-a178-1a9e7638e89b
+2017-05-07 14:41:58,317 ChessController  - a4c5
+2017-05-07 14:41:58,317 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5  6132ad7a-1b39-492d-8b87-642d363f2233
+2017-05-07 14:41:58,317 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5  6132ad7a-1b39-492d-8b87-642d363f2233
+2017-05-07 14:42:28,493 RobotMover  - Black to move, b7d5 Id=6132ad7a-1b39-492d-8b87-642d363f2233
+2017-05-07 14:42:28,493 Chess  - Message received ChessMove Black to move, b7d5 Id=6132ad7a-1b39-492d-8b87-642d363f2233
+2017-05-07 14:42:28,493 ChessController  - b7d5
+2017-05-07 14:42:28,493 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5  9edd0cf3-4444-4040-975f-2f2fb3cbfd54
+2017-05-07 14:42:28,493 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5  9edd0cf3-4444-4040-975f-2f2fb3cbfd54
+2017-05-07 14:43:14,461 RobotMover  - White to move, c5a6 Id=9edd0cf3-4444-4040-975f-2f2fb3cbfd54
+2017-05-07 14:43:14,463 Chess  - Message received ChessMove White to move, c5a6 Id=9edd0cf3-4444-4040-975f-2f2fb3cbfd54
+2017-05-07 14:43:14,463 ChessController  - c5a6
+2017-05-07 14:43:14,463 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6  48bda01b-317f-437f-9682-c6f55a3a8939
+2017-05-07 14:43:14,465 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6  48bda01b-317f-437f-9682-c6f55a3a8939
+2017-05-07 14:43:29,114 RobotMover  - Black to move, d7c6 Id=48bda01b-317f-437f-9682-c6f55a3a8939
+2017-05-07 14:43:29,115 Chess  - Message received ChessMove Black to move, d7c6 Id=48bda01b-317f-437f-9682-c6f55a3a8939
+2017-05-07 14:43:29,116 ChessController  - d7c6
+2017-05-07 14:43:29,116 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6  d11a36c3-4e9f-4e5f-bafb-21debb113743
+2017-05-07 14:43:29,117 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6  d11a36c3-4e9f-4e5f-bafb-21debb113743
+2017-05-07 14:43:53,774 RobotMover  - White to move, c2c6 Id=d11a36c3-4e9f-4e5f-bafb-21debb113743
+2017-05-07 14:43:53,774 Chess  - Message received ChessMove White to move, c2c6 Id=d11a36c3-4e9f-4e5f-bafb-21debb113743
+2017-05-07 14:43:53,774 ChessController  - c2c6
+2017-05-07 14:43:53,774 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6  705b2528-4cdd-4ca3-8937-a765cfb57780
+2017-05-07 14:43:53,774 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6  705b2528-4cdd-4ca3-8937-a765cfb57780
+2017-05-07 14:44:24,373 RobotMover  - Black to move, d5c6 Id=705b2528-4cdd-4ca3-8937-a765cfb57780
+2017-05-07 14:44:24,374 Chess  - Message received ChessMove Black to move, d5c6 Id=705b2528-4cdd-4ca3-8937-a765cfb57780
+2017-05-07 14:44:24,374 ChessController  - d5c6
+2017-05-07 14:44:24,374 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6  d18bfe18-8662-42bd-ad29-b312d9fadc61
+2017-05-07 14:44:24,377 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6  d18bfe18-8662-42bd-ad29-b312d9fadc61
+2017-05-07 14:44:54,075 RobotMover  - White to move, a6b8 Id=d18bfe18-8662-42bd-ad29-b312d9fadc61
+2017-05-07 14:44:54,075 Chess  - Message received ChessMove White to move, a6b8 Id=d18bfe18-8662-42bd-ad29-b312d9fadc61
+2017-05-07 14:44:54,075 ChessController  - a6b8
+2017-05-07 14:44:54,075 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8  aa31e1a0-5922-4cdd-ab2c-24d13557fc09
+2017-05-07 14:44:54,144 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8  aa31e1a0-5922-4cdd-ab2c-24d13557fc09
+2017-05-07 14:45:31,961 RobotMover  - Black to move, c7b8 Id=aa31e1a0-5922-4cdd-ab2c-24d13557fc09
+2017-05-07 14:45:31,962 Chess  - Message received ChessMove Black to move, c7b8 Id=aa31e1a0-5922-4cdd-ab2c-24d13557fc09
+2017-05-07 14:45:31,962 ChessController  - c7b8
+2017-05-07 14:45:31,962 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8  cd9a1660-4092-4cd4-9a83-88b8f9c3057c
+2017-05-07 14:45:31,964 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8  cd9a1660-4092-4cd4-9a83-88b8f9c3057c
+2017-05-07 14:46:42,175 RobotMover  - White to move, d1d4 Id=cd9a1660-4092-4cd4-9a83-88b8f9c3057c
+2017-05-07 14:46:42,176 Chess  - Message received ChessMove White to move, d1d4 Id=cd9a1660-4092-4cd4-9a83-88b8f9c3057c
+2017-05-07 14:46:42,177 ChessController  - d1d4
+2017-05-07 14:46:42,177 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4  134e65dd-4d8b-409a-8987-fe551b0fd01c
+2017-05-07 14:46:42,180 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4  134e65dd-4d8b-409a-8987-fe551b0fd01c
+2017-05-07 14:46:50,040 RobotMover  - Black to move, b8c7 Id=134e65dd-4d8b-409a-8987-fe551b0fd01c
+2017-05-07 14:46:50,041 Chess  - Message received ChessMove Black to move, b8c7 Id=134e65dd-4d8b-409a-8987-fe551b0fd01c
+2017-05-07 14:46:50,042 ChessController  - b8c7
+2017-05-07 14:46:50,042 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7  f968de2e-a1f4-4705-b97f-d5c0ac72cc85
+2017-05-07 14:46:50,045 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7  f968de2e-a1f4-4705-b97f-d5c0ac72cc85
+2017-05-07 14:47:50,856 RobotMover  - White to move, d4c4 Id=f968de2e-a1f4-4705-b97f-d5c0ac72cc85
+2017-05-07 14:47:50,857 Chess  - Message received ChessMove White to move, d4c4 Id=f968de2e-a1f4-4705-b97f-d5c0ac72cc85
+2017-05-07 14:47:50,858 ChessController  - d4c4
+2017-05-07 14:47:50,858 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4  d5bfc07e-ba23-42e2-b5f5-816d2fa27a14
+2017-05-07 14:47:50,892 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4  d5bfc07e-ba23-42e2-b5f5-816d2fa27a14
+2017-05-07 14:47:58,019 RobotMover  - Black to move, c6c4 Id=d5bfc07e-ba23-42e2-b5f5-816d2fa27a14
+2017-05-07 14:47:58,020 Chess  - Message received ChessMove Black to move, c6c4 Id=d5bfc07e-ba23-42e2-b5f5-816d2fa27a14
+2017-05-07 14:47:58,021 ChessController  - c6c4
+2017-05-07 14:47:58,021 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4  54f36322-a5eb-4f42-9e2f-3dccf54429ea
+2017-05-07 14:47:58,024 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4  54f36322-a5eb-4f42-9e2f-3dccf54429ea
+2017-05-07 14:49:10,114 RobotMover  - White to move, b3c4 Id=54f36322-a5eb-4f42-9e2f-3dccf54429ea
+2017-05-07 14:49:10,117 Chess  - Message received ChessMove White to move, b3c4 Id=54f36322-a5eb-4f42-9e2f-3dccf54429ea
+2017-05-07 14:49:10,117 ChessController  - b3c4
+2017-05-07 14:49:10,118 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4  5684fd16-a5ef-408a-ac2c-7eaed27cec90
+2017-05-07 14:49:10,123 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4  5684fd16-a5ef-408a-ac2c-7eaed27cec90
+2017-05-07 14:49:25,460 RobotMover  - Black to move, e6e5 Id=5684fd16-a5ef-408a-ac2c-7eaed27cec90
+2017-05-07 14:49:25,460 Chess  - Message received ChessMove Black to move, e6e5 Id=5684fd16-a5ef-408a-ac2c-7eaed27cec90
+2017-05-07 14:49:25,460 ChessController  - e6e5
+2017-05-07 14:49:25,460 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5  8779023a-0cf2-4247-a8a6-cf8280df06ca
+2017-05-07 14:49:25,460 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5  8779023a-0cf2-4247-a8a6-cf8280df06ca
+2017-05-07 14:49:45,605 RobotMover  - White to move, g1f1 Id=8779023a-0cf2-4247-a8a6-cf8280df06ca
+2017-05-07 14:49:45,605 Chess  - Message received ChessMove White to move, g1f1 Id=8779023a-0cf2-4247-a8a6-cf8280df06ca
+2017-05-07 14:49:45,605 ChessController  - g1f1
+2017-05-07 14:49:45,605 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1  009a553a-69c0-428a-be7f-10af5e41d747
+2017-05-07 14:49:45,605 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1  009a553a-69c0-428a-be7f-10af5e41d747
+2017-05-07 14:50:07,208 RobotMover  - Black to move, a7a5 Id=009a553a-69c0-428a-be7f-10af5e41d747
+2017-05-07 14:50:07,208 Chess  - Message received ChessMove Black to move, a7a5 Id=009a553a-69c0-428a-be7f-10af5e41d747
+2017-05-07 14:50:07,208 ChessController  - a7a5
+2017-05-07 14:50:07,208 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5  be3f97e7-5e7d-479f-8928-4fcbe8953b88
+2017-05-07 14:50:07,208 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5  be3f97e7-5e7d-479f-8928-4fcbe8953b88
+2017-05-07 14:50:29,356 RobotMover  - White to move, b4c5 Id=be3f97e7-5e7d-479f-8928-4fcbe8953b88
+2017-05-07 14:50:29,356 Chess  - Message received ChessMove White to move, b4c5 Id=be3f97e7-5e7d-479f-8928-4fcbe8953b88
+2017-05-07 14:50:29,356 ChessController  - b4c5
+2017-05-07 14:50:29,356 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5  c8b89036-e9eb-43ec-8c38-7bdee0ce7cfb
+2017-05-07 14:50:29,356 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5  c8b89036-e9eb-43ec-8c38-7bdee0ce7cfb
+2017-05-07 14:50:50,103 RobotMover  - Black to move, c7d8 Id=c8b89036-e9eb-43ec-8c38-7bdee0ce7cfb
+2017-05-07 14:50:50,103 Chess  - Message received ChessMove Black to move, c7d8 Id=c8b89036-e9eb-43ec-8c38-7bdee0ce7cfb
+2017-05-07 14:50:50,103 ChessController  - c7d8
+2017-05-07 14:50:50,103 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8  f6f07e14-f5b2-4045-83c9-74bff701dd85
+2017-05-07 14:50:50,103 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8  f6f07e14-f5b2-4045-83c9-74bff701dd85
+2017-05-07 14:51:02,678 RobotMover  - White to move, e1b1 Id=f6f07e14-f5b2-4045-83c9-74bff701dd85
+2017-05-07 14:51:02,678 Chess  - Message received ChessMove White to move, e1b1 Id=f6f07e14-f5b2-4045-83c9-74bff701dd85
+2017-05-07 14:51:02,678 ChessController  - e1b1
+2017-05-07 14:51:02,678 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1  7dcfe746-63b4-4370-9af9-bca3acd25e1b
+2017-05-07 14:51:02,694 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1  7dcfe746-63b4-4370-9af9-bca3acd25e1b
+2017-05-07 14:51:16,789 RobotMover  - Black to move, d8c7 Id=7dcfe746-63b4-4370-9af9-bca3acd25e1b
+2017-05-07 14:51:16,789 Chess  - Message received ChessMove Black to move, d8c7 Id=7dcfe746-63b4-4370-9af9-bca3acd25e1b
+2017-05-07 14:51:16,789 ChessController  - d8c7
+2017-05-07 14:51:16,789 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7  49bd7954-c025-413c-83da-4a9e62f39fe2
+2017-05-07 14:51:16,804 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7  49bd7954-c025-413c-83da-4a9e62f39fe2
+2017-05-07 14:52:01,392 RobotMover  - White to move, b1e1 Id=49bd7954-c025-413c-83da-4a9e62f39fe2
+2017-05-07 14:52:01,392 Chess  - Message received ChessMove White to move, b1e1 Id=49bd7954-c025-413c-83da-4a9e62f39fe2
+2017-05-07 14:52:01,392 ChessController  - b1e1
+2017-05-07 14:52:01,392 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1  39613ee0-45b1-4380-ac27-8be6ded62634
+2017-05-07 14:52:01,392 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1  39613ee0-45b1-4380-ac27-8be6ded62634
+2017-05-07 14:52:21,688 RobotMover  - Black to move, f6f5 Id=39613ee0-45b1-4380-ac27-8be6ded62634
+2017-05-07 14:52:21,688 Chess  - Message received ChessMove Black to move, f6f5 Id=39613ee0-45b1-4380-ac27-8be6ded62634
+2017-05-07 14:52:21,688 ChessController  - f6f5
+2017-05-07 14:52:21,704 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5  03b5a4c0-9ede-47cf-9e6e-a8556984a479
+2017-05-07 14:52:21,720 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5  03b5a4c0-9ede-47cf-9e6e-a8556984a479
+2017-05-07 14:52:56,653 RobotMover  - White to move, e1b1 Id=03b5a4c0-9ede-47cf-9e6e-a8556984a479
+2017-05-07 14:52:56,653 Chess  - Message received ChessMove White to move, e1b1 Id=03b5a4c0-9ede-47cf-9e6e-a8556984a479
+2017-05-07 14:52:56,653 ChessController  - e1b1
+2017-05-07 14:52:56,653 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1  2315b50f-0d88-45bc-bcdc-bffa954b882a
+2017-05-07 14:52:56,653 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1  2315b50f-0d88-45bc-bcdc-bffa954b882a
+2017-05-07 14:53:06,975 RobotMover  - Black to move, f5f4 Id=2315b50f-0d88-45bc-bcdc-bffa954b882a
+2017-05-07 14:53:06,975 Chess  - Message received ChessMove Black to move, f5f4 Id=2315b50f-0d88-45bc-bcdc-bffa954b882a
+2017-05-07 14:53:06,990 ChessController  - f5f4
+2017-05-07 14:53:06,990 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4  8f964559-3f66-4e47-94f9-f5ff8acb3451
+2017-05-07 14:53:06,990 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4  8f964559-3f66-4e47-94f9-f5ff8acb3451
+2017-05-07 14:54:13,244 RobotMover  - White to move, f1g2 Id=8f964559-3f66-4e47-94f9-f5ff8acb3451
+2017-05-07 14:54:13,244 Chess  - Message received ChessMove White to move, f1g2 Id=8f964559-3f66-4e47-94f9-f5ff8acb3451
+2017-05-07 14:54:13,244 ChessController  - f1g2
+2017-05-07 14:54:13,260 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2  55983368-e5cd-4887-aac3-fe82609aa890
+2017-05-07 14:54:13,266 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2  55983368-e5cd-4887-aac3-fe82609aa890
+2017-05-07 14:54:37,570 RobotMover  - Black to move, g7g5 Id=55983368-e5cd-4887-aac3-fe82609aa890
+2017-05-07 14:54:37,570 Chess  - Message received ChessMove Black to move, g7g5 Id=55983368-e5cd-4887-aac3-fe82609aa890
+2017-05-07 14:54:37,570 ChessController  - g7g5
+2017-05-07 14:54:37,570 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5  628527d4-a433-4adf-90fb-9d81cc210c66
+2017-05-07 14:54:37,585 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5  628527d4-a433-4adf-90fb-9d81cc210c66
+2017-05-07 14:55:02,258 RobotMover  - White to move, g3f4 Id=628527d4-a433-4adf-90fb-9d81cc210c66
+2017-05-07 14:55:02,258 Chess  - Message received ChessMove White to move, g3f4 Id=628527d4-a433-4adf-90fb-9d81cc210c66
+2017-05-07 14:55:02,258 ChessController  - g3f4
+2017-05-07 14:55:02,258 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4  f4e6d4b5-9521-4515-94bb-d92d418a4678
+2017-05-07 14:55:02,274 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4  f4e6d4b5-9521-4515-94bb-d92d418a4678
+2017-05-07 14:55:14,123 RobotMover  - Black to move, e5f4 Id=f4e6d4b5-9521-4515-94bb-d92d418a4678
+2017-05-07 14:55:14,139 Chess  - Message received ChessMove Black to move, e5f4 Id=f4e6d4b5-9521-4515-94bb-d92d418a4678
+2017-05-07 14:55:14,139 ChessController  - e5f4
+2017-05-07 14:55:14,139 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4  2941bc7f-4a4d-48cd-afba-cf8c85f68cf7
+2017-05-07 14:55:14,139 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4  2941bc7f-4a4d-48cd-afba-cf8c85f68cf7
+2017-05-07 14:56:16,954 RobotMover  - White to move, c5b6 Id=2941bc7f-4a4d-48cd-afba-cf8c85f68cf7
+2017-05-07 14:56:16,954 Chess  - Message received ChessMove White to move, c5b6 Id=2941bc7f-4a4d-48cd-afba-cf8c85f68cf7
+2017-05-07 14:56:16,954 ChessController  - c5b6
+2017-05-07 14:56:16,954 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6  6bf543ad-889d-4ce7-a9b7-ef68f8263f27
+2017-05-07 14:56:16,954 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6  6bf543ad-889d-4ce7-a9b7-ef68f8263f27
+2017-05-07 14:56:47,921 RobotMover  - Black to move, g5g4 Id=6bf543ad-889d-4ce7-a9b7-ef68f8263f27
+2017-05-07 14:56:47,921 Chess  - Message received ChessMove Black to move, g5g4 Id=6bf543ad-889d-4ce7-a9b7-ef68f8263f27
+2017-05-07 14:56:47,921 ChessController  - g5g4
+2017-05-07 14:56:47,921 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4  ad3bbfa8-1988-4e7c-afab-5adaf2ce463a
+2017-05-07 14:56:47,939 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4  ad3bbfa8-1988-4e7c-afab-5adaf2ce463a
+2017-05-07 14:57:45,659 RobotMover  - White to move, c4c5 Id=ad3bbfa8-1988-4e7c-afab-5adaf2ce463a
+2017-05-07 14:57:45,659 Chess  - Message received ChessMove White to move, c4c5 Id=ad3bbfa8-1988-4e7c-afab-5adaf2ce463a
+2017-05-07 14:57:45,659 ChessController  - c4c5
+2017-05-07 14:57:45,659 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5  93ac514d-4197-4ebe-a2a4-575507c4d537
+2017-05-07 14:57:45,675 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5  93ac514d-4197-4ebe-a2a4-575507c4d537
+2017-05-07 14:57:58,132 RobotMover  - Black to move, h7h5 Id=93ac514d-4197-4ebe-a2a4-575507c4d537
+2017-05-07 14:57:58,132 Chess  - Message received ChessMove Black to move, h7h5 Id=93ac514d-4197-4ebe-a2a4-575507c4d537
+2017-05-07 14:57:58,132 ChessController  - h7h5
+2017-05-07 14:57:58,132 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5  f5cdc3ac-490b-42e9-a088-f6e67ee6c222
+2017-05-07 14:57:58,132 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5  f5cdc3ac-490b-42e9-a088-f6e67ee6c222
+2017-05-07 14:58:26,843 RobotMover  - White to move, f2f3 Id=f5cdc3ac-490b-42e9-a088-f6e67ee6c222
+2017-05-07 14:58:26,843 Chess  - Message received ChessMove White to move, f2f3 Id=f5cdc3ac-490b-42e9-a088-f6e67ee6c222
+2017-05-07 14:58:26,843 ChessController  - f2f3
+2017-05-07 14:58:26,843 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3  c8d90400-c82d-4785-b7b8-d5c7db80baa5
+2017-05-07 14:58:26,843 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3  c8d90400-c82d-4785-b7b8-d5c7db80baa5
+2017-05-07 14:58:35,879 RobotMover  - Black to move, g8h7 Id=c8d90400-c82d-4785-b7b8-d5c7db80baa5
+2017-05-07 14:58:35,879 Chess  - Message received ChessMove Black to move, g8h7 Id=c8d90400-c82d-4785-b7b8-d5c7db80baa5
+2017-05-07 14:58:35,879 ChessController  - g8h7
+2017-05-07 14:58:35,879 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7  7271c4c3-2fb0-4a97-a9c0-dd8587e64f7c
+2017-05-07 14:58:35,879 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7  7271c4c3-2fb0-4a97-a9c0-dd8587e64f7c
+2017-05-07 14:59:15,691 RobotMover  - White to move, a3a4 Id=7271c4c3-2fb0-4a97-a9c0-dd8587e64f7c
+2017-05-07 14:59:15,691 Chess  - Message received ChessMove White to move, a3a4 Id=7271c4c3-2fb0-4a97-a9c0-dd8587e64f7c
+2017-05-07 14:59:15,691 ChessController  - a3a4
+2017-05-07 14:59:15,691 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4  71695eb0-9c77-40bd-8229-646d9c6308a3
+2017-05-07 14:59:15,691 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4  71695eb0-9c77-40bd-8229-646d9c6308a3
+2017-05-07 14:59:24,093 RobotMover  - Black to move, h7h6 Id=71695eb0-9c77-40bd-8229-646d9c6308a3
+2017-05-07 14:59:24,093 Chess  - Message received ChessMove Black to move, h7h6 Id=71695eb0-9c77-40bd-8229-646d9c6308a3
+2017-05-07 14:59:24,093 ChessController  - h7h6
+2017-05-07 14:59:24,093 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6  58f6898e-5404-45e9-add4-3a0197a6e74a
+2017-05-07 14:59:24,093 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6  58f6898e-5404-45e9-add4-3a0197a6e74a
+2017-05-07 14:59:33,214 RobotMover  - White to move, b1b2 Id=58f6898e-5404-45e9-add4-3a0197a6e74a
+2017-05-07 14:59:33,214 Chess  - Message received ChessMove White to move, b1b2 Id=58f6898e-5404-45e9-add4-3a0197a6e74a
+2017-05-07 14:59:33,214 ChessController  - b1b2
+2017-05-07 14:59:33,214 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2  5a4e2947-70ff-475b-900e-4d694c5d75f6
+2017-05-07 14:59:33,214 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2  5a4e2947-70ff-475b-900e-4d694c5d75f6
+2017-05-07 14:59:52,611 RobotMover  - Black to move, h5h4 Id=5a4e2947-70ff-475b-900e-4d694c5d75f6
+2017-05-07 14:59:52,611 Chess  - Message received ChessMove Black to move, h5h4 Id=5a4e2947-70ff-475b-900e-4d694c5d75f6
+2017-05-07 14:59:52,611 ChessController  - h5h4
+2017-05-07 14:59:52,611 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4  08d6bffe-7448-41ac-bb33-a59f7ed02850
+2017-05-07 14:59:52,611 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4  08d6bffe-7448-41ac-bb33-a59f7ed02850
+2017-05-07 15:00:09,995 RobotMover  - White to move, b6c7 Id=08d6bffe-7448-41ac-bb33-a59f7ed02850
+2017-05-07 15:00:09,995 Chess  - Message received ChessMove White to move, b6c7 Id=08d6bffe-7448-41ac-bb33-a59f7ed02850
+2017-05-07 15:00:09,995 ChessController  - b6c7
+2017-05-07 15:00:09,995 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7  3ac6da73-61b3-49ac-8301-50c628fff563
+2017-05-07 15:00:09,995 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7  3ac6da73-61b3-49ac-8301-50c628fff563
+2017-05-07 15:00:33,181 RobotMover  - Black to move, g4f3 Id=3ac6da73-61b3-49ac-8301-50c628fff563
+2017-05-07 15:00:33,181 Chess  - Message received ChessMove Black to move, g4f3 Id=3ac6da73-61b3-49ac-8301-50c628fff563
+2017-05-07 15:00:33,181 ChessController  - g4f3
+2017-05-07 15:00:33,181 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3  2597e088-280c-41d6-a0c3-52d144a95a2a
+2017-05-07 15:00:33,181 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3  2597e088-280c-41d6-a0c3-52d144a95a2a
+2017-05-07 15:01:00,774 RobotMover  - White to move, g2f2 Id=2597e088-280c-41d6-a0c3-52d144a95a2a
+2017-05-07 15:01:00,774 Chess  - Message received ChessMove White to move, g2f2 Id=2597e088-280c-41d6-a0c3-52d144a95a2a
+2017-05-07 15:01:00,774 ChessController  - g2f2
+2017-05-07 15:01:00,774 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2  6319581e-5d34-4981-a290-13209ab92485
+2017-05-07 15:01:00,774 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2  6319581e-5d34-4981-a290-13209ab92485
+2017-05-07 15:01:43,615 RobotMover  - Black to move, f7c7 Id=6319581e-5d34-4981-a290-13209ab92485
+2017-05-07 15:01:43,615 Chess  - Message received ChessMove Black to move, f7c7 Id=6319581e-5d34-4981-a290-13209ab92485
+2017-05-07 15:01:43,615 ChessController  - f7c7
+2017-05-07 15:01:43,615 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7  aa2cfdc4-62e6-4509-9974-93362f72790d
+2017-05-07 15:01:43,615 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7  aa2cfdc4-62e6-4509-9974-93362f72790d
+2017-05-07 15:02:05,560 RobotMover  - White to move, f2f3 Id=aa2cfdc4-62e6-4509-9974-93362f72790d
+2017-05-07 15:02:05,576 Chess  - Message received ChessMove White to move, f2f3 Id=aa2cfdc4-62e6-4509-9974-93362f72790d
+2017-05-07 15:02:05,576 ChessController  - f2f3
+2017-05-07 15:02:05,576 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3  264a5756-037a-4f29-bff8-d9a9511e0cca
+2017-05-07 15:02:05,576 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3  264a5756-037a-4f29-bff8-d9a9511e0cca
+2017-05-07 15:02:26,467 RobotMover  - Black to move, h6g6 Id=264a5756-037a-4f29-bff8-d9a9511e0cca
+2017-05-07 15:02:26,483 Chess  - Message received ChessMove Black to move, h6g6 Id=264a5756-037a-4f29-bff8-d9a9511e0cca
+2017-05-07 15:02:26,484 ChessController  - h6g6
+2017-05-07 15:02:26,485 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6  57212eac-d760-4970-8ac5-e27ecd79ab16
+2017-05-07 15:02:26,487 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6  57212eac-d760-4970-8ac5-e27ecd79ab16
+2017-05-07 15:02:51,132 RobotMover  - White to move, b2b5 Id=57212eac-d760-4970-8ac5-e27ecd79ab16
+2017-05-07 15:02:51,152 Chess  - Message received ChessMove White to move, b2b5 Id=57212eac-d760-4970-8ac5-e27ecd79ab16
+2017-05-07 15:02:51,152 ChessController  - b2b5
+2017-05-07 15:02:51,152 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5  54501a4a-0466-446d-ae83-203be7fbc280
+2017-05-07 15:02:51,154 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5  54501a4a-0466-446d-ae83-203be7fbc280
+2017-05-07 15:02:58,061 RobotMover  - Black to move, h4h3 Id=54501a4a-0466-446d-ae83-203be7fbc280
+2017-05-07 15:02:58,063 Chess  - Message received ChessMove Black to move, h4h3 Id=54501a4a-0466-446d-ae83-203be7fbc280
+2017-05-07 15:02:58,063 ChessController  - h4h3
+2017-05-07 15:02:58,063 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3  3fc037cc-0ad3-49ec-913e-8df6e3cf1a2b
+2017-05-07 15:02:58,065 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3  3fc037cc-0ad3-49ec-913e-8df6e3cf1a2b
+2017-05-07 15:03:30,849 RobotMover  - White to move, c5c6 Id=3fc037cc-0ad3-49ec-913e-8df6e3cf1a2b
+2017-05-07 15:03:30,849 Chess  - Message received ChessMove White to move, c5c6 Id=3fc037cc-0ad3-49ec-913e-8df6e3cf1a2b
+2017-05-07 15:03:30,849 ChessController  - c5c6
+2017-05-07 15:03:30,849 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6  7a861d23-8651-4aaa-9ef6-a63f2094c4c8
+2017-05-07 15:03:30,849 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6  7a861d23-8651-4aaa-9ef6-a63f2094c4c8
+2017-05-07 15:03:38,518 RobotMover  - Black to move, c7c6 Id=7a861d23-8651-4aaa-9ef6-a63f2094c4c8
+2017-05-07 15:03:38,518 Chess  - Message received ChessMove Black to move, c7c6 Id=7a861d23-8651-4aaa-9ef6-a63f2094c4c8
+2017-05-07 15:03:38,518 ChessController  - c7c6
+2017-05-07 15:03:38,518 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6  7a5eaa5d-f34c-4a83-92e5-69d784a2b3fa
+2017-05-07 15:03:38,518 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6  7a5eaa5d-f34c-4a83-92e5-69d784a2b3fa
+2017-05-07 15:04:05,636 RobotMover  - White to move, f3g4 Id=7a5eaa5d-f34c-4a83-92e5-69d784a2b3fa
+2017-05-07 15:04:05,636 Chess  - Message received ChessMove White to move, f3g4 Id=7a5eaa5d-f34c-4a83-92e5-69d784a2b3fa
+2017-05-07 15:04:05,636 ChessController  - f3g4
+2017-05-07 15:04:05,636 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4  d31cc14f-ab1f-449d-9ee3-a2ea27cb0ba8
+2017-05-07 15:04:05,651 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4  d31cc14f-ab1f-449d-9ee3-a2ea27cb0ba8
+2017-05-07 15:04:18,260 RobotMover  - Black to move, h3h2 Id=d31cc14f-ab1f-449d-9ee3-a2ea27cb0ba8
+2017-05-07 15:04:18,276 Chess  - Message received ChessMove Black to move, h3h2 Id=d31cc14f-ab1f-449d-9ee3-a2ea27cb0ba8
+2017-05-07 15:04:18,276 ChessController  - h3h2
+2017-05-07 15:04:18,276 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2  7aa95448-6e14-4474-9609-a0886a62debf
+2017-05-07 15:04:18,276 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2  7aa95448-6e14-4474-9609-a0886a62debf
+2017-05-07 15:04:45,216 RobotMover  - White to move, b5b1 Id=7aa95448-6e14-4474-9609-a0886a62debf
+2017-05-07 15:04:45,216 Chess  - Message received ChessMove White to move, b5b1 Id=7aa95448-6e14-4474-9609-a0886a62debf
+2017-05-07 15:04:45,216 ChessController  - b5b1
+2017-05-07 15:04:45,216 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1  eaa4cc99-c577-4771-8322-aa5107fdf71b
+2017-05-07 15:04:45,216 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1  eaa4cc99-c577-4771-8322-aa5107fdf71b
+2017-05-07 15:04:53,065 RobotMover  - Black to move, c6c4 Id=eaa4cc99-c577-4771-8322-aa5107fdf71b
+2017-05-07 15:04:53,068 Chess  - Message received ChessMove Black to move, c6c4 Id=eaa4cc99-c577-4771-8322-aa5107fdf71b
+2017-05-07 15:04:53,068 ChessController  - c6c4
+2017-05-07 15:04:53,068 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4  57c727b5-0e60-46e3-8e48-f094a25dc9d3
+2017-05-07 15:04:53,070 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4  57c727b5-0e60-46e3-8e48-f094a25dc9d3
+2017-05-07 15:06:09,237 RobotMover  - White to move, b1h1 Id=57c727b5-0e60-46e3-8e48-f094a25dc9d3
+2017-05-07 15:06:09,237 Chess  - Message received ChessMove White to move, b1h1 Id=57c727b5-0e60-46e3-8e48-f094a25dc9d3
+2017-05-07 15:06:09,253 ChessController  - b1h1
+2017-05-07 15:06:09,253 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1  52a9d2e6-b3f6-4071-817c-a8f1b111b97a
+2017-05-07 15:06:09,253 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1  52a9d2e6-b3f6-4071-817c-a8f1b111b97a
+2017-05-07 15:06:19,357 RobotMover  - Black to move, c4a4 Id=52a9d2e6-b3f6-4071-817c-a8f1b111b97a
+2017-05-07 15:06:19,357 Chess  - Message received ChessMove Black to move, c4a4 Id=52a9d2e6-b3f6-4071-817c-a8f1b111b97a
+2017-05-07 15:06:19,357 ChessController  - c4a4
+2017-05-07 15:06:19,357 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4  83d32d53-2200-4d2e-8991-c0d986aa9a28
+2017-05-07 15:06:19,373 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4  83d32d53-2200-4d2e-8991-c0d986aa9a28
+2017-05-07 15:07:04,060 RobotMover  - White to move, h1h2 Id=83d32d53-2200-4d2e-8991-c0d986aa9a28
+2017-05-07 15:07:04,061 Chess  - Message received ChessMove White to move, h1h2 Id=83d32d53-2200-4d2e-8991-c0d986aa9a28
+2017-05-07 15:07:04,061 ChessController  - h1h2
+2017-05-07 15:07:04,061 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2  b5049d14-9b71-46c5-a74e-7524c229de53
+2017-05-07 15:07:04,064 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2  b5049d14-9b71-46c5-a74e-7524c229de53
+2017-05-07 15:07:12,246 RobotMover  - Black to move, a4c4 Id=b5049d14-9b71-46c5-a74e-7524c229de53
+2017-05-07 15:07:12,246 Chess  - Message received ChessMove Black to move, a4c4 Id=b5049d14-9b71-46c5-a74e-7524c229de53
+2017-05-07 15:07:12,246 ChessController  - a4c4
+2017-05-07 15:07:12,246 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4  0032b7b1-5e68-43b7-a7b3-9bf5a552e2d9
+2017-05-07 15:07:12,261 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4  0032b7b1-5e68-43b7-a7b3-9bf5a552e2d9
+2017-05-07 15:08:27,426 RobotMover  - White to move, h2b2 Id=0032b7b1-5e68-43b7-a7b3-9bf5a552e2d9
+2017-05-07 15:08:27,426 Chess  - Message received ChessMove White to move, h2b2 Id=0032b7b1-5e68-43b7-a7b3-9bf5a552e2d9
+2017-05-07 15:08:27,426 ChessController  - h2b2
+2017-05-07 15:08:27,426 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2  c1997aa2-c3fa-4138-8571-534d7da8ad30
+2017-05-07 15:08:27,426 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2  c1997aa2-c3fa-4138-8571-534d7da8ad30
+2017-05-07 15:08:38,360 RobotMover  - Black to move, g6f6 Id=c1997aa2-c3fa-4138-8571-534d7da8ad30
+2017-05-07 15:08:38,360 Chess  - Message received ChessMove Black to move, g6f6 Id=c1997aa2-c3fa-4138-8571-534d7da8ad30
+2017-05-07 15:08:38,360 ChessController  - g6f6
+2017-05-07 15:08:38,360 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6  0a3e46e6-8188-47a4-8df4-a64466f42ba7
+2017-05-07 15:08:38,360 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6  0a3e46e6-8188-47a4-8df4-a64466f42ba7
+2017-05-07 15:09:44,715 RobotMover  - White to move, g4h5 Id=0a3e46e6-8188-47a4-8df4-a64466f42ba7
+2017-05-07 15:09:44,716 Chess  - Message received ChessMove White to move, g4h5 Id=0a3e46e6-8188-47a4-8df4-a64466f42ba7
+2017-05-07 15:09:44,716 ChessController  - g4h5
+2017-05-07 15:09:44,717 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5  3a19eeef-fcf0-4650-ae68-23e85f5ce725
+2017-05-07 15:09:44,725 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5  3a19eeef-fcf0-4650-ae68-23e85f5ce725
+2017-05-07 15:09:53,289 RobotMover  - Black to move, f4f3 Id=3a19eeef-fcf0-4650-ae68-23e85f5ce725
+2017-05-07 15:09:53,290 Chess  - Message received ChessMove Black to move, f4f3 Id=3a19eeef-fcf0-4650-ae68-23e85f5ce725
+2017-05-07 15:09:53,291 ChessController  - f4f3
+2017-05-07 15:09:53,291 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3  2cc7600f-30c5-45b6-80ce-a95a184f3f46
+2017-05-07 15:09:53,296 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3  2cc7600f-30c5-45b6-80ce-a95a184f3f46
+2017-05-07 15:10:28,752 RobotMover  - White to move, b2b6 Id=2cc7600f-30c5-45b6-80ce-a95a184f3f46
+2017-05-07 15:10:28,752 Chess  - Message received ChessMove White to move, b2b6 Id=2cc7600f-30c5-45b6-80ce-a95a184f3f46
+2017-05-07 15:10:28,752 ChessController  - b2b6
+2017-05-07 15:10:28,752 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6  567641e0-9f7d-4a24-926a-9ce445fb25be
+2017-05-07 15:10:28,752 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6  567641e0-9f7d-4a24-926a-9ce445fb25be
+2017-05-07 15:10:44,426 RobotMover  - Black to move, f6e5 Id=567641e0-9f7d-4a24-926a-9ce445fb25be
+2017-05-07 15:10:44,426 Chess  - Message received ChessMove Black to move, f6e5 Id=567641e0-9f7d-4a24-926a-9ce445fb25be
+2017-05-07 15:10:44,426 ChessController  - f6e5
+2017-05-07 15:10:44,426 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5  12a25b78-2f2f-40ac-8047-a5d87b62c6c0
+2017-05-07 15:10:44,426 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5  12a25b78-2f2f-40ac-8047-a5d87b62c6c0
+2017-05-07 15:11:16,340 RobotMover  - White to move, b6b1 Id=12a25b78-2f2f-40ac-8047-a5d87b62c6c0
+2017-05-07 15:11:16,419 Chess  - Message received ChessMove White to move, b6b1 Id=12a25b78-2f2f-40ac-8047-a5d87b62c6c0
+2017-05-07 15:11:16,419 ChessController  - b6b1
+2017-05-07 15:11:16,419 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1  634b0dfa-a650-4ab3-ac84-e5db421591f3
+2017-05-07 15:11:16,419 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1  634b0dfa-a650-4ab3-ac84-e5db421591f3
+2017-05-07 15:11:25,702 RobotMover  - Black to move, c4f4 Id=634b0dfa-a650-4ab3-ac84-e5db421591f3
+2017-05-07 15:11:25,703 Chess  - Message received ChessMove Black to move, c4f4 Id=634b0dfa-a650-4ab3-ac84-e5db421591f3
+2017-05-07 15:11:25,704 ChessController  - c4f4
+2017-05-07 15:11:25,704 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4  8a8414d2-19fa-4841-ab59-5fafc3b25dba
+2017-05-07 15:11:25,707 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4  8a8414d2-19fa-4841-ab59-5fafc3b25dba
+2017-05-07 15:11:46,608 RobotMover  - White to move, b1b5 Id=8a8414d2-19fa-4841-ab59-5fafc3b25dba
+2017-05-07 15:11:46,609 Chess  - Message received ChessMove White to move, b1b5 Id=8a8414d2-19fa-4841-ab59-5fafc3b25dba
+2017-05-07 15:11:46,609 ChessController  - b1b5
+2017-05-07 15:11:46,610 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5  bb759536-5cf2-4e44-888e-be66cccede4b
+2017-05-07 15:11:46,611 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5  bb759536-5cf2-4e44-888e-be66cccede4b
+2017-05-07 15:11:53,280 RobotMover  - Black to move, e5e4 Id=bb759536-5cf2-4e44-888e-be66cccede4b
+2017-05-07 15:11:53,281 Chess  - Message received ChessMove Black to move, e5e4 Id=bb759536-5cf2-4e44-888e-be66cccede4b
+2017-05-07 15:11:53,281 ChessController  - e5e4
+2017-05-07 15:11:53,282 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4  7c7d71dc-4879-4506-8411-e0bdb5763c6c
+2017-05-07 15:11:53,284 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4  7c7d71dc-4879-4506-8411-e0bdb5763c6c
+2017-05-07 15:12:13,106 RobotMover  - White to move, h5h6 Id=7c7d71dc-4879-4506-8411-e0bdb5763c6c
+2017-05-07 15:12:13,107 Chess  - Message received ChessMove White to move, h5h6 Id=7c7d71dc-4879-4506-8411-e0bdb5763c6c
+2017-05-07 15:12:13,108 ChessController  - h5h6
+2017-05-07 15:12:13,108 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6  a1705059-ba41-4557-acf1-3d5644ace451
+2017-05-07 15:12:13,110 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6  a1705059-ba41-4557-acf1-3d5644ace451
+2017-05-07 15:12:20,083 RobotMover  - Black to move, f4f6 Id=a1705059-ba41-4557-acf1-3d5644ace451
+2017-05-07 15:12:20,085 Chess  - Message received ChessMove Black to move, f4f6 Id=a1705059-ba41-4557-acf1-3d5644ace451
+2017-05-07 15:12:20,085 ChessController  - f4f6
+2017-05-07 15:12:20,086 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6  eafc735a-a429-45ea-81d6-ad52a09c0783
+2017-05-07 15:12:20,087 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6  eafc735a-a429-45ea-81d6-ad52a09c0783
+2017-05-07 15:12:42,533 RobotMover  - White to move, h6h7 Id=eafc735a-a429-45ea-81d6-ad52a09c0783
+2017-05-07 15:12:42,534 Chess  - Message received ChessMove White to move, h6h7 Id=eafc735a-a429-45ea-81d6-ad52a09c0783
+2017-05-07 15:12:42,535 ChessController  - h6h7
+2017-05-07 15:12:42,535 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7  494192de-464a-43bd-b6fd-774e02c4cb9a
+2017-05-07 15:12:42,536 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7  494192de-464a-43bd-b6fd-774e02c4cb9a
+2017-05-07 15:12:49,901 RobotMover  - Black to move, f3f2 Id=494192de-464a-43bd-b6fd-774e02c4cb9a
+2017-05-07 15:12:49,902 Chess  - Message received ChessMove Black to move, f3f2 Id=494192de-464a-43bd-b6fd-774e02c4cb9a
+2017-05-07 15:12:49,902 ChessController  - f3f2
+2017-05-07 15:12:49,902 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2  eb4f68f5-efd3-4dd8-bd03-a8a595691f5a
+2017-05-07 15:12:49,905 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2  eb4f68f5-efd3-4dd8-bd03-a8a595691f5a
+2017-05-07 15:13:11,384 RobotMover  - White to move, b5a5 Id=eb4f68f5-efd3-4dd8-bd03-a8a595691f5a
+2017-05-07 15:13:11,399 Chess  - Message received ChessMove White to move, b5a5 Id=eb4f68f5-efd3-4dd8-bd03-a8a595691f5a
+2017-05-07 15:13:11,399 ChessController  - b5a5
+2017-05-07 15:13:11,399 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2 b5a5  2e443d3b-95c3-494e-8df3-be379a0e17e7
+2017-05-07 15:13:11,401 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2 b5a5  2e443d3b-95c3-494e-8df3-be379a0e17e7
+2017-05-07 15:13:18,128 RobotMover  - Black to move, f6f7 Id=2e443d3b-95c3-494e-8df3-be379a0e17e7
+2017-05-07 15:13:18,128 Chess  - Message received ChessMove Black to move, f6f7 Id=2e443d3b-95c3-494e-8df3-be379a0e17e7
+2017-05-07 15:13:18,128 ChessController  - f6f7
+2017-05-07 15:13:18,128 Chess  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2 b5a5 f6f7  f3dea319-9c48-4c19-82ff-9111bae067a2
+2017-05-07 15:13:18,128 RobotMover  - Request move for White Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2 b5a5 f6f7  f3dea319-9c48-4c19-82ff-9111bae067a2
+2017-05-07 15:13:39,176 RobotMover  - White to move, h7g6 Id=f3dea319-9c48-4c19-82ff-9111bae067a2
+2017-05-07 15:13:39,177 Chess  - Message received ChessMove White to move, h7g6 Id=f3dea319-9c48-4c19-82ff-9111bae067a2
+2017-05-07 15:13:39,177 ChessController  - h7g6
+2017-05-07 15:13:39,177 Chess  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2 b5a5 f6f7 h7g6  afb8e49e-b1c9-4d61-af13-426363fd1964
+2017-05-07 15:13:39,180 RobotMover  - Request move for Black Robot position startpos moves e2e4 e7e6 b1c3 c7c5 a2a3 d7d5 f1b5 b8c6 d2d4 g8f6 g1e2 f6e4 b5c6 b7c6 e1g1 e4c3 e2c3 c5d4 d1d4 f7f6 d4d1 f8d6 c3a4 d8e7 f1e1 e8g8 c1e3 e7c7 e3c5 d6h2 g1h1 f8f7 c2c3 h2d6 c3c4 d6e5 a1c1 a8b8 b2b3 e5f4 c4d5 c6d5 c1c2 c7b7 h1g1 c8d7 g2g3 f4c7 c5b4 d5d4 a4c5 b7d5 c5a6 d7c6 c2c6 d5c6 a6b8 c7b8 d1d4 b8c7 d4c4 c6c4 b3c4 e6e5 g1f1 a7a5 b4c5 c7d8 e1b1 d8c7 b1e1 f6f5 e1b1 f5f4 f1g2 g7g5 g3f4 e5f4 c5b6 g5g4 c4c5 h7h5 f2f3 g8h7 a3a4 h7h6 b1b2 h5h4 b6c7 g4f3 g2f2 f7c7 f2f3 h6g6 b2b5 h4h3 c5c6 c7c6 f3g4 h3h2 b5b1 c6c4 b1h1 c4a4 h1h2 a4c4 h2b2 g6f6 g4h5 f4f3 b2b6 f6e5 b6b1 c4f4 b1b5 e5e4 h5h6 f4f6 h6h7 f3f2 b5a5 f6f7 h7g6  afb8e49e-b1c9-4d61-af13-426363fd1964
+2017-05-07 15:13:47,341 RobotMover  - Black to move, f2f1q Id=afb8e49e-b1c9-4d61-af13-426363fd1964
+2017-05-07 15:13:47,342 Chess  - Message received ChessMove Black to move, f2f1q Id=afb8e49e-b1c9-4d61-af13-426363fd1964
+2017-05-07 15:13:47,343 ChessController  - net.sprenkle.chess.exceptions.InvalidMoveException

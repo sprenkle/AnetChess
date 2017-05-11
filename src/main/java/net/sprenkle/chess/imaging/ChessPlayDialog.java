@@ -1,6 +1,5 @@
 package net.sprenkle.chess.imaging;
 
-import net.sprenkle.chess.states.State;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import java.awt.image.ColorModel;
@@ -9,7 +8,6 @@ import net.sprenkle.chess.ImageUtil;
 
 public class ChessPlayDialog  {
     int imageNumber = 0;
-    private State state = State.getState(State.STARTSTATE);
 
     public BufferedImage transform(BufferedImage orig) {
         ColorModel cm = orig.getColorModel();
@@ -17,7 +15,6 @@ public class ChessPlayDialog  {
         WritableRaster raster = orig.copyData(null);
         BufferedImage bi = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         ImageUtil.savePng(bi, String.format("images\\chessImage%04d.png", imageNumber++));
-        state = state.process(bi);
         return bi;
     }
 
