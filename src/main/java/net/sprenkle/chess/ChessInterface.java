@@ -5,9 +5,11 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.RequestMove;
+import net.sprenkle.chess.messages.RequestBoardStatus;
 
 /**
  *
@@ -17,4 +19,6 @@ public interface ChessInterface {
     public void startGame(StartGame startGame) throws Exception;
     public void chessMoved(ChessMove chessMove) throws Exception;
     public void requestMove(RequestMove requestMove) throws Exception;
+    public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception;
+    public void boardStatus(BoardStatus boardStatus) throws Exception;
 }

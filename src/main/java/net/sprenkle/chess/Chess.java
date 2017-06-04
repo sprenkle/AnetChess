@@ -17,22 +17,28 @@ import net.sprenkle.messages.MessageHolder;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+import net.sprenkle.chess.messages.BoardStatus;
+import net.sprenkle.chess.messages.RequestBoardStatus;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
 /**
  *
  * @author David
  *
  */
 public class Chess extends TimerTask implements ChessInterface {
+
     static Logger logger = Logger.getLogger(Chess.class.getSimpleName());
- 
+    static final boolean WHITE = true;
+    static final boolean BLACK = false;
+
     private final ChessControllerInterface chessEngine;
     ChessState chessState;
     ChessMessageSender chessMessageSender;
     Timer timer = new Timer(true);
     UUID expectedMove;
-    
+
     @Inject
     public Chess(ChessControllerInterface chessEngine, ChessState chessState, ChessMessageSender chessMessageSender) {
         this.chessEngine = chessEngine;
@@ -40,23 +46,15 @@ public class Chess extends TimerTask implements ChessInterface {
         this.chessMessageSender = chessMessageSender;
     }
 
-    public void start() {
-        logger.debug("Started");
-    }
-
     @Override
     public void startGame(StartGame startGame) {
         logger.debug("Message received StartGame");
-        chessEngine.newGame();
-        chessState.setTurn(Player.White);
-        chessState.setWhiteRobot(startGame.isWhiteRobot());
-        chessState.setBlackRobot(startGame.isBlackRobot());
-        sendMove();
+        chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
     }
 
     @Override
     public void chessMoved(ChessMove chessMove) throws Exception {
-        if(!chessMove.getMoveId().equals(expectedMove)){
+        if (!chessMove.getMoveId().equals(expectedMove)) {
             logger.debug(String.format("Received Unknown move %s  Expected %s", chessMove.getMoveId(), expectedMove));
             return;
         }
@@ -90,7 +88,7 @@ public class Chess extends TimerTask implements ChessInterface {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-               logger.debug("Move Timeout Activated.");
+                logger.debug("Move Timeout Activated.");
                 sendMove();
             }
         }, 2 * 60 * 1000);
@@ -115,7 +113,22 @@ public class Chess extends TimerTask implements ChessInterface {
 
     @Override
     public void requestMove(RequestMove requestMove) throws Exception {
-        //System.out.format("requestMove %s\n", requestMove);
+    }
+
+    @Override
+    public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
+    }
+
+    @Override
+    public void boardStatus(BoardStatus boardStatus) throws Exception {
+        logger.debug(boardStatus.toString());
+        if (boardStatus.isStartingPositionSet()) {
+            chessEngine.newGame();
+            chessState.setTurn(Player.White);
+            chessState.setWhiteRobot(!boardStatus.isHumanSide());
+            chessState.setBlackRobot(boardStatus.isHumanSide());
+            sendMove();
+        }
     }
 
     @Override

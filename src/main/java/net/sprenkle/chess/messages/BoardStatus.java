@@ -15,7 +15,13 @@ import java.io.Serializable;
  */
 public class BoardStatus implements Serializable {
     private boolean startingPositionSet;
+    private boolean humanSide;
 
+    public BoardStatus(boolean startingPositionSet, boolean humanSide){
+        this.startingPositionSet = startingPositionSet;
+        this.humanSide = humanSide;
+    }
+    
     /**
      * @return the startingPositionSet
      */
@@ -28,5 +34,23 @@ public class BoardStatus implements Serializable {
      */
     public void setStartingPositionSet(boolean startingPositionSet) {
         this.startingPositionSet = startingPositionSet;
+    }
+
+    /**
+     * @return the humanSide
+     */
+    public boolean isHumanSide() {
+        return humanSide;
+    }
+
+    /**
+     * @param humanSide the humanSide to set
+     */
+    public void setHumanSide(boolean humanSide) {
+        this.humanSide = humanSide;
+    }
+    
+    public String toString(){
+        return String.format("Setup=%s Human=%s", startingPositionSet, (humanSide ? "White" : "Black"));
     }
 }

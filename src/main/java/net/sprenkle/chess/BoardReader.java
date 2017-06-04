@@ -5,14 +5,34 @@
  */
 package net.sprenkle.chess;
 
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Consumer;
+import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.Envelope;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.TimeoutException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import net.sprenkle.chess.imaging.BoardCalculator;
+import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.ChessImageListenerInterface;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RabbitMqChessImageReceiver;
+import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.imageutils.BlackWhite;
+import net.sprenkle.messages.MessageHolder;
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
@@ -20,49 +40,115 @@ import org.apache.log4j.PropertyConfigurator;
  * @author david
  */
 public class BoardReader implements ChessInterface, ChessImageListenerInterface {
+
+    static Logger logger = Logger.getLogger(BoardReader.class.getSimpleName());
+
+    private static final String EXCHANGE_NAME = "images";
+    private static final String IMAGE_UPDATE = "images_update";
+    private final Connection connection;
+    private final Channel sendChannel;
+
     private final MqChessMessageSender messageSender;
+    private final BoardCalculator boardCalculator;
+
     private final String CHECK_FOR_GAME_SETUP = "checkForGameSetup";
+    private final String CHECK_FOR_HUMAN_MOVE = "checkForHumanMove";
+    private final String NONE = "none";
     private String state;
-    
-    
-    public BoardReader(MqChessMessageSender messageSender, RabbitMqChessImageReceiver imageReceiver){
+
+    public BoardReader(MqChessMessageSender messageSender, RabbitMqChessImageReceiver imageReceiver, BoardCalculator boardCalculator) throws Exception {
         this.messageSender = messageSender;
+        this.boardCalculator = boardCalculator;
+        
         imageReceiver.setListener(this);
-        state = CHECK_FOR_GAME_SETUP;
+        state = NONE;
+
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.1.90");
+        connection = factory.newConnection();
+
+        sendChannel = connection.createChannel();
+        sendChannel.exchangeDeclare(IMAGE_UPDATE, BuiltinExchangeType.FANOUT);
+        startListening();
+
     }
 
-    public static void main(String[] arg) throws Exception{
+    private void startListening() throws IOException, TimeoutException {
+        Channel channel = connection.createChannel();
+
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        String queueName = channel.queueDeclare().getQueue();
+        channel.queueBind(queueName, EXCHANGE_NAME, "");
+
+        logger.debug(" [*] Waiting for messages. To exit press CTRL+C");
+        BoardCalculator boardCalculator = new BoardCalculator();
+
+        Consumer consumer = new DefaultConsumer(channel) {
+            @Override
+            public void handleDelivery(String consumerTag, Envelope envelope,
+                    AMQP.BasicProperties properties, byte[] body) throws IOException {
+                InputStream in = new ByteArrayInputStream(body);
+                BufferedImage bImageFromConvert = ImageIO.read(in);
+                //logger.debug("Received Image");
+                if(state.equals(CHECK_FOR_GAME_SETUP)){
+                    boardCalculator.setInitialized(false);
+                    boardCalculator.initialLines(bImageFromConvert);
+                    if(boardCalculator.isInitialized()){
+                        BoardStatus boardStatus = new BoardStatus(true, true);
+                        logger.debug(String.format("Sent %s", boardStatus.toString()));
+                        messageSender.send(new MessageHolder(BoardStatus.class.getSimpleName(), boardStatus));
+                        state = NONE;
+                    }
+                }
+            }
+
+        };
+        channel.basicConsume(queueName, true, consumer);
+    }
+
+    public static void main(String[] arg) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
-        BoardReader boardReader = new BoardReader(new MqChessMessageSender(), new RabbitMqChessImageReceiver());
+        BoardReader boardReader = new BoardReader(new MqChessMessageSender(), new RabbitMqChessImageReceiver(), new BoardCalculator());
         ChessMessageReceiver chessMessageReceiver = new ChessMessageReceiver(boardReader);
         chessMessageReceiver.initialize();
- 
+
     }
 
     @Override
     public void startGame(StartGame startGame) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void chessMoved(ChessMove chessMove) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void requestMove(RequestMove requestMove) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!requestMove.isRobot()){
+            state = CHECK_FOR_HUMAN_MOVE;
+        }
     }
 
     @Override
     public void receivedImage(BufferedImage bi) {
-        if(state == CHECK_FOR_GAME_SETUP){
-            
+        if (state == CHECK_FOR_GAME_SETUP) {
+
         }
     }
-    
-    private void checkForGameSetup(){
+
+    private void checkForGameSetup() {
+
+    }
+
+    @Override
+    public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
+        logger.debug("Received Request Board Status Message");
+        state = CHECK_FOR_GAME_SETUP;
+    }
+
+    @Override
+    public void boardStatus(BoardStatus boardStatus) throws Exception {
         
     }
 }

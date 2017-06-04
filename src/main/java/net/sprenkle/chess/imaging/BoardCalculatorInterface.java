@@ -9,13 +9,6 @@ package net.sprenkle.chess.imaging;
  *
  * @author david
  */
-public class Point {
-    public int x;
-    public int y;
-    public boolean color;
+public interface BoardCalculatorInterface {
     
-    public Point(int x, int y, boolean color){
-        this.x = x;
-        this.y = y;
-    }
 }

@@ -26,8 +26,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.imageutils.BlackWhite;
+import net.sprenkle.imageutils.ImageUtil;
 import net.sprenkle.messages.MessageHolder;
 import net.sprenkle.messages.images.RequestImage;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -38,8 +40,8 @@ public class Viewer extends javax.swing.JFrame {
     private BufferedImage bi;
     private static final String EXCHANGE_NAME = "images";
     private static final String IMAGE_UPDATE = "images_update";
-    private Connection connection;
-    private Channel sendChannel;
+    private final Connection connection;
+    private final Channel sendChannel;
 
     /**
      * Creates new form Viewer
@@ -59,9 +61,6 @@ public class Viewer extends javax.swing.JFrame {
     }
 
     private void startListening() throws IOException, TimeoutException {
-//        ConnectionFactory factory = new ConnectionFactory();
-//        factory.setHost("192.168.1.90");
-//        Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
@@ -79,6 +78,7 @@ public class Viewer extends javax.swing.JFrame {
                 InputStream in = new ByteArrayInputStream(body);
                 BufferedImage bImageFromConvert = ImageIO.read(in);
              //   bImageFromConvert = createRotated(bImageFromConvert);
+             //ImageUtil.saveJpg(bImageFromConvert, "d:\\chess.jpg");
                 if (showPieces.isSelected()) {
                     try{
                     boardCalculator.detectCircle(bImageFromConvert);
@@ -287,6 +287,7 @@ public class Viewer extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

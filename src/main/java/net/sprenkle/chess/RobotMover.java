@@ -5,10 +5,12 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.messages.MessageHolder;
@@ -113,7 +115,15 @@ public class RobotMover implements ChessInterface {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
         RobotMover robotMover = new RobotMover(new StockFishUCI(), new MqChessMessageSender());
-        ChessMessageReceiver chessMessageReceiver = new ChessMessageReceiver(robotMover);
+        ChessMessageReceiver chessMessageReceiver = new ChessMessageReceiver(robotMover);    
         chessMessageReceiver.initialize();
+    }
+    
+    @Override
+    public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
+    }
+
+    @Override
+    public void boardStatus(BoardStatus boardStatus) throws Exception {
     }
 }

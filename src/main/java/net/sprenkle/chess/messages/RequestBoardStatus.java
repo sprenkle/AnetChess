@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.sprenkle.chess.imaging;
+package net.sprenkle.chess.messages;
+
+import java.io.Serializable;
 
 /**
  *
  * @author david
  */
-public class Point {
-    public int x;
-    public int y;
-    public boolean color;
+public class RequestBoardStatus implements Serializable {
     
-    public Point(int x, int y, boolean color){
-        this.x = x;
-        this.y = y;
-    }
 }

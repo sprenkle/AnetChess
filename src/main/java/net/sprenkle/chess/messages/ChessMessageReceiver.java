@@ -60,6 +60,14 @@ public class ChessMessageReceiver {
                             RequestMove rm = (net.sprenkle.chess.messages.RequestMove)mh.getObject(RequestMove.class);
                             chess.requestMove(rm);
                             break;
+                        case "RequestBoardStatus" :
+                            RequestBoardStatus rbs = (net.sprenkle.chess.messages.RequestBoardStatus)mh.getObject(RequestBoardStatus.class);
+                            chess.requestBoardStatus(rbs);
+                            break;
+                        case "BoardStatus" :
+                            BoardStatus bs = (net.sprenkle.chess.messages.BoardStatus)mh.getObject(BoardStatus.class);
+                            chess.boardStatus(bs);
+                            break;
                         default:
                             throw new Exception("Undefined Message");
                     }
