@@ -26,13 +26,18 @@ public class ChessMessageReceiver {
 
     static Logger logger = Logger.getLogger(ChessMessageReceiver.class.getSimpleName());
 
-    private static final String EXCHANGE_NAME = "CHESS";
+    private final String EXCHANGE_NAME = "CHESS";
     private final String name;
     private final HashMap<String, MessageHandler> eventMap;
+    private final String bindingKey; 
 
-    public ChessMessageReceiver(String name) {
-        this.name = name;
-        eventMap = new HashMap<String, MessageHandler>();
+    public ChessMessageReceiver(String name, boolean isRecievingImages) {
+        this.name = name;        eventMap = new HashMap<String, MessageHandler>();
+        if(isRecievingImages){
+            bindingKey = "#";
+        }else{
+            bindingKey = "*.none";
+        }
     }
 
     public void addMessageHandler(String messageType, MessageHandler messageHandler) {
@@ -45,9 +50,9 @@ public class ChessMessageReceiver {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, EXCHANGE_NAME, "");
+        channel.queueBind(queueName, EXCHANGE_NAME, bindingKey);
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
@@ -76,6 +81,12 @@ public class ChessMessageReceiver {
                                 break;
                             case "SetBoardRestPosition":
                                 eventMap.get(mh.getClassName()).handleMessage((SetBoardRestPosition) mh.getObject(SetBoardRestPosition.class));
+                                break;
+                            case "GCode":
+                                eventMap.get(mh.getClassName()).handleMessage((GCode) mh.getObject(GCode.class));
+                                break;
+                            case "BufferedImage":
+                                eventMap.get(mh.getClassName()).handleMessage((BufferedImage) mh.getObject(BufferedImage.class));
                                 break;
                             default:
                                 throw new Exception("Undefined Message");

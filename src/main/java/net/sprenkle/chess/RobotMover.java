@@ -52,7 +52,12 @@ public class RobotMover {
                 }
             }
         });
-
+        try {
+            messageReceiver.initialize();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(RobotMover.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ;
     }
 
     private void initializeEngine() {
@@ -69,13 +74,15 @@ public class RobotMover {
     }
 
     public void requestMove(RequestMove requestMove) throws Exception {
-        logger.debug(requestMove.toString());
-        uci.sendCommand(requestMove.getMoveHistory());
-        String move = uci.sendCommandAndWait("go " + getTimeString(), "bestmove");
-        move = move.substring(9, move.indexOf(" ", 10));
-        ChessMove chessMove = new ChessMove(requestMove.getTurn(), move, requestMove.getMoveId());
-        messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
-        logger.debug(chessMove.toString());
+        if (requestMove.isRobot()) {
+            logger.debug(requestMove.toString());
+            uci.sendCommand(requestMove.getMoveHistory());
+            String move = uci.sendCommandAndWait("go " + getTimeString(), "bestmove");
+            move = move.substring(9, move.indexOf(" ", 10));
+            ChessMove chessMove = new ChessMove(requestMove.getTurn(), move, requestMove.getMoveId(), true);
+            messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
+            logger.debug(chessMove.toString());
+        }
     }
 
     private String getTimeString() {
@@ -128,7 +135,7 @@ public class RobotMover {
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
-        new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover"));
+        new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover", false));
     }
 
 }

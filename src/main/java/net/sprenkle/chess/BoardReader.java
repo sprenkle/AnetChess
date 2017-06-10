@@ -139,7 +139,7 @@ public class BoardReader implements ChessImageListenerInterface {
                     if (move != null) {
                         logger.debug("Found White move");
                         state = NONE;
-                        messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), new ChessMove(requestedMove.getTurn(), convertToMove(move), requestedMove.getMoveId())));
+                        messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), new ChessMove(requestedMove.getTurn(), convertToMove(move), requestedMove.getMoveId(), false)));
                         
                     }
                 }
@@ -151,7 +151,7 @@ public class BoardReader implements ChessImageListenerInterface {
 
     public static void main(String[] arg) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        new BoardReader(new MqChessMessageSender("boardReader"), new RabbitMqChessImageReceiver(), new ChessMessageReceiver("BoardReader"), new BoardCalculator());
+        new BoardReader(new MqChessMessageSender("boardReader"), new RabbitMqChessImageReceiver(), new ChessMessageReceiver("BoardReader", true), new BoardCalculator());
     }
 
     private RequestMove requestedMove;
@@ -184,7 +184,7 @@ public class BoardReader implements ChessImageListenerInterface {
     
     private String convertToMove(int[] move){
         
-        return String.format("%s%s%s%s", convertAlpha(move[0]), move[1] , convertAlpha(move[2]), move[3]);
+        return String.format("%s%s%s%s", convertAlpha(move[0]), move[1] + 1 , convertAlpha(move[2]), move[3] + 1);
     }
     
     private String convertAlpha(int value){

@@ -19,11 +19,13 @@ public class ChessMove implements Serializable {
     private final Player turn;
     private final String move;
     private final UUID   moveId;
+    private final boolean robot;
 
-    public ChessMove(Player turn, String move, UUID moveId) {
+    public ChessMove(Player turn, String move, UUID moveId, boolean robot) {
         this.turn = turn;
         this.move = move;
         this.moveId = moveId;
+        this.robot = robot;
     }
 
     /**
@@ -45,6 +47,10 @@ public class ChessMove implements Serializable {
      */
     public UUID getMoveId() {
         return moveId;
+    }
+    
+    public boolean isRobot(){
+        return robot;
     }
     
     @Override

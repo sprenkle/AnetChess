@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.sprenkle.chess.Chess;
 import net.sprenkle.messages.MessageHolder;
 
 /**
@@ -38,7 +37,7 @@ public class MqChessMessageSender implements ChessMessageSender {
             factory.setHost("localhost");
             connection = factory.newConnection();
             channel = connection.createChannel();
-            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
+            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
         } catch (IOException ex) {
             Logger.getLogger(MqChessMessageSender.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TimeoutException ex) {
@@ -50,8 +49,9 @@ public class MqChessMessageSender implements ChessMessageSender {
     @Override
     public void send(MessageHolder messageHolder) {
         try {
-            logger.debug(String.format("%s sends %s", name, messageHolder.getClassName()));
-            channel.basicPublish(EXCHANGE_NAME, "", null, messageHolder.toBytes());
+            String routingKey = String.format("%s.%s", "BufferedImage".equals(messageHolder.getClassName()) ? "none" : "general", "BufferedImage".equals(messageHolder.getClassName()) ? "image" : "none");
+            logger.debug(String.format("%s sends %s with routing key %s", name, messageHolder.getClassName(), routingKey));
+            channel.basicPublish(EXCHANGE_NAME, routingKey, null, messageHolder.toBytes());
 
         } catch (IOException ex) {
             Logger.getLogger(MqChessMessageSender.class.getName()).log(Level.SEVERE, null, ex);

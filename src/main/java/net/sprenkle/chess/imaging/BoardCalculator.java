@@ -27,6 +27,7 @@ public class BoardCalculator {
     static Logger logger = Logger.getLogger(BoardCalculator.class.getSimpleName());
     static Line[] horizontalLines = new Line[8];
     static Line[] verticalLines = new Line[8];
+    static PossiblePiece[][] lastBoard = new PossiblePiece[8][8];
     private boolean initialized = false;
     static int leftBoard;
     static int rightBoard;
@@ -34,8 +35,12 @@ public class BoardCalculator {
     static int topBoard;
     static boolean humanColor;
 
-    static PossiblePiece[][] lastBoard = new PossiblePiece[8][8];
     static int lastNumPieces = 16;
+    
+    static double xSlope = -0.4262;
+    static double ySlope = 0.4271;
+    static double xIntercept = 175.376;
+    static double yIntercept = -165.4933;
 
     ArrayList<Point> detectedPices = new ArrayList<>();
     //   Line horizontal[] = new Line[8];
@@ -52,46 +57,45 @@ public class BoardCalculator {
         return humanColor;
     }
 
-    public void detectCircle(BufferedImage bi) {
-        detectedPices = new ArrayList<Point>();
-
+    public void showCircles(BufferedImage bi){
         boolean[][] array = BlackWhite.convert(bi);
         Graphics2D g2 = bi.createGraphics();
-
         BasicStroke stroke = new BasicStroke(2);
         g2.setStroke(stroke);
 
+       ArrayList<PossiblePiece> pieces = detectCircle(array);
+       pieces.forEach((piece) -> markPiece(g2, piece.x, piece.y, piece.color));
+    }
+    
+    public ArrayList<PossiblePiece> detectCircle(boolean[][] array) {
+        ArrayList<PossiblePiece> pieces = new ArrayList<>();
+
         for (int y = 6; y < array[0].length - 6; y++) {
             for (int x = 6; x < array.length - 6; x++) {
-                if (detectC(array, x, y, true)) {
-                    detectedPices.add(new Point(x, y, true));
-                    markPiece(g2, x, y, true);
-                    array[x][y] = true;
-                    array[x + 1][y] = true;
-                    array[x][y + 1] = true;
-                    array[x + 1][y + 1] = true;
-                    x += 15;
-                    continue;
-                }
-                if (detectC(array, x, y, false)) {
-                    detectedPices.add(new Point(x, y, false));
-                    markPiece(g2, x, y, false);
-                    array[x][y] = false;
-                    array[x + 1][y] = false;
-                    array[x + 1][y] = false;
-                    array[x + 1][y + 1] = false;
-                    x += 15;
+                try {
+                    if (detectC(array, x, y, true)) {
+                        PossiblePiece piece = new PossiblePiece(x, y, true);
+                        pieces.add(piece);
+                        array[x][y] = true; // sets the color so it will not be detected again
+                        array[x + 1][y] = true;
+                        array[x][y + 1] = true;
+                        array[x + 1][y + 1] = true;
+                        x += 15;
+                    } else if (detectC(array, x, y, false)) {
+                        PossiblePiece piece = new PossiblePiece(x, y, false);
+                        pieces.add(piece);
+                        array[x][y] = false;
+                        array[x + 1][y] = false;
+                        array[x + 1][y] = false;
+                        array[x + 1][y + 1] = false;
+                        x += 15;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
-
-//        for(int i = 0 ; i < 8; i++){
-//            g2.setColor(Color.GREEN);
-//            g2.drawLine(horizontal[i].start.x, horizontal[i].start.y
-//                    , horizontal[i].end.x, horizontal[i].end.y);
-//            g2.drawLine(vertical[i].start.x, vertical[i].start.y
-//                    , vertical[i].end.x, vertical[i].end.y);
-//        }
+        return pieces;
     }
 
     public void initialLines(BufferedImage bi) {
@@ -100,7 +104,7 @@ public class BoardCalculator {
         BasicStroke stroke = new BasicStroke(2);
         g2.setStroke(stroke);
         if (!isInitialized()) {
-      //      ImageUtil.savePng(bi, "d:\testimage.png");
+            //      ImageUtil.savePng(bi, "d:\testimage.png");
             detectedPices = new ArrayList<Point>();
 
             boolean[][] array = BlackWhite.convert(bi);
@@ -109,7 +113,7 @@ public class BoardCalculator {
             for (int y = 6; y < array[0].length - 6; y++) {
                 for (int x = 6; x < array.length - 6; x++) {
                     if (detectC(array, x, y, true)) {
-                        if(!foundFirstColor){
+                        if (!foundFirstColor) {
                             firstColor = true;
                             foundFirstColor = true;
                         }
@@ -122,7 +126,7 @@ public class BoardCalculator {
                         x += 15;
                     }
                     if (detectC(array, x, y, false)) {
-                        if(!foundFirstColor){
+                        if (!foundFirstColor) {
                             firstColor = false;
                             foundFirstColor = true;
                         }
@@ -136,7 +140,7 @@ public class BoardCalculator {
                     }
                 }
             }
-            
+
             if (detectedPices.size() == 32) {
                 markLines(bi, g2);
                 setInitialized(true);
@@ -169,19 +173,18 @@ public class BoardCalculator {
 
             lastBoard[3][0] = new PossiblePiece(firstColor, PossiblePiece.QUEEN, 3, 0);
             lastBoard[3][7] = new PossiblePiece(!firstColor, PossiblePiece.QUEEN, 3, 7);
-            
+
             lastBoard[4][0] = new PossiblePiece(firstColor, PossiblePiece.KING, 4, 0);
             lastBoard[4][7] = new PossiblePiece(!firstColor, PossiblePiece.KING, 4, 7);
-            
+
             leftBoard = verticalLines[0].start.x - 15 > 0 ? verticalLines[0].start.x - 15 : 0;
             rightBoard = verticalLines[7].start.x + 15 < bi.getWidth() ? verticalLines[7].start.x + 15 : bi.getWidth();
             topBoard = horizontalLines[0].start.y - 15 > 0 ? topBoard = horizontalLines[0].start.y - 15 : 0;
             bottomBoard = horizontalLines[7].start.y + 15 < bi.getHeight() ? horizontalLines[7].start.y + 15 : bi.getHeight();
             logger.debug(String.format("Left =%s Right=%s Top=%s Bottom=%s", leftBoard, rightBoard, topBoard, bottomBoard));
-            
+
             humanColor = horizontalLines[0].start.color;
-            
-            
+
         }
 
 //        for (int h = 0; h < 8; h++) {
@@ -191,34 +194,39 @@ public class BoardCalculator {
 //        for (int v = 0; v < 8; v++) {
 //            g2.drawLine(verticalLines[v].start.x, verticalLines[v].start.y, verticalLines[v].end.x, verticalLines[v].end.y);
 //        }
-        
         drawLastBoard(g2);
 
         g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
     }
-    
-    public void CheckHumanMove(){
+
+    public void CheckHumanMove() {
         // Go through all the pieces that are of human color and see which one has moved.
     }
-    
-    public void drawLastBoard(Graphics2D g2){
-        for(int i = 0 ; i < 8; i++){
-            for(int j = 0; j < 8; j++){
+
+    public void drawLastBoard(Graphics2D g2) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 PossiblePiece piece = lastBoard[i][j];
-                if(piece != null){
+                if (piece != null) {
                     String p = "";
-                    switch(piece.rank){
-                        case 0: p = "P";
+                    switch (piece.rank) {
+                        case 0:
+                            p = "P";
                             break;
-                        case 1: p = "B";
+                        case 1:
+                            p = "B";
                             break;
-                        case 2: p = "N";
+                        case 2:
+                            p = "N";
                             break;
-                        case 3: p = "R";
+                        case 3:
+                            p = "R";
                             break;
-                        case 4: p = "Q";
+                        case 4:
+                            p = "Q";
                             break;
-                        case 5: p = "K";
+                        case 5:
+                            p = "K";
                             break;
                     }
                     g2.drawString(p, verticalLines[piece.col].start.x, horizontalLines[piece.row].start.y);
@@ -244,10 +252,9 @@ public class BoardCalculator {
 
         ArrayList<PossiblePiece> changedPiece = new ArrayList<>();
         ArrayList<PossiblePiece> takenPiece = new ArrayList<>();
-        
+
         PossiblePiece[][] currentBoard = new PossiblePiece[8][8];
 
-        
         int diff = 0;
         for (int y = 6; y < array[0].length - 6; y++) {
             for (int x = 6; x < array.length - 6; x++) {
@@ -262,15 +269,15 @@ public class BoardCalculator {
                         array[x][y + 1] = true;
                         array[x + 1][y + 1] = true;
                         x += 15;
-                       // logger.debug(String.format("Found %s",piece.toString()));
-                        if(humanColor){
-                            if(lastBoard[piece.col][piece.row] == null || lastBoard[piece.col][piece.row].color != piece.color){
+                        // logger.debug(String.format("Found %s",piece.toString()));
+                        if (humanColor) {
+                            if (lastBoard[piece.col][piece.row] == null || lastBoard[piece.col][piece.row].color != piece.color) {
                                 diff++;
                                 changedPiece.add(piece);
                             }
                         }
-                        
-                        if(currentBoard[piece.col][piece.row] != null){
+
+                        if (currentBoard[piece.col][piece.row] != null) {
                             throw new Exception(String.format("Dectected two pieces on same square col=%s row=%s", piece.col, piece.row));
                         }
                         currentBoard[piece.col][piece.row] = piece;
@@ -284,13 +291,13 @@ public class BoardCalculator {
                         array[x + 1][y] = false;
                         array[x + 1][y + 1] = false;
                         x += 15;
-                        if(!humanColor){
-                            if(lastBoard[piece.col][piece.row] == null || lastBoard[piece.col][piece.row].color != piece.color){
+                        if (!humanColor) {
+                            if (lastBoard[piece.col][piece.row] == null || lastBoard[piece.col][piece.row].color != piece.color) {
                                 diff++;
                                 changedPiece.add(piece);
                             }
                         }
-                        if(currentBoard[piece.col][piece.row] != null){
+                        if (currentBoard[piece.col][piece.row] != null) {
                             throw new Exception(String.format("Dectected two pieces on same square col=%s row=%s", piece.col, piece.row));
                         }
                         currentBoard[piece.col][piece.row] = piece;
@@ -300,27 +307,26 @@ public class BoardCalculator {
                 }
             }
         }
-        
+
         // Find piece from last board that is not there anymore
         ArrayList<PossiblePiece> lastLocation = new ArrayList<>();
-        
-        if(diff > 0){
-            for(int col = 0; col < 8; col++){
-                for(int row=0;row < 8; row++){
-                    if(lastBoard[col][row] != null && currentBoard[col][row] == null){
+
+        if (diff > 0) {
+            for (int col = 0; col < 8; col++) {
+                for (int row = 0; row < 8; row++) {
+                    if (lastBoard[col][row] != null && currentBoard[col][row] == null) {
                         lastLocation.add(lastBoard[col][row]);
                     }
                 }
             }
         }
-        
-        logger.debug("Difference is " + diff);
-        if(lastLocation.size() == 1 && changedPiece.size() == 1){
+
+        if (lastLocation.size() == 1 && changedPiece.size() == 1) {
             logger.debug(String.format("Piece moved from %s,%s to %s,%s", lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row));
             lastBoard = currentBoard;
-            return new int[] {lastLocation.get(0).col,lastLocation.get(0).row,changedPiece.get(0).col,changedPiece.get(0).row};
+            return new int[]{lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row};
         }
-        
+
         drawLines(g2);
         return null;
     }
@@ -400,13 +406,13 @@ public class BoardCalculator {
         }
     }
 
-    private void drawLines(Graphics2D g2){
-        for(int i = 0 ; i < 8; i++){
+    private void drawLines(Graphics2D g2) {
+        for (int i = 0; i < 8; i++) {
             g2.drawLine(horizontalLines[i].start.x, horizontalLines[i].start.y, horizontalLines[i].end.x, horizontalLines[i].end.y);
             g2.drawLine(verticalLines[i].start.x, verticalLines[i].start.y, verticalLines[i].end.x, verticalLines[i].end.y);
         }
     }
-    
+
     private void markPiece(Graphics2D g2, int x, int y, boolean piece) {
         int size = 8;
         if (piece) {
@@ -591,6 +597,14 @@ public class BoardCalculator {
      */
     public boolean isInitialized() {
         return initialized;
+    }
+
+    public void setIsInitialized(boolean isInitialized) {
+        this.initialized = isInitialized;
+        horizontalLines = new Line[8];
+        verticalLines = new Line[8];
+        lastBoard = new PossiblePiece[8][8];
+
     }
 
     /**
