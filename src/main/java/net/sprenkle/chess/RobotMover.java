@@ -5,12 +5,12 @@
  */
 package net.sprenkle.chess;
 
-import net.sprenkle.chess.messages.BoardStatus;
+import java.util.logging.Level;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
-import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.messages.MessageHolder;
@@ -22,17 +22,37 @@ import org.apache.log4j.PropertyConfigurator;
  * @author david Will wait for a request for move for a robot player and respond
  * with the move
  */
-public class RobotMover implements ChessInterface {
+public class RobotMover {
+
     static Logger logger = Logger.getLogger(RobotMover.class.getSimpleName());
 
     private static final String EXCHANGE_NAME = "CHESS";
     UCIInterface uci;
     ChessMessageSender messageSender;
 
-    public RobotMover(UCIInterface uci, ChessMessageSender messageSender) {
+    public RobotMover(UCIInterface uci, ChessMessageSender messageSender, ChessMessageReceiver messageReceiver) {
         this.uci = uci;
         this.messageSender = messageSender;
         initializeEngine();
+
+        messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>() {
+            @Override
+            public void handleMessage(StartGame startGame) {
+                startGame(startGame);
+            }
+        });
+
+        messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
+            @Override
+            public void handleMessage(RequestMove requestMove) {
+                try {
+                    requestMove(requestMove);
+                } catch (Exception ex) {
+                    java.util.logging.Logger.getLogger(RobotMover.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
     }
 
     private void initializeEngine() {
@@ -43,17 +63,11 @@ public class RobotMover implements ChessInterface {
     }
 
     // Messages that can be recieved
-    @Override
-    public void startGame(StartGame startGame) throws Exception {
+    public void startGame(StartGame startGame) {
         uci.sendCommand("ucinewgame");
         uci.sendCommandAndWait("isready", "readyok");
     }
 
-    @Override
-    public void chessMoved(ChessMove chessMove) throws Exception {
-    }
-
-    @Override
     public void requestMove(RequestMove requestMove) throws Exception {
         logger.debug(requestMove.toString());
         uci.sendCommand(requestMove.getMoveHistory());
@@ -114,16 +128,7 @@ public class RobotMover implements ChessInterface {
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
-        RobotMover robotMover = new RobotMover(new StockFishUCI(), new MqChessMessageSender());
-        ChessMessageReceiver chessMessageReceiver = new ChessMessageReceiver(robotMover);    
-        chessMessageReceiver.initialize();
-    }
-    
-    @Override
-    public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
+        new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover"));
     }
 
-    @Override
-    public void boardStatus(BoardStatus boardStatus) throws Exception {
-    }
 }

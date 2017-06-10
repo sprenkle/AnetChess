@@ -81,7 +81,7 @@ public class Viewer extends javax.swing.JFrame {
              //ImageUtil.saveJpg(bImageFromConvert, "d:\\chess.jpg");
                 if (showPieces.isSelected()) {
                     try{
-                    boardCalculator.detectCircle(bImageFromConvert);
+                    boardCalculator.detectPieces(bImageFromConvert);
                     }catch(Exception e){
                         e.printStackTrace();
                     }

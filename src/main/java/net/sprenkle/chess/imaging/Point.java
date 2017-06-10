@@ -17,5 +17,6 @@ public class Point {
     public Point(int x, int y, boolean color){
         this.x = x;
         this.y = y;
+        this.color = color;
     }
 }

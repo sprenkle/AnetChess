@@ -14,12 +14,14 @@ import java.io.Serializable;
  * Used to return that the board has been setup to play and the game can start.
  */
 public class BoardStatus implements Serializable {
-    private boolean startingPositionSet;
-    private boolean humanSide;
+    private final boolean isRestPosition;
+    private final boolean startingPositionSet;
+    private final boolean humanSide;
 
-    public BoardStatus(boolean startingPositionSet, boolean humanSide){
+    public BoardStatus(boolean startingPositionSet, boolean humanSide, boolean isRestPosition){
         this.startingPositionSet = startingPositionSet;
         this.humanSide = humanSide;
+        this.isRestPosition = isRestPosition;
     }
     
     /**
@@ -30,27 +32,20 @@ public class BoardStatus implements Serializable {
     }
 
     /**
-     * @param startingPositionSet the startingPositionSet to set
-     */
-    public void setStartingPositionSet(boolean startingPositionSet) {
-        this.startingPositionSet = startingPositionSet;
-    }
-
-    /**
      * @return the humanSide
      */
     public boolean isHumanSide() {
         return humanSide;
     }
-
-    /**
-     * @param humanSide the humanSide to set
-     */
-    public void setHumanSide(boolean humanSide) {
-        this.humanSide = humanSide;
-    }
     
     public String toString(){
         return String.format("Setup=%s Human=%s", startingPositionSet, (humanSide ? "White" : "Black"));
+    }
+
+    /**
+     * @return the isRestPosition
+     */
+    public boolean isIsRestPosition() {
+        return isRestPosition;
     }
 }

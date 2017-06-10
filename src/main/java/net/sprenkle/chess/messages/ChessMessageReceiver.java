@@ -14,22 +14,29 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import java.io.IOException;
-import javax.inject.Inject;
-import net.sprenkle.chess.ChessInterface;
+import java.util.HashMap;
 import net.sprenkle.messages.MessageHolder;
-
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author david
  */
 public class ChessMessageReceiver {
+
+    static Logger logger = Logger.getLogger(ChessMessageReceiver.class.getSimpleName());
+
     private static final String EXCHANGE_NAME = "CHESS";
-    private final ChessInterface chess;
-    
-    @Inject
-    public ChessMessageReceiver(ChessInterface chess) {
-        this.chess = chess;
+    private final String name;
+    private final HashMap<String, MessageHandler> eventMap;
+
+    public ChessMessageReceiver(String name) {
+        this.name = name;
+        eventMap = new HashMap<String, MessageHandler>();
+    }
+
+    public void addMessageHandler(String messageType, MessageHandler messageHandler) {
+        eventMap.put(messageType, messageHandler);
     }
 
     public void initialize() throws Exception {
@@ -49,27 +56,30 @@ public class ChessMessageReceiver {
                     AMQP.BasicProperties properties, byte[] body) throws IOException {
                 try {
                     MessageHolder mh = MessageHolder.fromBytes(body);
-                    switch (mh.getClassName()) {
-                        case "StartGame" :
-                            chess.startGame((StartGame)mh.getObject(StartGame.class));
-                            break;
-                        case "ChessMove" :
-                            chess.chessMoved((net.sprenkle.chess.messages.ChessMove)mh.getObject(ChessMove.class));
-                            break;
-                        case "RequestMove" :
-                            RequestMove rm = (net.sprenkle.chess.messages.RequestMove)mh.getObject(RequestMove.class);
-                            chess.requestMove(rm);
-                            break;
-                        case "RequestBoardStatus" :
-                            RequestBoardStatus rbs = (net.sprenkle.chess.messages.RequestBoardStatus)mh.getObject(RequestBoardStatus.class);
-                            chess.requestBoardStatus(rbs);
-                            break;
-                        case "BoardStatus" :
-                            BoardStatus bs = (net.sprenkle.chess.messages.BoardStatus)mh.getObject(BoardStatus.class);
-                            chess.boardStatus(bs);
-                            break;
-                        default:
-                            throw new Exception("Undefined Message");
+                    if (eventMap.containsKey(mh.getClassName())) {
+                        logger.debug(String.format("%s received %s", name, mh.getClassName()));
+                        switch (mh.getClassName()) {
+                            case "StartGame":
+                                eventMap.get(mh.getClassName()).handleMessage((StartGame) mh.getObject(StartGame.class));
+                                break;
+                            case "ChessMove":
+                                eventMap.get(mh.getClassName()).handleMessage((ChessMove) mh.getObject(ChessMove.class));
+                                break;
+                            case "RequestMove":
+                                eventMap.get(mh.getClassName()).handleMessage((RequestMove) mh.getObject(RequestMove.class));
+                                break;
+                            case "RequestBoardStatus":
+                                eventMap.get(mh.getClassName()).handleMessage((RequestBoardStatus) mh.getObject(RequestBoardStatus.class));
+                                break;
+                            case "BoardStatus":
+                                eventMap.get(mh.getClassName()).handleMessage((BoardStatus) mh.getObject(BoardStatus.class));
+                                break;
+                            case "SetBoardRestPosition":
+                                eventMap.get(mh.getClassName()).handleMessage((SetBoardRestPosition) mh.getObject(SetBoardRestPosition.class));
+                                break;
+                            default:
+                                throw new Exception("Undefined Message");
+                        }
                     }
                 } catch (ClassNotFoundException ex) {
                     ex.printStackTrace();
@@ -81,7 +91,6 @@ public class ChessMessageReceiver {
         channel.basicConsume(queueName, true, consumer);
     }
 
-    
 //    public static void main(String[] args) throws Exception{
 //         ObjectGraph objectGraph = ObjectGraph.create(new ChessModule());
 //         ChessMessageReceiver chessMessageReceiver = objectGraph.get(ChessMessageReceiver.class);

@@ -5,8 +5,6 @@
  */
 package net.sprenkle.chess;
 
-import dagger.ObjectGraph;
-import javax.inject.Inject;
 import net.sprenkle.chess.ChessState.Player;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
@@ -17,7 +15,12 @@ import net.sprenkle.messages.MessageHolder;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+import java.util.logging.Level;
+import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardStatus;
+import net.sprenkle.chess.messages.MessageHandler;
+import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RabbitMqChessImageReceiver;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -27,8 +30,8 @@ import org.apache.log4j.PropertyConfigurator;
  * @author David
  *
  */
-public class Chess extends TimerTask implements ChessInterface {
-
+public class Chess extends TimerTask {
+    
     static Logger logger = Logger.getLogger(Chess.class.getSimpleName());
     static final boolean WHITE = true;
     static final boolean BLACK = false;
@@ -39,21 +42,47 @@ public class Chess extends TimerTask implements ChessInterface {
     Timer timer = new Timer(true);
     UUID expectedMove;
 
-    @Inject
-    public Chess(ChessControllerInterface chessEngine, ChessState chessState, ChessMessageSender chessMessageSender) {
+    
+    public Chess(ChessControllerInterface chessEngine, ChessMessageSender chessMessageSender, ChessMessageReceiver messageReceiver) {
         this.chessEngine = chessEngine;
-        this.chessState = chessState;
         this.chessMessageSender = chessMessageSender;
+        chessState = new ChessState();
+        
+        messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>(){
+            @Override
+            public void handleMessage(StartGame startGame) {
+                startGame(startGame);
+            }
+        });
+        
+        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>(){
+            @Override
+            public void handleMessage(ChessMove chessMove) {
+                chessMoved(chessMove);
+            }
+        });
+
+        messageReceiver.addMessageHandler(BoardStatus.class.getSimpleName(), new MessageHandler<BoardStatus>(){
+            @Override
+            public void handleMessage(BoardStatus boardStatus) {
+                boardStatus(boardStatus);
+            }
+        });
+        
+        try {
+            messageReceiver.initialize();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(Chess.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    @Override
     public void startGame(StartGame startGame) {
         logger.debug("Message received StartGame");
+        logger.debug("Sending RequestBoardStatus");
         chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
     }
 
-    @Override
-    public void chessMoved(ChessMove chessMove) throws Exception {
+    public void chessMoved(ChessMove chessMove) {
         if (!chessMove.getMoveId().equals(expectedMove)) {
             logger.debug(String.format("Received Unknown move %s  Expected %s", chessMove.getMoveId(), expectedMove));
             return;
@@ -106,21 +135,17 @@ public class Chess extends TimerTask implements ChessInterface {
 //    }
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        ObjectGraph objectGraph = ObjectGraph.create(new ChessModule());
-        ChessMessageReceiver chessMessageReceiver = objectGraph.get(ChessMessageReceiver.class);
-        chessMessageReceiver.initialize();
+        Chess chess = new Chess(new ChessController(), new MqChessMessageSender("Chess"), new ChessMessageReceiver("Chess"));
+        
+//        new BoardReader(new MqChessMessageSender("boardReader"), new RabbitMqChessImageReceiver(), new ChessMessageReceiver("BoardReader"), new BoardCalculator());
+//
+//        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController"));
+//
+//        new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover"));
+
     }
 
-    @Override
-    public void requestMove(RequestMove requestMove) throws Exception {
-    }
-
-    @Override
-    public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
-    }
-
-    @Override
-    public void boardStatus(BoardStatus boardStatus) throws Exception {
+    public void boardStatus(BoardStatus boardStatus){
         logger.debug(boardStatus.toString());
         if (boardStatus.isStartingPositionSet()) {
             chessEngine.newGame();

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sprenkle.chess.Chess;
 import net.sprenkle.messages.MessageHolder;
 
 /**
@@ -20,13 +21,16 @@ import net.sprenkle.messages.MessageHolder;
  * @author david
  */
 public class MqChessMessageSender implements ChessMessageSender {
+    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MqChessMessageSender.class.getSimpleName());
 
     private static final String EXCHANGE_NAME = "CHESS";
+    private final String name;
     private ConnectionFactory factory;
     Connection connection;
     Channel channel;
 
-    public MqChessMessageSender()  {
+    public MqChessMessageSender(String name) {
+        this.name = name;
         try {
             factory = new ConnectionFactory();
             factory.setUsername("guest");
@@ -46,6 +50,7 @@ public class MqChessMessageSender implements ChessMessageSender {
     @Override
     public void send(MessageHolder messageHolder) {
         try {
+            logger.debug(String.format("%s sends %s", name, messageHolder.getClassName()));
             channel.basicPublish(EXCHANGE_NAME, "", null, messageHolder.toBytes());
 
         } catch (IOException ex) {
