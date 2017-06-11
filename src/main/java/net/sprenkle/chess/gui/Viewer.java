@@ -106,40 +106,39 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     public void boardImage(BoardImage boardImage) {
         logger.debug("received image");
-                BufferedImage bImageFromConvert = boardImage.GetBi();
-                bi = bImageFromConvert;
-                imageTime = LocalTime.now();
-                //   bImageFromConvert = createRotated(bImageFromConvert);
-                //ImageUtil.saveJpg(bImageFromConvert, "d:\\chess.jpg");
-                if (showPieces.isSelected()) {
-                    try {
-                        boardCalculator.detectPieces(bImageFromConvert);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else if (initialzieRdo.isSelected()) {
-                    try {
-                        boardCalculator.initialLines(bImageFromConvert);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else if (noneRdo.isSelected()) {
-                    boardCalculator.showCircles(bImageFromConvert);
-                } else {
-                    try {
-                        BlackWhite.convertImage(bImageFromConvert, blackPercent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+        BufferedImage bImageFromConvert = boardImage.GetBi();
+        bi = bImageFromConvert;
+        imageTime = LocalTime.now();
+        //   bImageFromConvert = createRotated(bImageFromConvert);
+        //ImageUtil.saveJpg(bImageFromConvert, "d:\\chess.jpg");
+        if (showPieces.isSelected()) {
+            try {
+                boardCalculator.detectPieces(bImageFromConvert);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (initialzieRdo.isSelected()) {
+            try {
+                boardCalculator.initialLines(bImageFromConvert);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (noneRdo.isSelected()) {
+            boardCalculator.showCircles(bImageFromConvert);
+        } else {
+            try {
+                BlackWhite.convertImage(bImageFromConvert, blackPercent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-                //new ImageIcon(bImageFromConvert);
-                imageLbl.setIcon(new ImageIcon(bImageFromConvert));
+        //new ImageIcon(bImageFromConvert);
+        imageLbl.setIcon(new ImageIcon(bImageFromConvert));
 
-                MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
-                messageSender.send(mh);
+        MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
+        messageSender.send(mh);
     }
-
 
     private static BufferedImage createRotated(BufferedImage image) {
         AffineTransform at = AffineTransform.getRotateInstance(

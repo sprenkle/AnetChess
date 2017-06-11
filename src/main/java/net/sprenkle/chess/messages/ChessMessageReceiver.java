@@ -13,6 +13,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import net.sprenkle.messages.MessageHolder;
@@ -29,13 +30,14 @@ public class ChessMessageReceiver {
     private final String EXCHANGE_NAME = "CHESS";
     private final String name;
     private final HashMap<String, MessageHandler> eventMap;
-    private final String bindingKey; 
+    private final String bindingKey;
 
     public ChessMessageReceiver(String name, boolean isRecievingImages) {
-        this.name = name;        eventMap = new HashMap<String, MessageHandler>();
-        if(isRecievingImages){
+        this.name = name;
+        eventMap = new HashMap<String, MessageHandler>();
+        if (isRecievingImages) {
             bindingKey = "#";
-        }else{
+        } else {
             bindingKey = "*.none";
         }
     }
@@ -46,7 +48,9 @@ public class ChessMessageReceiver {
 
     public void initialize() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setUsername("pi");
+        factory.setPassword("ferret");
+        factory.setHost("192.168.1.88");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
@@ -87,6 +91,9 @@ public class ChessMessageReceiver {
                                 break;
                             case "BufferedImage":
                                 eventMap.get(mh.getClassName()).handleMessage((BufferedImage) mh.getObject(BufferedImage.class));
+                                break;
+                            case "RequestImage":
+                                eventMap.get(mh.getClassName()).handleMessage((RequestImage) mh.getObject(RequestImage.class));
                                 break;
                             default:
                                 throw new Exception("Undefined Message");

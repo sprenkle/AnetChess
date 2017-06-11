@@ -32,9 +32,9 @@ public class MqChessMessageSender implements ChessMessageSender {
         this.name = name;
         try {
             factory = new ConnectionFactory();
-            factory.setUsername("guest");
-            factory.setPassword("guest");
-            factory.setHost("localhost");
+            factory.setUsername("pi");
+            factory.setPassword("ferret");
+            factory.setHost("192.168.1.88");
             connection = factory.newConnection();
             channel = connection.createChannel();
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
