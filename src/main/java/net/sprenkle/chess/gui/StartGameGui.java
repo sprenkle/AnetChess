@@ -17,9 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.sprenkle.chess.ChessState;
-import net.sprenkle.chess.ChessState.Player;
-import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.Chess;
 import net.sprenkle.messages.MessageHolder;
 import net.sprenkle.chess.messages.StartGame;
 
@@ -28,6 +26,7 @@ import net.sprenkle.chess.messages.StartGame;
  * @author david
  */
 public class StartGameGui extends javax.swing.JFrame {
+    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Chess.class.getSimpleName());
 
     private static final String EXCHANGE_NAME = "CHESS";
     private final ConnectionFactory factory;

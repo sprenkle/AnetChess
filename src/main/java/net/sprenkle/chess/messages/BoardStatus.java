@@ -24,6 +24,11 @@ public class BoardStatus implements Serializable {
         this.isRestPosition = isRestPosition;
     }
     
+    @Override
+    public String toString(){
+        return String.format("BoardStatus startingPositionSet=%s humanSide=%s isRestPosition=%s", startingPositionSet, (humanSide ? "White" : "Black"), isRestPosition);
+    }
+    
     /**
      * @return the startingPositionSet
      */
@@ -36,10 +41,6 @@ public class BoardStatus implements Serializable {
      */
     public boolean isHumanSide() {
         return humanSide;
-    }
-    
-    public String toString(){
-        return String.format("Setup=%s Human=%s", startingPositionSet, (humanSide ? "White" : "Black"));
     }
 
     /**

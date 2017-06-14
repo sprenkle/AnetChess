@@ -14,20 +14,23 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.sprenkle.chess.exceptions.InvalidLocationException;
-import net.sprenkle.chess.messages.BoardStatus;
+import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.ConfirmedPieceMove;
+import net.sprenkle.chess.messages.PiecePositions;
+import net.sprenkle.chess.messages.RequestMovePieces;
+import net.sprenkle.chess.messages.RequestPiecePositions;
 import net.sprenkle.messages.MessageHolder;
 import org.apache.log4j.PropertyConfigurator;
 
 public class AnetBoardController {
 
-    private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(AnetBoardController.class.getSimpleName());
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(AnetBoardController.class.getSimpleName());
     private String lastString;
     private OutputStream out;
     private InputStream in;
@@ -42,7 +45,6 @@ public class AnetBoardController {
     private final double yIntercept = -165.4933;
     private final double orgX = 94.3;
     private final double orgY = 170.4;
-
 
     private boolean homed = false;
 
@@ -63,10 +65,24 @@ public class AnetBoardController {
             }
         });
 
-        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>() {
+//        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>() {
+//            @Override
+//            public void handleMessage(ChessMove chessMove) {
+//                chessMove(chessMove);
+//            }
+//        });
+
+        messageReceiver.addMessageHandler(RequestMovePieces.class.getSimpleName(), new MessageHandler<RequestMovePieces>() {
             @Override
-            public void handleMessage(ChessMove chessMove) {
-                chessMove(chessMove);
+            public void handleMessage(RequestMovePieces requestMovePieces) {
+                requestMovePieces(requestMovePieces);
+            }
+        });
+
+        messageReceiver.addMessageHandler(PiecePositions.class.getSimpleName(), new MessageHandler<PiecePositions>() {
+            @Override
+            public void handleMessage(PiecePositions piecePositions) {
+                piecePositions(piecePositions);
             }
         });
 
@@ -111,7 +127,6 @@ public class AnetBoardController {
         int len = -1;
         while (true) {
             try {
-
                 lastString = "nothing";
                 StringBuilder sb = new StringBuilder();
                 while ((len = this.in.read()) > -1) {
@@ -127,7 +142,6 @@ public class AnetBoardController {
                             return;
                         }
                     }
-
 //          String out = new String( buffer, 0, len );
                 }
             } catch (IOException e) {
@@ -138,14 +152,18 @@ public class AnetBoardController {
 
     private void sendCommand(String command, String notes) {
         if (!homed) {
-            sendCommand("G28", "Home");
-            sendCommand("G90", "Absolute Positioning");
-            sendCommand(String.format("G1 X0 Y0 Z%f", mid), "Bring up hook.");
+            executeGcode("G28", "Home");
+            executeGcode("G90", "Absolute Positioning");
+            executeGcode(String.format("G1 X0 Y0 Z%f", mid), "Bring up hook.");
             homed = true;
         }
+        executeGcode(command, notes);
+    }
+
+    private void executeGcode(String gcode, String notes) {
         try {
-            System.out.format("%s   %s\n", command, notes);
-            this.out.write(String.format("%s\n", command).getBytes());
+            System.out.format("%s   %s\n", gcode, notes);
+            this.out.write(String.format("%s\n", gcode).getBytes());
             //this.out.write("M105\n".getBytes());
             process();
             //System.out.println("Command Sent");
@@ -156,77 +174,70 @@ public class AnetBoardController {
 
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-
         AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController", true));
     }
 
     public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {
         sendCommand(String.format("G1 Z%f", mid), "Set not to hit");
         sendCommand(String.format("G1 X0 Y%s Z%f", rest, mid), "Bring to Rest");
-        messageSender.send(new MessageHolder(BoardStatus.class.getSimpleName(), new BoardStatus(false, false, true)));
-
+        messageSender.send(new MessageHolder(BoardAtRest.class.getSimpleName(), new BoardAtRest(true)));
     }
 
     public void gCode(GCode gcode) {
         sendCommand(gcode.getGCode(), gcode.getNote());
     }
 
-    public void chessMove(ChessMove chessMove) {
-        if (chessMove.isRobot()) {
-            try {
-                String[] moves = ChessUtil.ConvertChessMove(chessMove.getMove());
-                int[] from = ChessUtil.ConvertLocation(moves[0]);
-                int[] to = ChessUtil.ConvertLocation(moves[1]);
-                
-                
-            } catch (Exception ex) {
-                Logger.getLogger(AnetBoardController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//    public void chessMove(ChessMove chessMove) {
+//        if (chessMove.isRobot()) {
+//            try {
+//                String[] moves = ChessUtil.ConvertChessMove(chessMove.getMove());
+//                int[] from = ChessUtil.ConvertLocation(moves[0]);
+//                int[] to = ChessUtil.ConvertLocation(moves[1]);
+//
+//            } catch (Exception ex) {
+//                Logger.getLogger(AnetBoardController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else{
+//            logger.debug("Does nothing, not a robot move");
+//        }
+//    }
+
+    public void requestMovePieces(RequestMovePieces requestMovePieces) {
+        logger.debug(String.format("Requesting move %s", requestMovePieces));
+        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getMove())));
+    }
+    
+    public void piecePositions(PiecePositions piecePositions){
+        if(piecePositions.isCapture()){
+            movePiece(piecePositions.getTo()[0], piecePositions.getTo()[1], piecePositions.getCaptureTo()[0], piecePositions.getCaptureTo()[1]);
         }
-    }
-    
-    private void movePiece(int imageX, int imageY, int boardX, int boardY) {
-        int x = (int) (xSlope * imageX + xIntercept + orgX);
-        int y = (int) (ySlope * imageY + yIntercept + 190);
-
-        int[] dest = calculateBoardPosition(boardX, boardY);
-
-        String gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, mid);
-        MessageHolder mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Go to high offset"));
-        messageSender.send(mh);
-
-        gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Go to Low offset"));
-        messageSender.send(mh);
-
-        gcode = String.format("G1 X%s Y%s Z%s", x, y, low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move to center low"));
-        messageSender.send(mh);
-
-        gcode = String.format("G1 X%s Y%s Z%s", x, y, high);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Lift up piece"));
-        messageSender.send(mh);
-
-        jog();
+        movePiece(piecePositions.getFrom()[0], piecePositions.getFrom()[1], piecePositions.getTo()[0], piecePositions.getTo()[1]);
         
-        gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1], high);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move to new position high"));
-        messageSender.send(mh);
-
-        gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1], low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Lower piece"));
-        messageSender.send(mh);
-
-        gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1] + 9, low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move to offset"));
-        messageSender.send(mh);
-
-        gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1] + 9, mid);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move Crane up"));
-        messageSender.send(mh);
-
+        messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
     }
-    
+
+    private void movePiece(double x, double y, double toX, double toY) {
+        String gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, mid);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, low);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X%s Y%s Z%s", x, y, low);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X%s Y%s Z%s", x, y, high);
+        sendCommand(gcode, "");
+        jog();
+        gcode = String.format("G1 X%s Y%s Z%s", toX, toY, high);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X%s Y%s Z%s", toX, toY, low);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X%s Y%s Z%s", toX, toY + 9, low);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X%s Y%s Z%s", toX, toY + 9, mid);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X0 Y%s Z%f", rest, mid);
+        sendCommand(gcode, "");
+    }
+
     private int[] calculateBoardPosition(int x, int y) {
         int[] pos = new int[2];
 
@@ -236,7 +247,6 @@ public class AnetBoardController {
         return pos;
     }
 
-        
     private void jog() {
         sendCommand("G91", "relative");
         sendCommand("G1 X1", "relative");

@@ -6,6 +6,7 @@
 package net.sprenkle.chess;
 
 import net.sprenkle.chess.ChessState.Player;
+import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.StartGame;
@@ -59,8 +60,9 @@ public class ChessTest {
         ArgumentCaptor<MessageHolder> argument = ArgumentCaptor.forClass(MessageHolder.class);
         ChessMessageSender sender = mock(ChessMessageSender.class);
         ChessControllerInterface chessEngine = mock(ChessControllerInterface.class); 
+        ChessMessageReceiver chessMessageReceiver = mock(ChessMessageReceiver.class);
         
-        Chess instance = new Chess(chessEngine, chessState, sender);
+        Chess instance = new Chess(chessEngine, sender, chessMessageReceiver);
         instance.startGame(startGame);
         
         verify(sender, times(1)).send(argument.capture()); 

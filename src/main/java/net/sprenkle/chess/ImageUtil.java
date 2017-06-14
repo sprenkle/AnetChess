@@ -18,6 +18,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
@@ -41,6 +43,13 @@ public class ImageUtil {
     private ImageUtil() {
     }
 
+    static BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
+
     public static String getErrorMsg(Exception e) {
         StringBuffer sb = new StringBuffer();
 
@@ -49,7 +58,7 @@ public class ImageUtil {
             sb.append(s.toString());
             sb.append("\n");
         }
-        
+
         return sb.toString();
     }
 
@@ -57,8 +66,8 @@ public class ImageUtil {
     // Public Methods
     //----------------------------------------------------------------------------
     /**
-     * Determine if the 2 given BufferedImages are equal to eachother,
-     * Pixel by Pixel.
+     * Determine if the 2 given BufferedImages are equal to eachother, Pixel by
+     * Pixel.
      */
     public static boolean isEqual(BufferedImage bi1, BufferedImage bi2) {
         boolean equal = true;
@@ -80,8 +89,9 @@ public class ImageUtil {
 
     /**
      * Determine if big image contains smaller image.
+     *
      * @return - coordinates of top left pixel in big image that starts matching
-     *           the small image, or -1, -1 if not found.
+     * the small image, or -1, -1 if not found.
      */
     public static int[] findImageMatch(BufferedImage biBig, BufferedImage biSml) {
         int[] coords = new int[]{-1, -1};
@@ -98,10 +108,10 @@ public class ImageUtil {
         }
         return coords;
     }
-    
-        /**
-     * Determine if the big image matches the small image from the given starting pixel.
-     * Pixel by Pixel.
+
+    /**
+     * Determine if the big image matches the small image from the given
+     * starting pixel. Pixel by Pixel.
      */
     public static boolean isMatch(int xbig, int ybig, BufferedImage biBig, BufferedImage biSml) {
         boolean equal = true;
@@ -119,11 +129,12 @@ public class ImageUtil {
 
     /**
      * Will determine if the image is onscreen given the rectagle
+     *
      * @param rec
      * @param image
-     * @return 
+     * @return
      */
-    public static boolean isOnScreen(Robot robot , Rectangle rec, BufferedImage image) {
+    public static boolean isOnScreen(Robot robot, Rectangle rec, BufferedImage image) {
         boolean stop = false;
         for (int ybig = 0; ybig <= rec.getHeight() - image.getHeight() && !stop; ybig++) {
             for (int xbig = 0; xbig <= rec.getWidth() - image.getWidth() && !stop; xbig++) {
@@ -135,10 +146,10 @@ public class ImageUtil {
         }
         return false;
     }
-    
-       /**
-     * Determine if the big image matches the small image from the given starting pixel.
-     * Pixel by Pixel.
+
+    /**
+     * Determine if the big image matches the small image from the given
+     * starting pixel. Pixel by Pixel.
      */
     public static boolean isScreenMatch(int xbig, int ybig, Robot biBig, BufferedImage biSml) {
         boolean equal = true;
@@ -153,8 +164,6 @@ public class ImageUtil {
         }
         return equal;
     }
-    
-
 
     /**
      * Save a BufferedImage to a JPEG file.
@@ -178,10 +187,10 @@ public class ImageUtil {
         }
     }
 
-    
-    public static void savePng(BufferedImage bi, String filename){
+    public static void savePng(BufferedImage bi, String filename) {
         savePng(bi, new File(filename));
     }
+
     /**
      * Save a BufferedImage to a png file.
      */
@@ -194,8 +203,7 @@ public class ImageUtil {
     }
 
     /**
-     * Load an image file.
-     * Supports most image formats.
+     * Load an image file. Supports most image formats.
      */
     public static BufferedImage loadImage(String filename) throws IOException {
         BufferedImage bi = null;
@@ -226,8 +234,9 @@ public class ImageUtil {
     }
 
     /**
-     * Found the code for method at http://www.wocode.com/WOCode/Files/CLIImageUtil.java
-     * Using it to convert a java.awt.image to a BufferedImage.
+     * Found the code for method at
+     * http://www.wocode.com/WOCode/Files/CLIImageUtil.java Using it to convert
+     * a java.awt.image to a BufferedImage.
      *
      * @deprecated - find a better way.
      */
@@ -269,8 +278,8 @@ public class ImageUtil {
     }
 
     /**
-     * Sum all the rgb values in given image to a long.
-     * Useful for computing a somewhat unique hash for images.
+     * Sum all the rgb values in given image to a long. Useful for computing a
+     * somewhat unique hash for images.
      */
     public static long sumRgb(BufferedImage bi) {
         long hash = 0;

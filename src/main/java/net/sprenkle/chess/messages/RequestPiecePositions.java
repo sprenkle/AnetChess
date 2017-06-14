@@ -6,20 +6,19 @@
 package net.sprenkle.chess.messages;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  *
  * @author david
  */
-public class RequestImage implements Serializable {
-    private final UUID messageId;
+public class RequestPiecePositions implements Serializable{
+    private final String move;
     
-    public RequestImage(UUID id){
-        this.messageId = id;
+    public RequestPiecePositions(String move){
+        this.move = move;
     }
     
-    public UUID getMessageId(){
-        return messageId;
+    public String getMove(){
+        return move;
     }
 }

@@ -16,12 +16,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 import java.util.logging.Level;
-import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardStatus;
+import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
-import net.sprenkle.chess.messages.RabbitMqChessImageReceiver;
 import net.sprenkle.chess.messages.RequestBoardStatus;
+import net.sprenkle.chess.messages.RequestMovePieces;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -68,6 +68,14 @@ public class Chess extends TimerTask {
                 boardStatus(boardStatus);
             }
         });
+
+        messageReceiver.addMessageHandler(ConfirmedPieceMove.class.getSimpleName(), new MessageHandler<ConfirmedPieceMove>(){
+            @Override
+            public void handleMessage(ConfirmedPieceMove confirmedPieceMove) {
+                confirmedPieceMove(confirmedPieceMove);
+            }
+        });
+
         
         try {
             messageReceiver.initialize();
@@ -102,13 +110,16 @@ public class Chess extends TimerTask {
 
         chessEngine.consoleOut();
 
-        chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
-
+        if(chessState.isActivePlayerRobot()){
+            chessMessageSender.send(new MessageHolder(RequestMovePieces.class.getSimpleName(), new RequestMovePieces(chessMove.getMove())));
+            return;
+        }
         //chessMessageSender.send(new MessageHolder(RequestMove.class.getSimpleName(), new RequestMove(chessState.getTurn(), chessState.isActivePlayerRobot(),chessEngine.getMoves())));
         sendMove();
     }
 
     private void sendMove() {
+        chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
         expectedMove = UUID.randomUUID();
         RequestMove requestMove = new RequestMove(chessState.getTurn(), chessState.isActivePlayerRobot(), chessEngine.getMoves(), expectedMove);
         logger.debug(requestMove.toString());
@@ -149,9 +160,15 @@ public class Chess extends TimerTask {
         logger.debug(boardStatus.toString());
         if (boardStatus.isStartingPositionSet()) {
             chessEngine.newGame();
-            chessState.setTurn(Player.White);
+            chessState.setTurn(Player.Black); // This gets switched at getmove so it is really be white to move
             chessState.setWhiteRobot(!boardStatus.isHumanSide());
             chessState.setBlackRobot(boardStatus.isHumanSide());
+            sendMove();
+        }
+    }
+    
+    public void confirmedPieceMove(ConfirmedPieceMove confirmedPieceMove){
+        if(confirmedPieceMove.getPieceMoved()){
             sendMove();
         }
     }

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +38,7 @@ import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RabbitMqChessImageReceiver;
 import net.sprenkle.chess.messages.RequestBoardStatus;
+import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.imageutils.BlackWhite;
 import net.sprenkle.imageutils.ImageUtil;
 import net.sprenkle.messages.MessageHolder;
@@ -52,10 +54,6 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(BoardCalculator.class.getSimpleName());
 
     private BufferedImage bi;
-    private static final String EXCHANGE_NAME = "images";
-    private static final String IMAGE_UPDATE = "images_update";
-    private final Connection connection;
-    private final Channel sendChannel;
     private final BoardCalculator boardCalculator = new BoardCalculator();
     private final int Left = 252;
     private final int Right = 576;
@@ -96,50 +94,77 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             }
         });
 
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("192.168.1.90");
-        connection = factory.newConnection();
-
-        sendChannel = connection.createChannel();
-        sendChannel.exchangeDeclare(IMAGE_UPDATE, BuiltinExchangeType.FANOUT);
+        try {
+            messageReceiver.initialize();
+        } catch (Exception ex) {
+            Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board914c6097-40b5-4bb8-a337-3ad18de0412b.png");
+        imageLbl.setIcon(new ImageIcon(bi));
     }
 
     public void boardImage(BoardImage boardImage) {
         logger.debug("received image");
-        BufferedImage bImageFromConvert = boardImage.GetBi();
-        bi = bImageFromConvert;
+        bi = boardImage.GetBi();
         imageTime = LocalTime.now();
         //   bImageFromConvert = createRotated(bImageFromConvert);
         //ImageUtil.saveJpg(bImageFromConvert, "d:\\chess.jpg");
         if (showPieces.isSelected()) {
-            try {
-                boardCalculator.detectPieces(bImageFromConvert);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            showPieces(bi);
         } else if (initialzieRdo.isSelected()) {
-            try {
-                boardCalculator.initialLines(bImageFromConvert);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            showInitialized(bi);
         } else if (noneRdo.isSelected()) {
-            boardCalculator.showCircles(bImageFromConvert);
+            showNone(bi);
         } else {
-            try {
-                BlackWhite.convertImage(bImageFromConvert, blackPercent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+           showBlackWhite(bi);
         }
-
-        //new ImageIcon(bImageFromConvert);
-        imageLbl.setIcon(new ImageIcon(bImageFromConvert));
-
-        MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
-        messageSender.send(mh);
     }
 
+    private void showInitialized(BufferedImage boardImage) {
+        BufferedImage altBi = ImageUtil.copyBi(boardImage);
+        try {
+            boardCalculator.initialLines(altBi);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        imageLbl.setIcon(new ImageIcon(altBi));
+    }
+
+    private void showPieces(BufferedImage boardImage) {
+        BufferedImage altBi = ImageUtil.copyBi(boardImage);
+        try {
+            boardCalculator.detectPieces(altBi);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        imageLbl.setIcon(new ImageIcon(altBi));
+    }
+
+    private void showNone(BufferedImage boardImage) {
+        BufferedImage altBi = ImageUtil.copyBi(boardImage);
+        try {
+            boardCalculator.showCircles(altBi);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        imageLbl.setIcon(new ImageIcon(altBi));
+    }
+
+       private void showBlackWhite(BufferedImage boardImage) {
+        //ImageUtil.copyBi(boardImage);
+        try {
+            BufferedImage altBi =  BlackWhite.thresholdImage(boardImage, 100);
+        imageLbl.setIcon(new ImageIcon(altBi));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    
     private static BufferedImage createRotated(BufferedImage image) {
         AffineTransform at = AffineTransform.getRotateInstance(
                 Math.PI, image.getWidth() / 2, image.getHeight() / 2.0);
@@ -183,6 +208,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        startGameBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,9 +224,19 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         buttonGroup1.add(showBlackWhite);
         showBlackWhite.setSelected(true);
         showBlackWhite.setText("BlackWhite");
+        showBlackWhite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showBlackWhiteActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(initialzieRdo);
         initialzieRdo.setText("initialize");
+        initialzieRdo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                initialzieRdoActionPerformed(evt);
+            }
+        });
 
         imageAdjustTxt.setText("0 ");
 
@@ -252,6 +289,20 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             }
         });
 
+        startGameBtn.setText("Start Game");
+        startGameBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startGameBtnActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Save Image");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -295,7 +346,9 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(gcodeX, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                                     .addComponent(gcodeY)))
-                            .addComponent(jButton1))
+                            .addComponent(jButton1)
+                            .addComponent(startGameBtn)
+                            .addComponent(jButton2))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -330,7 +383,11 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                             .addComponent(gcodeY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(startGameBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
                 .addGap(0, 82, Short.MAX_VALUE))
         );
 
@@ -338,13 +395,13 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }// </editor-fold>//GEN-END:initComponents
 
     private void showPiecesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPiecesActionPerformed
-        // TODO add your handling code here:
+        showPieces(bi);
     }//GEN-LAST:event_showPiecesActionPerformed
 
     private double blackPercent = .35;
     private void adjustImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustImageBtnActionPerformed
-        blackPercent = Double.parseDouble(imageAdjustTxt.getText());
-        requestImage();
+        int threshHold = Integer.parseInt(imageAdjustTxt.getText());
+        boardCalculator.setThreshHold(threshHold);
     }//GEN-LAST:event_adjustImageBtnActionPerformed
 
     private void getImageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getImageBtnActionPerformed
@@ -353,7 +410,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
         // TODO add your handling code here:
-        boardCalculator.setIsInitialized(false);
+        boardCalculator.setInitialized(false);
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void recordPieceLocBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordPieceLocBtnActionPerformed
@@ -375,8 +432,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             }
         }
 
-        boolean[][] array = BlackWhite.convert(bi);
-        ArrayList<PossiblePiece> pieces = boardCalculator.detectCircle(array);
+        boolean[][] array = BlackWhite.convert(bi, 100);
+        ArrayList<PossiblePiece> pieces = boardCalculator.detectCircles(array, false);
         int position = 0;
         for (PossiblePiece piece : pieces) {
             if (piece.x >= Left && piece.x <= Right && piece.y >= Top && piece.y <= Bottom) {
@@ -481,13 +538,32 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }
 
     private void noneRdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noneRdoActionPerformed
-        // TODO add your handling code here:
+        showNone(bi);
     }//GEN-LAST:event_noneRdoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         MessageHolder mh2 = new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X%s Y%s Z26", gcodeX.getText(), gcodeY.getText()), "Testing piece locations"));
         messageSender.send(mh2);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void startGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameBtnActionPerformed
+        MessageHolder mh = new MessageHolder(StartGame.class.getSimpleName(), new StartGame(false, true));
+        messageSender.send(mh);
+    }//GEN-LAST:event_startGameBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String filename = String.format("D:\\git\\Chess\\images\\board%s.png", UUID.randomUUID());
+        ImageUtil.savePng(bi, filename);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void initialzieRdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initialzieRdoActionPerformed
+        showInitialized(bi);
+    }//GEN-LAST:event_initialzieRdoActionPerformed
+
+    private void showBlackWhiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBlackWhiteActionPerformed
+        showBlackWhite(bi);
+    }//GEN-LAST:event_showBlackWhiteActionPerformed
 
     private void requestImage() {
 
@@ -556,6 +632,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private javax.swing.JLabel imageLbl;
     private javax.swing.JRadioButton initialzieRdo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton noneRdo;
@@ -563,6 +640,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private javax.swing.JButton resetBtn;
     private javax.swing.JRadioButton showBlackWhite;
     private javax.swing.JRadioButton showPieces;
+    private javax.swing.JButton startGameBtn;
     // End of variables declaration//GEN-END:variables
 
     @Override

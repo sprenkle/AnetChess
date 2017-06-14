@@ -36,10 +36,11 @@ public class ChessMessageReceiver {
         this.name = name;
         eventMap = new HashMap<String, MessageHandler>();
         if (isRecievingImages) {
-            bindingKey = "#";
+           // bindingKey = "#";
         } else {
-            bindingKey = "*.none";
+          //  bindingKey = "*.none";
         }
+            bindingKey = "#";
     }
 
     public void addMessageHandler(String messageType, MessageHandler messageHandler) {
@@ -89,20 +90,35 @@ public class ChessMessageReceiver {
                             case "GCode":
                                 eventMap.get(mh.getClassName()).handleMessage((GCode) mh.getObject(GCode.class));
                                 break;
-                            case "BufferedImage":
-                                eventMap.get(mh.getClassName()).handleMessage((BufferedImage) mh.getObject(BufferedImage.class));
-                                break;
                             case "RequestImage":
                                 eventMap.get(mh.getClassName()).handleMessage((RequestImage) mh.getObject(RequestImage.class));
+                                break;
+                            case "BoardImage":
+                                eventMap.get(mh.getClassName()).handleMessage((BoardImage) mh.getObject(BoardImage.class));
+                                break;
+                            case "BoardAtRest":
+                                eventMap.get(mh.getClassName()).handleMessage((BoardAtRest) mh.getObject(BoardAtRest.class));
+                                break;
+                            case "RequestMovePieces":
+                                eventMap.get(mh.getClassName()).handleMessage((RequestMovePieces) mh.getObject(RequestMovePieces.class));
+                                break;
+                            case "ConfirmedPieceMove":
+                                eventMap.get(mh.getClassName()).handleMessage((ConfirmedPieceMove) mh.getObject(ConfirmedPieceMove.class));
+                                break;
+                            case "RequestPiecePositions":
+                                eventMap.get(mh.getClassName()).handleMessage((RequestPiecePositions) mh.getObject(RequestPiecePositions.class));
+                                break;
+                            case "PiecePositions":
+                                eventMap.get(mh.getClassName()).handleMessage((PiecePositions) mh.getObject(PiecePositions.class));
                                 break;
                             default:
                                 throw new Exception("Undefined Message");
                         }
                     }
-                } catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex ) {
+                    logger.debug(ex.getMessage());
+                } catch (Exception ex2) {
+                    logger.debug(ex2.getMessage());
                 }
             }
         };
