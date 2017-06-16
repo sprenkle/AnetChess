@@ -5,39 +5,39 @@
  */
 package net.sprenkle.chess.gui;
 
-import com.rabbitmq.client.AMQP;
-import com.rabbitmq.client.BuiltinExchangeType;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Consumer;
-import com.rabbitmq.client.DefaultConsumer;
-import com.rabbitmq.client.Envelope;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+import java.util.stream.Stream;
 import javax.swing.ImageIcon;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.RobotMover;
 import net.sprenkle.chess.imaging.BoardCalculator;
+import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.ChessImageListenerInterface;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
-import net.sprenkle.chess.messages.RabbitMqChessImageReceiver;
-import net.sprenkle.chess.messages.RequestBoardStatus;
+import net.sprenkle.chess.messages.PiecePositions;
+import net.sprenkle.chess.messages.RequestMove;
+import net.sprenkle.chess.messages.RequestMovePieces;
+import net.sprenkle.chess.messages.RequestPiecePositions;
+import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.imageutils.BlackWhite;
 import net.sprenkle.imageutils.ImageUtil;
@@ -52,7 +52,10 @@ import org.apache.log4j.PropertyConfigurator;
 public class Viewer extends javax.swing.JFrame implements ChessImageListenerInterface {
 
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(BoardCalculator.class.getSimpleName());
-
+    private ArrayList<BufferedImage> imageList = new ArrayList<>();
+    private ArrayList<String> imageNameList = new ArrayList<>();
+    private ArrayList<String> moveList = new ArrayList<>();
+    private int imageIndex = 0;
     private BufferedImage bi;
     private final BoardCalculator boardCalculator = new BoardCalculator();
     private final int Left = 252;
@@ -101,6 +104,60 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         }
         bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board914c6097-40b5-4bb8-a337-3ad18de0412b.png");
         imageLbl.setIcon(new ImageIcon(bi));
+        
+        try (Stream<Path> paths = Files.walk(Paths.get("D:\\git\\Chess\\images\\game2"))) {
+            paths
+                    .filter(Files::isRegularFile).sorted()
+                    .forEach(x -> {
+                try {
+                    imageList.add(net.sprenkle.chess.ImageUtil.loadImage(x.toAbsolutePath().toString()));
+                    imageNameList.add(x.toAbsolutePath().toString());
+                } catch (IOException ex) {
+                    Logger.getLogger(TestHarness.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+        }
+        
+        moveList.add("e7e5");
+        moveList.add("d7d6");
+        moveList.add("c8h4");
+        moveList.add("h4g4");
+        
+        imageName.setText(imageNameList.get(imageIndex));
+        
+                messageReceiver.addMessageHandler(SetBoardRestPosition.class.getSimpleName(), new MessageHandler<SetBoardRestPosition>() {
+            @Override
+            public void handleMessage(SetBoardRestPosition requestBoardRestPosition) {
+                requestBoardRestPosition(requestBoardRestPosition);
+            }
+        });
+
+        messageReceiver.addMessageHandler(RequestMovePieces.class.getSimpleName(), new MessageHandler<RequestMovePieces>() {
+            @Override
+            public void handleMessage(RequestMovePieces requestMovePieces) {
+                requestMovePieces(requestMovePieces);
+            }
+        });
+
+        messageReceiver.addMessageHandler(PiecePositions.class.getSimpleName(), new MessageHandler<PiecePositions>() {
+            @Override
+            public void handleMessage(PiecePositions piecePositions) {
+                piecePositions(piecePositions);
+            }
+        });
+        
+                messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
+            @Override
+            public void handleMessage(RequestMove requestMove) {
+                try {
+                    requestMove(requestMove);
+                } catch (Exception ex) {
+                    java.util.logging.Logger.getLogger(RobotMover.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+
     }
 
     public void boardImage(BoardImage boardImage) {
@@ -120,6 +177,14 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         }
     }
 
+        public void requestMove(RequestMove requestMove) throws Exception {
+        if (requestMove.isRobot()) {
+            ChessMove chessMove = new ChessMove(requestMove.getTurn(), moveList.remove(0), requestMove.getMoveId(), true);
+            messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
+        }
+    }
+
+    
     private void showInitialized(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
         try {
@@ -210,6 +275,10 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         jButton1 = new javax.swing.JButton();
         startGameBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        SendImage = new javax.swing.JButton();
+        prevImage = new javax.swing.JButton();
+        nextImage = new javax.swing.JButton();
+        imageName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -303,6 +372,29 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             }
         });
 
+        SendImage.setText("Send Image");
+        SendImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendImageActionPerformed(evt);
+            }
+        });
+
+        prevImage.setText("Prev Image");
+        prevImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevImageActionPerformed(evt);
+            }
+        });
+
+        nextImage.setText("Next Image");
+        nextImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextImageActionPerformed(evt);
+            }
+        });
+
+        imageName.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,45 +403,58 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                 .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(initialzieRdo)
-                                    .addComponent(showBlackWhite)))
+                                .addComponent(initialzieRdo)
+                                .addGap(18, 18, 18)
+                                .addComponent(showPieces))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(showPieces)))
-                        .addGap(0, 193, Short.MAX_VALUE))
+                                .addComponent(showBlackWhite)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(noneRdo)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(getImageBtn)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(imageAdjustTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(adjustImageBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(resetBtn)
-                                .addGap(27, 27, 27)
-                                .addComponent(recordPieceLocBtn))
-                            .addComponent(noneRdo)
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(getImageBtn)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(jLabel1))
+                                        .addComponent(imageAdjustTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(adjustImageBtn))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel2)))
+                                        .addComponent(resetBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(recordPieceLocBtn))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(gcodeX, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                                    .addComponent(gcodeY)))
-                            .addComponent(jButton1)
-                            .addComponent(startGameBtn)
-                            .addComponent(jButton2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(gcodeX, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(21, 21, 21)
+                                .addComponent(gcodeY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addComponent(jButton2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SendImage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(prevImage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nextImage)))
+                        .addContainerGap(32, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(825, 825, 825)
+                .addComponent(startGameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,38 +462,42 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(initialzieRdo)
-                        .addGap(13, 13, 13)
-                        .addComponent(showPieces)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(initialzieRdo)
+                            .addComponent(showPieces))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(showBlackWhite)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noneRdo)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(showBlackWhite)
+                            .addComponent(noneRdo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(imageAdjustTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(adjustImageBtn))
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(getImageBtn)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(resetBtn)
                             .addComponent(recordPieceLocBtn))
-                        .addGap(31, 31, 31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(gcodeX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
                             .addComponent(gcodeY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(startGameBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addGap(0, 82, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(imageName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SendImage)
+                            .addComponent(prevImage)
+                            .addComponent(nextImage))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(startGameBtn)
+                .addContainerGap())
         );
 
         pack();
@@ -547,6 +656,13 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void startGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameBtnActionPerformed
+        imageIndex = 0;
+        moveList.clear();
+        moveList.add("e7e5");
+        moveList.add("d7d6");
+        moveList.add("c8h4");
+        moveList.add("h4g4");
+        
         MessageHolder mh = new MessageHolder(StartGame.class.getSimpleName(), new StartGame(false, true));
         messageSender.send(mh);
     }//GEN-LAST:event_startGameBtnActionPerformed
@@ -565,11 +681,43 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         showBlackWhite(bi);
     }//GEN-LAST:event_showBlackWhiteActionPerformed
 
-    private void requestImage() {
+    private void nextImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextImageActionPerformed
+        imageIndex++;
+        if(imageIndex >= imageNameList.size()) imageIndex = imageNameList.size() - 1 ;
+        imageName.setText(imageNameList.get(imageIndex));
+        imageLbl.setIcon(new ImageIcon(imageList.get(imageIndex)));
+    }//GEN-LAST:event_nextImageActionPerformed
 
+    private void prevImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevImageActionPerformed
+        imageIndex--;
+        if(imageIndex < 0) imageIndex = 0;
+        imageName.setText(imageNameList.get(imageIndex));
+        imageLbl.setIcon(new ImageIcon(imageList.get(imageIndex)));
+    }//GEN-LAST:event_prevImageActionPerformed
+
+    private void SendImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendImageActionPerformed
+        MessageHolder mh = new MessageHolder(BoardImage.class.getSimpleName(), new BoardImage(imageList.get(imageIndex)));
+        messageSender.send(mh);
+    }//GEN-LAST:event_SendImageActionPerformed
+
+    private void requestImage() {
         MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
         messageSender.send(mh);
     }
+    
+    public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {
+        messageSender.send(new MessageHolder(BoardAtRest.class.getSimpleName(), new BoardAtRest(true)));
+    }
+
+    public void requestMovePieces(RequestMovePieces requestMovePieces) {
+        logger.debug(String.format("Requesting move %s", requestMovePieces));
+        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getMove())));
+    }
+    
+    public void piecePositions(PiecePositions piecePositions){
+        messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
+    }
+
 
     /**
      * @param args the command line arguments
@@ -623,6 +771,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SendImage;
     private javax.swing.JButton adjustImageBtn;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField gcodeX;
@@ -630,12 +779,15 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private javax.swing.JButton getImageBtn;
     private javax.swing.JTextField imageAdjustTxt;
     private javax.swing.JLabel imageLbl;
+    private javax.swing.JLabel imageName;
     private javax.swing.JRadioButton initialzieRdo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton nextImage;
     private javax.swing.JRadioButton noneRdo;
+    private javax.swing.JButton prevImage;
     private javax.swing.JButton recordPieceLocBtn;
     private javax.swing.JButton resetBtn;
     private javax.swing.JRadioButton showBlackWhite;

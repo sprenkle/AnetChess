@@ -27,4 +27,8 @@ public class GCode  implements Serializable{
     public String getNote(){
         return note;
     }
+    
+    public String toString(){
+        String.format("GCode %s", gcode);
+    }
 }

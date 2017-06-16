@@ -21,4 +21,8 @@ public class RequestPiecePositions implements Serializable{
     public String getMove(){
         return move;
     }
+    
+    public String toString(){
+        return String.format("RequestPiecePosition %s",move);
+    }
 }

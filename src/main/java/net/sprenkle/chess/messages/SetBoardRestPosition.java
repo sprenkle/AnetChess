@@ -12,5 +12,7 @@ import java.io.Serializable;
  * @author david
  */
 public class SetBoardRestPosition implements Serializable{
-    
+    public String toString(){
+        return this.getClass().getSimpleName();
+    }
 }

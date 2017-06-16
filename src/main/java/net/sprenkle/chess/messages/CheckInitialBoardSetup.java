@@ -13,5 +13,7 @@ import java.io.Serializable;
  * This message is used to ask for a board setup, all the pieces are setup for start of game.
  */
 public class CheckInitialBoardSetup implements Serializable {
-    
+    public String toString(){
+        return this.getClass().getSimpleName();
+    }
 }

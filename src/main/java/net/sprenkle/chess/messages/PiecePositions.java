@@ -46,6 +46,6 @@ public class PiecePositions implements Serializable{
     
     @Override
     public String toString(){
-        return String.format("from=%s,%s to=%s,%s", from[0], from[1], to[0], to[1]);
+        return String.format("PiecePositions from=%s,%s to=%s,%s", from[0], from[1], to[0], to[1]);
     }
 }

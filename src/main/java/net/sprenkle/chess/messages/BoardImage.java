@@ -43,4 +43,8 @@ public class BoardImage implements Serializable {
         }
         return null;
     }
+    
+    public String toString(){
+        return "BoardImage";
+    }
 }

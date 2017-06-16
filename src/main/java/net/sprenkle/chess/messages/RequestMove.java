@@ -47,6 +47,6 @@ public class RequestMove implements Serializable {
     
     @Override
     public String toString(){
-        return String.format("Request move for %s %s %s %s", turn, robot ? "Robot" : "Human", moveId, moveHistory);
+        return String.format("RequestMove for %s %s %s %s", turn, robot ? "Robot" : "Human", moveId, moveHistory);
     }
 }

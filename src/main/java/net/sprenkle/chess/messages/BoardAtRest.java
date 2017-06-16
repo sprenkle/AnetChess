@@ -21,4 +21,8 @@ public class BoardAtRest implements Serializable{
     public boolean IsAtRest(){
         return atRest;
     }
+    
+    public String toString(){
+        return String.format("BoardAtRest %s", atRest);
+    }
 }

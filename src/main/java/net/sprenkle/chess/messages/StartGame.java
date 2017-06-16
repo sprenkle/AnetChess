@@ -124,6 +124,6 @@ public class StartGame implements Serializable {
     }
     
     public String toString(){
-        return String.format("White robot=%s Black robot=%s", whiteRobot, blackRobot);
+        return String.format("StartGame White robot=%s Black robot=%s", whiteRobot, blackRobot);
     }
 }

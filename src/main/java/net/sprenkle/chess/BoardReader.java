@@ -203,8 +203,8 @@ public class BoardReader {
                 int[] moves = convertFromMove(requestPiecePositions.getMove());
                 logger.debug(String.format("Converted to %s,%s  %s,%s", moves[0], moves[1], moves[2], moves[3]));
                 PossiblePiece fromPiece = lastBoard[moves[0]][moves[1]];
-                logger.debug(String.format("fromPiece x=%s, y=%s row=%s col=%s", fromPiece.x, fromPiece.y, fromPiece.row, fromPiece.col));
                 if(lastBoard[moves[2]][moves[3]] == null){
+                    logger.debug(String.format("fromPiece x=%s, y=%s row=%s col=%s", fromPiece.x, fromPiece.y, fromPiece.row, fromPiece.col));
                     double[] from = new double[2];
                     from[0] = (int) (xSlope * fromPiece.x + xIntercept + orgX); 
                     from[1] = (int) (ySlope * fromPiece.y + yIntercept + 190);
@@ -216,7 +216,8 @@ public class BoardReader {
                     return;
                 }
                 PossiblePiece capturePiece = lastBoard[moves[2]][moves[3]]; 
-            } catch (Exception ex) {
+                state = NONE;
+           } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
             }
             
@@ -230,7 +231,7 @@ public class BoardReader {
         pos[1] = orgY - ((7-y) * 18 + 9);
 
         return pos;
-    }
+    } 
     
     public void boardAtRest(BoardAtRest boardAtRest) {
         if (state.equals(CHECK_FOR_REST_POSITION) && boardAtRest.IsAtRest()) {

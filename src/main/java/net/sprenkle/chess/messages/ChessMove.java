@@ -55,6 +55,6 @@ public class ChessMove implements Serializable {
     
     @Override
     public String toString(){
-        return String.format("%s to move, %s Id=%s", turn, move, moveId);
+        return String.format("ChessMove %s to move, %s Id=%s", turn, move, moveId);
     }
 }

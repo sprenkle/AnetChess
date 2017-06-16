@@ -65,13 +65,6 @@ public class AnetBoardController {
             }
         });
 
-//        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>() {
-//            @Override
-//            public void handleMessage(ChessMove chessMove) {
-//                chessMove(chessMove);
-//            }
-//        });
-
         messageReceiver.addMessageHandler(RequestMovePieces.class.getSimpleName(), new MessageHandler<RequestMovePieces>() {
             @Override
             public void handleMessage(RequestMovePieces requestMovePieces) {

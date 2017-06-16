@@ -13,7 +13,6 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import net.sprenkle.messages.MessageHolder;
@@ -36,11 +35,11 @@ public class ChessMessageReceiver {
         this.name = name;
         eventMap = new HashMap<String, MessageHandler>();
         if (isRecievingImages) {
-           // bindingKey = "#";
+            // bindingKey = "#";
         } else {
-          //  bindingKey = "*.none";
+            //  bindingKey = "*.none";
         }
-            bindingKey = "#";
+        bindingKey = "#";
     }
 
     public void addMessageHandler(String messageType, MessageHandler messageHandler) {
@@ -67,55 +66,74 @@ public class ChessMessageReceiver {
                 try {
                     MessageHolder mh = MessageHolder.fromBytes(body);
                     if (eventMap.containsKey(mh.getClassName())) {
-                        logger.debug(String.format("%s received %s", name, mh.getClassName()));
                         switch (mh.getClassName()) {
                             case "StartGame":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((StartGame) mh.getObject(StartGame.class));
                                 break;
                             case "ChessMove":
-                                eventMap.get(mh.getClassName()).handleMessage((ChessMove) mh.getObject(ChessMove.class));
+                                ChessMove chessMove = (ChessMove) mh.getObject(ChessMove.class);
+                                logger.info(String.format("%s received %s", name, chessMove.toString()));
+                                eventMap.get(mh.getClassName()).handleMessage(chessMove);
                                 break;
                             case "RequestMove":
-                                eventMap.get(mh.getClassName()).handleMessage((RequestMove) mh.getObject(RequestMove.class));
+                                RequestMove requestMove = (RequestMove) mh.getObject(RequestMove.class);
+                                logger.info(String.format("%s received %s", name, requestMove.toString()));
+                                eventMap.get(mh.getClassName()).handleMessage(requestMove);
                                 break;
                             case "RequestBoardStatus":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((RequestBoardStatus) mh.getObject(RequestBoardStatus.class));
                                 break;
                             case "BoardStatus":
-                                eventMap.get(mh.getClassName()).handleMessage((BoardStatus) mh.getObject(BoardStatus.class));
+                                BoardStatus boardStatus = (BoardStatus) mh.getObject(BoardStatus.class);
+                                logger.info(String.format("%s received %s", name, boardStatus.toString()));
+                                eventMap.get(mh.getClassName()).handleMessage(boardStatus);
                                 break;
                             case "SetBoardRestPosition":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((SetBoardRestPosition) mh.getObject(SetBoardRestPosition.class));
                                 break;
                             case "GCode":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((GCode) mh.getObject(GCode.class));
                                 break;
                             case "RequestImage":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((RequestImage) mh.getObject(RequestImage.class));
                                 break;
                             case "BoardImage":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((BoardImage) mh.getObject(BoardImage.class));
                                 break;
                             case "BoardAtRest":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((BoardAtRest) mh.getObject(BoardAtRest.class));
                                 break;
                             case "RequestMovePieces":
-                                eventMap.get(mh.getClassName()).handleMessage((RequestMovePieces) mh.getObject(RequestMovePieces.class));
+                                RequestMovePieces requestMovePieces = (RequestMovePieces) mh.getObject(RequestMovePieces.class);
+                                logger.info(String.format("%s received %s", name, requestMovePieces));
+                                eventMap.get(mh.getClassName()).handleMessage(requestMovePieces);
                                 break;
                             case "ConfirmedPieceMove":
+                                logger.info(String.format("%s received %s", name, mh.getClassName()));
                                 eventMap.get(mh.getClassName()).handleMessage((ConfirmedPieceMove) mh.getObject(ConfirmedPieceMove.class));
                                 break;
                             case "RequestPiecePositions":
-                                eventMap.get(mh.getClassName()).handleMessage((RequestPiecePositions) mh.getObject(RequestPiecePositions.class));
+                                RequestPiecePositions requestPiecePositions = (RequestPiecePositions) mh.getObject(RequestPiecePositions.class);
+                                logger.info(String.format("%s received %s", name, requestPiecePositions));
+                                eventMap.get(mh.getClassName()).handleMessage(requestPiecePositions);
                                 break;
                             case "PiecePositions":
-                                eventMap.get(mh.getClassName()).handleMessage((PiecePositions) mh.getObject(PiecePositions.class));
+                                PiecePositions piecePositions = (PiecePositions) mh.getObject(PiecePositions.class);
+                                logger.info(String.format("%s received %s", name, piecePositions));
+                                eventMap.get(mh.getClassName()).handleMessage(piecePositions);
                                 break;
                             default:
                                 throw new Exception("Undefined Message");
                         }
                     }
-                } catch (ClassNotFoundException ex ) {
+                } catch (ClassNotFoundException ex) {
                     logger.debug(ex.getMessage());
                 } catch (Exception ex2) {
                     logger.debug(ex2.getMessage());

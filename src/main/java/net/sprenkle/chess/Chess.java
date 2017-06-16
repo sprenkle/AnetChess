@@ -114,12 +114,11 @@ public class Chess extends TimerTask {
             chessMessageSender.send(new MessageHolder(RequestMovePieces.class.getSimpleName(), new RequestMovePieces(chessMove.getMove())));
             return;
         }
-        //chessMessageSender.send(new MessageHolder(RequestMove.class.getSimpleName(), new RequestMove(chessState.getTurn(), chessState.isActivePlayerRobot(),chessEngine.getMoves())));
-        sendMove();
+        chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
+        requestMove();
     }
 
-    private void sendMove() {
-        chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
+    private void requestMove() {
         expectedMove = UUID.randomUUID();
         RequestMove requestMove = new RequestMove(chessState.getTurn(), chessState.isActivePlayerRobot(), chessEngine.getMoves(), expectedMove);
         logger.debug(requestMove.toString());
@@ -129,7 +128,7 @@ public class Chess extends TimerTask {
             @Override
             public void run() {
                 logger.debug("Move Timeout Activated.");
-                sendMove();
+                requestMove();
             }
         }, 2 * 60 * 1000);
     }
@@ -160,16 +159,16 @@ public class Chess extends TimerTask {
         logger.debug(boardStatus.toString());
         if (boardStatus.isStartingPositionSet()) {
             chessEngine.newGame();
-            chessState.setTurn(Player.Black); // This gets switched at getmove so it is really be white to move
+            chessState.setTurn(Player.White); 
             chessState.setWhiteRobot(!boardStatus.isHumanSide());
             chessState.setBlackRobot(boardStatus.isHumanSide());
-            sendMove();
+            requestMove();
         }
     }
     
     public void confirmedPieceMove(ConfirmedPieceMove confirmedPieceMove){
         if(confirmedPieceMove.getPieceMoved()){
-            sendMove();
+            requestMove();
         }
     }
 

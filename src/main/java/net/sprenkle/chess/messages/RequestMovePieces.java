@@ -24,6 +24,6 @@ public class RequestMovePieces implements Serializable {
     
     @Override
     public String toString(){
-        return move;
+        return String.format("RequestMovePieces %s", move);
     }
 }

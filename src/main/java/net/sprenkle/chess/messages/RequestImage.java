@@ -22,4 +22,8 @@ public class RequestImage implements Serializable {
     public UUID getMessageId(){
         return messageId;
     }
+    
+    public String toString(){
+        return String.format("RequestImage %s", messageId);
+    }
 }
