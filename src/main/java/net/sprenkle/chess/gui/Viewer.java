@@ -104,59 +104,58 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         }
         bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board914c6097-40b5-4bb8-a337-3ad18de0412b.png");
         imageLbl.setIcon(new ImageIcon(bi));
-        
+
         try (Stream<Path> paths = Files.walk(Paths.get("D:\\git\\Chess\\images\\game2"))) {
             paths
                     .filter(Files::isRegularFile).sorted()
                     .forEach(x -> {
-                try {
-                    imageList.add(net.sprenkle.chess.ImageUtil.loadImage(x.toAbsolutePath().toString()));
-                    imageNameList.add(x.toAbsolutePath().toString());
-                } catch (IOException ex) {
-                    Logger.getLogger(TestHarness.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
+                        try {
+                            imageList.add(net.sprenkle.chess.ImageUtil.loadImage(x.toAbsolutePath().toString()));
+                            imageNameList.add(x.toAbsolutePath().toString());
+                        } catch (IOException ex) {
+                            Logger.getLogger(TestHarness.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
         }
-        
+
         moveList.add("e7e5");
         moveList.add("d7d6");
         moveList.add("c8h4");
         moveList.add("h4g4");
-        
+
         imageName.setText(imageNameList.get(imageIndex));
-        
-                messageReceiver.addMessageHandler(SetBoardRestPosition.class.getSimpleName(), new MessageHandler<SetBoardRestPosition>() {
-            @Override
-            public void handleMessage(SetBoardRestPosition requestBoardRestPosition) {
-                requestBoardRestPosition(requestBoardRestPosition);
-            }
-        });
 
-        messageReceiver.addMessageHandler(RequestMovePieces.class.getSimpleName(), new MessageHandler<RequestMovePieces>() {
-            @Override
-            public void handleMessage(RequestMovePieces requestMovePieces) {
-                requestMovePieces(requestMovePieces);
-            }
-        });
-
-        messageReceiver.addMessageHandler(PiecePositions.class.getSimpleName(), new MessageHandler<PiecePositions>() {
-            @Override
-            public void handleMessage(PiecePositions piecePositions) {
-                piecePositions(piecePositions);
-            }
-        });
-        
-                messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
-            @Override
-            public void handleMessage(RequestMove requestMove) {
-                try {
-                    requestMove(requestMove);
-                } catch (Exception ex) {
-                    java.util.logging.Logger.getLogger(RobotMover.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-
+//        messageReceiver.addMessageHandler(SetBoardRestPosition.class.getSimpleName(), new MessageHandler<SetBoardRestPosition>() {
+//            @Override
+//            public void handleMessage(SetBoardRestPosition requestBoardRestPosition) {
+//                requestBoardRestPosition(requestBoardRestPosition);
+//            }
+//        });
+//
+//        messageReceiver.addMessageHandler(RequestMovePieces.class.getSimpleName(), new MessageHandler<RequestMovePieces>() {
+//            @Override
+//            public void handleMessage(RequestMovePieces requestMovePieces) {
+//                requestMovePieces(requestMovePieces);
+//            }
+//        });
+//
+//        messageReceiver.addMessageHandler(PiecePositions.class.getSimpleName(), new MessageHandler<PiecePositions>() {
+//            @Override
+//            public void handleMessage(PiecePositions piecePositions) {
+//                piecePositions(piecePositions);
+//            }
+//        });
+//
+//        messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
+//            @Override
+//            public void handleMessage(RequestMove requestMove) {
+//                try {
+//                    requestMove(requestMove);
+//                } catch (Exception ex) {
+//                    java.util.logging.Logger.getLogger(RobotMover.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
 
     }
 
@@ -173,18 +172,17 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         } else if (noneRdo.isSelected()) {
             showNone(bi);
         } else {
-           showBlackWhite(bi);
+            showBlackWhite(bi);
         }
     }
 
-        public void requestMove(RequestMove requestMove) throws Exception {
+    public void requestMove(RequestMove requestMove) throws Exception {
         if (requestMove.isRobot()) {
             ChessMove chessMove = new ChessMove(requestMove.getTurn(), moveList.remove(0), requestMove.getMoveId(), true);
             messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
         }
     }
 
-    
     private void showInitialized(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
         try {
@@ -218,18 +216,17 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         imageLbl.setIcon(new ImageIcon(altBi));
     }
 
-       private void showBlackWhite(BufferedImage boardImage) {
+    private void showBlackWhite(BufferedImage boardImage) {
         //ImageUtil.copyBi(boardImage);
         try {
-            BufferedImage altBi =  BlackWhite.thresholdImage(boardImage, 100);
-        imageLbl.setIcon(new ImageIcon(altBi));
+            BufferedImage altBi = BlackWhite.thresholdImage(boardImage, 100);
+            imageLbl.setIcon(new ImageIcon(altBi));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    
     private static BufferedImage createRotated(BufferedImage image) {
         AffineTransform at = AffineTransform.getRotateInstance(
                 Math.PI, image.getWidth() / 2, image.getHeight() / 2.0);
@@ -279,6 +276,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         prevImage = new javax.swing.JButton();
         nextImage = new javax.swing.JButton();
         imageName = new javax.swing.JLabel();
+        debugChk = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -395,6 +393,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
         imageName.setText("jLabel3");
 
+        debugChk.setText("Debug");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -450,7 +450,9 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(imageName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(debugChk)
+                        .addGap(72, 72, 72))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(825, 825, 825)
                 .addComponent(startGameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -489,7 +491,9 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(imageName)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(imageName)
+                            .addComponent(debugChk))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SendImage)
@@ -662,7 +666,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         moveList.add("d7d6");
         moveList.add("c8h4");
         moveList.add("h4g4");
-        
+
         MessageHolder mh = new MessageHolder(StartGame.class.getSimpleName(), new StartGame(false, true));
         messageSender.send(mh);
     }//GEN-LAST:event_startGameBtnActionPerformed
@@ -683,14 +687,18 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     private void nextImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextImageActionPerformed
         imageIndex++;
-        if(imageIndex >= imageNameList.size()) imageIndex = imageNameList.size() - 1 ;
+        if (imageIndex >= imageNameList.size()) {
+            imageIndex = imageNameList.size() - 1;
+        }
         imageName.setText(imageNameList.get(imageIndex));
         imageLbl.setIcon(new ImageIcon(imageList.get(imageIndex)));
     }//GEN-LAST:event_nextImageActionPerformed
 
     private void prevImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevImageActionPerformed
         imageIndex--;
-        if(imageIndex < 0) imageIndex = 0;
+        if (imageIndex < 0) {
+            imageIndex = 0;
+        }
         imageName.setText(imageNameList.get(imageIndex));
         imageLbl.setIcon(new ImageIcon(imageList.get(imageIndex)));
     }//GEN-LAST:event_prevImageActionPerformed
@@ -704,20 +712,28 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
         messageSender.send(mh);
     }
-    
+
     public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {
+        if (!debugChk.isSelected()) {
+            return;
+        }
         messageSender.send(new MessageHolder(BoardAtRest.class.getSimpleName(), new BoardAtRest(true)));
     }
 
     public void requestMovePieces(RequestMovePieces requestMovePieces) {
+        if (!debugChk.isSelected()) {
+            return;
+        }
         logger.debug(String.format("Requesting move %s", requestMovePieces));
         messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getMove())));
     }
-    
-    public void piecePositions(PiecePositions piecePositions){
+
+    public void piecePositions(PiecePositions piecePositions) {
+        if (!debugChk.isSelected()) {
+            return;
+        }
         messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
     }
-
 
     /**
      * @param args the command line arguments
@@ -774,6 +790,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private javax.swing.JButton SendImage;
     private javax.swing.JButton adjustImageBtn;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox debugChk;
     private javax.swing.JTextField gcodeX;
     private javax.swing.JTextField gcodeY;
     private javax.swing.JButton getImageBtn;
@@ -797,6 +814,9 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     @Override
     public void receivedImage(BufferedImage bi) {
+        if (!debugChk.isSelected()) {
+            return;
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

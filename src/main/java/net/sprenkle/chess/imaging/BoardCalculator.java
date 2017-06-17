@@ -27,13 +27,14 @@ public class BoardCalculator {
     static Logger logger = Logger.getLogger(BoardCalculator.class.getSimpleName());
     static Line[] horizontalLines = new Line[8];
     static Line[] verticalLines = new Line[8];
-    static PossiblePiece[][] lastBoard = new PossiblePiece[8][8];
+    private PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
     private boolean initialized = false;
     static int leftBoard = 239;
     static int rightBoard = 585;
     static int bottomBoard = 387;
     static int topBoard = 15;
     static boolean humanColor;
+    private ArrayList<PossiblePiece> detectedPieces;
 
     static int lastNumPieces = 16;
 
@@ -43,10 +44,8 @@ public class BoardCalculator {
     static double yIntercept = -165.4933;
     private int threshHold = 100;
 
-    ArrayList<PossiblePiece> detectedPices = new ArrayList<>();
     //   Line horizontal[] = new Line[8];
     //   Line vertical[] = new Line[8];
-
     public BoardCalculator() {
     }
 
@@ -100,7 +99,7 @@ public class BoardCalculator {
         return pieces;
     }
 
-    public void initialLines(BufferedImage bi) {
+    public boolean initialLines(BufferedImage bi) {
         Graphics2D g2 = bi.createGraphics();
 
         BasicStroke stroke = new BasicStroke(2);
@@ -109,11 +108,14 @@ public class BoardCalculator {
             boolean firstColor = false;
             boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
 
-            detectedPices = detectCircles(array, true);
-            firstColor = detectedPices.get(0).color;
+            detectedPieces = new ArrayList<>();
+            detectedPieces = detectCircles(array, true);
+            firstColor = detectedPieces.get(0).color;
 
-            if (detectedPices.size() != 32) {
-                return;
+            detectedPieces.sort((e1, e2) -> Double.compare(e1.offFactor, e2.offFactor));
+            for(PossiblePiece detectedPiece : detectedPieces){
+                PossiblePiece check = knownBoard[detectedPiece.col][detectedPiece.row];
+                if(check == null || check.rank != detectedPiece.rank || check.color != detectedPiece.color) return false; 
             }
 
             verticalLines[0] = new Line(new Point(264, 0, false), new Point(264, 600, false)); //) 264,0-264,600
@@ -134,67 +136,19 @@ public class BoardCalculator {
             horizontalLines[7] = new Line(new Point(0, 324, false), new Point(800, 324, false));// horizontalLines 0,324-800,324
 
             setInitialized(true);
-            for (int i = 2; i < 6; i++) {
-                for (int j = 2; j < 6; j++) {
-                    lastBoard[i][j] = null;
-                }
-            }
-            for (int i = 0; i < 8; i++) {
-                lastBoard[i][1] = new PossiblePiece(firstColor, PossiblePiece.PAWN, i, 1);
-                lastBoard[i][6] = new PossiblePiece(!firstColor, PossiblePiece.PAWN, i, 6);
-            }
-
-            lastBoard[0][0] = new PossiblePiece(firstColor, PossiblePiece.ROOK, 0, 0);
-            lastBoard[7][0] = new PossiblePiece(firstColor, PossiblePiece.ROOK, 7, 0);
-            lastBoard[0][7] = new PossiblePiece(!firstColor, PossiblePiece.ROOK, 0, 7);
-            lastBoard[7][7] = new PossiblePiece(!firstColor, PossiblePiece.ROOK, 7, 7);
-            lastBoard[1][0] = new PossiblePiece(firstColor, PossiblePiece.KNIGHT, 1, 0);
-            lastBoard[6][0] = new PossiblePiece(firstColor, PossiblePiece.KNIGHT, 6, 0);
-            lastBoard[1][7] = new PossiblePiece(!firstColor, PossiblePiece.KNIGHT, 1, 7);
-            lastBoard[6][7] = new PossiblePiece(!firstColor, PossiblePiece.KNIGHT, 6, 7);
-            lastBoard[2][0] = new PossiblePiece(firstColor, PossiblePiece.BISHOP, 2, 0);
-            lastBoard[5][0] = new PossiblePiece(firstColor, PossiblePiece.BISHOP, 5, 0);
-            lastBoard[2][7] = new PossiblePiece(!firstColor, PossiblePiece.BISHOP, 2, 7);
-            lastBoard[5][7] = new PossiblePiece(!firstColor, PossiblePiece.BISHOP, 5, 7);
-            lastBoard[3][0] = new PossiblePiece(firstColor, PossiblePiece.QUEEN, 3, 0);
-            lastBoard[3][7] = new PossiblePiece(!firstColor, PossiblePiece.QUEEN, 3, 7);
-            lastBoard[4][0] = new PossiblePiece(firstColor, PossiblePiece.KING, 4, 0);
-            lastBoard[4][7] = new PossiblePiece(!firstColor, PossiblePiece.KING, 4, 7);
-//            try {
-//                leftBoard = verticalLines[0].start.x - 15 > 0 ? verticalLines[0].start.x - 25 : 0;
-//                rightBoard = verticalLines[7].start.x + 15 < bi.getWidth() ? verticalLines[7].start.x + 25 : bi.getWidth();
-//                topBoard = horizontalLines[0].start.y - 15 > 0 ? topBoard = horizontalLines[0].start.y - 25 : 0;
-//                bottomBoard = horizontalLines[7].start.y + 15 < bi.getHeight() ? horizontalLines[7].start.y + 25 : bi.getHeight();
-//                logger.debug(String.format("Left =%s Right=%s Top=%s Bottom=%s", leftBoard, rightBoard, topBoard, bottomBoard));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
             humanColor = horizontalLines[0].start.color;
-
-            for (int i = 0; i < 8; i++) {
-                logger.debug(String.format("verticalLines %s,%s-%s,%s", verticalLines[i].start.x, verticalLines[i].start.y, verticalLines[i].end.x, verticalLines[i].end.y));
-                logger.debug(String.format("horizontalLines %s,%s-%s,%s", horizontalLines[i].start.x, horizontalLines[i].start.y, horizontalLines[i].end.x, horizontalLines[i].end.y));
-            }
         }
         if (initialized) {
             drawLastBoard(g2);
         }
         g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
+        return true;
     }
 
-    public void CheckHumanMove() {
-        // Go through all the pieces that are of human color and see which one has moved.
-    }
-
-    public void setMove(int[] moves){
-        lastBoard[moves[2]][moves[3]] = lastBoard[moves[0]][moves[1]];
-        lastBoard[moves[0]][moves[1]] = null;
-    }
-    
     public void drawLastBoard(Graphics2D g2) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                PossiblePiece piece = lastBoard[i][j];
+                PossiblePiece piece = knownBoard[i][j];
                 if (piece != null) {
                     String p = "";
                     switch (piece.rank) {
@@ -245,7 +199,6 @@ public class BoardCalculator {
         g2.setStroke(stroke);
 
         ArrayList<PossiblePiece> changedPiece = new ArrayList<>();
-        ArrayList<PossiblePiece> takenPiece = new ArrayList<>();
 
         PossiblePiece[][] currentBoard = new PossiblePiece[8][8];
 
@@ -258,7 +211,7 @@ public class BoardCalculator {
             markPiece(g2, piece.x, piece.y, piece.color);
             findOffFactor(piece);
             if (piece.offFactor <= 15) {
-                if (lastBoard[piece.col][piece.row] == null || lastBoard[piece.col][piece.row].color != piece.color) {
+                if (knownBoard[piece.col][piece.row] == null || knownBoard[piece.col][piece.row].color != piece.color) {
                     diff++;
                     changedPiece.add(piece);
                 }
@@ -276,24 +229,15 @@ public class BoardCalculator {
         if (diff > 0) {
             for (int col = 0; col < 8; col++) {
                 for (int row = 0; row < 8; row++) {
-                    if (lastBoard[col][row] != null && currentBoard[col][row] == null) {
-                        lastLocation.add(lastBoard[col][row]);
+                    if (knownBoard[col][row] != null && currentBoard[col][row] == null) {
+                        lastLocation.add(knownBoard[col][row]);
                     }
                 }
             }
         }
 
-
         if (lastLocation.size() == 1 && changedPiece.size() == 1) {
-            lastBoard = new PossiblePiece[8][8];
-            for (PossiblePiece piece : pieces) {
-                lastBoard[piece.col][piece.row] = piece;
-            }
-            
             logger.debug(String.format("Piece moved from %s,%s to %s,%s", lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row));
-//            lastBoard[lastLocation.get(0).col][lastLocation.get(0).row] = null;
-//            lastBoard[changedPiece.get(0).col][changedPiece.get(0).row] = changedPiece.get(0);
-//            
             rv = new int[]{lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row};
         }
 
@@ -330,13 +274,13 @@ public class BoardCalculator {
 
     private void markLines(BufferedImage bi, Graphics2D g2) {
         g2.setColor(Color.GREEN);
-        logger.debug("Number of pieces are " + detectedPices.size());
+        logger.debug("Number of pieces are " + detectedPieces.size());
 
-        detectedPices.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.x, b.x));
+        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.x, b.x));
         for (int i = 0; i < 8; i++) {
             double avgX = 0;
             for (int j = 0; j < 4; j++) {
-                PossiblePiece point = detectedPices.get(i * 4 + j);
+                PossiblePiece point = detectedPieces.get(i * 4 + j);
                 avgX += point.x;
                 logger.debug(String.format("%s %s %s", i, point.x, point.y));
             }
@@ -347,16 +291,16 @@ public class BoardCalculator {
             verticalLines[i] = new Line(start, end);
         }
 
-        detectedPices.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.y, b.y));
+        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.y, b.y));
         for (int i = 0; i < 4; i++) {
             double avgY = 0;
             for (int j = 0; j < 8; j++) {
-                PossiblePiece point = detectedPices.get(i * 8 + j);
+                PossiblePiece point = detectedPieces.get(i * 8 + j);
                 avgY += point.y;
             }
 
-            Point start = new Point(0, (int) (avgY / 8), detectedPices.get(i * 8).color);
-            Point end = new Point(bi.getWidth(), (int) (avgY / 8), detectedPices.get(i * 8).color);
+            Point start = new Point(0, (int) (avgY / 8), detectedPieces.get(i * 8).color);
+            Point end = new Point(bi.getWidth(), (int) (avgY / 8), detectedPieces.get(i * 8).color);
             if (i < 2) {
                 horizontalLines[i] = new Line(start, end);
                 //              horizontal[i] = new Line(start,end); 
@@ -608,12 +552,16 @@ public class BoardCalculator {
         if (!initialized) {
             horizontalLines = new Line[8];
             verticalLines = new Line[8];
-            lastBoard = new PossiblePiece[8][8];
+            knownBoard = new PossiblePiece[8][8];
         }
     }
 
-    public PossiblePiece[][] getLastBoard() {
-        return lastBoard;
+    public PossiblePiece[][] getKnownBoard() {
+        return knownBoard;
+    }
+
+    public void setKnownBoard(PossiblePiece[][] knownBoard) {
+        this.knownBoard = knownBoard;
     }
 
     /**

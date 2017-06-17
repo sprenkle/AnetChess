@@ -123,16 +123,16 @@ public class BoardReader {
             }
         });
 
-        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>() {
-            @Override
-            public void handleMessage(ChessMove chessMove) {
-                try {
-                    chessMove(chessMove);
-                } catch (Exception ex) {
-                    java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+//        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>() {
+//            @Override
+//            public void handleMessage(ChessMove chessMove) {
+//                try {
+//                    chessMove(chessMove);
+//                } catch (Exception ex) {
+//                    java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
 
         
         messageReceiver.initialize();
@@ -151,12 +151,12 @@ public class BoardReader {
     private RequestMove requestedMove;
 
     
-    public void chessMove(ChessMove chessMove){
-        if(chessMove.isRobot()){
-            int[] moves = convertFromMove(chessMove.getMove());
-            boardCalculator.setMove(moves);
-        }
-    }
+//    public void chessMove(ChessMove chessMove){
+//        if(chessMove.isRobot()){
+//        //    int[] moves = convertFromMove(chessMove.getMove());
+//        //    boardCalculator.setMove(moves);
+//        }
+//    }
     
     public void requestMove(RequestMove requestMove) throws Exception {
         if (!requestMove.isRobot()) {
@@ -197,8 +197,8 @@ public class BoardReader {
             }
         } else if (state.equals(CHECK_FOR_PIECE_POSITIONS)) {
             try {
+                PossiblePiece[][] lastBoard = boardCalculator.getLastBoard(); // needs to be before detect piece
                 boardCalculator.detectPieces(bImageFromConvert);
-                PossiblePiece[][] lastBoard = boardCalculator.getLastBoard();
                 logger.debug(String.format("received %s", requestPiecePositions.getMove()));
                 int[] moves = convertFromMove(requestPiecePositions.getMove());
                 logger.debug(String.format("Converted to %s,%s  %s,%s", moves[0], moves[1], moves[2], moves[3]));

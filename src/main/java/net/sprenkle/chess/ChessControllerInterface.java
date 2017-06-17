@@ -13,6 +13,6 @@ public interface ChessControllerInterface {
     public String makeMove(String move);
     public void newGame();
     public String getMoves();
-        public void consoleOut();
-
+    public void consoleOut();
+    public PossiblePiece[][] getKnownBoard();
 }

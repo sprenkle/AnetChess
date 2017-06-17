@@ -10,10 +10,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.apache.log4j.Logger;
 import net.sprenkle.chess.exceptions.InvalidMoveException;
 import net.sprenkle.chess.pieces.Board;
-import org.apache.log4j.Level;
 
 /**
  *
@@ -106,5 +104,10 @@ public class ChessController implements ChessControllerInterface {
         }
 
         return moveCommand.toString();
+    }
+
+    @Override
+    public PossiblePiece[][] getKnownBoard() {
+        return board.convertToCameraBoard();
     }
 }

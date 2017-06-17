@@ -22,6 +22,7 @@ import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMovePieces;
+import net.sprenkle.chess.messages.KnownBoardPositions;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -158,6 +159,31 @@ public class Chess extends TimerTask {
     public void boardStatus(BoardStatus boardStatus){
         logger.debug(boardStatus.toString());
         if (boardStatus.isStartingPositionSet()) {
+            // Build board and send out
+            PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
+            knownBoard[0][0] = new PossiblePiece(true, PossiblePiece.ROOK, 0, 0);
+            knownBoard[7][0] = new PossiblePiece(true, PossiblePiece.ROOK, 7, 0);
+            knownBoard[0][7] = new PossiblePiece(false, PossiblePiece.ROOK, 0, 7);
+            knownBoard[7][7] = new PossiblePiece(false, PossiblePiece.ROOK, 7, 7);
+            knownBoard[1][0] = new PossiblePiece(true, PossiblePiece.KNIGHT, 1, 0);
+            knownBoard[6][0] = new PossiblePiece(true, PossiblePiece.KNIGHT, 6, 0);
+            knownBoard[1][7] = new PossiblePiece(false, PossiblePiece.KNIGHT, 1, 7);
+            knownBoard[6][7] = new PossiblePiece(false, PossiblePiece.KNIGHT, 6, 7);
+            knownBoard[2][0] = new PossiblePiece(true, PossiblePiece.BISHOP, 2, 0);
+            knownBoard[5][0] = new PossiblePiece(true, PossiblePiece.BISHOP, 5, 0);
+            knownBoard[2][7] = new PossiblePiece(false, PossiblePiece.BISHOP, 2, 7);
+            knownBoard[5][7] = new PossiblePiece(false, PossiblePiece.BISHOP, 5, 7);
+            knownBoard[3][0] = new PossiblePiece(true, PossiblePiece.QUEEN, 4, 0);
+            knownBoard[3][7] = new PossiblePiece(false, PossiblePiece.QUEEN, 4, 7);
+            knownBoard[4][0] = new PossiblePiece(true, PossiblePiece.KING, 3, 0);
+            knownBoard[4][7] = new PossiblePiece(false, PossiblePiece.KING, 3, 7);
+            for (int i = 0; i < 8; i++) {
+               knownBoard[i][1] = new PossiblePiece(true, PossiblePiece.PAWN, i, 1);
+                knownBoard[i][6] = new PossiblePiece(false, PossiblePiece.PAWN, i, 6);
+            }
+
+            chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
+            
             chessEngine.newGame();
             chessState.setTurn(Player.White); 
             chessState.setWhiteRobot(!boardStatus.isHumanSide());
@@ -168,6 +194,10 @@ public class Chess extends TimerTask {
     
     public void confirmedPieceMove(ConfirmedPieceMove confirmedPieceMove){
         if(confirmedPieceMove.getPieceMoved()){
+            // Set KnownBoardPositions
+            
+            
+            chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
             requestMove();
         }
     }

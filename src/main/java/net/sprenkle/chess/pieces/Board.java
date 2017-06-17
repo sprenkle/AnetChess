@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sprenkle.chess.ChessUtil;
+import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.chess.exceptions.InvalidLocationException;
 import net.sprenkle.chess.exceptions.InvalidMoveException;
 
@@ -309,5 +310,21 @@ public class Board implements BoardInterface {
         if (!activePieces[cp.getColor()].contains(cp)) {
             activePieces[cp.getColor()].add(cp);
         }
+    }
+    
+    public PossiblePiece[][] convertToCameraBoard(){
+        PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
+        for(int x = 0 ; x < 8; x ++){
+            for(int y = 0 ; y < 8; y++){
+                if(board[x][y] != null){
+                    knownBoard[x][y] = convertChessPiece(board[x][y]);
+                }
+            }
+        }
+        return knownBoard;
+    }
+    
+    private PossiblePiece convertChessPiece(ChessPiece chessPiece){
+        return new PossiblePiece(chessPiece.color == 1,-1, 7 - chessPiece.getLocation().getX(), chessPiece.getLocation().getY() );
     }
 }

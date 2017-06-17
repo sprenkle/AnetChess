@@ -28,7 +28,8 @@ public class GCode  implements Serializable{
         return note;
     }
     
+    @Override
     public String toString(){
-        String.format("GCode %s", gcode);
+        return String.format("GCode %s", gcode);
     }
 }
