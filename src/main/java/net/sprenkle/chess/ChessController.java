@@ -29,6 +29,7 @@ public class ChessController implements ChessControllerInterface {
     
     public ChessController() {
         board = new Board();
+        board.setStartingPositionBoard();
         File file = new File("chess.txt");
         try {
             file.createNewFile();
@@ -106,6 +107,7 @@ public class ChessController implements ChessControllerInterface {
         return moveCommand.toString();
     }
 
+    
     @Override
     public PossiblePiece[][] getKnownBoard() {
         return board.convertToCameraBoard();

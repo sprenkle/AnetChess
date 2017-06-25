@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.imageutils.BlackWhite;
 import net.sprenkle.imageutils.ImageUtil;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.apache.log4j.Logger;
 
 /**
@@ -29,10 +30,10 @@ public class BoardCalculator {
     static Line[] verticalLines = new Line[8];
     private PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
     private boolean initialized = false;
-    static int leftBoard = 239;
-    static int rightBoard = 585;
-    static int bottomBoard = 387;
-    static int topBoard = 15;
+    static int leftBoard = 195;
+    static int rightBoard = 625;
+    static int bottomBoard = 440;
+    static int topBoard = 5;
     static boolean humanColor;
     private ArrayList<PossiblePiece> detectedPieces;
 
@@ -47,6 +48,22 @@ public class BoardCalculator {
     //   Line horizontal[] = new Line[8];
     //   Line vertical[] = new Line[8];
     public BoardCalculator() {
+        verticalLines[0] = new Line(new Point(215, 0, false), new Point(215, 600, false));
+        horizontalLines[0] = new Line(new Point(0, 22, false), new Point(800, 22, false));
+        verticalLines[1] = new Line(new Point(269, 0, false), new Point(269, 600, false));
+        horizontalLines[1] = new Line(new Point(0, 85, false), new Point(800, 85, false));
+        verticalLines[2] = new Line(new Point(324, 0, false), new Point(324, 600, false));
+        horizontalLines[2] = new Line(new Point(0, 140, false), new Point(800, 140, false));
+        verticalLines[3] = new Line(new Point(380, 0, false), new Point(380, 600, false));
+        horizontalLines[3] = new Line(new Point(0, 195, false), new Point(800, 195, false));
+        verticalLines[4] = new Line(new Point(434, 0, false), new Point(434, 600, false));
+        horizontalLines[4] = new Line(new Point(0, 250, false), new Point(800, 250, false));
+        verticalLines[5] = new Line(new Point(491, 0, false), new Point(491, 600, false));
+        horizontalLines[5] = new Line(new Point(0, 305, false), new Point(800, 305, false));
+        verticalLines[6] = new Line(new Point(549, 0, false), new Point(549, 600, false));
+        horizontalLines[6] = new Line(new Point(0, 361, false), new Point(800, 361, false));
+        verticalLines[7] = new Line(new Point(605, 0, false), new Point(605, 600, false));
+        horizontalLines[7] = new Line(new Point(0, 420, false), new Point(800, 420, false));
     }
 
     public void parseBI(BufferedImage bi) {
@@ -57,14 +74,40 @@ public class BoardCalculator {
         return humanColor;
     }
 
+    public void syncImage(BufferedImage bi) {
+        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
+        Graphics2D g2 = bi.createGraphics();
+        BasicStroke stroke = new BasicStroke(2);
+        g2.setStroke(stroke);
+        g2.setColor(Color.GREEN);
+        drawLines(g2);
+        ArrayList<PossiblePiece> pieces = detectCircles(array, true);
+        pieces.forEach(x -> findOffFactor(x));
+
+        SimpleRegression srX = new SimpleRegression();
+        SimpleRegression srY = new SimpleRegression();
+        pieces.forEach((piece) -> {
+            markPiece(g2, piece.x, piece.y, piece.color);
+            double xB = 95.4 + ((3 - piece.col) * 24) + 12;
+            double yB = 193 - ((7 - piece.row) * 24 + 12);
+            srX.addData(piece.x, xB);
+            srY.addData(piece.y, yB);
+        });
+        g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
+        logger.info(String.format("X Slope=%s  Intercept=%s", srX.getSlope(), srX.getIntercept()));
+        logger.info(String.format("Y Slope=%s  Intercept=%s", srY.getSlope(), srY.getIntercept()));
+    }
+
     public void showCircles(BufferedImage bi) {
         boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
         Graphics2D g2 = bi.createGraphics();
         BasicStroke stroke = new BasicStroke(2);
         g2.setStroke(stroke);
-
+        g2.setColor(Color.GREEN);
+        drawLines(g2);
         ArrayList<PossiblePiece> pieces = detectCircles(array, true);
         pieces.forEach((piece) -> markPiece(g2, piece.x, piece.y, piece.color));
+        g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
     }
 
     public ArrayList<PossiblePiece> detectCircles(boolean[][] array, boolean restrictArea) {
@@ -110,33 +153,26 @@ public class BoardCalculator {
 
             detectedPieces = new ArrayList<>();
             detectedPieces = detectCircles(array, true);
+
+            markLines(bi, g2);
+
+            if (detectedPieces.isEmpty()) {
+                return false;
+            }
             firstColor = detectedPieces.get(0).color;
+            detectedPieces.forEach(x -> findOffFactor(x));
 
             detectedPieces.sort((e1, e2) -> Double.compare(e1.offFactor, e2.offFactor));
-            for(PossiblePiece detectedPiece : detectedPieces){
+            for (PossiblePiece detectedPiece : detectedPieces) {
                 PossiblePiece check = knownBoard[detectedPiece.col][detectedPiece.row];
-                if(check == null || check.rank != detectedPiece.rank || check.color != detectedPiece.color) return false; 
+                if (check == null || check.color != detectedPiece.color) {
+                    return false;
+                }
             }
-
-            verticalLines[0] = new Line(new Point(264, 0, false), new Point(264, 600, false)); //) 264,0-264,600
-            horizontalLines[0] = new Line(new Point(0, 25, false), new Point(800, 25, false));// horizontalLines 0,25-800,25
-            verticalLines[1] = new Line(new Point(305, 0, false), new Point(305, 600, false));// verticalLines 305,0-305,600
-            horizontalLines[1] = new Line(new Point(0, 69, false), new Point(800, 69, false));// horizontalLines 0,69-800,69
-            verticalLines[2] = new Line(new Point(350, 0, false), new Point(350, 600, false));// verticalLines 350,0-350,600
-            horizontalLines[2] = new Line(new Point(0, 111, false), new Point(800, 111, false));// horizontalLines 0,111-800,111
-            verticalLines[3] = new Line(new Point(389, 0, false), new Point(389, 600, false));// verticalLines 389,0-389,600
-            horizontalLines[3] = new Line(new Point(0, 154, false), new Point(800, 154, false));// horizontalLines 0,154-800,154
-            verticalLines[4] = new Line(new Point(430, 0, false), new Point(430, 600, false));// verticalLines 430,0-430,600
-            horizontalLines[4] = new Line(new Point(0, 197, false), new Point(800, 197, false));// horizontalLines 0,197-800,197
-            verticalLines[5] = new Line(new Point(476, 0, false), new Point(476, 600, false));// verticalLines 476,0-476,600
-            horizontalLines[5] = new Line(new Point(0, 240, false), new Point(800, 240, false));// horizontalLines 0,240-800,240
-            verticalLines[6] = new Line(new Point(515, 0, false), new Point(515, 600, false));// verticalLines 515,0-515,600
-            horizontalLines[6] = new Line(new Point(0, 283, false), new Point(800, 283, false));// horizontalLines 0,283-800,283
-            verticalLines[7] = new Line(new Point(559, 0, false), new Point(559, 600, false));// verticalLines 559,0-559,600
-            horizontalLines[7] = new Line(new Point(0, 324, false), new Point(800, 324, false));// horizontalLines 0,324-800,324
 
             setInitialized(true);
             humanColor = horizontalLines[0].start.color;
+
         }
         if (initialized) {
             drawLastBoard(g2);
@@ -181,9 +217,71 @@ public class BoardCalculator {
         }
     }
 
+    private void markLines(BufferedImage bi, Graphics2D g2) {
+        g2.setColor(Color.GREEN);
+        logger.debug("Number of pieces are " + detectedPieces.size());
+        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.y, b.y));
+        int minY = detectedPieces.get(0).y;
+        int maxY = detectedPieces.get(detectedPieces.size() - 1).y;
+
+        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.x, b.x));
+        for (int i = 0; i < 8; i++) {
+            SimpleRegression simpleRegression = new SimpleRegression(true);
+            simpleRegression = new SimpleRegression(true);
+            double avgX = 0;
+            for (int j = 0; j < 4; j++) {
+                PossiblePiece point = detectedPieces.get(i * 4 + j);
+                avgX += point.x;
+            }
+            Point start = new Point((int) (avgX / 4), 0, false);
+            Point end = new Point((int) (avgX / 4), bi.getHeight(), false);
+            //         vertical[i] = new Line(start,end);
+            verticalLines[i] = new Line(start, end);
+        }
+
+        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.y, b.y));
+        for (int i = 0; i < 4; i++) {
+            SimpleRegression simpleRegression = new SimpleRegression();
+            double avgY = 0;
+            for (int j = 0; j < 8; j++) {
+                PossiblePiece point = detectedPieces.get(i * 8 + j);
+                avgY += point.y;
+                //logger.debug(String.format("%s %s %s",i, point.x, point.y));
+                simpleRegression.addData(point.x, point.y);
+            }
+
+            minY = (int) (simpleRegression.getIntercept());
+            maxY = (int) (bi.getWidth() * simpleRegression.getSlope() + simpleRegression.getIntercept());
+            Point start = new Point(0, (int) (avgY / 8), detectedPieces.get(i * 8).color);
+            Point end = new Point(bi.getWidth(), (int) (avgY / 8), detectedPieces.get(i * 8).color);
+            if (i < 2) {
+                horizontalLines[i] = new Line(start, end);
+                //              horizontal[i] = new Line(start,end); 
+            } else {
+                horizontalLines[i + 4] = new Line(start, end);
+                //              horizontal[i+4] = new Line(start,end); 
+            }
+        }
+
+        double spacingStart = (horizontalLines[6].start.y - horizontalLines[1].start.y) / 5.0;
+        double spacingEnd = (horizontalLines[6].end.y - horizontalLines[1].end.y) / 5.0;
+
+        for (int i = 0; i < 4; i++) {
+            Point start = new Point(horizontalLines[0].start.x, (int) (horizontalLines[1].start.y + spacingStart + (spacingStart * i)), false);
+            Point end = new Point(horizontalLines[0].end.x, (int) (horizontalLines[1].end.y + spacingEnd + (spacingEnd * i)), false);
+            horizontalLines[i + 2] = new Line(start, end);
+            g2.drawLine(horizontalLines[i + 2].start.x, horizontalLines[i + 2].start.y, horizontalLines[i + 2].end.x, horizontalLines[i + 2].end.y);
+        }
+
+        for (int i = 0; i < 8; i++) {
+            logger.info(String.format("verticalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", verticalLines[i].start.x, verticalLines[i].start.y, verticalLines[i].end.x, verticalLines[i].end.y));
+            logger.info(String.format("horizontalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", horizontalLines[i].start.x, horizontalLines[i].start.y, horizontalLines[i].end.x, horizontalLines[i].end.y));
+        }
+    }
 //    public boolean detectPieceLocations(BufferedImage bi) {
 //
 //    }
+
     /**
      * The difference between detectCircles is that it takes in the limited area
      * defined by leftBoard ...
@@ -210,16 +308,15 @@ public class BoardCalculator {
         for (PossiblePiece piece : pieces) {
             markPiece(g2, piece.x, piece.y, piece.color);
             findOffFactor(piece);
-            if (piece.offFactor <= 15) {
+            if (piece.offFactor <= 200) {
                 if (knownBoard[piece.col][piece.row] == null || knownBoard[piece.col][piece.row].color != piece.color) {
                     diff++;
                     changedPiece.add(piece);
                 }
                 logger.debug(String.format("Piece %s %s,%s has offset of %s", count++, piece.col, piece.row, piece.offFactor));
-                if (currentBoard[piece.col][piece.row] != null) {
-                    throw new Exception(String.format("Dectected two pieces on same square col=%s row=%s", piece.col, piece.row));
+                if (currentBoard[piece.col][piece.row] == null || currentBoard[piece.col][piece.row].offFactor > piece.offFactor) {
+                    currentBoard[piece.col][piece.row] = piece;
                 }
-                currentBoard[piece.col][piece.row] = piece;
             }
         }
 
@@ -270,54 +367,6 @@ public class BoardCalculator {
         }
 
         piece.offFactor = xminDiff + yminDiff;
-    }
-
-    private void markLines(BufferedImage bi, Graphics2D g2) {
-        g2.setColor(Color.GREEN);
-        logger.debug("Number of pieces are " + detectedPieces.size());
-
-        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.x, b.x));
-        for (int i = 0; i < 8; i++) {
-            double avgX = 0;
-            for (int j = 0; j < 4; j++) {
-                PossiblePiece point = detectedPieces.get(i * 4 + j);
-                avgX += point.x;
-                logger.debug(String.format("%s %s %s", i, point.x, point.y));
-            }
-            logger.debug(String.format("average = %s", avgX / 4));
-            Point start = new Point((int) (avgX / 4), 0, false);
-            Point end = new Point((int) (avgX / 4), bi.getHeight(), false);
-            //         vertical[i] = new Line(start,end);
-            verticalLines[i] = new Line(start, end);
-        }
-
-        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.y, b.y));
-        for (int i = 0; i < 4; i++) {
-            double avgY = 0;
-            for (int j = 0; j < 8; j++) {
-                PossiblePiece point = detectedPieces.get(i * 8 + j);
-                avgY += point.y;
-            }
-
-            Point start = new Point(0, (int) (avgY / 8), detectedPieces.get(i * 8).color);
-            Point end = new Point(bi.getWidth(), (int) (avgY / 8), detectedPieces.get(i * 8).color);
-            if (i < 2) {
-                horizontalLines[i] = new Line(start, end);
-                //              horizontal[i] = new Line(start,end); 
-            } else {
-                horizontalLines[i + 4] = new Line(start, end);
-            }
-        }
-
-        double spacingStart = (horizontalLines[6].start.y - horizontalLines[1].start.y) / 5.0;
-        double spacingEnd = (horizontalLines[6].end.y - horizontalLines[1].end.y) / 5.0;
-
-        for (int i = 0; i < 4; i++) {
-            Point start = new Point(horizontalLines[0].start.x, (int) (horizontalLines[1].start.y + spacingStart + (spacingStart * i)), false);
-            Point end = new Point(horizontalLines[0].end.x, (int) (horizontalLines[1].end.y + spacingEnd + (spacingEnd * i)), false);
-            horizontalLines[i + 2] = new Line(start, end);
-            g2.drawLine(horizontalLines[i + 2].start.x, horizontalLines[i + 2].start.y, horizontalLines[i + 2].end.x, horizontalLines[i + 2].end.y);
-        }
     }
 
     private void drawLines(Graphics2D g2) {
@@ -425,6 +474,7 @@ public class BoardCalculator {
         if (array[l + 1][t + 1] != piece || array[r - 1][t + 1] != piece || array[l + 1][b - 1] != piece || array[r - 1][b - 1] != piece) {
             return false;
         }
+        // if( true) return true;
         //System.out.format("height=%s Width=%s\n", b - t, r - l);
         if (b - t < 8 || b - t > 26 || r - l < 8 || r - l > 26) {
             return false;
@@ -549,11 +599,6 @@ public class BoardCalculator {
      */
     public void setInitialized(boolean initialized) {
         this.initialized = initialized;
-        if (!initialized) {
-            horizontalLines = new Line[8];
-            verticalLines = new Line[8];
-            knownBoard = new PossiblePiece[8][8];
-        }
     }
 
     public PossiblePiece[][] getKnownBoard() {

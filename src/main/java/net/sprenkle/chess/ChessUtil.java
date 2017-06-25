@@ -99,6 +99,89 @@ public class ChessUtil {
         return rv;
     }
 
+    
+        public static int[] convertFromMove(String move) {
+        int[] rv = new int[4];
+
+        String from = move.substring(0, 2);
+        String to = move.substring(2, 4);
+
+        int[] fromValues = convertSingleMove(from);
+        int[] toValues = convertSingleMove(to);
+
+        rv[0] = fromValues[0];
+        rv[1] = fromValues[1];
+        rv[2] = toValues[0];
+        rv[3] = toValues[1];
+
+        return rv;
+    }
+
+    private static int[] convertSingleMove(String move) {
+        int[] rv = new int[2];
+
+        switch (move.charAt(0)) {
+            case 'a':
+                rv[0] = 7;
+                break;
+            case 'b':
+                rv[0] = 6;
+                break;
+            case 'c':
+                rv[0] = 5;
+                break;
+            case 'd':
+                rv[0] = 4;
+                break;
+            case 'e':
+                rv[0] = 3;
+                break;
+            case 'f':
+                rv[0] = 2;
+                break;
+            case 'g':
+                rv[0] = 1;
+                break;
+            case 'h':
+                rv[0] = 0;
+                break;
+        }
+
+        rv[1] = Integer.parseInt(move.substring(1, 2)) - 1;
+
+        return rv;
+    }
+
+    public static String convertToMove(int[] move) {
+
+        return String.format("%s%s%s%s", convertAlpha(move[0]), move[1] + 1, convertAlpha(move[2]), move[3] + 1);
+    }
+
+    private static String convertAlpha(int value) {
+        switch (value) {
+            case 0:
+                return "h";
+            case 1:
+                return "g";
+            case 2:
+                return "f";
+            case 3:
+                return "e";
+            case 4:
+                return "d";
+            case 5:
+                return "c";
+            case 6:
+                return "b";
+            case 7:
+                return "a";
+        }
+        return "Z";
+        // --throw new Exception("not valid alpha");
+    }
+
+     
+
     public static void main(String[] arg){
         Random random = new Random();
         for(int i = 0; i < 1;i++){

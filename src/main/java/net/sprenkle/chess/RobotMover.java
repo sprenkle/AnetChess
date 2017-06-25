@@ -78,7 +78,8 @@ public class RobotMover {
             logger.debug(requestMove.toString());
             uci.sendCommand(requestMove.getMoveHistory());
             String move = uci.sendCommandAndWait("go " + getTimeString(), "bestmove");
-            move = move.substring(9, move.indexOf(" ", 10));
+            logger.info(String.format("Made move -%s-", move));
+            move = move.substring(move.length() - 4);
             ChessMove chessMove = new ChessMove(requestMove.getTurn(), move, requestMove.getMoveId(), true);
             messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
             logger.debug(chessMove.toString());
@@ -117,11 +118,11 @@ public class RobotMover {
             "Ponder value true",
             "OwnBook value true",
             "MultiPV value 1",
-            "Skill Level value 10", // default 2
+            "Skill Level value 2", // default 2
             "Emergency Move Horizon value 4", // default 40
             "Emergency Base Time value 20", // default 200
             "Emergency Move Time value 10", // default 70
-            "Minimum Thinking Time value 20" // default 20
+            "Minimum Thinking Time value 1" // default 20
             ,
              "Slow Mover value 1",
             "UCI_Chess960 value false",

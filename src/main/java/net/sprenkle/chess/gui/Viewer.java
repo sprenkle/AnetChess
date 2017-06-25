@@ -58,10 +58,6 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private int imageIndex = 0;
     private BufferedImage bi;
     private final BoardCalculator boardCalculator = new BoardCalculator();
-    private final int Left = 252;
-    private final int Right = 576;
-    private final int Top = 11;
-    private final int Bottom = 340;
     static double xSlope = -0.4262;
     static double ySlope = 0.4271;
     static double xIntercept = 175.376;
@@ -102,7 +98,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         } catch (Exception ex) {
             Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board914c6097-40b5-4bb8-a337-3ad18de0412b.png");
+        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board88c09094-173b-406c-979b-9873e7772c7f.png");
         imageLbl.setIcon(new ImageIcon(bi));
 
         try (Stream<Path> paths = Files.walk(Paths.get("D:\\git\\Chess\\images\\game2"))) {
@@ -277,6 +273,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         nextImage = new javax.swing.JButton();
         imageName = new javax.swing.JLabel();
         debugChk = new javax.swing.JCheckBox();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -395,6 +392,13 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
         debugChk.setText("Debug");
 
+        jButton3.setText("Slope");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -414,8 +418,14 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(noneRdo)))
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(debugChk)
+                        .addGap(72, 72, 72))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
@@ -445,14 +455,9 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(prevImage)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nextImage)))
-                        .addContainerGap(32, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imageName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(debugChk)
-                        .addGap(72, 72, 72))))
+                                .addComponent(nextImage))
+                            .addComponent(jButton3))
+                        .addContainerGap(35, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(825, 825, 825)
                 .addComponent(startGameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -461,7 +466,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -498,7 +503,9 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SendImage)
                             .addComponent(prevImage)
-                            .addComponent(nextImage))))
+                            .addComponent(nextImage))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(startGameBtn)
                 .addContainerGap())
@@ -549,7 +556,6 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         ArrayList<PossiblePiece> pieces = boardCalculator.detectCircles(array, false);
         int position = 0;
         for (PossiblePiece piece : pieces) {
-            if (piece.x >= Left && piece.x <= Right && piece.y >= Top && piece.y <= Bottom) {
                 logger.debug(String.format("Piece at %s,%s", piece.x, piece.y));
 //                int x = (int) (xSlope * piece.x + xIntercept + orgX);
 //                int y = (int) (ySlope * piece.y + yIntercept + 190);
@@ -563,7 +569,6 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 //                }
 
                 movePiece(piece.x, piece.y, position++, 0);
-            }
         }
         mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X%f Y%f Z26", orgX, orgY), "Testing piece locations"));
         messageSender.send(mh);
@@ -655,7 +660,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }//GEN-LAST:event_noneRdoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MessageHolder mh2 = new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X%s Y%s Z26", gcodeX.getText(), gcodeY.getText()), "Testing piece locations"));
+        MessageHolder mh2 = new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X%s Y%s Z54", gcodeX.getText(), gcodeY.getText()), "Testing piece locations"));
         messageSender.send(mh2);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -707,6 +712,10 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         MessageHolder mh = new MessageHolder(BoardImage.class.getSimpleName(), new BoardImage(imageList.get(imageIndex)));
         messageSender.send(mh);
     }//GEN-LAST:event_SendImageActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        boardCalculator.syncImage(bi);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void requestImage() {
         MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
@@ -800,6 +809,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private javax.swing.JRadioButton initialzieRdo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton nextImage;

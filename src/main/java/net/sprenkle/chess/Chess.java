@@ -32,7 +32,7 @@ import org.apache.log4j.PropertyConfigurator;
  *
  */
 public class Chess extends TimerTask {
-    
+
     static Logger logger = Logger.getLogger(Chess.class.getSimpleName());
     static final boolean WHITE = true;
     static final boolean BLACK = false;
@@ -43,41 +43,39 @@ public class Chess extends TimerTask {
     Timer timer = new Timer(true);
     UUID expectedMove;
 
-    
     public Chess(ChessControllerInterface chessEngine, ChessMessageSender chessMessageSender, ChessMessageReceiver messageReceiver) {
         this.chessEngine = chessEngine;
         this.chessMessageSender = chessMessageSender;
         chessState = new ChessState();
-        
-        messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>(){
+
+        messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>() {
             @Override
             public void handleMessage(StartGame startGame) {
                 startGame(startGame);
             }
         });
-        
-        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>(){
+
+        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>() {
             @Override
             public void handleMessage(ChessMove chessMove) {
                 chessMoved(chessMove);
             }
         });
 
-        messageReceiver.addMessageHandler(BoardStatus.class.getSimpleName(), new MessageHandler<BoardStatus>(){
+        messageReceiver.addMessageHandler(BoardStatus.class.getSimpleName(), new MessageHandler<BoardStatus>() {
             @Override
             public void handleMessage(BoardStatus boardStatus) {
                 boardStatus(boardStatus);
             }
         });
 
-        messageReceiver.addMessageHandler(ConfirmedPieceMove.class.getSimpleName(), new MessageHandler<ConfirmedPieceMove>(){
+        messageReceiver.addMessageHandler(ConfirmedPieceMove.class.getSimpleName(), new MessageHandler<ConfirmedPieceMove>() {
             @Override
             public void handleMessage(ConfirmedPieceMove confirmedPieceMove) {
                 confirmedPieceMove(confirmedPieceMove);
             }
         });
 
-        
         try {
             messageReceiver.initialize();
         } catch (Exception ex) {
@@ -86,9 +84,8 @@ public class Chess extends TimerTask {
     }
 
     public void startGame(StartGame startGame) {
-        logger.debug("Message received StartGame");
-        logger.debug("Sending RequestBoardStatus");
-        chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
+       chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
+       chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
     }
 
     public void chessMoved(ChessMove chessMove) {
@@ -111,7 +108,7 @@ public class Chess extends TimerTask {
 
         chessEngine.consoleOut();
 
-        if(chessState.isActivePlayerRobot()){
+        if (chessState.isActivePlayerRobot()) {
             chessMessageSender.send(new MessageHolder(RequestMovePieces.class.getSimpleName(), new RequestMovePieces(chessMove.getMove())));
             return;
         }
@@ -147,57 +144,35 @@ public class Chess extends TimerTask {
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
         Chess chess = new Chess(new ChessController(), new MqChessMessageSender("Chess"), new ChessMessageReceiver("Chess", false));
-        
+
 //        new BoardReader(new MqChessMessageSender("boardReader"), new RabbitMqChessImageReceiver(), new ChessMessageReceiver("BoardReader"), new BoardCalculator());
 //
 //        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController"));
 //
 //        new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover"));
-
     }
 
-    public void boardStatus(BoardStatus boardStatus){
+    public void boardStatus(BoardStatus boardStatus) {
         logger.debug(boardStatus.toString());
         if (boardStatus.isStartingPositionSet()) {
             // Build board and send out
-            PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
-            knownBoard[0][0] = new PossiblePiece(true, PossiblePiece.ROOK, 0, 0);
-            knownBoard[7][0] = new PossiblePiece(true, PossiblePiece.ROOK, 7, 0);
-            knownBoard[0][7] = new PossiblePiece(false, PossiblePiece.ROOK, 0, 7);
-            knownBoard[7][7] = new PossiblePiece(false, PossiblePiece.ROOK, 7, 7);
-            knownBoard[1][0] = new PossiblePiece(true, PossiblePiece.KNIGHT, 1, 0);
-            knownBoard[6][0] = new PossiblePiece(true, PossiblePiece.KNIGHT, 6, 0);
-            knownBoard[1][7] = new PossiblePiece(false, PossiblePiece.KNIGHT, 1, 7);
-            knownBoard[6][7] = new PossiblePiece(false, PossiblePiece.KNIGHT, 6, 7);
-            knownBoard[2][0] = new PossiblePiece(true, PossiblePiece.BISHOP, 2, 0);
-            knownBoard[5][0] = new PossiblePiece(true, PossiblePiece.BISHOP, 5, 0);
-            knownBoard[2][7] = new PossiblePiece(false, PossiblePiece.BISHOP, 2, 7);
-            knownBoard[5][7] = new PossiblePiece(false, PossiblePiece.BISHOP, 5, 7);
-            knownBoard[3][0] = new PossiblePiece(true, PossiblePiece.QUEEN, 4, 0);
-            knownBoard[3][7] = new PossiblePiece(false, PossiblePiece.QUEEN, 4, 7);
-            knownBoard[4][0] = new PossiblePiece(true, PossiblePiece.KING, 3, 0);
-            knownBoard[4][7] = new PossiblePiece(false, PossiblePiece.KING, 3, 7);
-            for (int i = 0; i < 8; i++) {
-               knownBoard[i][1] = new PossiblePiece(true, PossiblePiece.PAWN, i, 1);
-                knownBoard[i][6] = new PossiblePiece(false, PossiblePiece.PAWN, i, 6);
-            }
-
             chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
-            
+
             chessEngine.newGame();
-            chessState.setTurn(Player.White); 
+            chessState.setTurn(Player.White);
             chessState.setWhiteRobot(!boardStatus.isHumanSide());
             chessState.setBlackRobot(boardStatus.isHumanSide());
             requestMove();
         }
     }
-    
-    public void confirmedPieceMove(ConfirmedPieceMove confirmedPieceMove){
-        if(confirmedPieceMove.getPieceMoved()){
+
+    public void confirmedPieceMove(ConfirmedPieceMove confirmedPieceMove) {
+        if (confirmedPieceMove.getPieceMoved()) {
             // Set KnownBoardPositions
-            
-            
             chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
+            KnownBoardPositions knownBoardPositions = new KnownBoardPositions(chessEngine.getKnownBoard());
+            MessageHolder mh = new MessageHolder(KnownBoardPositions.class.getSimpleName(), knownBoardPositions);
+            chessMessageSender.send(mh);
             requestMove();
         }
     }

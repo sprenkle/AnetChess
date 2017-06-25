@@ -129,6 +129,11 @@ public class ChessMessageReceiver {
                                 logger.info(String.format("%s received %s", name, piecePositions));
                                 eventMap.get(mh.getClassName()).handleMessage(piecePositions);
                                 break;
+                            case "KnownBoardPositions":
+                                KnownBoardPositions knownBoardPositions = (KnownBoardPositions) mh.getObject(KnownBoardPositions.class);
+                                logger.info(String.format("%s received %s", name, knownBoardPositions));
+                                eventMap.get(mh.getClassName()).handleMessage(knownBoardPositions);
+                                break;
                             default:
                                 throw new Exception("Undefined Message");
                         }

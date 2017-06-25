@@ -315,9 +315,12 @@ public class Board implements BoardInterface {
     public PossiblePiece[][] convertToCameraBoard(){
         PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
         for(int x = 0 ; x < 8; x ++){
+            knownBoard[x] = new PossiblePiece[8];
+        }
+        for(int x = 0 ; x < 8; x ++){
             for(int y = 0 ; y < 8; y++){
-                if(board[x][y] != null){
-                    knownBoard[x][y] = convertChessPiece(board[x][y]);
+                if(board[7-x][y] != null){
+                    knownBoard[x][y] = convertChessPiece(board[7-x][y]);
                 }
             }
         }
@@ -325,6 +328,28 @@ public class Board implements BoardInterface {
     }
     
     private PossiblePiece convertChessPiece(ChessPiece chessPiece){
-        return new PossiblePiece(chessPiece.color == 1,-1, 7 - chessPiece.getLocation().getX(), chessPiece.getLocation().getY() );
+        boolean color = chessPiece.color == 0;
+        int rank = 0;
+        switch(chessPiece.getName().charAt(1)){
+            case 'K' :
+                rank = 5;
+                break;
+            case 'Q' :
+                rank = 4;
+                break;
+            case 'R' :
+                rank = 3;
+                break;
+            case 'B' :
+                rank = 2;
+                break;
+            case 'N' :
+                rank = 1;
+                break;
+            case 'P' :
+                rank = 0;
+                break;
+        }
+        return new PossiblePiece(color,rank, 7 - chessPiece.getLocation().getX(), chessPiece.getLocation().getY() );
     }
 }

@@ -35,16 +35,10 @@ public class AnetBoardController {
     private OutputStream out;
     private InputStream in;
     private final MqChessMessageSender messageSender;
-    private final double low = 14;
-    private final double high = 60;
-    private final double mid = 26;
-    private final double rest = 190;
-    private final double xSlope = -0.4262;
-    private final double ySlope = 0.4271;
-    private final double xIntercept = 175.376;
-    private final double yIntercept = -165.4933;
-    private final double orgX = 94.3;
-    private final double orgY = 170.4;
+    private final double mid = 54;
+
+    
+    private final double rest = 165;
 
     private boolean homed = false;
 
@@ -135,7 +129,6 @@ public class AnetBoardController {
                             return;
                         }
                     }
-//          String out = new String( buffer, 0, len );
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -145,9 +138,14 @@ public class AnetBoardController {
 
     private void sendCommand(String command, String notes) {
         if (!homed) {
-            executeGcode("G28", "Home");
-            executeGcode("G90", "Absolute Positioning");
+            executeGcode("G91", "Relative Positioning");
             executeGcode(String.format("G1 X0 Y0 Z%f", mid), "Bring up hook.");
+            executeGcode("G90", "Absolute Positioning");
+            executeGcode("G28 X0 Y0", "Home");
+            executeGcode(String.format("G1 X%f Y%f", 0.0, 200.0), "");
+            executeGcode("G28 Z0", "Home");
+            executeGcode(String.format("G1 Z%f", mid), "Bring up hook.");
+            executeGcode(String.format("G1 X%f Y%f", -15.0, rest), "Bring up hook.");
             homed = true;
         }
         executeGcode(command, notes);
@@ -180,20 +178,7 @@ public class AnetBoardController {
         sendCommand(gcode.getGCode(), gcode.getNote());
     }
 
-//    public void chessMove(ChessMove chessMove) {
-//        if (chessMove.isRobot()) {
-//            try {
-//                String[] moves = ChessUtil.ConvertChessMove(chessMove.getMove());
-//                int[] from = ChessUtil.ConvertLocation(moves[0]);
-//                int[] to = ChessUtil.ConvertLocation(moves[1]);
-//
-//            } catch (Exception ex) {
-//                Logger.getLogger(AnetBoardController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }else{
-//            logger.debug("Does nothing, not a robot move");
-//        }
-//    }
+
 
     public void requestMovePieces(RequestMovePieces requestMovePieces) {
         logger.debug(String.format("Requesting move %s", requestMovePieces));
@@ -202,14 +187,18 @@ public class AnetBoardController {
     
     public void piecePositions(PiecePositions piecePositions){
         if(piecePositions.isCapture()){
-            movePiece(piecePositions.getTo()[0], piecePositions.getTo()[1], piecePositions.getCaptureTo()[0], piecePositions.getCaptureTo()[1]);
+            
+            movePiece(piecePositions.getTo()[0], piecePositions.getTo()[1], piecePositions.getCaptureTo()[0], piecePositions.getCaptureTo()[1],
+                    piecePositions.getHeightTo(), piecePositions.getMid(), piecePositions.getHigh());
         }
-        movePiece(piecePositions.getFrom()[0], piecePositions.getFrom()[1], piecePositions.getTo()[0], piecePositions.getTo()[1]);
+        movePiece(piecePositions.getFrom()[0], piecePositions.getFrom()[1], piecePositions.getTo()[0], piecePositions.getTo()[1], piecePositions.getHeightFrom(), 
+                
+                piecePositions.getMid(), piecePositions.getHigh());
         
         messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
     }
 
-    private void movePiece(double x, double y, double toX, double toY) {
+    private void movePiece(double x, double y, double toX, double toY, double low, double mid, double high) {
         String gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, mid);
         sendCommand(gcode, "");
         gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, low);
@@ -229,15 +218,6 @@ public class AnetBoardController {
         sendCommand(gcode, "");
         gcode = String.format("G1 X0 Y%s Z%f", rest, mid);
         sendCommand(gcode, "");
-    }
-
-    private int[] calculateBoardPosition(int x, int y) {
-        int[] pos = new int[2];
-
-        pos[0] = (int) (orgX + (x - 4) * 18 + 9);
-        pos[1] = (int) (orgY - (y * 18 + 9));
-
-        return pos;
     }
 
     private void jog() {
