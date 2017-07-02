@@ -5,7 +5,6 @@
  */
 package net.sprenkle.chess;
 
-import net.sprenkle.chess.ChessState.Player;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.StartGame;
@@ -95,18 +94,21 @@ public class Chess extends TimerTask {
         }
         timer.cancel();
         logger.debug(String.format("Message received ChessMove %s", chessMove.toString()));
-        if (chessState.getTurn() != chessMove.getTurn()) {
+        if (!chessState.getTurn().equals(chessMove.getTurn())) {
             sendPlayerOutOfTurnMessage();
+            requestMove();
+            return;
         }
 
         String result = chessEngine.makeMove(chessMove.getMove());
         if (!result.equals("moveOk")) {
-            //Todo send out a Player out of turn message
+            //Todo send out a Color out of turn message
             //Todo send out a verify board posiion message
+            requestMove(); // need to request move again
             return;
         }
 
-        chessEngine.consoleOut();
+        chessEngine.consoleOut(); // prints ascii board to console
 
         if (chessState.isActivePlayerRobot()) {
             chessMessageSender.send(new MessageHolder(RequestMovePieces.class.getSimpleName(), new RequestMovePieces(chessMove.getMove())));
@@ -132,7 +134,7 @@ public class Chess extends TimerTask {
     }
 
 //    private void sendPlayerMakeMove() {
-//        System.out.format("Player %s make move.", chessState.getTurn() == Player.White ? "White" : "Black");
+//        System.out.format("Color %s make move.", chessState.getTurn() == Color.White ? "White" : "Black");
 //    }
     private void sendPlayerOutOfTurnMessage() {
         logger.debug("Player out of Turn Message");

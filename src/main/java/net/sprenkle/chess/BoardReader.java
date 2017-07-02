@@ -14,7 +14,6 @@ import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
-import net.sprenkle.chess.messages.RabbitMqChessImageReceiver;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
@@ -46,19 +45,20 @@ public class BoardReader {
 
     private final String NONE = "none";
     private String state;
-    static double xSlope = -2.3245287698412707;
-    static double ySlope = 2.3400900900900896;
-    static double xIntercept = 629.7912946428573;
-    static double yIntercept = -3.8012387387387037;
+    static double xSlope = -0.43132853294113493;
+    static double ySlope = 0.4266753267702424;
+    static double xIntercept = 271.5168316065272;
+    static double yIntercept = 1.4780612193119822;
     private final double high = 75;
     private final double mid = 54;
 
+    private RequestMove requestedMove;
     static double orgX = 95.4;
     static double orgY = 193;
     private RequestPiecePositions requestPiecePositions;
     private int captured = 0;
 
-    public BoardReader(MqChessMessageSender messageSender, RabbitMqChessImageReceiver imageReceiver, ChessMessageReceiver messageReceiver, BoardCalculator boardCalculator) throws Exception {
+    public BoardReader(MqChessMessageSender messageSender, ChessMessageReceiver messageReceiver, BoardCalculator boardCalculator) throws Exception {
         this.messageSender = messageSender;
         this.boardCalculator = boardCalculator;
 
@@ -149,17 +149,10 @@ public class BoardReader {
 
     public static void main(String[] arg) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        new BoardReader(new MqChessMessageSender("boardReader"), new RabbitMqChessImageReceiver(), new ChessMessageReceiver("BoardReader", true), new BoardCalculator());
+        new BoardReader(new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true), new BoardCalculator());
     }
 
-    private RequestMove requestedMove;
 
-//    public void chessMove(ChessMove chessMove){
-//        if(chessMove.isRobot()){
-//        //    int[] moves = convertFromMove(chessMove.getMove());
-//        //    boardCalculator.setMove(moves);
-//        }
-//    }
     public void requestMove(RequestMove requestMove) throws Exception {
         if (!requestMove.isRobot()) {
             requestedMove = requestMove;
@@ -185,7 +178,7 @@ public class BoardReader {
             }
         } else if (state.equals(CHECK_FOR_HUMAN_MOVE)) {
             try {
-                int[] move = boardCalculator.detectPieces(bImageFromConvert);
+                int[] move = boardCalculator.detectPieces(bImageFromConvert, requestedMove.getTurn());
                 if (move != null) {
                     logger.debug("Found White move");
                     state = NONE;
@@ -200,7 +193,7 @@ public class BoardReader {
         } else if (state.equals(CHECK_FOR_PIECE_POSITIONS)) {
             try {
                 PossiblePiece[][] lastBoard = boardCalculator.getKnownBoard(); // needs to be before detect piece
-                boardCalculator.detectPieces(bImageFromConvert);
+                boardCalculator.detectPieces(bImageFromConvert, requestedMove.getTurn());
                 logger.debug(String.format("received %s", requestPiecePositions.getMove()));
                 int[] moves = ChessUtil.convertFromMove(requestPiecePositions.getMove());
                 logger.debug(String.format("Converted to %s,%s  %s,%s", moves[0], moves[1], moves[2], moves[3]));

@@ -10,8 +10,6 @@ package net.sprenkle.chess;
  * @author david
  */
 public class ChessState {
-    public enum Player {White, Black}
-
     private Player turn;
     private boolean whiteRobot;
     private boolean blackRobot;
@@ -32,10 +30,10 @@ public class ChessState {
     }
 
     /**
-     * @param turn
+     * @param sidee
      */
-    public void setTurn(Player turn) {
-        this.turn = turn;
+    public void setTurn(Player side) {
+        this.turn = side;
     }
     
     public boolean isActivePlayerRobot(){

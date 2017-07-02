@@ -5,6 +5,8 @@
  */
 package net.sprenkle.chess.imaging;
 
+import net.sprenkle.chess.Player;
+
 /**
  *
  * @author david
@@ -12,9 +14,9 @@ package net.sprenkle.chess.imaging;
 public class Point {
     public int x;
     public int y;
-    public boolean color;
+    public Player color;
     
-    public Point(int x, int y, boolean color){
+    public Point(int x, int y, Player color){
         this.x = x;
         this.y = y;
         this.color = color;

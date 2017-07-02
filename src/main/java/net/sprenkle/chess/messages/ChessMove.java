@@ -7,7 +7,7 @@ package net.sprenkle.chess.messages;
 
 import java.io.Serializable;
 import java.util.UUID;
-import net.sprenkle.chess.ChessState.Player;
+import net.sprenkle.chess.Player;
 
 /**
  *

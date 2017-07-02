@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sprenkle.chess.ChessUtil;
+import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.chess.exceptions.InvalidLocationException;
 import net.sprenkle.chess.exceptions.InvalidMoveException;
@@ -105,7 +106,6 @@ public class Board implements BoardInterface {
 
     @Override
     public boolean isAbleToMove(int color) {
-        int opponentColor = color == 1 ? 0 : 1;
         ArrayList<ChessPiece> tl = (ArrayList<ChessPiece>) activePieces[color].clone();
         for (ChessPiece myCp : tl) {
             ArrayList<PieceLocation> plArray = myCp.validMoves(this);
@@ -328,7 +328,7 @@ public class Board implements BoardInterface {
     }
     
     private PossiblePiece convertChessPiece(ChessPiece chessPiece){
-        boolean color = chessPiece.color == 0;
+        Player color = chessPiece.color == 0 ? Player.White : Player.Black;
         int rank = 0;
         switch(chessPiece.getName().charAt(1)){
             case 'K' :

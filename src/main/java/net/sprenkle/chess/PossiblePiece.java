@@ -17,31 +17,28 @@ public class PossiblePiece {
     public static final int KNIGHT = 1;
     public static final int PAWN = 0;
 
-    
-    
     public int x;
     public int y;
-    public boolean color;
+    public Player color;
     public double offFactor;
     public int col;
     public int row;
     public int rank;
     
-    public PossiblePiece(int x, int y, boolean color){
+    public PossiblePiece(int x, int y, Player color){
         this.x = x;
         this.y = y;
         this.color = color;
     }
 
-
-
-    public PossiblePiece(boolean color, int rank, int col, int row){
+    public PossiblePiece(Player color, int rank, int col, int row){
         this.col = col;
         this.row = row;
         this.color = color;
         this.rank = rank;
     }
  
+    @Override
     public String toString(){
         return String.format("%s %s %s,%s", rank, color, col, row);
     }

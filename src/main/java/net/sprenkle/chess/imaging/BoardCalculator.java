@@ -13,6 +13,7 @@ import java.io.IOException;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.imageutils.BlackWhite;
 import net.sprenkle.imageutils.ImageUtil;
@@ -32,9 +33,9 @@ public class BoardCalculator {
     private boolean initialized = false;
     static int leftBoard = 195;
     static int rightBoard = 625;
-    static int bottomBoard = 440;
-    static int topBoard = 5;
-    static boolean humanColor;
+    static int bottomBoard = 450;
+    static int topBoard = 1;
+    static Player humanColor;
     private ArrayList<PossiblePiece> detectedPieces;
 
     static int lastNumPieces = 16;
@@ -48,29 +49,29 @@ public class BoardCalculator {
     //   Line horizontal[] = new Line[8];
     //   Line vertical[] = new Line[8];
     public BoardCalculator() {
-        verticalLines[0] = new Line(new Point(215, 0, false), new Point(215, 600, false));
-        horizontalLines[0] = new Line(new Point(0, 22, false), new Point(800, 22, false));
-        verticalLines[1] = new Line(new Point(269, 0, false), new Point(269, 600, false));
-        horizontalLines[1] = new Line(new Point(0, 85, false), new Point(800, 85, false));
-        verticalLines[2] = new Line(new Point(324, 0, false), new Point(324, 600, false));
-        horizontalLines[2] = new Line(new Point(0, 140, false), new Point(800, 140, false));
-        verticalLines[3] = new Line(new Point(380, 0, false), new Point(380, 600, false));
-        horizontalLines[3] = new Line(new Point(0, 195, false), new Point(800, 195, false));
-        verticalLines[4] = new Line(new Point(434, 0, false), new Point(434, 600, false));
-        horizontalLines[4] = new Line(new Point(0, 250, false), new Point(800, 250, false));
-        verticalLines[5] = new Line(new Point(491, 0, false), new Point(491, 600, false));
-        horizontalLines[5] = new Line(new Point(0, 305, false), new Point(800, 305, false));
-        verticalLines[6] = new Line(new Point(549, 0, false), new Point(549, 600, false));
-        horizontalLines[6] = new Line(new Point(0, 361, false), new Point(800, 361, false));
-        verticalLines[7] = new Line(new Point(605, 0, false), new Point(605, 600, false));
-        horizontalLines[7] = new Line(new Point(0, 420, false), new Point(800, 420, false));
+        verticalLines[0] = new Line(new Point(215, 0, Player.White), new Point(215, 600, Player.White));
+        horizontalLines[0] = new Line(new Point(0, 22, Player.White), new Point(800, 22, Player.White));
+        verticalLines[1] = new Line(new Point(269, 0, Player.White), new Point(269, 600, Player.White));
+        horizontalLines[1] = new Line(new Point(0, 85, Player.White), new Point(800, 85, Player.White));
+        verticalLines[2] = new Line(new Point(324, 0, Player.White), new Point(324, 600, Player.White));
+        horizontalLines[2] = new Line(new Point(0, 140, Player.White), new Point(800, 140, Player.White));
+        verticalLines[3] = new Line(new Point(380, 0, Player.White), new Point(380, 600, Player.White));
+        horizontalLines[3] = new Line(new Point(0, 195, Player.White), new Point(800, 195, Player.White));
+        verticalLines[4] = new Line(new Point(434, 0, Player.White), new Point(434, 600, Player.White));
+        horizontalLines[4] = new Line(new Point(0, 250, Player.White), new Point(800, 250, Player.White));
+        verticalLines[5] = new Line(new Point(491, 0, Player.White), new Point(491, 600, Player.White));
+        horizontalLines[5] = new Line(new Point(0, 305, Player.White), new Point(800, 305, Player.White));
+        verticalLines[6] = new Line(new Point(549, 0, Player.White), new Point(549, 600, Player.White));
+        horizontalLines[6] = new Line(new Point(0, 361, Player.White), new Point(800, 361, Player.White));
+        verticalLines[7] = new Line(new Point(605, 0, Player.White), new Point(605, 600, Player.White));
+        horizontalLines[7] = new Line(new Point(0, 420, Player.White), new Point(800, 420, Player.White));
     }
 
     public void parseBI(BufferedImage bi) {
 
     }
 
-    public boolean getHumanColor() {
+    public Player getHumanColor() {
         return humanColor;
     }
 
@@ -118,7 +119,7 @@ public class BoardCalculator {
             for (int x = 6; x < array.length - 6; x++) {
                 try {
                     if (detectC(array, x, y, true)) {
-                        PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, true);
+                        PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.White);
                         pieces.add(piece);
                         array[x][y] = true; // sets the color so it will not be detected again
                         array[x + 1][y] = true;
@@ -126,7 +127,7 @@ public class BoardCalculator {
                         array[x + 1][y + 1] = true;
                         x += 15;
                     } else if (detectC(array, x, y, false)) {
-                        PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, false);
+                        PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.Black);
                         pieces.add(piece);
                         array[x][y] = false;
                         array[x + 1][y] = false;
@@ -148,7 +149,6 @@ public class BoardCalculator {
         BasicStroke stroke = new BasicStroke(2);
         g2.setStroke(stroke);
         if (!isInitialized()) {
-            boolean firstColor = false;
             boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
 
             detectedPieces = new ArrayList<>();
@@ -159,13 +159,12 @@ public class BoardCalculator {
             if (detectedPieces.isEmpty()) {
                 return false;
             }
-            firstColor = detectedPieces.get(0).color;
             detectedPieces.forEach(x -> findOffFactor(x));
 
             detectedPieces.sort((e1, e2) -> Double.compare(e1.offFactor, e2.offFactor));
             for (PossiblePiece detectedPiece : detectedPieces) {
                 PossiblePiece check = knownBoard[detectedPiece.col][detectedPiece.row];
-                if (check == null || check.color != detectedPiece.color) {
+                if (check == null || !check.color.equals(detectedPiece.color)) {
                     return false;
                 }
             }
@@ -233,8 +232,8 @@ public class BoardCalculator {
                 PossiblePiece point = detectedPieces.get(i * 4 + j);
                 avgX += point.x;
             }
-            Point start = new Point((int) (avgX / 4), 0, false);
-            Point end = new Point((int) (avgX / 4), bi.getHeight(), false);
+            Point start = new Point((int) (avgX / 4), 0, Player.Black);
+            Point end = new Point((int) (avgX / 4), bi.getHeight(), Player.Black);
             //         vertical[i] = new Line(start,end);
             verticalLines[i] = new Line(start, end);
         }
@@ -267,8 +266,8 @@ public class BoardCalculator {
         double spacingEnd = (horizontalLines[6].end.y - horizontalLines[1].end.y) / 5.0;
 
         for (int i = 0; i < 4; i++) {
-            Point start = new Point(horizontalLines[0].start.x, (int) (horizontalLines[1].start.y + spacingStart + (spacingStart * i)), false);
-            Point end = new Point(horizontalLines[0].end.x, (int) (horizontalLines[1].end.y + spacingEnd + (spacingEnd * i)), false);
+            Point start = new Point(horizontalLines[0].start.x, (int) (horizontalLines[1].start.y + spacingStart + (spacingStart * i)), Player.Black);
+            Point end = new Point(horizontalLines[0].end.x, (int) (horizontalLines[1].end.y + spacingEnd + (spacingEnd * i)), Player.Black);
             horizontalLines[i + 2] = new Line(start, end);
             g2.drawLine(horizontalLines[i + 2].start.x, horizontalLines[i + 2].start.y, horizontalLines[i + 2].end.x, horizontalLines[i + 2].end.y);
         }
@@ -288,7 +287,7 @@ public class BoardCalculator {
      *
      * @param bi
      */
-    public int[] detectPieces(BufferedImage bi) throws Exception {
+    public int[] detectPieces(BufferedImage bi, Player turn) throws Exception {
         int[] rv = null;
 
         Graphics2D g2 = bi.createGraphics();
@@ -309,7 +308,7 @@ public class BoardCalculator {
             markPiece(g2, piece.x, piece.y, piece.color);
             findOffFactor(piece);
             if (piece.offFactor <= 200) {
-                if (knownBoard[piece.col][piece.row] == null || knownBoard[piece.col][piece.row].color != piece.color) {
+                if (knownBoard[piece.col][piece.row] == null || !knownBoard[piece.col][piece.row].color.equals(piece.color)) {
                     diff++;
                     changedPiece.add(piece);
                 }
@@ -333,13 +332,60 @@ public class BoardCalculator {
             }
         }
 
-        if (lastLocation.size() == 1 && changedPiece.size() == 1) {
+        if (lastLocation.size() == 1 && changedPiece.size() == 1 && turn.equals(changedPiece.get(0).color)) {
             logger.debug(String.format("Piece moved from %s,%s to %s,%s", lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row));
             rv = new int[]{lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row};
+        }else if(changedPiece.size() == 2 && checkForCastle(changedPiece.get(0), changedPiece.get(1)) != null){
+            return checkForCastle(changedPiece.get(0), changedPiece.get(1));
         }
 
         drawLines(g2);
         return rv;
+    }
+    
+    private int[] checkForCastle(PossiblePiece p1, PossiblePiece p2){
+        if((p1.row > 0 && p1.row < 7) || p1.row != p2.row) return null;
+
+        PossiblePiece king = null;
+        PossiblePiece rook = null;
+
+        switch(p1.col){
+            case 1:
+                king = p1;
+                break;
+            case 2:
+                rook = p1;
+                break;
+            case 5:
+                rook = p1;
+                break;
+            case 6:
+                king = p1;
+                break;
+        }
+
+        switch(p2.col){
+            case 1:
+                king = p2;
+                break;
+            case 2:
+                rook = p2;
+                break;
+            case 5:
+                rook = p2;
+                break;
+            case 6:
+                king = p2;
+                break;
+        }
+
+        if(king == null || rook == null || Math.abs(king.col - rook.col) != 1) return null;
+        
+        if(king.col == 2){
+            return new int[] {3, king.row, king.col, king.row};
+        }else{
+            return new int[] {3, king.row, king.col, king.row};
+        }
     }
 
     /**
@@ -376,9 +422,9 @@ public class BoardCalculator {
         }
     }
 
-    private void markPiece(Graphics2D g2, int x, int y, boolean piece) {
+    private void markPiece(Graphics2D g2, int x, int y, Player piece) {
         int size = 8;
-        if (piece) {
+        if (piece == Player.White) {
             g2.setColor(Color.RED);
         } else {
             g2.setColor(Color.BLUE);

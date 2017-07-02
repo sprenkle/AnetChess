@@ -5,22 +5,11 @@
  */
 package net.sprenkle.chess;
 
-import net.sprenkle.chess.ChessState.Player;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
-import net.sprenkle.chess.messages.ChessMessageSender;
-import net.sprenkle.chess.messages.RequestMove;
-import net.sprenkle.chess.messages.StartGame;
-import net.sprenkle.messages.MessageHolder;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 /**
  *
@@ -55,8 +44,8 @@ public class ChessTest {
     public void testStartGame() {
 //        System.out.println("startGame");
 //        StartGame startGame = new StartGame(true, true);
-//        ChessState chessState = new ChessState();
-//        chessState.setTurn(ChessState.Player.Black); 
+//        Player chessState = new Player();
+//        chessState.setTurn(Player.Color.Black); 
 //        ArgumentCaptor<MessageHolder> argument = ArgumentCaptor.forClass(MessageHolder.class);
 //        ChessMessageSender sender = mock(ChessMessageSender.class);
 //        ChessControllerInterface chessEngine = mock(ChessControllerInterface.class); 
@@ -67,7 +56,7 @@ public class ChessTest {
 //        
 //        verify(sender, times(1)).send(argument.capture()); 
 //        assertEquals(argument.getValue().getClassName(), RequestMove.class.getSimpleName()); // Sends out a RequestMove
-//        assertEquals(Player.White, chessState.getTurn()); // Verify setting starting player to white
+//        assertEquals(Color.White, chessState.getTurn()); // Verify setting starting player to white
     }
 
     @Test
@@ -75,7 +64,7 @@ public class ChessTest {
 //        System.out.println("ChessMovedAndWrongPlayer");
 //        ChessMove chessMove = new ChessMove(false, "e3-34");
 //
-//        ChessState chessState = new ChessState();
+//        Player chessState = new Player();
 //        chessState.setWhiteTurn(true);
 //        ArgumentCaptor<MessageHolder> argument = ArgumentCaptor.forClass(MessageHolder.class);
 //        ChessMessageSender sender = mock(ChessMessageSender.class);

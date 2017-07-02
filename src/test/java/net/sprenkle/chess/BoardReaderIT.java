@@ -8,7 +8,6 @@ package net.sprenkle.chess;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.MqChessMessageSender;
-import net.sprenkle.chess.messages.RabbitMqChessImageReceiver;
 import net.sprenkle.chess.messages.RequestPiecePositions;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -148,13 +147,12 @@ public class BoardReaderIT {
         
    //         public BoardReader(
         MqChessMessageSender messageSender = mock(MqChessMessageSender.class);
-        RabbitMqChessImageReceiver imageReceiver = mock(RabbitMqChessImageReceiver.class);
         ChessMessageReceiver messageReceiver  = mock(ChessMessageReceiver.class);
         BoardCalculator boardCalculator = mock(BoardCalculator.class);
 
         
         
-        BoardReader instance = new BoardReader(messageSender, imageReceiver, messageReceiver, boardCalculator);
+        BoardReader instance = new BoardReader(messageSender, messageReceiver, boardCalculator);
 
         instance.setState("checkForPiecePositions");
         

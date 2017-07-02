@@ -6,6 +6,8 @@
 package net.sprenkle.chess;
 
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.ChessMove;
@@ -73,13 +75,21 @@ public class RobotMover {
         uci.sendCommandAndWait("isready", "readyok");
     }
 
+    Pattern p = Pattern.compile(".*bestmove (\\w\\d\\w\\d).*");
+
     public void requestMove(RequestMove requestMove) throws Exception {
         if (requestMove.isRobot()) {
             logger.debug(requestMove.toString());
             uci.sendCommand(requestMove.getMoveHistory());
             String move = uci.sendCommandAndWait("go " + getTimeString(), "bestmove");
             logger.info(String.format("Made move -%s-", move));
-            move = move.substring(move.length() - 4);
+            Matcher m = p.matcher(move);
+            if(m.matches()){
+                move = m.group(1);
+            }else{
+                move = move.substring(move.length() - 4);
+            }
+            
             ChessMove chessMove = new ChessMove(requestMove.getTurn(), move, requestMove.getMoveId(), true);
             messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
             logger.debug(chessMove.toString());

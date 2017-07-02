@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javax.swing.ImageIcon;
 import net.sprenkle.chess.BoardReader;
+import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.chess.RobotMover;
 import net.sprenkle.chess.imaging.BoardCalculator;
@@ -193,7 +194,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private void showPieces(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
         try {
-            boardCalculator.detectPieces(altBi);
+            boardCalculator.detectPieces(altBi, Player.White);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,19 +7,19 @@ package net.sprenkle.chess.messages;
 
 import java.io.Serializable;
 import java.util.UUID;
-import net.sprenkle.chess.ChessState;
+import net.sprenkle.chess.Player;
 
 /**
  *
  * @author david
  */
 public class RequestMove implements Serializable {
-    private final ChessState.Player turn;
+    private final Player turn;
     private final boolean robot;
     private final String moveHistory;
     private final UUID moveId;
     
-    public RequestMove(ChessState.Player turn, boolean robot, String moveHistory, UUID moveId){
+    public RequestMove(Player turn, boolean robot, String moveHistory, UUID moveId){
         this.turn = turn;
         this.robot = robot;
         this.moveHistory = moveHistory;
@@ -33,7 +33,7 @@ public class RequestMove implements Serializable {
     /**
      * @return the whiteTurn
      */
-    public ChessState.Player getTurn() {
+    public Player getTurn() {
         return turn;
     }
     
