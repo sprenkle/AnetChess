@@ -20,12 +20,20 @@ public class ChessMove implements Serializable {
     private final String move;
     private final UUID   moveId;
     private final boolean robot;
+    private final boolean castle;
 
+    
     public ChessMove(Player turn, String move, UUID moveId, boolean robot) {
+        this(turn, move, moveId, robot, false);
+    }
+
+    
+    public ChessMove(Player turn, String move, UUID moveId, boolean robot, boolean castle) {
         this.turn = turn;
         this.move = move;
         this.moveId = moveId;
         this.robot = robot;
+        this.castle = castle;
     }
 
     /**

@@ -6,71 +6,29 @@
 package net.sprenkle.chess.messages;
 
 import java.io.Serializable;
+import java.util.List;
+import net.sprenkle.chess.PieceMove;
 
 /**
  *
  * @author david
  */
-public class PiecePositions implements Serializable{
-    private final boolean capture;
-    private final double[] from;
-    private final double[] to;
-    private final double[] captureTo;
-    private final double heightFrom;
-    private final double heightTo;
+public class PiecePositions implements Serializable {
+    private final List<PieceMove> moveList;
+    
     private final double high;
     private final double mid;
-    
-    public PiecePositions(double[] from, double[] to, double heightFrom, double mid, double high){
-        this(from, to, null, heightFrom, 0, mid, high);
-    }
 
-    public PiecePositions(double[] from, double[] to, double[] captureTo, double heightFrom, double heightTo, double mid, double high){
-        this.from = from;
-        this.to = to;
-        this.captureTo = captureTo;
-        this.capture = captureTo != null;
-        this.heightFrom = heightFrom;
-        this.heightTo = heightTo;
+    public PiecePositions(List<PieceMove> moveList, double mid, double high) {
+        this.moveList = moveList; 
         this.mid = mid;
         this.high = high;
     }
-    
-    public boolean isCapture(){
-        return capture;
-    }
-    
-    public double[] getFrom(){
-        return from;
-    }
-    
-    public double[] getTo(){
-        return to;
-    }
-    
-    public double[] getCaptureTo(){
-        return captureTo;
-    }
-    
-    @Override
-    public String toString(){
-        return String.format("PiecePositions from=%s,%s to=%s,%s", from[0], from[1], to[0], to[1]);
-    }
 
-    /**
-     * @return the heightFrom
-     */
-    public double getHeightFrom() {
-        return heightFrom;
+    public List<PieceMove> getMoveList(){
+        return moveList;
     }
-
-    /**
-     * @return the heightTo
-     */
-    public double getHeightTo() {
-        return heightTo;
-    }
-
+    
     /**
      * @return the high
      */
@@ -83,5 +41,19 @@ public class PiecePositions implements Serializable{
      */
     public double getMid() {
         return mid;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("PiecePositions mid=%s high=%s ", mid, high));
+        
+        for(int i = 0 ; i < moveList.size(); i++){
+            PieceMove pieceMove = moveList.get(i);
+            sb.append(String.format(" From x=%s y=%s To x=%s y=%s hight=%s", pieceMove.getFrom()[0], pieceMove.getFrom()[1], 
+                    pieceMove.getTo()[0], pieceMove.getTo()[1], pieceMove.getHeight()));
+        }
+        
+        return sb.toString();
     }
 }

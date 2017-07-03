@@ -6,6 +6,8 @@
 package net.sprenkle.chess;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardAtRest;
@@ -152,7 +154,6 @@ public class BoardReader {
         new BoardReader(new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true), new BoardCalculator());
     }
 
-
     public void requestMove(RequestMove requestMove) throws Exception {
         if (!requestMove.isRobot()) {
             requestedMove = requestMove;
@@ -200,25 +201,26 @@ public class BoardReader {
                 PossiblePiece fromPiece = lastBoard[moves[0]][moves[1]];
                 PossiblePiece toPiece = lastBoard[moves[2]][moves[3]];
                 logger.debug(String.format("fromPiece x=%s, y=%s row=%s col=%s", fromPiece.x, fromPiece.y, fromPiece.row, fromPiece.col));
-                    double[] from = new double[2];
-                    from[0] = (int) (xSlope * fromPiece.x + xIntercept); 
-                    from[1] = (int) (ySlope * fromPiece.y + yIntercept);
+                double[] from = new double[2];
+                from[0] = (int) (xSlope * fromPiece.x + xIntercept);
+                from[1] = (int) (ySlope * fromPiece.y + yIntercept);
                 logger.info(String.format("from Piece image x=%s, y=%s", from[0], from[1]));
                 from = calculateBoardPosition(moves[0], moves[1]);
                 double[] to = calculateBoardPosition(moves[2], moves[3]);
                 state = NONE;
-                if (lastBoard[moves[2]][moves[3]] == null) {
-                    PiecePositions piecePositions = new PiecePositions(from, to, getPiecePickupHeight(fromPiece.rank), mid, high);
-                    logger.debug(String.format("Sending peice positions %s", piecePositions));
-                    messageSender.send(new MessageHolder(PiecePositions.class.getSimpleName(), piecePositions));
-                    return;
+
+                List<PieceMove> moveList = new ArrayList<>();
+
+                if (lastBoard[moves[2]][moves[3]] != null) {
+                    double[] capture = new double[2];
+                    capture[0] = -15;
+                    capture[1] = this.captured++ * 18;
+                    moveList.add(new PieceMove(to, capture, getPiecePickupHeight(toPiece.rank), false));
                 }
-                
-                double[] capture = new double[2];
-                capture[0] = -15;
-                capture[1] = this.captured++ * 18;
-                
-                PiecePositions piecePositions = new PiecePositions(from, to, capture, getPiecePickupHeight(fromPiece.rank), getPiecePickupHeight(toPiece.rank), mid, high);
+
+                moveList.add(new PieceMove(from, to, getPiecePickupHeight(fromPiece.rank), false));
+
+                PiecePositions piecePositions = new PiecePositions(moveList, mid, high);
                 messageSender.send(new MessageHolder(PiecePositions.class.getSimpleName(), piecePositions));
             } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
@@ -226,9 +228,9 @@ public class BoardReader {
 
         }
     }
-    
-    public double getPiecePickupHeight(int rank){
-        switch(rank){
+
+    public double getPiecePickupHeight(int rank) {
+        switch (rank) {
             case 0:
                 return 16.3; // pawn
             case 1:
@@ -278,6 +280,5 @@ public class BoardReader {
     public void knownBoardPositions(KnownBoardPositions knownBoardPositions) {
         boardCalculator.setKnownBoard(knownBoardPositions.getKnownPostions());
     }
-
 
 }

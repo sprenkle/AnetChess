@@ -186,14 +186,10 @@ public class AnetBoardController {
     }
     
     public void piecePositions(PiecePositions piecePositions){
-        if(piecePositions.isCapture()){
-            
-            movePiece(piecePositions.getTo()[0], piecePositions.getTo()[1], piecePositions.getCaptureTo()[0], piecePositions.getCaptureTo()[1],
-                    piecePositions.getHeightTo(), piecePositions.getMid(), piecePositions.getHigh());
+        for(PieceMove pieceMove : piecePositions.getMoveList()){
+            movePiece(pieceMove.getFrom()[0], pieceMove.getFrom()[1], pieceMove.getTo()[0], 
+                    pieceMove.getTo()[1], pieceMove.getHeight(), piecePositions.getMid(), piecePositions.getHigh());
         }
-        movePiece(piecePositions.getFrom()[0], piecePositions.getFrom()[1], piecePositions.getTo()[0], piecePositions.getTo()[1], piecePositions.getHeightFrom(), 
-                
-                piecePositions.getMid(), piecePositions.getHigh());
         
         messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
     }
