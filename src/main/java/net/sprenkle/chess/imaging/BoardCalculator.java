@@ -45,7 +45,7 @@ public class BoardCalculator {
     static double ySlope = 0.4271;
     static double xIntercept = 175.376;
     static double yIntercept = -165.4933;
-    private int threshHold = 100;
+    private int threshHold = 110;
 
     //   Line horizontal[] = new Line[8];
     //   Line vertical[] = new Line[8];

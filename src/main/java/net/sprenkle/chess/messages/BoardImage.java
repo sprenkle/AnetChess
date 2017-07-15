@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -22,9 +23,10 @@ import javax.imageio.ImageIO;
 public class BoardImage implements Serializable {
 
     private byte[] imageInByte;
+    private UUID uuid;
 
     public BoardImage(BufferedImage bi) {
-
+        uuid = UUID.randomUUID();
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             ImageIO.write(bi, "jpg", baos);
             baos.flush();
@@ -42,6 +44,10 @@ public class BoardImage implements Serializable {
             Logger.getLogger(BoardImage.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public UUID getUuid(){
+        return uuid;
     }
     
     public String toString(){

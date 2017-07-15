@@ -1,5 +1,6 @@
 package net.sprenkle.chess;
 
+import java.util.UUID;
 import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
@@ -31,7 +32,7 @@ public class BoardReaderIT {
     @Test
     public void testRequestPiecePositions() throws Exception {
         System.out.println("requestPiecePositions");
-        RequestPiecePositions requestPiecePositions = new RequestPiecePositions(new ChessMove(Player.White, "e7e6"), false);
+        RequestPiecePositions requestPiecePositions = new RequestPiecePositions(new ChessMove(Player.White, "e7e6"), false, UUID.randomUUID());
         
    //         public BoardReader(
         MqChessMessageSender messageSender = mock(MqChessMessageSender.class);

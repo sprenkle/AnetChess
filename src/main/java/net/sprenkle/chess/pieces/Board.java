@@ -41,7 +41,7 @@ public class Board implements BoardInterface {
 
     public void consoleOut() {
         System.out.println("++++++++++++++++++++++++");
-        for (int y = 7; y >= 0; y++) {
+        for (int y = 7; y >= 0; y--) {
             StringBuffer sb = new StringBuffer();
             for (int x = 0; x < 8; x++) {
                 sb.append("+");
