@@ -5,7 +5,6 @@
  */
 package net.sprenkle.chess.messages;
 
-import java.io.Serializable;
 import java.util.UUID;
 import net.sprenkle.chess.Player;
 
@@ -13,27 +12,14 @@ import net.sprenkle.chess.Player;
  *
  * @author david
  */
-public class ChessMove implements Serializable {
-
+public class ChessMove {
 
     private final Player turn;
     private final String move;
-    private final UUID   moveId;
-    private final boolean robot;
-    private final boolean castle;
 
-    
-    public ChessMove(Player turn, String move, UUID moveId, boolean robot) {
-        this(turn, move, moveId, robot, false);
-    }
-
-    
-    public ChessMove(Player turn, String move, UUID moveId, boolean robot, boolean castle) {
+    public ChessMove(Player turn, String move) {
         this.turn = turn;
         this.move = move;
-        this.moveId = moveId;
-        this.robot = robot;
-        this.castle = castle;
     }
 
     /**
@@ -50,19 +36,9 @@ public class ChessMove implements Serializable {
         return move;
     }
 
-    /**
-     * @return the moveId
-     */
-    public UUID getMoveId() {
-        return moveId;
-    }
-    
-    public boolean isRobot(){
-        return robot;
-    }
-    
+
     @Override
-    public String toString(){
-        return String.format("ChessMove %s to move, %s Id=%s", turn, move, moveId);
+    public String toString() {
+        return String.format("ChessMove %s to move, %s", turn, move);
     }
 }

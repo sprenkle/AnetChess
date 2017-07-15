@@ -80,6 +80,10 @@ public class ChessController implements ChessControllerInterface {
         return "Invalid Move";
     }
     
+    public boolean isLastMoveCastle(){
+        return board.isLastMoveCastle();
+    }
+    
     public boolean isInCheck(int color){
         return board.isKingInCheck(color);
     }

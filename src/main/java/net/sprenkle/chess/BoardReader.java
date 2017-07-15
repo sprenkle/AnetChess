@@ -6,9 +6,8 @@
 package net.sprenkle.chess;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
+import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
@@ -19,13 +18,14 @@ import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
-import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.KnownBoardPositions;
 import net.sprenkle.chess.messages.PiecePositions;
 import net.sprenkle.chess.messages.RequestPiecePositions;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.messages.MessageHolder;
 import net.sprenkle.messages.images.RequestImage;
+import net.sprenkle.chess.messages.ChessMove;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -34,36 +34,22 @@ import org.apache.log4j.PropertyConfigurator;
  * @author david
  */
 public class BoardReader {
-
     static Logger logger = Logger.getLogger(BoardReader.class.getSimpleName());
-
     private final MqChessMessageSender messageSender;
     private final BoardCalculator boardCalculator;
-
-    private final String CHECK_FOR_GAME_SETUP = "checkForGameSetup";
-    private final String CHECK_FOR_HUMAN_MOVE = "checkForHumanMove";
-    private final String CHECK_FOR_REST_POSITION = "checkForRestPosition";
-    private final String CHECK_FOR_PIECE_POSITIONS = "checkForPiecePositions";
-
-    private final String NONE = "none";
-    private String state;
-    static double xSlope = -0.43132853294113493;
-    static double ySlope = 0.4266753267702424;
-    static double xIntercept = 271.5168316065272;
-    static double yIntercept = 1.4780612193119822;
-    private final double high = 75;
-    private final double mid = 54;
-
+    private final PiecePositionsIdentifier piecePositionsIdentifier;
+    private final BoardReaderState state;
     private RequestMove requestedMove;
-    static double orgX = 95.4;
-    static double orgY = 193;
     private RequestPiecePositions requestPiecePositions;
-    private int captured = 0;
 
-    public BoardReader(MqChessMessageSender messageSender, ChessMessageReceiver messageReceiver, BoardCalculator boardCalculator) throws Exception {
+    public BoardReader(BoardReaderState state, MqChessMessageSender messageSender, 
+            ChessMessageReceiver messageReceiver, BoardCalculator boardCalculator,
+            PiecePositionsIdentifier piecePositionsIdentifier) throws Exception {
         this.messageSender = messageSender;
         this.boardCalculator = boardCalculator;
-
+        this.piecePositionsIdentifier = piecePositionsIdentifier;
+        this.state = state;
+        
         messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
             @Override
             public void handleMessage(RequestMove requestMove) {
@@ -74,7 +60,6 @@ public class BoardReader {
                 }
             }
         });
-
         messageReceiver.addMessageHandler(RequestBoardStatus.class.getSimpleName(), new MessageHandler<RequestBoardStatus>() {
             @Override
             public void handleMessage(RequestBoardStatus requestBoardStatus) {
@@ -85,7 +70,6 @@ public class BoardReader {
                 }
             }
         });
-
         messageReceiver.addMessageHandler(BoardImage.class.getSimpleName(), new MessageHandler<BoardImage>() {
             @Override
             public void handleMessage(BoardImage boardImage) {
@@ -96,7 +80,6 @@ public class BoardReader {
                 }
             }
         });
-
         messageReceiver.addMessageHandler(BoardAtRest.class.getSimpleName(), new MessageHandler<BoardAtRest>() {
             @Override
             public void handleMessage(BoardAtRest boardAtRest) {
@@ -107,7 +90,6 @@ public class BoardReader {
                 }
             }
         });
-
         messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>() {
             @Override
             public void handleMessage(StartGame startGame) {
@@ -118,7 +100,6 @@ public class BoardReader {
                 }
             }
         });
-
         messageReceiver.addMessageHandler(RequestPiecePositions.class.getSimpleName(), new MessageHandler<RequestPiecePositions>() {
             @Override
             public void handleMessage(RequestPiecePositions requestPiecePositions) {
@@ -129,7 +110,6 @@ public class BoardReader {
                 }
             }
         });
-
         messageReceiver.addMessageHandler(KnownBoardPositions.class.getSimpleName(), new MessageHandler<KnownBoardPositions>() {
             @Override
             public void handleMessage(KnownBoardPositions knownBoardPositions) {
@@ -142,22 +122,19 @@ public class BoardReader {
         });
 
         messageReceiver.initialize();
-        state = NONE;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+        state.reset();
     }
 
     public static void main(String[] arg) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        new BoardReader(new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true), new BoardCalculator());
+        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true), 
+                new BoardCalculator(new BoardProperties()), new PiecePositionsIdentifier());
     }
 
     public void requestMove(RequestMove requestMove) throws Exception {
         if (!requestMove.isRobot()) {
             requestedMove = requestMove;
-            state = CHECK_FOR_HUMAN_MOVE;
+            state.setHumanMove();
             logger.debug(String.format("Set state to %s", state.toString()));
             messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage()));
         }
@@ -166,24 +143,27 @@ public class BoardReader {
     public void boardImage(BoardImage boardImage) {
         BufferedImage bImageFromConvert = boardImage.GetBi();
         //logger.debug("Received Image");
-        if (state.equals(CHECK_FOR_GAME_SETUP)) {
+        if (state.inState(BoardReaderState.CHECK_FOR_GAME_SETUP)) {
             boardCalculator.setInitialized(false);
             boardCalculator.initialLines(bImageFromConvert);
             if (boardCalculator.isInitialized()) {
                 BoardStatus boardStatus = new BoardStatus(true, true, true);
                 logger.debug(String.format("Sent %s", boardStatus.toString()));
                 messageSender.send(new MessageHolder(BoardStatus.class.getSimpleName(), boardStatus));
-                state = NONE;
+                state.reset();
             } else {
                 messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage()));
             }
-        } else if (state.equals(CHECK_FOR_HUMAN_MOVE)) {
+        } else if (state.inState(BoardReaderState.CHECK_FOR_HUMAN_MOVE)) {
             try {
-                int[] move = boardCalculator.detectPieces(bImageFromConvert, requestedMove.getTurn());
+                PossiblePiece[][] lastBoard = boardCalculator.getKnownBoard(); 
+                int[] move = boardCalculator.detectPieces(bImageFromConvert, requestedMove.getTurn(),lastBoard);
                 if (move != null) {
                     logger.debug("Found White move");
-                    state = NONE;
-                    messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), new ChessMove(requestedMove.getTurn(), ChessUtil.convertToMove(move), requestedMove.getMoveId(), false)));
+                    state.reset();
+                    ChessMove chessMove = new ChessMove(requestedMove.getTurn(), ChessUtil.convertToMove(move));
+                    ChessMoveMsg chessMoveMsg = new ChessMoveMsg(requestedMove.getMoveId(), false, chessMove);
+                    messageSender.send(new MessageHolder(ChessMoveMsg.class.getSimpleName(), chessMoveMsg));
                 } else {
                     messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage()));
                 }
@@ -191,36 +171,10 @@ public class BoardReader {
                 logger.error(ex.getLocalizedMessage());
                 messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage()));
             }
-        } else if (state.equals(CHECK_FOR_PIECE_POSITIONS)) {
+        } else if (state.inState(BoardReaderState.CHECK_FOR_PIECE_POSITIONS)) {
             try {
-                PossiblePiece[][] lastBoard = boardCalculator.getKnownBoard(); // needs to be before detect piece
-                boardCalculator.detectPieces(bImageFromConvert, requestedMove.getTurn());
-                logger.debug(String.format("received %s", requestPiecePositions.getMove()));
-                int[] moves = ChessUtil.convertFromMove(requestPiecePositions.getMove());
-                logger.debug(String.format("Converted to %s,%s  %s,%s", moves[0], moves[1], moves[2], moves[3]));
-                PossiblePiece fromPiece = lastBoard[moves[0]][moves[1]];
-                PossiblePiece toPiece = lastBoard[moves[2]][moves[3]];
-                logger.debug(String.format("fromPiece x=%s, y=%s row=%s col=%s", fromPiece.x, fromPiece.y, fromPiece.row, fromPiece.col));
-                double[] from = new double[2];
-                from[0] = (int) (xSlope * fromPiece.x + xIntercept);
-                from[1] = (int) (ySlope * fromPiece.y + yIntercept);
-                logger.info(String.format("from Piece image x=%s, y=%s", from[0], from[1]));
-                from = calculateBoardPosition(moves[0], moves[1]);
-                double[] to = calculateBoardPosition(moves[2], moves[3]);
-                state = NONE;
-
-                List<PieceMove> moveList = new ArrayList<>();
-
-                if (lastBoard[moves[2]][moves[3]] != null) {
-                    double[] capture = new double[2];
-                    capture[0] = -15;
-                    capture[1] = this.captured++ * 18;
-                    moveList.add(new PieceMove(to, capture, getPiecePickupHeight(toPiece.rank), false));
-                }
-
-                moveList.add(new PieceMove(from, to, getPiecePickupHeight(fromPiece.rank), false));
-
-                PiecePositions piecePositions = new PiecePositions(moveList, mid, high);
+                PiecePositions piecePositions = piecePositionsIdentifier.processImage(boardImage, boardCalculator, requestPiecePositions);
+                state.reset();
                 messageSender.send(new MessageHolder(PiecePositions.class.getSimpleName(), piecePositions));
             } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
@@ -229,50 +183,25 @@ public class BoardReader {
         }
     }
 
-    public double getPiecePickupHeight(int rank) {
-        switch (rank) {
-            case 0:
-                return 16.3; // pawn
-            case 1:
-            case 2:
-                return 24.3; // bishop knight
-            case 3:
-                return 23; // rook
-            case 4:
-            case 5:
-                return 29.6; // king queen
-        }
-        return 100;
-    }
-
-    public double[] calculateBoardPosition(int x, int y) {
-        double[] pos = new double[2];
-
-        pos[0] = orgX + ((3 - x) * 24) + 12;
-        pos[1] = orgY - ((7 - y) * 24 + 12);
-
-        return pos;
-    }
-
     public void boardAtRest(BoardAtRest boardAtRest) {
-        if (state.equals(CHECK_FOR_REST_POSITION) && boardAtRest.IsAtRest()) {
-            state = CHECK_FOR_GAME_SETUP;
+        if (state.inState(BoardReaderState.CHECK_FOR_REST_POSITION) && boardAtRest.IsAtRest()) {
+            state.setGameSetup();
             messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage()));
         }
     }
 
     public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
-        state = CHECK_FOR_REST_POSITION;
+        state.setRestPositino();
         messageSender.send(new MessageHolder(SetBoardRestPosition.class.getSimpleName(), new SetBoardRestPosition()));
     }
 
     public void startGame(StartGame startGame) {
         boardCalculator.setInitialized(false);
-        state = NONE;
+        state.reset();
     }
 
     public void requestPiecePositions(RequestPiecePositions requestPiecePositions) {
-        state = CHECK_FOR_PIECE_POSITIONS;
+        state.setPiecePosition();
         this.requestPiecePositions = requestPiecePositions;
         messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage()));
     }

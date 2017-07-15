@@ -5,7 +5,6 @@
  */
 package net.sprenkle.chess;
 
-import net.sprenkle.chess.pieces.Board;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

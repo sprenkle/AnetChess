@@ -20,16 +20,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javax.swing.ImageIcon;
+import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
-import net.sprenkle.chess.RobotMover;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.ChessImageListenerInterface;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
@@ -58,7 +59,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private ArrayList<String> moveList = new ArrayList<>();
     private int imageIndex = 0;
     private BufferedImage bi;
-    private final BoardCalculator boardCalculator = new BoardCalculator();
+    private final BoardCalculator boardCalculator = new BoardCalculator(new BoardProperties());
     static double xSlope = -0.4262;
     static double ySlope = 0.4271;
     static double xIntercept = 175.376;
@@ -99,7 +100,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         } catch (Exception ex) {
             Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board88c09094-173b-406c-979b-9873e7772c7f.png");
+        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\boardc2b33864-be94-410b-835f-ebd3fd268465.png");
         imageLbl.setIcon(new ImageIcon(bi));
 
         try (Stream<Path> paths = Files.walk(Paths.get("D:\\git\\Chess\\images\\game2"))) {
@@ -175,8 +176,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     public void requestMove(RequestMove requestMove) throws Exception {
         if (requestMove.isRobot()) {
-            ChessMove chessMove = new ChessMove(requestMove.getTurn(), moveList.remove(0), requestMove.getMoveId(), true);
-            messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
+            ChessMoveMsg chessMove = new ChessMoveMsg(requestMove.getMoveId(), true, new ChessMove(requestMove.getTurn(), moveList.remove(0)) );
+            messageSender.send(new MessageHolder(ChessMoveMsg.class.getSimpleName(), chessMove));
         }
     }
 
@@ -194,7 +195,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private void showPieces(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
         try {
-            boardCalculator.detectPieces(altBi, Player.White);
+            boardCalculator.detectPieces(altBi, Player.White, boardCalculator.getKnownBoard());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -735,7 +736,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             return;
         }
         logger.debug(String.format("Requesting move %s", requestMovePieces));
-        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getMove())));
+        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getChessMove(), requestMovePieces.isCastle(), requestMovePieces.getUuid())));
     }
 
     public void piecePositions(PiecePositions piecePositions) {

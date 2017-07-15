@@ -27,7 +27,8 @@ public class Board implements BoardInterface {
     private ChessPiece[][] board = new ChessPiece[8][8];
     private final ArrayList<ChessPiece>[] activePieces = new ArrayList[2];
     private final ArrayList<ChessPiece>[] capturedPieces;
-
+    private boolean lastMoveCastle = false;
+    
     public Board() {
         this.capturedPieces = new ArrayList[2];
         king = new ChessPiece[2];
@@ -40,7 +41,7 @@ public class Board implements BoardInterface {
 
     public void consoleOut() {
         System.out.println("++++++++++++++++++++++++");
-        for (int y = 0; y < 8; y++) {
+        for (int y = 7; y >= 0; y++) {
             StringBuffer sb = new StringBuffer();
             for (int x = 0; x < 8; x++) {
                 sb.append("+");
@@ -56,6 +57,10 @@ public class Board implements BoardInterface {
         }
     }
 
+    public boolean isLastMoveCastle(){
+        return lastMoveCastle;
+    }
+    
     @Override
     public void setStartingPositionBoard() {
         setupStartingPosition();
@@ -146,6 +151,7 @@ public class Board implements BoardInterface {
 
     @Override
     public boolean makeMove(PieceLocation from, PieceLocation to, String promoteTo){
+        lastMoveCastle = false;
         if (validMove(from, to)) {
             ChessPiece fromPiece = getPiece(from.getX(), from.getY());
             ChessPiece toPiece = getPiece(to.getX(), to.getY());
@@ -154,6 +160,7 @@ public class Board implements BoardInterface {
             if (fromPiece.getClass() == King.class
                     && !fromPiece.getHasMoved()
                     && (to.getX() == 2 || to.getX() == 6)) {
+                lastMoveCastle = true;
                 if (to.getX() == 2) {
                     try {
                         makeMove(new PieceLocation(0, to.getY()), new PieceLocation(3, to.getY()), null);

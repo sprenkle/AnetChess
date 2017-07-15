@@ -7,6 +7,7 @@ package net.sprenkle.chess.messages;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import net.sprenkle.chess.PieceMove;
 
 /**
@@ -15,14 +16,16 @@ import net.sprenkle.chess.PieceMove;
  */
 public class PiecePositions implements Serializable {
     private final List<PieceMove> moveList;
+    private final UUID uui;
     
     private final double high;
     private final double mid;
 
-    public PiecePositions(List<PieceMove> moveList, double mid, double high) {
+    public PiecePositions(List<PieceMove> moveList, double mid, double high, UUID uui) {
         this.moveList = moveList; 
         this.mid = mid;
         this.high = high;
+        this.uui = uui;
     }
 
     public List<PieceMove> getMoveList(){
@@ -41,6 +44,13 @@ public class PiecePositions implements Serializable {
      */
     public double getMid() {
         return mid;
+    }
+
+    /**
+     * @return the uui
+     */
+    public UUID getUui() {
+        return uui;
     }
     
     @Override

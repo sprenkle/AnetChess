@@ -10,11 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
-import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.messages.MessageHolder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -89,9 +90,9 @@ public class RobotMover {
             }else{
                 move = move.substring(move.length() - 4);
             }
-            
-            ChessMove chessMove = new ChessMove(requestMove.getTurn(), move, requestMove.getMoveId(), true);
-            messageSender.send(new MessageHolder(ChessMove.class.getSimpleName(), chessMove));
+            ChessMove chessMove = new ChessMove(requestMove.getTurn(), move);
+            ChessMoveMsg chessMoveMsg = new ChessMoveMsg(requestMove.getMoveId(), true, chessMove);
+            messageSender.send(new MessageHolder(ChessMoveMsg.class.getSimpleName(), chessMoveMsg));
             logger.debug(chessMove.toString());
         }
     }

@@ -6,23 +6,43 @@
 package net.sprenkle.chess.messages;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  *
  * @author david
  */
 public class RequestPiecePositions implements Serializable{
-    private final String move;
+    private final ChessMove chessMove;
+    private final boolean castle;
+    private final UUID uuid;
+
     
-    public RequestPiecePositions(String move){
-        this.move = move;
+    public RequestPiecePositions(ChessMove chessMove, boolean castle, UUID uuid){
+        this.chessMove = chessMove;
+        this.castle = castle;
+        this.uuid = uuid;
     }
     
-    public String getMove(){
-        return move;
+    public ChessMove getChessMove(){
+        return chessMove;
     }
     
+    public boolean getCastle(){
+        return castle;
+    }
+    
+    
+    
+    @Override
     public String toString(){
-        return String.format("RequestPiecePosition %s",move);
+        return String.format("RequestPiecePosition %s",chessMove);
+    }
+
+    /**
+     * @return the uuid
+     */
+    public UUID getUuid() {
+        return uuid;
     }
 }

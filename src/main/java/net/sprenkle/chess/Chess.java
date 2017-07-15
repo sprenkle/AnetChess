@@ -8,7 +8,7 @@ package net.sprenkle.chess;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.StartGame;
-import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.messages.MessageHolder;
 import java.util.Timer;
@@ -37,10 +37,10 @@ public class Chess extends TimerTask {
     static final boolean BLACK = false;
 
     private final ChessControllerInterface chessEngine;
-    ChessState chessState;
-    ChessMessageSender chessMessageSender;
-    Timer timer = new Timer(true);
-    UUID expectedMove;
+    private ChessState chessState;
+    private ChessMessageSender chessMessageSender;
+    private Timer timer = new Timer(true);
+    private UUID expectedMove;
 
     public Chess(ChessControllerInterface chessEngine, ChessMessageSender chessMessageSender, ChessMessageReceiver messageReceiver) {
         this.chessEngine = chessEngine;
@@ -54,9 +54,9 @@ public class Chess extends TimerTask {
             }
         });
 
-        messageReceiver.addMessageHandler(ChessMove.class.getSimpleName(), new MessageHandler<ChessMove>() {
+        messageReceiver.addMessageHandler(ChessMoveMsg.class.getSimpleName(), new MessageHandler<ChessMoveMsg>() {
             @Override
-            public void handleMessage(ChessMove chessMove) {
+            public void handleMessage(ChessMoveMsg chessMove) {
                 chessMoved(chessMove);
             }
         });
@@ -82,36 +82,43 @@ public class Chess extends TimerTask {
         }
     }
 
+    public void setChessState(ChessState chessState){
+        this.chessState = chessState;
+    }
+    
+    public void setExpectedMove(UUID uuid){
+        expectedMove = uuid;
+    }
+    
     public void startGame(StartGame startGame) {
        chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
        chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
     }
 
-    public void chessMoved(ChessMove chessMove) {
-        if (!chessMove.getMoveId().equals(expectedMove)) {
-            logger.debug(String.format("Received Unknown move %s  Expected %s", chessMove.getMoveId(), expectedMove));
+    public void chessMoved(ChessMoveMsg chessMoveMsg) {
+        if (!chessMoveMsg.getMoveId().equals(expectedMove)) {
+            logger.debug(String.format("Received Unknown move %s  Expected %s", chessMoveMsg.getMoveId(), expectedMove));
             return;
         }
         timer.cancel();
-        logger.debug(String.format("Message received ChessMove %s", chessMove.toString()));
-        if (!chessState.getTurn().equals(chessMove.getTurn())) {
-            sendPlayerOutOfTurnMessage();
+        logger.debug(String.format("Message received ChessMove %s", chessMoveMsg.toString()));
+        if (!chessState.getTurn().equals(chessMoveMsg.getChessMove().getTurn())) {
+            logger.debug("Player out of Turn Message");
             requestMove();
             return;
         }
-
-        String result = chessEngine.makeMove(chessMove.getMove());
+        String result = chessEngine.makeMove(chessMoveMsg.getChessMove().getMove());
         if (!result.equals("moveOk")) {
             //Todo send out a Color out of turn message
             //Todo send out a verify board posiion message
             requestMove(); // need to request move again
             return;
         }
-
         chessEngine.consoleOut(); // prints ascii board to console
 
         if (chessState.isActivePlayerRobot()) {
-            chessMessageSender.send(new MessageHolder(RequestMovePieces.class.getSimpleName(), new RequestMovePieces(chessMove.getMove())));
+            net.sprenkle.chess.messages.ChessMove chessMove = chessMoveMsg.getChessMove();
+            chessMessageSender.send(new MessageHolder(RequestMovePieces.class.getSimpleName(), new RequestMovePieces(chessMove, chessEngine.isLastMoveCastle(), chessMoveMsg.getMoveId())));
             return;
         }
         chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
@@ -133,25 +140,17 @@ public class Chess extends TimerTask {
         }, 2 * 60 * 1000);
     }
 
-//    private void sendPlayerMakeMove() {
-//        System.out.format("Color %s make move.", chessState.getTurn() == Color.White ? "White" : "Black");
-//    }
-    private void sendPlayerOutOfTurnMessage() {
-        logger.debug("Player out of Turn Message");
-    }
-
-//    private void sendInvalidMoveMessage(String mesg) {
-//        System.out.format("Invalid Move %s\n", mesg);
-//    }
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        Chess chess = new Chess(new ChessController(), new MqChessMessageSender("Chess"), new ChessMessageReceiver("Chess", false));
 
-//        new BoardReader(new MqChessMessageSender("boardReader"), new RabbitMqChessImageReceiver(), new ChessMessageReceiver("BoardReader"), new BoardCalculator());
+//        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController", true));
+
+//        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true), 
+//                new BoardCalculator(), new PiecePositionsIdentifier());
 //
-//        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController"));
-//
-//        new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover"));
+//        RobotMover robotMover = new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover", false));
+
+        Chess chess = new Chess(new ChessController(), new MqChessMessageSender("Chess"), new ChessMessageReceiver("Chess", false));
     }
 
     public void boardStatus(BoardStatus boardStatus) {

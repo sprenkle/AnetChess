@@ -12,6 +12,8 @@ import gnu.io.SerialPort;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashSet;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sprenkle.chess.messages.BoardAtRest;
@@ -20,7 +22,6 @@ import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
-import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.PiecePositions;
 import net.sprenkle.chess.messages.RequestMovePieces;
@@ -31,19 +32,24 @@ import org.apache.log4j.PropertyConfigurator;
 public class AnetBoardController {
 
     private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(AnetBoardController.class.getSimpleName());
+
     private String lastString;
     private OutputStream out;
     private InputStream in;
     private final MqChessMessageSender messageSender;
-    private final double mid = 54;
+    private final double mid;
+    private final double rest;
+    private final HashSet<UUID> moveIds = new HashSet<>();
 
     
-    private final double rest = 165;
 
     private boolean homed = false;
 
-    public AnetBoardController(MqChessMessageSender messageSender, ChessMessageReceiver messageReceiver) {
+    public AnetBoardController(MqChessMessageSender messageSender, ChessMessageReceiver messageReceiver, BoardProperties boardProperties) {
         this.messageSender = messageSender;
+        
+        this.mid = boardProperties.getMid();
+        this.rest = boardProperties.getRest();
 
         messageReceiver.addMessageHandler(SetBoardRestPosition.class.getSimpleName(), new MessageHandler<SetBoardRestPosition>() {
             @Override
@@ -165,7 +171,7 @@ public class AnetBoardController {
 
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController", true));
+        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController", true), new BoardProperties());
     }
 
     public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {
@@ -182,15 +188,18 @@ public class AnetBoardController {
 
     public void requestMovePieces(RequestMovePieces requestMovePieces) {
         logger.debug(String.format("Requesting move %s", requestMovePieces));
-        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getMove())));
+        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getChessMove(), requestMovePieces.isCastle(), requestMovePieces.getUuid())));
     }
     
+    
+    
     public void piecePositions(PiecePositions piecePositions){
-        for(PieceMove pieceMove : piecePositions.getMoveList()){
+        if(moveIds.contains(piecePositions.getUui())) return;
+        piecePositions.getMoveList().forEach((pieceMove) -> {
             movePiece(pieceMove.getFrom()[0], pieceMove.getFrom()[1], pieceMove.getTo()[0], 
                     pieceMove.getTo()[1], pieceMove.getHeight(), piecePositions.getMid(), piecePositions.getHigh());
-        }
-        
+        });
+        moveIds.add(piecePositions.getUui());
         messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
     }
 

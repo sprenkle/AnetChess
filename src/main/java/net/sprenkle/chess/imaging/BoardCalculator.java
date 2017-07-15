@@ -13,6 +13,7 @@ import java.io.IOException;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.imageutils.BlackWhite;
@@ -31,10 +32,10 @@ public class BoardCalculator {
     static Line[] verticalLines = new Line[8];
     private PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
     private boolean initialized = false;
-    static int leftBoard = 195;
-    static int rightBoard = 625;
-    static int bottomBoard = 450;
-    static int topBoard = 1;
+    private final int leftBoard;
+    private final int rightBoard;
+    private final int bottomBoard;
+    private final int topBoard;
     static Player humanColor;
     private ArrayList<PossiblePiece> detectedPieces;
 
@@ -48,7 +49,12 @@ public class BoardCalculator {
 
     //   Line horizontal[] = new Line[8];
     //   Line vertical[] = new Line[8];
-    public BoardCalculator() {
+    public BoardCalculator(BoardProperties boardProperties) {
+        leftBoard = boardProperties.getLeftBoard();
+        rightBoard = boardProperties.getRightBoard();
+        bottomBoard = boardProperties.getBottomBoard();
+        topBoard = boardProperties.getTopBoard();
+        
         verticalLines[0] = new Line(new Point(215, 0, Player.White), new Point(215, 600, Player.White));
         horizontalLines[0] = new Line(new Point(0, 22, Player.White), new Point(800, 22, Player.White));
         verticalLines[1] = new Line(new Point(269, 0, Player.White), new Point(269, 600, Player.White));
@@ -116,8 +122,9 @@ public class BoardCalculator {
         int xOffset = restrictArea ? leftBoard : 0;
         int yOffset = restrictArea ? topBoard : 0;
         for (int y = 6; y < array[0].length - 6; y++) {
+//                        logger.debug(String.format("y=%s",  y));
             for (int x = 6; x < array.length - 6; x++) {
-                try {
+              try {
                     if (detectC(array, x, y, true)) {
                         PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.White);
                         pieces.add(piece);
@@ -127,6 +134,7 @@ public class BoardCalculator {
                         array[x + 1][y + 1] = true;
                         x += 15;
                     } else if (detectC(array, x, y, false)) {
+  //                      logger.debug(String.format("x=%s y=%s", x, y));
                         PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.Black);
                         pieces.add(piece);
                         array[x][y] = false;
@@ -173,14 +181,11 @@ public class BoardCalculator {
             humanColor = horizontalLines[0].start.color;
 
         }
-        if (initialized) {
-            drawLastBoard(g2);
-        }
         g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
         return true;
     }
 
-    public void drawLastBoard(Graphics2D g2) {
+    public void drawLastBoard(Graphics2D g2, PossiblePiece[][] lastBoard) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 PossiblePiece piece = knownBoard[i][j];
@@ -272,10 +277,10 @@ public class BoardCalculator {
             g2.drawLine(horizontalLines[i + 2].start.x, horizontalLines[i + 2].start.y, horizontalLines[i + 2].end.x, horizontalLines[i + 2].end.y);
         }
 
-        for (int i = 0; i < 8; i++) {
-            logger.info(String.format("verticalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", verticalLines[i].start.x, verticalLines[i].start.y, verticalLines[i].end.x, verticalLines[i].end.y));
-            logger.info(String.format("horizontalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", horizontalLines[i].start.x, horizontalLines[i].start.y, horizontalLines[i].end.x, horizontalLines[i].end.y));
-        }
+//        for (int i = 0; i < 8; i++) {
+//            logger.info(String.format("verticalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", verticalLines[i].start.x, verticalLines[i].start.y, verticalLines[i].end.x, verticalLines[i].end.y));
+//            logger.info(String.format("horizontalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", horizontalLines[i].start.x, horizontalLines[i].start.y, horizontalLines[i].end.x, horizontalLines[i].end.y));
+//        }
     }
 //    public boolean detectPieceLocations(BufferedImage bi) {
 //
@@ -287,7 +292,7 @@ public class BoardCalculator {
      *
      * @param bi
      */
-    public int[] detectPieces(BufferedImage bi, Player turn) throws Exception {
+    public int[] detectPieces(BufferedImage bi, Player turn, PossiblePiece[][] lastBoard) throws Exception {
         int[] rv = null;
 
         Graphics2D g2 = bi.createGraphics();
@@ -312,7 +317,7 @@ public class BoardCalculator {
                     diff++;
                     changedPiece.add(piece);
                 }
-                logger.debug(String.format("Piece %s %s,%s has offset of %s", count++, piece.col, piece.row, piece.offFactor));
+                //logger.debug(String.format("Piece %s %s,%s has offset of %s", count++, piece.col, piece.row, piece.offFactor));
                 if (currentBoard[piece.col][piece.row] == null || currentBoard[piece.col][piece.row].offFactor > piece.offFactor) {
                     currentBoard[piece.col][piece.row] = piece;
                 }
@@ -614,22 +619,6 @@ public class BoardCalculator {
             }
         }
 
-//        double circle = 0;
-//        double nonCircle = 0;
-//        for(x = left; x <= right; x++){
-//            for(y = top; y <= bottom; y++){
-//                if (array[x][y] != piece) {
-//                    circle++;
-//                }else{
-//                    nonCircle++;
-//                }
-//            }
-//        }
-//
-//        double ratio = circle/nonCircle;
-//        if(ratio < 1.3 || ratio > 1.7) return false;
-//        
-//        logger.debug(String.format("Circle ratio = %f", ratio));
         return true;
     }
 
@@ -681,15 +670,15 @@ public class BoardCalculator {
     }
 
     public static void main(String[] args) throws Exception {
-        try {
-            BufferedImage bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board914c6097-40b5-4bb8-a337-3ad18de0412b.png");
-            boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), 100);
-
-            BoardCalculator boardCalculator = new BoardCalculator();
-            boardCalculator.printToConsole(array, 474 - leftBoard, 322 - topBoard);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(BoardCalculator.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            BufferedImage bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\board914c6097-40b5-4bb8-a337-3ad18de0412b.png");
+//            boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), 100);
+//
+//            BoardCalculator boardCalculator = new BoardCalculator(new BoardProperties());
+//            boardCalculator.printToConsole(array, 474 - leftBoard, 322 - topBoard);
+//        } catch (IOException ex) {
+//            java.util.logging.Logger.getLogger(BoardCalculator.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 }

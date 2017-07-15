@@ -50,7 +50,7 @@ public class ChessMessageReceiver {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername("pi");
         factory.setPassword("ferret");
-        factory.setHost("192.168.1.88");
+        factory.setHost("192.168.1.80");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
@@ -79,8 +79,8 @@ public class ChessMessageReceiver {
                         logger.info(String.format("%s received %s", name, mh.getClassName()));
                         eventMap.get(mh.getClassName()).handleMessage((StartGame) mh.getObject(StartGame.class));
                         break;
-                    case "ChessMove":
-                        ChessMove chessMove = (ChessMove) mh.getObject(ChessMove.class);
+                    case "ChessMoveMsg":
+                        ChessMoveMsg chessMove = (ChessMoveMsg) mh.getObject(ChessMoveMsg.class);
                         logger.info(String.format("%s received %s", name, chessMove.toString()));
                         eventMap.get(mh.getClassName()).handleMessage(chessMove);
                         break;

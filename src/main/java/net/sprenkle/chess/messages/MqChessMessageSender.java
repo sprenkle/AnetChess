@@ -34,7 +34,7 @@ public class MqChessMessageSender implements ChessMessageSender {
             factory = new ConnectionFactory();
             factory.setUsername("pi");
             factory.setPassword("ferret");
-            factory.setHost("192.168.1.88");
+            factory.setHost("192.168.1.80");
             connection = factory.newConnection();
             channel = connection.createChannel();
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
