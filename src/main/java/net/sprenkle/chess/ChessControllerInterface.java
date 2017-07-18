@@ -16,4 +16,5 @@ public interface ChessControllerInterface {
     public void consoleOut();
     public PossiblePiece[][] getKnownBoard();
     public boolean isLastMoveCastle();
+    public void reset();
 }

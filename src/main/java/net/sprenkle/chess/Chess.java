@@ -91,6 +91,7 @@ public class Chess extends TimerTask {
     }
     
     public void startGame(StartGame startGame) {
+       chessEngine.reset();
        chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
        chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
     }

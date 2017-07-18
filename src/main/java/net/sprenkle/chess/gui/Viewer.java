@@ -122,46 +122,14 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         moveList.add("h4g4");
 
         imageName.setText(imageNameList.get(imageIndex));
-
-//        messageReceiver.addMessageHandler(SetBoardRestPosition.class.getSimpleName(), new MessageHandler<SetBoardRestPosition>() {
-//            @Override
-//            public void handleMessage(SetBoardRestPosition requestBoardRestPosition) {
-//                requestBoardRestPosition(requestBoardRestPosition);
-//            }
-//        });
-//
-//        messageReceiver.addMessageHandler(RequestMovePieces.class.getSimpleName(), new MessageHandler<RequestMovePieces>() {
-//            @Override
-//            public void handleMessage(RequestMovePieces requestMovePieces) {
-//                requestMovePieces(requestMovePieces);
-//            }
-//        });
-//
-//        messageReceiver.addMessageHandler(PiecePositions.class.getSimpleName(), new MessageHandler<PiecePositions>() {
-//            @Override
-//            public void handleMessage(PiecePositions piecePositions) {
-//                piecePositions(piecePositions);
-//            }
-//        });
-//
-//        messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
-//            @Override
-//            public void handleMessage(RequestMove requestMove) {
-//                try {
-//                    requestMove(requestMove);
-//                } catch (Exception ex) {
-//                    java.util.logging.Logger.getLogger(RobotMover.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        });
-
     }
 
     public void boardImage(BoardImage boardImage) {
         logger.debug("received image");
+        
         bi = boardImage.GetBi();
         imageTime = LocalTime.now();
-        //   bImageFromConvert = createRotated(bImageFromConvert);
+
         //ImageUtil.saveJpg(bImageFromConvert, "d:\\chess.jpg");
         if (showPieces.isSelected()) {
             showPieces(bi);
@@ -211,7 +179,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             e.printStackTrace();
         }
 
-        imageLbl.setIcon(new ImageIcon(altBi));
+        imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
     }
 
     private void showBlackWhite(BufferedImage boardImage) {

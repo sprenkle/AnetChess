@@ -6,6 +6,7 @@
 package net.sprenkle.chess.controllers;
 
 import java.util.UUID;
+import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.chess.imaging.BoardCalculator;
@@ -63,7 +64,7 @@ public class PiecePositionsIdentifierIT {
         RequestPiecePositions requestPiecePositions = new RequestPiecePositions(new ChessMove(Player.White, "e5d4"), false, UUID.randomUUID());
         
         
-        PiecePositionsIdentifier instance = new PiecePositionsIdentifier();
+        PiecePositionsIdentifier instance = new PiecePositionsIdentifier(new BoardProperties());
         PiecePositions expResult = null;
         PiecePositions result = instance.processImage(boardImage, boardCalculator, requestPiecePositions);
         

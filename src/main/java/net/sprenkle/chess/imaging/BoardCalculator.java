@@ -9,15 +9,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
 import net.sprenkle.imageutils.BlackWhite;
-import net.sprenkle.imageutils.ImageUtil;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.apache.log4j.Logger;
 

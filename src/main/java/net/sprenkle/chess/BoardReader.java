@@ -127,8 +127,9 @@ public class BoardReader {
 
     public static void main(String[] arg) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
+        BoardProperties bp = new BoardProperties();
         BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true), 
-                new BoardCalculator(new BoardProperties()), new PiecePositionsIdentifier());
+                new BoardCalculator(bp), new PiecePositionsIdentifier(bp));
     }
 
     public void requestMove(RequestMove requestMove) throws Exception {

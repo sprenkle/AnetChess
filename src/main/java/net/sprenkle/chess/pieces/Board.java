@@ -28,7 +28,7 @@ public class Board implements BoardInterface {
     private final ArrayList<ChessPiece>[] activePieces = new ArrayList[2];
     private final ArrayList<ChessPiece>[] capturedPieces;
     private boolean lastMoveCastle = false;
-    
+
     public Board() {
         this.capturedPieces = new ArrayList[2];
         king = new ChessPiece[2];
@@ -57,10 +57,10 @@ public class Board implements BoardInterface {
         }
     }
 
-    public boolean isLastMoveCastle(){
+    public boolean isLastMoveCastle() {
         return lastMoveCastle;
     }
-    
+
     @Override
     public void setStartingPositionBoard() {
         setupStartingPosition();
@@ -150,7 +150,7 @@ public class Board implements BoardInterface {
     }
 
     @Override
-    public boolean makeMove(PieceLocation from, PieceLocation to, String promoteTo){
+    public boolean makeMove(PieceLocation from, PieceLocation to, String promoteTo) {
         lastMoveCastle = false;
         if (validMove(from, to)) {
             ChessPiece fromPiece = getPiece(from.getX(), from.getY());
@@ -158,34 +158,41 @@ public class Board implements BoardInterface {
 
             // Castle
             if (fromPiece.getClass() == King.class
-                    && !fromPiece.getHasMoved()
+                    && !fromPiece.getHasMoved() && toPiece == null
                     && (to.getX() == 2 || to.getX() == 6)) {
                 lastMoveCastle = true;
-                if (to.getX() == 2) {
-                    try {
-                        makeMove(new PieceLocation(0, to.getY()), new PieceLocation(3, to.getY()), null);
-                    } catch (InvalidLocationException ex) {
-                        Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                if (to.getX() == 6) {
+                    ChessPiece rook = getPiece(7, from.getY());
+                    rook.SetLocation(5, to.getY());
+                    rook.setHasMoved();
+                    addPieceToBoard(rook);
+                    board[7][from.getY()] = null;
                 } else {
-                    try {
-                        makeMove(new PieceLocation(7, to.getY()), new PieceLocation(5, to.getY()), null);
-                    } catch (InvalidLocationException ex) {
-                        Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    ChessPiece rook = getPiece(7, from.getY());
+                    rook.SetLocation(3, to.getY());
+                    rook.setHasMoved();
+                    addPieceToBoard(rook);
+                    board[7][from.getY()] = null;
                 }
             }
-            
+
             // Check if pawn pomotion
-            if(fromPiece.getClass() == Pawn.class && (to.getY() == 0 || to.getY() ==7)){
+            if (fromPiece.getClass() == Pawn.class && (to.getY() == 0 || to.getY() == 7)) {
                 try {
-                    if(promoteTo == null || promoteTo.isEmpty()) throw new Exception("Pawn Promotion without declaring piece");
-                    switch(promoteTo){
-                        case "q" : fromPiece = new Queen(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
-                        case "r" : fromPiece = new Rook(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
-                        case "b" : fromPiece = new Bishop(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
-                        case "n" : fromPiece = new Knight(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
-                    }} catch (Exception ex) {
+                    if (promoteTo == null || promoteTo.isEmpty()) {
+                        throw new Exception("Pawn Promotion without declaring piece");
+                    }
+                    switch (promoteTo) {
+                        case "q":
+                            fromPiece = new Queen(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                        case "r":
+                            fromPiece = new Rook(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                        case "b":
+                            fromPiece = new Bishop(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                        case "n":
+                            fromPiece = new Knight(fromPiece.getColor(), fromPiece.getLocation().getX(), fromPiece.getLocation().getY());
+                    }
+                } catch (Exception ex) {
                     Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -318,45 +325,45 @@ public class Board implements BoardInterface {
             activePieces[cp.getColor()].add(cp);
         }
     }
-    
-    public PossiblePiece[][] convertToCameraBoard(){
+
+    public PossiblePiece[][] convertToCameraBoard() {
         PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
-        for(int x = 0 ; x < 8; x ++){
+        for (int x = 0; x < 8; x++) {
             knownBoard[x] = new PossiblePiece[8];
         }
-        for(int x = 0 ; x < 8; x ++){
-            for(int y = 0 ; y < 8; y++){
-                if(board[7-x][y] != null){
-                    knownBoard[x][y] = convertChessPiece(board[7-x][y]);
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                if (board[7 - x][y] != null) {
+                    knownBoard[x][y] = convertChessPiece(board[7 - x][y]);
                 }
             }
         }
         return knownBoard;
     }
-    
-    private PossiblePiece convertChessPiece(ChessPiece chessPiece){
+
+    private PossiblePiece convertChessPiece(ChessPiece chessPiece) {
         Player color = chessPiece.color == 0 ? Player.White : Player.Black;
         int rank = 0;
-        switch(chessPiece.getName().charAt(1)){
-            case 'K' :
+        switch (chessPiece.getName().charAt(1)) {
+            case 'K':
                 rank = 5;
                 break;
-            case 'Q' :
+            case 'Q':
                 rank = 4;
                 break;
-            case 'R' :
+            case 'R':
                 rank = 3;
                 break;
-            case 'B' :
+            case 'B':
                 rank = 2;
                 break;
-            case 'N' :
+            case 'N':
                 rank = 1;
                 break;
-            case 'P' :
+            case 'P':
                 rank = 0;
                 break;
         }
-        return new PossiblePiece(color,rank, 7 - chessPiece.getLocation().getX(), chessPiece.getLocation().getY() );
+        return new PossiblePiece(color, rank, 7 - chessPiece.getLocation().getX(), chessPiece.getLocation().getY());
     }
 }

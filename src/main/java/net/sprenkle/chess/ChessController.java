@@ -5,10 +5,6 @@
  */
 package net.sprenkle.chess;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import net.sprenkle.chess.exceptions.InvalidMoveException;
 import net.sprenkle.chess.pieces.Board;
@@ -20,31 +16,15 @@ import net.sprenkle.chess.pieces.Board;
 public class ChessController implements ChessControllerInterface {
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(ChessController.class.getSimpleName());
 
-    //private final ChessResponseListenerInterface listener;
-//    private Scanner stdin;
-//    private BufferedWriter bw;
     private final ArrayList<ChessMove> moves = new ArrayList<>();
-    private final Board board;
-    private final BufferedWriter fileBufferedWriter;
+    private Board board;
     
     public ChessController() {
         board = new Board();
         board.setStartingPositionBoard();
-        File file = new File("chess.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException ex) {
-            logger.error(ex);
-        }
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter(file.getAbsoluteFile());
-        } catch (IOException ex) {
-            logger.error(ex);
-        }
-	fileBufferedWriter = new BufferedWriter(fw);
     }
 
+    @Override
     public void consoleOut(){
         board.consoleOut();
     }
@@ -57,8 +37,8 @@ public class ChessController implements ChessControllerInterface {
         return board.getActivePieces()[0].size() + board.getActivePieces()[1].size();
     }
     
+    @Override
     public void newGame() {
-
         board.setStartingPositionBoard();
         moves.clear();
         logger.debug("New Game");
@@ -80,6 +60,7 @@ public class ChessController implements ChessControllerInterface {
         return "Invalid Move";
     }
     
+    @Override
     public boolean isLastMoveCastle(){
         return board.isLastMoveCastle();
     }
@@ -99,14 +80,17 @@ public class ChessController implements ChessControllerInterface {
         }
     }
 
+    @Override
     public String getMoves(){
         StringBuilder moveCommand = new StringBuilder();
         moveCommand.append("position startpos moves ");
 
-        for (ChessMove move : moves) {
+        moves.stream().map((move) -> {
             moveCommand.append(move.getMove());
+            return move;
+        }).forEachOrdered((_item) -> {
             moveCommand.append(" ");
-        }
+        });
 
         return moveCommand.toString();
     }
@@ -115,5 +99,11 @@ public class ChessController implements ChessControllerInterface {
     @Override
     public PossiblePiece[][] getKnownBoard() {
         return board.convertToCameraBoard();
+    }
+
+    @Override
+    public void reset() {
+        board = new Board();
+        board.setStartingPositionBoard();
     }
 }

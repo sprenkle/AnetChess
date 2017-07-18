@@ -8,6 +8,7 @@ package net.sprenkle.chess.controllers;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.ChessUtil;
 import net.sprenkle.chess.PieceMove;
@@ -31,10 +32,25 @@ public class PiecePositionsIdentifier {
     private final double orgX = 95.4;
     private final double orgY = 193;
     private int captured = 0;
-    private final double high = 75;
+    private final double high = 95;
     private final double mid = 54;
+    private final double pawnPickup;
+    private final double knightPickup;
+    private final double bishopPickup;
+    private final double rookPickup;
+    private final double queenPickup;
+    private final double kingPickup;
 
     static Logger logger = Logger.getLogger(BoardReader.class.getSimpleName());
+
+    public PiecePositionsIdentifier(BoardProperties boardProperties) {
+        pawnPickup = boardProperties.getPawnHeight();
+        knightPickup = boardProperties.getKnightHeight();
+        bishopPickup = boardProperties.getBishopHeight();
+        rookPickup = boardProperties.getRookHeight();
+        queenPickup = boardProperties.getQueenHeight();
+        kingPickup = boardProperties.getKingHeight();
+    }
 
     public PiecePositions processImage(BoardImage boardImage, BoardCalculator boardCalculator, RequestPiecePositions requestPiecePositions) throws Exception {
         BufferedImage bImageFromConvert = boardImage.GetBi();
@@ -55,22 +71,22 @@ public class PiecePositionsIdentifier {
         List<PieceMove> moveList = new ArrayList<>();
 
         // Check for a castle
-        if(requestPiecePositions.getCastle()){
+        if (requestPiecePositions.getCastle()) {
             logger.info(String.format("Castling"));
-            int rookFromCol = moves[2] == 1 ? 0 : 7;   
-            int rookToCol = moves[2] == 1 ? 2 : 5;   
-            
+            int rookFromCol = moves[2] == 1 ? 0 : 7;
+            int rookToCol = moves[2] == 1 ? 2 : 5;
+
             double[] fromCastle = calculateBoardPosition(rookFromCol, moves[1]);
             double[] toCastle = calculateBoardPosition(rookToCol, moves[1]);
-            
-            moveList.add(new PieceMove(fromCastle, toCastle, getPiecePickupHeight(toPiece.rank), false));
-        }else if (lastBoard[moves[2]][moves[3]] != null) {
+
+            moveList.add(new PieceMove(fromCastle, toCastle, getPiecePickupHeight(PossiblePiece.ROOK), false));
+        } else if (lastBoard[moves[2]][moves[3]] != null) {
             double[] capture = new double[2];
-            capture[0] = -15;
-            capture[1] = captured++ * 18;
+            capture[0] = -25;
+            capture[1] = captured++ * 24 + 10;
             logger.info(String.format("Capture Piece x=%s, y=%s", capture[0], capture[1]));
             moveList.add(new PieceMove(to, capture, getPiecePickupHeight(toPiece.rank), false));
-        }else{
+        } else {
             logger.info(String.format("No capture"));
         }
 
@@ -91,27 +107,18 @@ public class PiecePositionsIdentifier {
 
     public double getPiecePickupHeight(int rank) {
         switch (rank) {
-//            case 0:
-//                return 16.3; // pawn
-//            case 1:
-//            case 2:
-//                return 24.3; // bishop knight
-//            case 3:
-//                return 23; // rook
-//            case 4:
-//            case 5:
-//                return 29.6; // king queen
-                
-                 case 0:
-                return 20.0; // pawn
+            case 0:
+                return pawnPickup; // pawn
             case 1:
+                return knightPickup; // knight
             case 2:
-                return 30.0; // bishop knight
+                return bishopPickup; // bishop 
             case 3:
-                return 27; // rook
+                return rookPickup; // rook
             case 4:
+                return queenPickup; // queen
             case 5:
-                return 37; // king queen
+                return kingPickup; // king 
         }
         return 100;
     }

@@ -26,7 +26,9 @@ public class BoardProperties {
 
     private double pawnHeight;
     private double bishopHeight;
+    private double knightHeight;
     private double rookHeight;
+    private double queenHeight;
     private double kingHeight;
 
     private double mid;
@@ -70,8 +72,10 @@ public class BoardProperties {
 
             pawnHeight = Double.parseDouble(prop.getProperty("pawnHeight"));
             bishopHeight = Double.parseDouble(prop.getProperty("bishopHeight"));
+            knightHeight = Double.parseDouble(prop.getProperty("knightHeight"));
             rookHeight = Double.parseDouble(prop.getProperty("rookHeight"));
             kingHeight = Double.parseDouble(prop.getProperty("kingHeight"));
+            queenHeight = Double.parseDouble(prop.getProperty("queenHeight"));
 
             mid = Double.parseDouble(prop.getProperty("mid"));
             high = Double.parseDouble(prop.getProperty("high"));
@@ -545,5 +549,33 @@ public class BoardProperties {
      */
     public void sethLine8(double hLine8) {
         this.hLine8 = hLine8;
+    }
+
+    /**
+     * @return the knightHeight
+     */
+    public double getKnightHeight() {
+        return knightHeight;
+    }
+
+    /**
+     * @param knightHeight the knightHeight to set
+     */
+    public void setKnightHeight(double knightHeight) {
+        this.knightHeight = knightHeight;
+    }
+
+    /**
+     * @return the queenHeight
+     */
+    public double getQueenHeight() {
+        return queenHeight;
+    }
+
+    /**
+     * @param queenHeight the queenHeight to set
+     */
+    public void setQueenHeight(double queenHeight) {
+        this.queenHeight = queenHeight;
     }
 }

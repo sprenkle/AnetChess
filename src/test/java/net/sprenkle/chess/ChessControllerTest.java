@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.pieces.Board;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -156,7 +157,6 @@ public class ChessControllerTest {
     @Test
     public void testBlackKingSideCastle() {
         System.out.println("main");
-        String[] args = null;
         ChessController chessController = new ChessController();
         chessController.newGame();
         String results = chessController.makeMove("e2e4");
@@ -172,8 +172,28 @@ public class ChessControllerTest {
         results = chessController.makeMove("f1d3");
         results = chessController.makeMove("e8g8");
         assertEquals("moveOk", results);
+        assertTrue(chessController.isLastMoveCastle());
     }
-    
-    
-    
+
+
+//    @Test
+//    public void testBlackQueenSideCastle() {
+//        System.out.println("main");
+//        String[] args = null;
+//        ChessController chessController = new ChessController();
+//        chessController.newGame();
+//        
+//        String moves = "e2e4 e7e5 b1c3 b8c6 g1f3 f8c5 f1c4 g8e7 e1g1 f7f6 d2d3 c6b4 a2a3 c7c6 a3b4 c5b6 c3a4 d7d5 e4d5 c6d5 c4b5 c8d7 b5d7 d8d7 a4b6 d7d8 b6a8 d8a8 c2c3 b7b6 d1a4 e7c6 d3d4 e5e4 f3h4 e8g8 h4f5 f8e8 b4b5 c6a5 a4a2 a8d8 f5e3 d8d7 e3d5 d7f7";
+//
+//        String[] moveList = moves.split(" ");
+//        
+//        for(String move : moveList){
+//            chessController.makeMove(move);
+//        }
+//        
+//        String results = chessController.makeMove("c3c4");
+//        assertEquals("moveOk", results);
+//        assertTrue(chessController.isLastMoveCastle());
+//    }
+
 }
