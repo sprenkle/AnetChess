@@ -24,7 +24,9 @@ import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.imaging.BlackWhite;
 import net.sprenkle.chess.imaging.BoardCalculator;
+import net.sprenkle.chess.imaging.ImageUtil;
 import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.ChessImageListenerInterface;
@@ -43,8 +45,6 @@ import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.RequestPiecePositions;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.StartGame;
-import net.sprenkle.imageutils.BlackWhite;
-import net.sprenkle.imageutils.ImageUtil;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
@@ -108,7 +108,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                     .filter(Files::isRegularFile).sorted()
                     .forEach(x -> {
                         try {
-                            imageList.add(net.sprenkle.chess.ImageUtil.loadImage(x.toAbsolutePath().toString()));
+                            imageList.add(net.sprenkle.chess.imaging.ImageUtil.loadImage(x.toAbsolutePath().toString()));
                             imageNameList.add(x.toAbsolutePath().toString());
                         } catch (IOException ex) {
                             Logger.getLogger(TestHarness.class.getName()).log(Level.SEVERE, null, ex);

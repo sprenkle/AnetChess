@@ -5896,3 +5896,171 @@
 2017-07-23 10:12:34,492 Chess  - RequestMove for White Human 8fd411c2-2175-4716-b1f4-a3327477c30f position startpos moves 
 2017-07-23 10:12:34,492 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"8fd411c2-2175-4716-b1f4-a3327477c30f"}
 2017-07-23 10:12:34,496 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"8fd411c2-2175-4716-b1f4-a3327477c30f\"}","className":"RequestMove"}
+2017-07-23 10:13:59,635 Chess  - Move Timeout Activated.
+2017-07-23 10:13:59,635 Chess  - RequestMove for White Human b10d7a87-495c-4370-b0b2-afe679c18dec position startpos moves 
+2017-07-23 10:13:59,635 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"b10d7a87-495c-4370-b0b2-afe679c18dec"}
+2017-07-23 10:13:59,636 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"b10d7a87-495c-4370-b0b2-afe679c18dec\"}","className":"RequestMove"}
+2017-07-23 10:14:34,493 Chess  - Move Timeout Activated.
+2017-07-23 10:14:34,493 Chess  - RequestMove for White Human b37febdc-d170-49fa-83a2-ec20b088d2d3 position startpos moves 
+2017-07-23 10:14:34,494 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"b37febdc-d170-49fa-83a2-ec20b088d2d3"}
+2017-07-23 10:14:34,495 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"b37febdc-d170-49fa-83a2-ec20b088d2d3\"}","className":"RequestMove"}
+2017-07-23 10:15:59,636 Chess  - Move Timeout Activated.
+2017-07-23 10:15:59,638 Chess  - RequestMove for White Human 127db1f1-7a05-471f-834f-729d558acf30 position startpos moves 
+2017-07-23 10:15:59,639 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"127db1f1-7a05-471f-834f-729d558acf30"}
+2017-07-23 10:15:59,643 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"127db1f1-7a05-471f-834f-729d558acf30\"}","className":"RequestMove"}
+2017-07-23 10:16:34,495 Chess  - Move Timeout Activated.
+2017-07-23 10:16:34,499 Chess  - RequestMove for White Human 6eedc3cd-fa04-45fd-8e3d-016775076524 position startpos moves 
+2017-07-23 10:16:34,499 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"6eedc3cd-fa04-45fd-8e3d-016775076524"}
+2017-07-23 10:16:34,500 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"6eedc3cd-fa04-45fd-8e3d-016775076524\"}","className":"RequestMove"}
+2017-07-23 10:17:59,641 Chess  - Move Timeout Activated.
+2017-07-23 10:17:59,641 Chess  - RequestMove for White Human 68111f1c-5818-4886-8cd2-51b558c26d7e position startpos moves 
+2017-07-23 10:17:59,642 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"68111f1c-5818-4886-8cd2-51b558c26d7e"}
+2017-07-23 10:17:59,646 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"68111f1c-5818-4886-8cd2-51b558c26d7e\"}","className":"RequestMove"}
+2017-07-23 10:18:34,500 Chess  - Move Timeout Activated.
+2017-07-23 10:18:34,502 Chess  - RequestMove for White Human 80aa6072-c74e-4941-bff0-8c38c19eddf5 position startpos moves 
+2017-07-23 10:18:34,502 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"80aa6072-c74e-4941-bff0-8c38c19eddf5"}
+2017-07-23 10:18:34,506 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"80aa6072-c74e-4941-bff0-8c38c19eddf5\"}","className":"RequestMove"}
+2017-07-23 10:19:59,642 Chess  - Move Timeout Activated.
+2017-07-23 10:19:59,644 Chess  - RequestMove for White Human d3380569-3888-49c6-a735-a39001df1fae position startpos moves 
+2017-07-23 10:19:59,644 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"d3380569-3888-49c6-a735-a39001df1fae"}
+2017-07-23 10:19:59,648 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"d3380569-3888-49c6-a735-a39001df1fae\"}","className":"RequestMove"}
+2017-07-23 10:20:34,503 Chess  - Move Timeout Activated.
+2017-07-23 10:20:34,504 Chess  - RequestMove for White Human 1f3c93f5-9eae-4e86-bb82-61dbf9e1b0a1 position startpos moves 
+2017-07-23 10:20:34,504 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"1f3c93f5-9eae-4e86-bb82-61dbf9e1b0a1"}
+2017-07-23 10:20:34,505 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"1f3c93f5-9eae-4e86-bb82-61dbf9e1b0a1\"}","className":"RequestMove"}
+2017-07-23 10:21:59,647 Chess  - Move Timeout Activated.
+2017-07-23 10:21:59,649 Chess  - RequestMove for White Human bb8e05e0-d7e7-4b9a-b596-0626ca30ae30 position startpos moves 
+2017-07-23 10:21:59,650 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"bb8e05e0-d7e7-4b9a-b596-0626ca30ae30"}
+2017-07-23 10:21:59,653 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"bb8e05e0-d7e7-4b9a-b596-0626ca30ae30\"}","className":"RequestMove"}
+2017-07-23 10:22:34,505 Chess  - Move Timeout Activated.
+2017-07-23 10:22:34,505 Chess  - RequestMove for White Human 9b6460f0-c911-4dbb-881c-cf7c9b0c96c4 position startpos moves 
+2017-07-23 10:22:34,506 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"9b6460f0-c911-4dbb-881c-cf7c9b0c96c4"}
+2017-07-23 10:22:34,507 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"9b6460f0-c911-4dbb-881c-cf7c9b0c96c4\"}","className":"RequestMove"}
+2017-07-23 10:23:59,650 Chess  - Move Timeout Activated.
+2017-07-23 10:23:59,651 Chess  - RequestMove for White Human 8293aea3-19b2-4ccd-be36-1bd1660a8471 position startpos moves 
+2017-07-23 10:23:59,652 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"8293aea3-19b2-4ccd-be36-1bd1660a8471"}
+2017-07-23 10:23:59,653 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"8293aea3-19b2-4ccd-be36-1bd1660a8471\"}","className":"RequestMove"}
+2017-07-23 10:24:34,506 Chess  - Move Timeout Activated.
+2017-07-23 10:24:34,507 Chess  - RequestMove for White Human 4fed07a2-a3ce-4116-9a84-eab5cf02c607 position startpos moves 
+2017-07-23 10:24:34,507 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"4fed07a2-a3ce-4116-9a84-eab5cf02c607"}
+2017-07-23 10:24:34,508 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"4fed07a2-a3ce-4116-9a84-eab5cf02c607\"}","className":"RequestMove"}
+2017-07-23 10:25:59,652 Chess  - Move Timeout Activated.
+2017-07-23 10:25:59,654 Chess  - RequestMove for White Human 3ab00f38-2fe4-424e-872d-3e165dd246ec position startpos moves 
+2017-07-23 10:25:59,655 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"3ab00f38-2fe4-424e-872d-3e165dd246ec"}
+2017-07-23 10:25:59,659 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"3ab00f38-2fe4-424e-872d-3e165dd246ec\"}","className":"RequestMove"}
+2017-07-23 10:26:34,507 Chess  - Move Timeout Activated.
+2017-07-23 10:26:34,509 Chess  - RequestMove for White Human 458658f6-9954-42f0-9282-9ff2c2f52914 position startpos moves 
+2017-07-23 10:26:34,510 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"458658f6-9954-42f0-9282-9ff2c2f52914"}
+2017-07-23 10:26:34,514 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"458658f6-9954-42f0-9282-9ff2c2f52914\"}","className":"RequestMove"}
+2017-07-23 10:27:59,657 Chess  - Move Timeout Activated.
+2017-07-23 10:27:59,658 Chess  - RequestMove for White Human 9c53a3de-285b-4661-b8e5-30e076d02cbf position startpos moves 
+2017-07-23 10:27:59,659 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"9c53a3de-285b-4661-b8e5-30e076d02cbf"}
+2017-07-23 10:27:59,661 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"9c53a3de-285b-4661-b8e5-30e076d02cbf\"}","className":"RequestMove"}
+2017-07-23 10:28:34,511 Chess  - Move Timeout Activated.
+2017-07-23 10:28:34,511 Chess  - RequestMove for White Human babe86d2-212b-481d-a429-96a8dd522a1b position startpos moves 
+2017-07-23 10:28:34,512 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"babe86d2-212b-481d-a429-96a8dd522a1b"}
+2017-07-23 10:28:34,513 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"babe86d2-212b-481d-a429-96a8dd522a1b\"}","className":"RequestMove"}
+2017-07-23 10:29:59,659 Chess  - Move Timeout Activated.
+2017-07-23 10:29:59,659 Chess  - RequestMove for White Human d7bafd67-0398-4e06-b7c0-466acd23fa3b position startpos moves 
+2017-07-23 10:29:59,660 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"d7bafd67-0398-4e06-b7c0-466acd23fa3b"}
+2017-07-23 10:29:59,662 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"d7bafd67-0398-4e06-b7c0-466acd23fa3b\"}","className":"RequestMove"}
+2017-07-23 10:30:34,512 Chess  - Move Timeout Activated.
+2017-07-23 10:30:34,515 Chess  - RequestMove for White Human 61a657fc-6ae6-490f-b989-026aae9ff77a position startpos moves 
+2017-07-23 10:30:34,515 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"61a657fc-6ae6-490f-b989-026aae9ff77a"}
+2017-07-23 10:30:34,519 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"61a657fc-6ae6-490f-b989-026aae9ff77a\"}","className":"RequestMove"}
+2017-07-23 10:31:59,660 Chess  - Move Timeout Activated.
+2017-07-23 10:31:59,662 Chess  - RequestMove for White Human 4a28f857-4b16-4831-b89e-54fe6a8bd308 position startpos moves 
+2017-07-23 10:31:59,663 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"4a28f857-4b16-4831-b89e-54fe6a8bd308"}
+2017-07-23 10:31:59,667 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"4a28f857-4b16-4831-b89e-54fe6a8bd308\"}","className":"RequestMove"}
+2017-07-23 10:32:34,517 Chess  - Move Timeout Activated.
+2017-07-23 10:32:34,518 Chess  - RequestMove for White Human 1f4b3110-e072-4d55-ad7c-e263234bf024 position startpos moves 
+2017-07-23 10:32:34,518 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"1f4b3110-e072-4d55-ad7c-e263234bf024"}
+2017-07-23 10:32:34,519 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"1f4b3110-e072-4d55-ad7c-e263234bf024\"}","className":"RequestMove"}
+2017-07-23 10:33:59,665 Chess  - Move Timeout Activated.
+2017-07-23 10:33:59,666 Chess  - RequestMove for White Human 647b1283-9108-40cd-ba2f-6243c5b1611b position startpos moves 
+2017-07-23 10:33:59,666 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"647b1283-9108-40cd-ba2f-6243c5b1611b"}
+2017-07-23 10:33:59,667 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"647b1283-9108-40cd-ba2f-6243c5b1611b\"}","className":"RequestMove"}
+2017-07-23 10:34:34,518 Chess  - Move Timeout Activated.
+2017-07-23 10:34:34,521 Chess  - RequestMove for White Human ee327234-42c2-4bd6-a2d8-729b8088c405 position startpos moves 
+2017-07-23 10:34:34,521 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"ee327234-42c2-4bd6-a2d8-729b8088c405"}
+2017-07-23 10:34:34,526 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"ee327234-42c2-4bd6-a2d8-729b8088c405\"}","className":"RequestMove"}
+2017-07-23 10:35:59,666 Chess  - Move Timeout Activated.
+2017-07-23 10:35:59,667 Chess  - RequestMove for White Human 9a71f6fa-15ae-446b-a9ab-e5c4dc430b1b position startpos moves 
+2017-07-23 10:35:59,667 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"9a71f6fa-15ae-446b-a9ab-e5c4dc430b1b"}
+2017-07-23 10:35:59,668 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"9a71f6fa-15ae-446b-a9ab-e5c4dc430b1b\"}","className":"RequestMove"}
+2017-07-23 10:36:34,524 Chess  - Move Timeout Activated.
+2017-07-23 10:36:34,524 Chess  - RequestMove for White Human 8c784c61-4ad9-484c-8145-2ca61bc406e5 position startpos moves 
+2017-07-23 10:36:34,525 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"8c784c61-4ad9-484c-8145-2ca61bc406e5"}
+2017-07-23 10:36:34,528 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"8c784c61-4ad9-484c-8145-2ca61bc406e5\"}","className":"RequestMove"}
+2017-07-23 10:37:59,667 Chess  - Move Timeout Activated.
+2017-07-23 10:37:59,674 Chess  - RequestMove for White Human 307c9c3e-8b15-499e-9251-d55bb018ab66 position startpos moves 
+2017-07-23 10:37:59,675 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"307c9c3e-8b15-499e-9251-d55bb018ab66"}
+2017-07-23 10:37:59,680 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"307c9c3e-8b15-499e-9251-d55bb018ab66\"}","className":"RequestMove"}
+2017-07-23 10:38:34,525 Chess  - Move Timeout Activated.
+2017-07-23 10:38:34,525 Chess  - RequestMove for White Human 047f7c22-2e0e-427e-bb0f-b09f065a0fc7 position startpos moves 
+2017-07-23 10:38:34,526 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"047f7c22-2e0e-427e-bb0f-b09f065a0fc7"}
+2017-07-23 10:38:34,531 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"047f7c22-2e0e-427e-bb0f-b09f065a0fc7\"}","className":"RequestMove"}
+2017-07-23 10:39:59,676 Chess  - Move Timeout Activated.
+2017-07-23 10:39:59,676 Chess  - RequestMove for White Human 30727817-fec9-4d2a-89f0-a15c11b619d0 position startpos moves 
+2017-07-23 10:39:59,676 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"30727817-fec9-4d2a-89f0-a15c11b619d0"}
+2017-07-23 10:39:59,677 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"30727817-fec9-4d2a-89f0-a15c11b619d0\"}","className":"RequestMove"}
+2017-07-23 10:40:34,527 Chess  - Move Timeout Activated.
+2017-07-23 10:40:34,529 Chess  - RequestMove for White Human 06c53a3a-b5e6-47a0-ab17-aa3b43235bbd position startpos moves 
+2017-07-23 10:40:34,529 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"06c53a3a-b5e6-47a0-ab17-aa3b43235bbd"}
+2017-07-23 10:40:34,533 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"06c53a3a-b5e6-47a0-ab17-aa3b43235bbd\"}","className":"RequestMove"}
+2017-07-23 10:41:59,677 Chess  - Move Timeout Activated.
+2017-07-23 10:41:59,677 Chess  - RequestMove for White Human 95356b26-0c30-4214-a311-4ec333beab2b position startpos moves 
+2017-07-23 10:41:59,678 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"95356b26-0c30-4214-a311-4ec333beab2b"}
+2017-07-23 10:41:59,679 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"95356b26-0c30-4214-a311-4ec333beab2b\"}","className":"RequestMove"}
+2017-07-23 10:42:34,531 Chess  - Move Timeout Activated.
+2017-07-23 10:42:34,531 Chess  - RequestMove for White Human f32f27dc-0803-44a3-a91a-b44f2bbcd97a position startpos moves 
+2017-07-23 10:42:34,532 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"f32f27dc-0803-44a3-a91a-b44f2bbcd97a"}
+2017-07-23 10:42:34,533 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"f32f27dc-0803-44a3-a91a-b44f2bbcd97a\"}","className":"RequestMove"}
+2017-07-23 10:43:59,678 Chess  - Move Timeout Activated.
+2017-07-23 10:43:59,681 Chess  - RequestMove for White Human 10449558-a11c-43ac-9534-945aef22e7cc position startpos moves 
+2017-07-23 10:43:59,682 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"10449558-a11c-43ac-9534-945aef22e7cc"}
+2017-07-23 10:43:59,686 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"10449558-a11c-43ac-9534-945aef22e7cc\"}","className":"RequestMove"}
+2017-07-23 10:44:34,532 Chess  - Move Timeout Activated.
+2017-07-23 10:44:34,534 Chess  - RequestMove for White Human a1955eb1-edc0-4bdd-8d34-a2a6c0561974 position startpos moves 
+2017-07-23 10:44:34,535 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"a1955eb1-edc0-4bdd-8d34-a2a6c0561974"}
+2017-07-23 10:44:34,540 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"a1955eb1-edc0-4bdd-8d34-a2a6c0561974\"}","className":"RequestMove"}
+2017-07-23 10:45:59,683 Chess  - Move Timeout Activated.
+2017-07-23 10:45:59,685 Chess  - RequestMove for White Human 137c419c-5ff5-4fca-803f-703885ac7d0b position startpos moves 
+2017-07-23 10:45:59,685 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"137c419c-5ff5-4fca-803f-703885ac7d0b"}
+2017-07-23 10:45:59,688 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"137c419c-5ff5-4fca-803f-703885ac7d0b\"}","className":"RequestMove"}
+2017-07-23 10:46:34,537 Chess  - Move Timeout Activated.
+2017-07-23 10:46:34,538 Chess  - RequestMove for White Human 17da03bc-f3cc-4495-8f67-5cacc1ca374a position startpos moves 
+2017-07-23 10:46:34,538 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"17da03bc-f3cc-4495-8f67-5cacc1ca374a"}
+2017-07-23 10:46:34,544 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"17da03bc-f3cc-4495-8f67-5cacc1ca374a\"}","className":"RequestMove"}
+2017-07-23 10:47:59,687 Chess  - Move Timeout Activated.
+2017-07-23 10:47:59,690 Chess  - RequestMove for White Human f6a86ea7-5203-4238-a036-eb85af097db9 position startpos moves 
+2017-07-23 10:47:59,692 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"f6a86ea7-5203-4238-a036-eb85af097db9"}
+2017-07-23 10:47:59,697 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"f6a86ea7-5203-4238-a036-eb85af097db9\"}","className":"RequestMove"}
+2017-07-23 10:48:34,539 Chess  - Move Timeout Activated.
+2017-07-23 10:48:34,540 Chess  - RequestMove for White Human 9f0c6679-657a-4d11-97d2-557cf3c588a9 position startpos moves 
+2017-07-23 10:48:34,541 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"9f0c6679-657a-4d11-97d2-557cf3c588a9"}
+2017-07-23 10:48:34,543 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"9f0c6679-657a-4d11-97d2-557cf3c588a9\"}","className":"RequestMove"}
+2017-07-23 10:49:59,694 Chess  - Move Timeout Activated.
+2017-07-23 10:49:59,697 Chess  - RequestMove for White Human 7f3cdded-545d-442d-be0c-e94979d1d21f position startpos moves 
+2017-07-23 10:49:59,698 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"7f3cdded-545d-442d-be0c-e94979d1d21f"}
+2017-07-23 10:49:59,703 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"7f3cdded-545d-442d-be0c-e94979d1d21f\"}","className":"RequestMove"}
+2017-07-23 10:50:34,541 Chess  - Move Timeout Activated.
+2017-07-23 10:50:34,544 Chess  - RequestMove for White Human 4cfbf4e2-ae9c-41c3-ab31-b46387decce8 position startpos moves 
+2017-07-23 10:50:34,544 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"4cfbf4e2-ae9c-41c3-ab31-b46387decce8"}
+2017-07-23 10:50:34,550 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"4cfbf4e2-ae9c-41c3-ab31-b46387decce8\"}","className":"RequestMove"}
+2017-07-23 10:51:59,700 Chess  - Move Timeout Activated.
+2017-07-23 10:51:59,700 Chess  - RequestMove for White Human 0f3920f9-8490-4b08-8dd9-bbc0b79cb820 position startpos moves 
+2017-07-23 10:51:59,701 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"0f3920f9-8490-4b08-8dd9-bbc0b79cb820"}
+2017-07-23 10:51:59,702 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"0f3920f9-8490-4b08-8dd9-bbc0b79cb820\"}","className":"RequestMove"}
+2017-07-23 10:52:34,546 Chess  - Move Timeout Activated.
+2017-07-23 10:52:34,547 Chess  - RequestMove for White Human a04cd38f-d6d2-4343-8e53-4831d2b38724 position startpos moves 
+2017-07-23 10:52:34,547 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"a04cd38f-d6d2-4343-8e53-4831d2b38724"}
+2017-07-23 10:52:34,548 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"a04cd38f-d6d2-4343-8e53-4831d2b38724\"}","className":"RequestMove"}
+2017-07-23 10:53:59,701 Chess  - Move Timeout Activated.
+2017-07-23 10:53:59,702 Chess  - RequestMove for White Human 697d8d27-677e-4aa4-a0d4-adbfcd19542a position startpos moves 
+2017-07-23 10:53:59,702 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"697d8d27-677e-4aa4-a0d4-adbfcd19542a"}
+2017-07-23 10:53:59,703 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"697d8d27-677e-4aa4-a0d4-adbfcd19542a\"}","className":"RequestMove"}
+2017-07-23 10:54:34,548 Chess  - Move Timeout Activated.
+2017-07-23 10:54:34,549 Chess  - RequestMove for White Human 01b53a89-ad77-47c3-a77e-c0a61eced64d position startpos moves 
+2017-07-23 10:54:34,549 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"01b53a89-ad77-47c3-a77e-c0a61eced64d"}
+2017-07-23 10:54:34,550 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"01b53a89-ad77-47c3-a77e-c0a61eced64d\"}","className":"RequestMove"}

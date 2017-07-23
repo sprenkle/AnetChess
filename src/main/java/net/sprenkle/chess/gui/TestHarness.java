@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import net.sprenkle.chess.BoardReader;
-import net.sprenkle.chess.ImageUtil;
+import net.sprenkle.chess.imaging.ImageUtil;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;

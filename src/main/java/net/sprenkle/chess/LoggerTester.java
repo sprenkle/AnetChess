@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.imaging.ImageUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.awt.image.BufferedImage;
@@ -65,7 +66,7 @@ public class LoggerTester {
                                 break;
                             case "BoardAtRest":
                                 BoardAtRest bar = gson.fromJson(json, BoardAtRest.class);
-                                boardReader.boardAtRest(bar);
+                                //boardReader.boardAtRest(bar);
                                 break;
                             case "StartGame":
                                 StartGame sg = gson.fromJson(json, StartGame.class);

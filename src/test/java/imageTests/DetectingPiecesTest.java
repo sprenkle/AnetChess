@@ -5,11 +5,6 @@
  */
 package imageTests;
 
-import java.awt.image.BufferedImage;
-import net.sprenkle.chess.imaging.BoardCalculator;
-import net.sprenkle.imageutils.BlackWhite;
-import net.sprenkle.imageutils.ImageUtil;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**

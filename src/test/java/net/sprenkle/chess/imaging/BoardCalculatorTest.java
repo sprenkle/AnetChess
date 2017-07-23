@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.PossiblePiece;
-import net.sprenkle.imageutils.ImageUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

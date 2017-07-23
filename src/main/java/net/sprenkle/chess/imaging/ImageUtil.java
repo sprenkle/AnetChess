@@ -8,7 +8,7 @@
  * Last Modified By:     $Author: atweb $
  * Last Modified Date:   $Date: 2008/05/19 00:10:48 $
  */
-package net.sprenkle.chess;
+package net.sprenkle.chess.imaging;
 
 //------------------------------------------------------------------------------
 // Imports

@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.imaging.ImageUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;

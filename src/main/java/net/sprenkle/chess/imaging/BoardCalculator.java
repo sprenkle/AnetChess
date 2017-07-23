@@ -15,7 +15,6 @@ import java.util.List;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
-import net.sprenkle.imageutils.BlackWhite;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.apache.log4j.Logger;
 

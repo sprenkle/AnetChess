@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import net.sprenkle.chess.ImageUtil;
 
 public class ChessPlayDialog  {
     int imageNumber = 0;
