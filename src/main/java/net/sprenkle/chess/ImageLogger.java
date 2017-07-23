@@ -42,7 +42,7 @@ public class ImageLogger {
     
     private void boardImage(BoardImage boardImage){
         Path path = Paths.get(logDir, boardImage.getUuid().toString() + ".png");
-        ImageUtil.savePng(boardImage.GetBi(), path.toString());
+        ImageUtil.savePng(boardImage.getBi(), path.toString());
     }
     
     public static void main(String[] arg){

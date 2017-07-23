@@ -127,7 +127,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     public void boardImage(BoardImage boardImage) {
         logger.debug("received image");
 
-        bi = boardImage.GetBi();
+        bi = boardImage.getBi();
         imageTime = LocalTime.now();
 
         //ImageUtil.saveJpg(bImageFromConvert, "d:\\chess.jpg");

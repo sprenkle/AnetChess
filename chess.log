@@ -6064,3 +6064,13 @@
 2017-07-23 10:54:34,549 Chess  - RequestMove for White Human 01b53a89-ad77-47c3-a77e-c0a61eced64d position startpos moves 
 2017-07-23 10:54:34,549 MqChessMessageSender  - Chess sends RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"01b53a89-ad77-47c3-a77e-c0a61eced64d"}
 2017-07-23 10:54:34,550 ChessMessageReceiver  - RobotMover received RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"01b53a89-ad77-47c3-a77e-c0a61eced64d\"}","className":"RequestMove"}
+2017-07-23 11:59:52,683 MqChessMessageSender  - Viewer sends RequestImage  {"messageId":"667e086f-3038-48c0-8421-16dd77940ea1"}
+2017-07-23 11:59:55,515 ChessMessageReceiver  - Viewer received BoardImage aa4e89fd-807d-49ff-adee-4ccba86d94af
+2017-07-23 11:59:55,515 BoardCalculator  - received image
+2017-07-23 12:00:16,456 BoardCalculator  - Marker y=52
+
+2017-07-23 12:07:58,180 MqChessMessageSender  - Viewer sends RequestImage  {"messageId":"7ca35894-1892-47ad-8acf-c204265678c0"}
+2017-07-23 12:08:01,082 ChessMessageReceiver  - Viewer received BoardImage bc155229-f27a-4087-ae39-a14e7ef352e9
+2017-07-23 12:08:01,082 BoardCalculator  - received image
+2017-07-23 12:08:01,139 BoardCalculator  - Marker y=52
+

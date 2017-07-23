@@ -36,7 +36,7 @@ public class BoardImage implements Serializable {
         }
     }
 
-    public BufferedImage GetBi() {
+    public BufferedImage getBi() {
         try {
             InputStream in = new ByteArrayInputStream(imageInByte);
             return ImageIO.read(in);

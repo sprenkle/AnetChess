@@ -147,7 +147,7 @@ public class BoardReader {
     }
 
     public void boardImage(BoardImage boardImage) {
-        BufferedImage bImageFromConvert = boardImage.GetBi();
+        BufferedImage bImageFromConvert = boardImage.getBi();
         //logger.debug("Received Image");
         if (state.inState(BoardReaderState.CHECK_FOR_GAME_SETUP)) {
             boardCalculator.setInitialized(false);

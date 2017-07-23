@@ -57,7 +57,7 @@ public class PiecePositionsIdentifier {
     }
 
     public PiecePositions processImage(BoardImage boardImage, BoardCalculator boardCalculator, RequestPiecePositions requestPiecePositions) throws Exception {
-        BufferedImage bImageFromConvert = boardImage.GetBi();
+        BufferedImage bImageFromConvert = boardImage.getBi();
         PossiblePiece[][] lastBoard = boardCalculator.getKnownBoard(); // needs to be before detect piece
         PossiblePiece[][] piecePositionsBoard = boardCalculator.getPiecePositions();
         boardCalculator.detectPieces(bImageFromConvert, requestPiecePositions.getChessMove().getTurn(), lastBoard);
