@@ -16,7 +16,7 @@ import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.chess.messages.ChessMove;
-import net.sprenkle.messages.MessageHolder;
+import net.sprenkle.chess.messages.MessageHolder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 

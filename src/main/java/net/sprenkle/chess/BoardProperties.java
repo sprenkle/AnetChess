@@ -23,6 +23,13 @@ public class BoardProperties {
     private int rightBoard;
     private int bottomBoard;
     private int topBoard;
+    
+    private int bottomDetect;
+    private int topDetect;
+    private int leftDetect;
+    private int rightDetect;
+
+    
 
     private double pawnHeight;
     private double bishopHeight;
@@ -55,6 +62,8 @@ public class BoardProperties {
     private double hLine6;
     private double hLine7;
     private double hLine8;
+    private double xLine[] = new double[8];
+    private double yLine[] = new double[8];
 
     public BoardProperties() {
         Properties prop = new Properties();
@@ -70,6 +79,11 @@ public class BoardProperties {
             bottomBoard = Integer.parseInt(prop.getProperty("bottomBoard"));
             topBoard = Integer.parseInt(prop.getProperty("topBoard"));
 
+            leftDetect = Integer.parseInt(prop.getProperty("leftDetect"));
+            rightDetect = Integer.parseInt(prop.getProperty("rightDetect"));
+            bottomDetect = Integer.parseInt(prop.getProperty("bottomDetect"));
+            topDetect = Integer.parseInt(prop.getProperty("topDetect"));
+            
             pawnHeight = Double.parseDouble(prop.getProperty("pawnHeight"));
             bishopHeight = Double.parseDouble(prop.getProperty("bishopHeight"));
             knightHeight = Double.parseDouble(prop.getProperty("knightHeight"));
@@ -92,6 +106,14 @@ public class BoardProperties {
             vLine6 = Double.parseDouble(prop.getProperty("vLine6"));
             vLine7 = Double.parseDouble(prop.getProperty("vLine7"));
             vLine8 = Double.parseDouble(prop.getProperty("vLine8"));
+            xLine[0] = vLine1;
+            xLine[1] = vLine1;
+            xLine[2] = vLine1;
+            xLine[3] = vLine1;
+            xLine[4] = vLine1;
+            xLine[5] = vLine1;
+            xLine[6] = vLine1;
+            xLine[7] = vLine1;
             
             hLine1 = Double.parseDouble(prop.getProperty("hLine1"));
             hLine2 = Double.parseDouble(prop.getProperty("hLine2"));
@@ -101,6 +123,15 @@ public class BoardProperties {
             hLine6 = Double.parseDouble(prop.getProperty("hLine6"));
             hLine7 = Double.parseDouble(prop.getProperty("hLine7"));
             hLine8 = Double.parseDouble(prop.getProperty("hLine8"));
+            yLine[0] = hLine1;
+            yLine[1] = hLine1;
+            yLine[2] = hLine1;
+            yLine[3] = hLine1;
+            yLine[4] = hLine1;
+            yLine[5] = hLine1;
+            yLine[6] = hLine1;
+            yLine[7] = hLine1;
+
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
@@ -577,5 +608,47 @@ public class BoardProperties {
      */
     public void setQueenHeight(double queenHeight) {
         this.queenHeight = queenHeight;
+    }
+
+    /**
+     * @return the xLine
+     */
+    public double[] getxLine() {
+        return xLine;
+    }
+
+    /**
+     * @return the yLine
+     */
+    public double[] getyLine() {
+        return yLine;
+    }
+
+    /**
+     * @return the bottomDetect
+     */
+    public int getBottomDetect() {
+        return bottomDetect;
+    }
+
+    /**
+     * @return the topDetect
+     */
+    public int getTopDetect() {
+        return topDetect;
+    }
+
+    /**
+     * @return the leftDetect
+     */
+    public int getLeftDetect() {
+        return leftDetect;
+    }
+
+    /**
+     * @return the rightDetect
+     */
+    public int getRightDetect() {
+        return rightDetect;
     }
 }

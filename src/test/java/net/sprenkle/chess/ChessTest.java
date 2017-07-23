@@ -6,14 +6,13 @@
 package net.sprenkle.chess;
 
 import java.util.UUID;
-import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.RequestMovePieces;
-import net.sprenkle.messages.MessageHolder;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -21,10 +20,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import org.mockito.ArgumentCaptor;
 import static org.mockito.ArgumentMatchers.any;
-import org.mockito.Captor;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

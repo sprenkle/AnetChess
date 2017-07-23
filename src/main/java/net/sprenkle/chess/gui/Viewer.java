@@ -34,8 +34,10 @@ import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
+import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.PiecePositions;
+import net.sprenkle.chess.messages.RequestImage;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.RequestPiecePositions;
@@ -43,8 +45,6 @@ import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.imageutils.BlackWhite;
 import net.sprenkle.imageutils.ImageUtil;
-import net.sprenkle.messages.MessageHolder;
-import net.sprenkle.messages.images.RequestImage;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
@@ -100,7 +100,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         } catch (Exception ex) {
             Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\boardc2b33864-be94-410b-835f-ebd3fd268465.png");
+        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\board1cec39d9-2820-48f1-963b-acb605ff2f2e.png");
         imageLbl.setIcon(new ImageIcon(bi));
 
         try (Stream<Path> paths = Files.walk(Paths.get("D:\\git\\Chess\\images\\game2"))) {
@@ -126,7 +126,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     public void boardImage(BoardImage boardImage) {
         logger.debug("received image");
-        
+
         bi = boardImage.GetBi();
         imageTime = LocalTime.now();
 
@@ -144,7 +144,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     public void requestMove(RequestMove requestMove) throws Exception {
         if (requestMove.isRobot()) {
-            ChessMoveMsg chessMove = new ChessMoveMsg(requestMove.getMoveId(), true, new ChessMove(requestMove.getTurn(), moveList.remove(0)) );
+            ChessMoveMsg chessMove = new ChessMoveMsg(requestMove.getMoveId(), true, new ChessMove(requestMove.getTurn(), moveList.remove(0)));
             messageSender.send(new MessageHolder(ChessMoveMsg.class.getSimpleName(), chessMove));
         }
     }
@@ -157,8 +157,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             e.printStackTrace();
         }
 
-        imageLbl.setIcon(new ImageIcon(altBi));
-    }
+        imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
+   }
 
     private void showPieces(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
@@ -167,14 +167,18 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        imageLbl.setIcon(new ImageIcon(altBi));
+       imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
     }
 
     private void showNone(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
         try {
+            ArrayList<PossiblePiece> boardMarker = boardCalculator.detectBoardMarker(altBi);
+            if (boardMarker.size() >= 1) {
+                logger.debug(String.format("Marker y=%s\n", boardMarker.get(0).y));
+            }
             boardCalculator.showCircles(altBi);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,6 +191,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         try {
             BufferedImage altBi = BlackWhite.thresholdImage(boardImage, 100);
             imageLbl.setIcon(new ImageIcon(altBi));
+    
+            imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -244,6 +250,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         imageName = new javax.swing.JLabel();
         debugChk = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        gcodetxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -369,6 +377,15 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             }
         });
 
+        jButton4.setText("Send GCode");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        gcodetxt.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -395,8 +412,8 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                         .addComponent(debugChk)
                         .addGap(72, 72, 72))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,8 +443,12 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                                 .addComponent(prevImage)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nextImage))
-                            .addComponent(jButton3))
-                        .addContainerGap(35, Short.MAX_VALUE))))
+                            .addComponent(jButton3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(gcodetxt)))
+                        .addContainerGap(29, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(825, 825, 825)
                 .addComponent(startGameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -474,6 +495,10 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
                             .addComponent(SendImage)
                             .addComponent(prevImage)
                             .addComponent(nextImage))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4)
+                            .addComponent(gcodetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -526,7 +551,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         ArrayList<PossiblePiece> pieces = boardCalculator.detectCircles(array, false);
         int position = 0;
         for (PossiblePiece piece : pieces) {
-                logger.debug(String.format("Piece at %s,%s", piece.x, piece.y));
+            logger.debug(String.format("Piece at %s,%s", piece.x, piece.y));
 //                int x = (int) (xSlope * piece.x + xIntercept + orgX);
 //                int y = (int) (ySlope * piece.y + yIntercept + 190);
 //                String gcode = String.format("G1 X%s Y%s Z%s", x, y, mid);
@@ -538,7 +563,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 //                    Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
 //                }
 
-                movePiece(piece.x, piece.y, position++, 0);
+            movePiece(piece.x, piece.y, position++, 0);
         }
         mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X%f Y%f Z26", orgX, orgY), "Testing piece locations"));
         messageSender.send(mh);
@@ -687,8 +712,14 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         boardCalculator.syncImage(bi);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        MessageHolder mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcodetxt.getText(), "from viewer"));
+        messageSender.send(mh);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void requestImage() {
-        MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage());
+        MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID()));
         messageSender.send(mh);
     }
 
@@ -772,6 +803,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private javax.swing.JCheckBox debugChk;
     private javax.swing.JTextField gcodeX;
     private javax.swing.JTextField gcodeY;
+    private javax.swing.JTextField gcodetxt;
     private javax.swing.JButton getImageBtn;
     private javax.swing.JTextField imageAdjustTxt;
     private javax.swing.JLabel imageLbl;
@@ -780,6 +812,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton nextImage;

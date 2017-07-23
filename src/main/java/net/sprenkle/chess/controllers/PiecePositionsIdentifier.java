@@ -40,6 +40,8 @@ public class PiecePositionsIdentifier {
     private final double rookPickup;
     private final double queenPickup;
     private final double kingPickup;
+    private final double[] xLine;
+    private final double[] yLine;
 
     static Logger logger = Logger.getLogger(BoardReader.class.getSimpleName());
 
@@ -50,11 +52,14 @@ public class PiecePositionsIdentifier {
         rookPickup = boardProperties.getRookHeight();
         queenPickup = boardProperties.getQueenHeight();
         kingPickup = boardProperties.getKingHeight();
+        xLine = boardProperties.getxLine();
+        yLine = boardProperties.getyLine();
     }
 
     public PiecePositions processImage(BoardImage boardImage, BoardCalculator boardCalculator, RequestPiecePositions requestPiecePositions) throws Exception {
         BufferedImage bImageFromConvert = boardImage.GetBi();
         PossiblePiece[][] lastBoard = boardCalculator.getKnownBoard(); // needs to be before detect piece
+        PossiblePiece[][] piecePositionsBoard = boardCalculator.getPiecePositions();
         boardCalculator.detectPieces(bImageFromConvert, requestPiecePositions.getChessMove().getTurn(), lastBoard);
         logger.debug(String.format("received %s", requestPiecePositions.getChessMove().getMove()));
         int[] moves = ChessUtil.convertFromMove(requestPiecePositions.getChessMove().getMove());
@@ -63,10 +68,8 @@ public class PiecePositionsIdentifier {
         PossiblePiece toPiece = lastBoard[moves[2]][moves[3]];
         logger.debug(String.format("fromPiece x=%s, y=%s row=%s col=%s", fromPiece.x, fromPiece.y, fromPiece.row, fromPiece.col));
         double[] from = new double[2];
-        from[0] = (int) (xSlope * fromPiece.x + xIntercept);
-        from[1] = (int) (ySlope * fromPiece.y + yIntercept);
         logger.info(String.format("from Piece image x=%s, y=%s", from[0], from[1]));
-        from = calculateBoardPosition(moves[0], moves[1]);
+        from = calculateBoardPosition(moves[0], moves[1], piecePositionsBoard[fromPiece.row][fromPiece.col]);
         double[] to = calculateBoardPosition(moves[2], moves[3]);
         List<PieceMove> moveList = new ArrayList<>();
 
@@ -96,6 +99,15 @@ public class PiecePositionsIdentifier {
         return piecePositions;
     }
 
+    public double[] calculateBoardPosition(int x, int y, PossiblePiece piece) {
+        double[] pos = calculateBoardPosition(x, y);
+
+        pos[0] += (piece.x - xLine[piece.col]) * -0.4308;
+        pos[1] += (piece.y - yLine[piece.row]) * 0.4308;
+        
+        return pos;
+    }
+
     public double[] calculateBoardPosition(int x, int y) {
         double[] pos = new double[2];
 
@@ -105,6 +117,7 @@ public class PiecePositionsIdentifier {
         return pos;
     }
 
+    
     public double getPiecePickupHeight(int rank) {
         switch (rank) {
             case 0:

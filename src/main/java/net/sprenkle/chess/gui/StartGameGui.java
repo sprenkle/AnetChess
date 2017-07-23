@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sprenkle.chess.Chess;
-import net.sprenkle.messages.MessageHolder;
+import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.StartGame;
 
 /**

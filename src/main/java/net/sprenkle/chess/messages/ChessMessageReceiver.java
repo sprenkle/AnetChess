@@ -15,7 +15,6 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import java.io.IOException;
 import java.util.HashMap;
-import net.sprenkle.messages.MessageHolder;
 import org.apache.log4j.Logger;
 
 /**

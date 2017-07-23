@@ -10,7 +10,6 @@ import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.RequestMove;
-import net.sprenkle.messages.MessageHolder;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -22,6 +21,7 @@ import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.KnownBoardPositions;
+import net.sprenkle.chess.messages.MessageHolder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 

@@ -5,7 +5,6 @@
  */
 package net.sprenkle.chess.messages;
 
-import net.sprenkle.messages.MessageHolder;
 
 /**
  *

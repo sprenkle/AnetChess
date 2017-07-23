@@ -15,8 +15,9 @@ public class BoardReaderState {
     public static String NONE = "none";
     public static String CHECK_FOR_GAME_SETUP = "checkForGameSetup";
     public static String CHECK_FOR_HUMAN_MOVE = "checkForHumanMove";
-    public static String CHECK_FOR_REST_POSITION = "checkForRestPosition";
+    public static String SET_REST_POSITION = "checkForRestPosition";
     public static String CHECK_FOR_PIECE_POSITIONS = "checkForPiecePositions";
+    public static String SET_BOARD_POSITION = "setBoardPosition";
 
     public boolean inState(String state){
         return this.state.equals(state);
@@ -41,13 +42,14 @@ public class BoardReaderState {
         state = CHECK_FOR_HUMAN_MOVE;
     }
     
-    public void setRestPositino(){
-        state = CHECK_FOR_REST_POSITION;
+    public void setRestPosition(){
+        state = SET_REST_POSITION;
     }
     
     public void setPiecePosition(){
         state = CHECK_FOR_PIECE_POSITIONS;
     }
+    
 
     /**
      * @param state the state to set

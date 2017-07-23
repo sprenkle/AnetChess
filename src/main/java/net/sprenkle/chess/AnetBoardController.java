@@ -23,10 +23,10 @@ import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
+import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.PiecePositions;
 import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.RequestPiecePositions;
-import net.sprenkle.messages.MessageHolder;
 import org.apache.log4j.PropertyConfigurator;
 
 public class AnetBoardController {
@@ -51,12 +51,6 @@ public class AnetBoardController {
         this.mid = boardProperties.getMid();
         this.rest = boardProperties.getRest();
 
-        messageReceiver.addMessageHandler(SetBoardRestPosition.class.getSimpleName(), new MessageHandler<SetBoardRestPosition>() {
-            @Override
-            public void handleMessage(SetBoardRestPosition requestBoardRestPosition) {
-                requestBoardRestPosition(requestBoardRestPosition);
-            }
-        });
 
         messageReceiver.addMessageHandler(GCode.class.getSimpleName(), new MessageHandler<GCode>() {
             @Override
@@ -143,17 +137,17 @@ public class AnetBoardController {
     }
 
     private void sendCommand(String command, String notes) {
-        if (!homed) {
-            executeGcode("G91", "Relative Positioning");
-            executeGcode(String.format("G1 X0 Y0 Z%f", mid), "Bring up hook.");
-            executeGcode("G90", "Absolute Positioning");
-            executeGcode("G28 X0 Y0", "Home");
-            executeGcode(String.format("G1 X%f Y%f", 0.0, 200.0), "");
-            executeGcode("G28 Z0", "Home");
-            executeGcode(String.format("G1 Z%f", mid), "Bring up hook.");
-            executeGcode(String.format("G1 X%f Y%f", -15.0, rest), "Bring up hook.");
-            homed = true;
-        }
+//        if (!homed) {
+//            executeGcode("G91", "Relative Positioning");
+//            executeGcode(String.format("G1 X0 Y0 Z%f", mid), "Bring up hook.");
+//            executeGcode("G90", "Absolute Positioning");
+//            executeGcode("G28 X0 Y0", "Home");
+//            executeGcode(String.format("G1 X%f Y%f", 0.0, 200.0), "");
+//            executeGcode("G28 Z0", "Home");
+//            executeGcode(String.format("G1 Z%f", mid), "Bring up hook.");
+//            executeGcode(String.format("G1 X%f Y%f", -15.0, rest), "Bring up hook.");
+//            homed = true;
+//        }
         executeGcode(command, notes);
     }
 

@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
+import java.util.List;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.PossiblePiece;
@@ -28,11 +29,16 @@ public class BoardCalculator {
     static Line[] horizontalLines = new Line[8];
     static Line[] verticalLines = new Line[8];
     private PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
+    private PossiblePiece[][] piecePositions;
     private boolean initialized = false;
     private final int leftBoard;
     private final int rightBoard;
     private final int bottomBoard;
     private final int topBoard;
+    private final int leftDetect;
+    private final int rightDetect;
+    private final int bottomDetect;
+    private final int topDetect;
     static Player humanColor;
     private ArrayList<PossiblePiece> detectedPieces;
 
@@ -51,7 +57,12 @@ public class BoardCalculator {
         rightBoard = boardProperties.getRightBoard();
         bottomBoard = boardProperties.getBottomBoard();
         topBoard = boardProperties.getTopBoard();
-        
+
+        leftDetect = boardProperties.getLeftDetect();
+        rightDetect = boardProperties.getRightDetect();
+        bottomDetect = boardProperties.getBottomDetect();
+        topDetect = boardProperties.getTopDetect();
+
         verticalLines[0] = new Line(new Point(215, 0, Player.White), new Point(215, 600, Player.White));
         horizontalLines[0] = new Line(new Point(0, 22, Player.White), new Point(800, 22, Player.White));
         verticalLines[1] = new Line(new Point(269, 0, Player.White), new Point(269, 600, Player.White));
@@ -68,10 +79,6 @@ public class BoardCalculator {
         horizontalLines[6] = new Line(new Point(0, 361, Player.White), new Point(800, 361, Player.White));
         verticalLines[7] = new Line(new Point(605, 0, Player.White), new Point(605, 600, Player.White));
         horizontalLines[7] = new Line(new Point(0, 420, Player.White), new Point(800, 420, Player.White));
-    }
-
-    public void parseBI(BufferedImage bi) {
-
     }
 
     public Player getHumanColor() {
@@ -109,19 +116,30 @@ public class BoardCalculator {
         g2.setStroke(stroke);
         g2.setColor(Color.GREEN);
         drawLines(g2);
+        
         ArrayList<PossiblePiece> pieces = detectCircles(array, true);
         pieces.forEach((piece) -> markPiece(g2, piece.x, piece.y, piece.color));
         g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
+
+        ArrayList<PossiblePiece> markers = detectBoardMarker(bi);
+        markers.forEach((piece) -> markPiece(g2, piece.x, piece.y, Color.CYAN));
+        g2.setColor(Color.YELLOW);
+        g2.drawRect(leftDetect, topDetect, rightDetect - leftDetect, bottomDetect - topDetect);
     }
 
     public ArrayList<PossiblePiece> detectCircles(boolean[][] array, boolean restrictArea) {
-        ArrayList<PossiblePiece> pieces = new ArrayList<>();
         int xOffset = restrictArea ? leftBoard : 0;
         int yOffset = restrictArea ? topBoard : 0;
+        return detectCircles(array, xOffset, yOffset);
+    }    
+    
+    
+    public ArrayList<PossiblePiece> detectCircles(boolean[][] array, int xOffset, int yOffset) {
+        ArrayList<PossiblePiece> pieces = new ArrayList<>();
         for (int y = 6; y < array[0].length - 6; y++) {
 //                        logger.debug(String.format("y=%s",  y));
             for (int x = 6; x < array.length - 6; x++) {
-              try {
+                try {
                     if (detectC(array, x, y, true)) {
                         PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.White);
                         pieces.add(piece);
@@ -131,7 +149,7 @@ public class BoardCalculator {
                         array[x + 1][y + 1] = true;
                         x += 15;
                     } else if (detectC(array, x, y, false)) {
-  //                      logger.debug(String.format("x=%s y=%s", x, y));
+                        //                      logger.debug(String.format("x=%s y=%s", x, y));
                         PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.Black);
                         pieces.add(piece);
                         array[x][y] = false;
@@ -273,15 +291,13 @@ public class BoardCalculator {
             horizontalLines[i + 2] = new Line(start, end);
             g2.drawLine(horizontalLines[i + 2].start.x, horizontalLines[i + 2].start.y, horizontalLines[i + 2].end.x, horizontalLines[i + 2].end.y);
         }
-
-//        for (int i = 0; i < 8; i++) {
-//            logger.info(String.format("verticalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", verticalLines[i].start.x, verticalLines[i].start.y, verticalLines[i].end.x, verticalLines[i].end.y));
-//            logger.info(String.format("horizontalLines[0] = new Line(new Point(%s, %s, false), new Point(%s, %s, false));", horizontalLines[i].start.x, horizontalLines[i].start.y, horizontalLines[i].end.x, horizontalLines[i].end.y));
-//        }
     }
-//    public boolean detectPieceLocations(BufferedImage bi) {
-//
-//    }
+
+    public ArrayList<PossiblePiece> detectBoardMarker(BufferedImage bi) {
+        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftDetect, topDetect, rightDetect - leftDetect, bottomDetect - topDetect), threshHold);
+        ArrayList<PossiblePiece> pieces = detectCircles(array, leftDetect, topDetect);
+        return pieces;
+    }
 
     /**
      * The difference between detectCircles is that it takes in the limited area
@@ -305,21 +321,37 @@ public class BoardCalculator {
         ArrayList<PossiblePiece> pieces = detectCircles(array, true);
 
         int diff = 0;
-        int count = 0;
+        piecePositions = new PossiblePiece[8][8];
+        // Get offset
         for (PossiblePiece piece : pieces) {
             markPiece(g2, piece.x, piece.y, piece.color);
             findOffFactor(piece);
+        }
+
+        pieces.sort((t1, t2) -> Double.compare(t1.offFactor, t2.offFactor));
+        List<PossiblePiece> duplicates = new ArrayList<>();
+        for (PossiblePiece piece : pieces) {
+            logger.debug(String.format("Piece %s,%s has offset of %s", piece.col, piece.row, piece.offFactor));
+            
+            if (piecePositions[piece.col][piece.row] != null) {
+                duplicates.add(piece);
+                continue;
+            }
             if (piece.offFactor <= 200) {
                 if (knownBoard[piece.col][piece.row] == null || !knownBoard[piece.col][piece.row].color.equals(piece.color)) {
                     diff++;
                     changedPiece.add(piece);
                 }
-                //logger.debug(String.format("Piece %s %s,%s has offset of %s", count++, piece.col, piece.row, piece.offFactor));
                 if (currentBoard[piece.col][piece.row] == null || currentBoard[piece.col][piece.row].offFactor > piece.offFactor) {
                     currentBoard[piece.col][piece.row] = piece;
                 }
             }
+            piecePositions[piece.col][piece.row] = piece;
         }
+        
+        duplicates.forEach((piece) -> {
+            pieces.remove(piece);
+        });
 
         // Find piece from last board that is not there anymore
         ArrayList<PossiblePiece> lastLocation = new ArrayList<>();
@@ -337,21 +369,27 @@ public class BoardCalculator {
         if (lastLocation.size() == 1 && changedPiece.size() == 1 && turn.equals(changedPiece.get(0).color)) {
             logger.debug(String.format("Piece moved from %s,%s to %s,%s", lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row));
             rv = new int[]{lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row};
-        }else if(changedPiece.size() == 2 && checkForCastle(changedPiece.get(0), changedPiece.get(1)) != null){
+        } else if (changedPiece.size() == 2 && checkForCastle(changedPiece.get(0), changedPiece.get(1)) != null) {
             return checkForCastle(changedPiece.get(0), changedPiece.get(1));
         }
 
         drawLines(g2);
         return rv;
     }
-    
-    private int[] checkForCastle(PossiblePiece p1, PossiblePiece p2){
-        if((p1.row > 0 && p1.row < 7) || p1.row != p2.row) return null;
+
+    public PossiblePiece[][] getPiecePositions() {
+        return piecePositions;
+    }
+
+    private int[] checkForCastle(PossiblePiece p1, PossiblePiece p2) {
+        if ((p1.row > 0 && p1.row < 7) || p1.row != p2.row) {
+            return null;
+        }
 
         PossiblePiece king = null;
         PossiblePiece rook = null;
 
-        switch(p1.col){
+        switch (p1.col) {
             case 1:
                 king = p1;
                 break;
@@ -366,7 +404,7 @@ public class BoardCalculator {
                 break;
         }
 
-        switch(p2.col){
+        switch (p2.col) {
             case 1:
                 king = p2;
                 break;
@@ -381,12 +419,14 @@ public class BoardCalculator {
                 break;
         }
 
-        if(king == null || rook == null || Math.abs(king.col - rook.col) != 1) return null;
-        
-        if(king.col == 2){
-            return new int[] {3, king.row, king.col, king.row};
-        }else{
-            return new int[] {3, king.row, king.col, king.row};
+        if (king == null || rook == null || Math.abs(king.col - rook.col) != 1) {
+            return null;
+        }
+
+        if (king.col == 2) {
+            return new int[]{3, king.row, king.col, king.row};
+        } else {
+            return new int[]{3, king.row, king.col, king.row};
         }
     }
 
@@ -425,12 +465,18 @@ public class BoardCalculator {
     }
 
     private void markPiece(Graphics2D g2, int x, int y, Player piece) {
-        int size = 8;
+        Color color = Color.BLACK;
         if (piece == Player.White) {
-            g2.setColor(Color.RED);
+            color =Color.RED;
         } else {
-            g2.setColor(Color.BLUE);
+            color =Color.BLUE;
         }
+        markPiece(g2, x, y, color);
+    }
+
+    private void markPiece(Graphics2D g2, int x, int y, Color color) {
+        int size = 8;
+        g2.setColor(color);
         g2.drawLine(x - size, y - size, x + size, y - size);
         g2.drawLine(x + size, y - size, x + size, y + size);
         g2.drawLine(x + size, y + size, x - size, y + size);
@@ -444,50 +490,66 @@ public class BoardCalculator {
         int left;
         int right;
 
-        //System.out.format("startX=%s startY=%s\n", startX, startY);
+        // Check to make sure the nodle mark is the circle color
         if (array[startX][startY] == piece) {
             return false;
         }
 
-        // Check up
+        // Find top of circle
         int y = startY - 1;
         while (array[startX][y] != piece && y > 0) {
             y--;
         }
 
+        // Checks that 3 pixels out from top are non circle color
+        if (y >= 3 && (array[startX][y - 1] != piece || array[startX][y - 2] != piece || array[startX][y - 3] != piece)) {
+            return false;
+        }
+
+        // Checks that length of mid to top is less than MAX_Distance
         if (startY - y < MAX_Distance) {
             //System.out.format("startY - y < 5  startY=%s y=%s\n", startY, y);
             return false;
         }
+        
         int t = y;
         top = y;
         int yUp = startY - y;
-        // Check down
+        // Find bottom of circle
         y = startY + 1;
         while (array[startX][y] != piece && y < array[0].length - 1) {
             y++;
         }
+        // Check that length of mid to bottom are non circle color
+        if (y <= array[0].length - 4 && (array[startX][y + 1] != piece || array[startX][y + 2] != piece || array[startX][y + 3] != piece)) {
+            return false;
+        }
+        // Checks that the length of mid to bottom is less than MAX_Distance
         if (y - startY < MAX_Distance) {
             //System.out.format("y - startY < 5  startY=%s y=%s\n", startY, y);
             return false;
         }
+        
         int b = y;
         int yDown = y - startY;
         bottom = y;
+        // returns false if not in the middle of the circle
         if (Math.abs(yUp - yDown) > 1) {
             //System.out.format("Math.abs(yUp - yDown) > 3  yUp=%s yDown=%s\n", yUp, yDown);
             return false;
         }
 
-        // Check Left
+        // Find left of circle
         int x = startX - 1;
         while (array[x][startY] != piece && x > 0) {
             x--;
         }
+        // Checks that the mid to left is less than max distance
         if (startX - x < MAX_Distance) {
-            //System.out.format("startX - x < 5  startX=%s x=%s\n", startX, x);
             return false;
         }
+
+        // Find the right of the circle
         int l = x;
         int xLeft = startX - x;
         left = x;
@@ -495,15 +557,15 @@ public class BoardCalculator {
         while (array[x][startY] != piece && x < array.length - 1) {
             x++;
         }
+        // Checks that the mid to right is less than max distance
         if (x - startX < MAX_Distance) {
-            //System.out.format("x - startX < 5  startX=%s x=%s\n", startX, x);
             return false;
         }
         int r = x;
         int xRight = x - startX;
         right = x;
+        // returns false if not in the middle of the circle
         if (Math.abs(xLeft - xRight) > 1) {
-            //System.out.format("Math.abs(xLeft - xRight) > 4  xLeft=%s xRight=%s\n", xLeft, xRight);
             return false;
         }
 
@@ -522,7 +584,6 @@ public class BoardCalculator {
         if (array[l + 1][t + 1] != piece || array[r - 1][t + 1] != piece || array[l + 1][b - 1] != piece || array[r - 1][b - 1] != piece) {
             return false;
         }
-        // if( true) return true;
         //System.out.format("height=%s Width=%s\n", b - t, r - l);
         if (b - t < 8 || b - t > 26 || r - l < 8 || r - l > 26) {
             return false;
@@ -537,12 +598,11 @@ public class BoardCalculator {
             rs++;
         }
         // x, y = first non circle square down right
-
         //    System.out.format("%s %s %s %s\n", x, r, y, b);
         for (int tx = x; tx < r; tx++) {
             for (int ty = y; ty < b; ty++) {
-                if (array[x][y] != piece) {
-                    return false;
+                if (array[tx][ty] != piece) {
+//                    return false;
                 }
             }
         }
@@ -556,11 +616,13 @@ public class BoardCalculator {
             rs2++;
         }
         // x, y = first non circle square left up
-
+        if(true == true) return true;
+        
+        
         for (int tx = x; tx > l; tx--) {
             for (int ty = y; ty > t; ty--) {
-                if (array[x][y] != piece) {
-                    return false;
+                if (array[tx][ty] != piece) {
+//                    return false;
                 }
             }
         }

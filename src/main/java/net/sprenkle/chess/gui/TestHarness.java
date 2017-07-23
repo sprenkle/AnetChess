@@ -19,9 +19,9 @@ import net.sprenkle.chess.ImageUtil;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;
+import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.MqChessMessageSender;
-import net.sprenkle.messages.MessageHolder;
-import net.sprenkle.messages.images.RequestImage;
+import net.sprenkle.chess.messages.RequestImage;
 
 /**
  *

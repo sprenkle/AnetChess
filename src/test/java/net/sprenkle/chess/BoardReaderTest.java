@@ -53,19 +53,6 @@ public class BoardReaderTest {
     public void tearDown() throws Exception {
     }
 
-    @Test
-    public void testSomeMethod() {
-        fail("The test case is a prototype.");
-    }
-
-
-    @Test
-    public void testMain() throws Exception {
-        System.out.println("main");
-        String[] arg = null;
-        BoardReader.main(arg);
-        fail("The test case is a prototype.");
-    }
 
     @Test
     public void testRequestMove() throws Exception {
@@ -91,75 +78,4 @@ public class BoardReaderTest {
         assertTrue("Not robot move look for human move", state.inState(BoardReaderState.CHECK_FOR_HUMAN_MOVE));
     }
 
-    @Test
-    public void testBoardImage() {
-        System.out.println("boardImage");
-        BoardImage boardImage = null;
-        BoardReader instance = null;
-        instance.boardImage(boardImage);
-        fail("The test case is a prototype.");
-    }
-    
-    @Test
-    public void testPiecePosition(){
-        
-    }
-
-    @Test
-    public void testCalculateBoardPosition() {
-//        System.out.println("calculateBoardPosition");
-//        int x = 0;
-//        int y = 0;
-//        BoardReader instance = null;
-//        double[] expResult = null;
-//        double[] result = instance.calculateBoardPosition(x, y);
-//        assertArrayEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testBoardAtRest() {
-        System.out.println("boardAtRest");
-        BoardAtRest boardAtRest = null;
-        BoardReader instance = null;
-        instance.boardAtRest(boardAtRest);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testRequestBoardStatus() throws Exception {
-        System.out.println("requestBoardStatus");
-        RequestBoardStatus requestBoardStatus = null;
-        BoardReader instance = null;
-        instance.requestBoardStatus(requestBoardStatus);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testStartGame() {
-        System.out.println("startGame");
-        StartGame startGame = null;
-        BoardReader instance = null;
-        instance.startGame(startGame);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testRequestPiecePositions() {
-        System.out.println("requestPiecePositions");
-        RequestPiecePositions requestPiecePositions = null;
-        BoardReader instance = null;
-        instance.requestPiecePositions(requestPiecePositions);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testKnownBoardPositions() {
-        System.out.println("knownBoardPositions");
-        KnownBoardPositions knownBoardPositions = null;
-        BoardReader instance = null;
-        instance.knownBoardPositions(knownBoardPositions);
-        fail("The test case is a prototype.");
-    }
-    
 }
