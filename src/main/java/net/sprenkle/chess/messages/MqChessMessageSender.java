@@ -49,7 +49,7 @@ public class MqChessMessageSender implements ChessMessageSender {
     public void send(MessageHolder messageHolder) {
         try {
             String routingKey = String.format("%s.%s", "BufferedImage".equals(messageHolder.getClassName()) ? "none" : "general", "BufferedImage".equals(messageHolder.getClassName()) ? "image" : "none");
-            if(messageHolder.getClassName().equals("BoardImage")){
+            if(messageHolder.getClassName().equals(BoardImage.class.getName())){
                 logger.info(String.format("%s sends %s  %s", name, messageHolder.getClassName(), "BufferedImage"));
             }else{
                 logger.info(String.format("%s sends %s  %s", name, messageHolder.getClassName(), messageHolder.toString()));
