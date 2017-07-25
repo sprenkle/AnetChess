@@ -9,32 +9,41 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author david
+ * @param <T>
  */
-public class MessageHolder implements Serializable {
+public class MessageHolder <T> implements Serializable {
     private final String jsonObject;
     private final String className;
     
-    public MessageHolder(String className, Object object){
-        this.className = className;
+    public MessageHolder(T object){
+        this.className = object.getClass().getName();
         Gson gson = new GsonBuilder().create();
         jsonObject = gson.toJson(object);
     }
     
-    public Object getObject(Class className){
-        Gson gson = new GsonBuilder().create();
-        return gson.fromJson(jsonObject, className);
-    }
-
-    public String toString(){
-        return jsonObject;
+    public T getObject(){
+        try {
+            Gson gson = new GsonBuilder().create();
+            return (T)gson.fromJson(jsonObject, Class.forName(className));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MessageHolder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public String getClassName(){
-        return this.className;
+        return className;
+    }
+
+    @Override
+    public String toString(){
+        return jsonObject;
     }
     
     public byte[] toBytes() throws IOException {
@@ -51,10 +60,11 @@ public class MessageHolder implements Serializable {
     }
 
     public static void main(String arg[]) throws IOException, ClassNotFoundException{
-        System.out.println(String.class.getTypeName());
-        MessageHolder messageHolder = new MessageHolder("mystring", "object");
+        MessageHolder<String> messageHolder = new MessageHolder<>("Hello World!");
         byte by[] = messageHolder.toBytes();
-        MessageHolder m2 = MessageHolder.fromBytes(by);
+        MessageHolder<String> m2 = MessageHolder.fromBytes(by);
+        String s = m2.getObject();
+        System.out.println(s);
         System.out.println(m2.className);
     }
 }

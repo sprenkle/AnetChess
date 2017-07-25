@@ -48,28 +48,28 @@ public class Chess extends TimerTask {
         this.chessMessageSender = chessMessageSender;
         chessState = new ChessState();
 
-        messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>() {
+        messageReceiver.addMessageHandler(StartGame.class.getName(), new MessageHandler<StartGame>() {
             @Override
             public void handleMessage(StartGame startGame) {
                 startGame(startGame);
             }
         });
 
-        messageReceiver.addMessageHandler(ChessMoveMsg.class.getSimpleName(), new MessageHandler<ChessMoveMsg>() {
+        messageReceiver.addMessageHandler(ChessMoveMsg.class.getName(), new MessageHandler<ChessMoveMsg>() {
             @Override
             public void handleMessage(ChessMoveMsg chessMove) {
                 chessMoved(chessMove);
             }
         });
 
-        messageReceiver.addMessageHandler(BoardStatus.class.getSimpleName(), new MessageHandler<BoardStatus>() {
+        messageReceiver.addMessageHandler(BoardStatus.class.getName(), new MessageHandler<BoardStatus>() {
             @Override
             public void handleMessage(BoardStatus boardStatus) {
                 boardStatus(boardStatus);
             }
         });
 
-        messageReceiver.addMessageHandler(ConfirmedPieceMove.class.getSimpleName(), new MessageHandler<ConfirmedPieceMove>() {
+        messageReceiver.addMessageHandler(ConfirmedPieceMove.class.getName(), new MessageHandler<ConfirmedPieceMove>() {
             @Override
             public void handleMessage(ConfirmedPieceMove confirmedPieceMove) {
                 confirmedPieceMove(confirmedPieceMove);
@@ -92,11 +92,11 @@ public class Chess extends TimerTask {
     }
     
     public void startGame(StartGame startGame) {
-                chessMessageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G4 P10", "Home X and Z")));
+                chessMessageSender.send(new MessageHolder(new GCode("G4 P10", "Home X and Z")));
 
        chessEngine.reset();
-       chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
-       chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
+       chessMessageSender.send(new MessageHolder(new KnownBoardPositions(chessEngine.getKnownBoard())));
+       chessMessageSender.send(new MessageHolder(new RequestBoardStatus()));
     }
 
     public void chessMoved(ChessMoveMsg chessMoveMsg) {
@@ -125,7 +125,7 @@ public class Chess extends TimerTask {
 
         if (chessState.isActivePlayerRobot()) {
             net.sprenkle.chess.messages.ChessMove chessMove = chessMoveMsg.getChessMove();
-            chessMessageSender.send(new MessageHolder(RequestMovePieces.class.getSimpleName(), new RequestMovePieces(chessMove, chessEngine.isLastMoveCastle(), chessMoveMsg.getMoveId())));
+            chessMessageSender.send(new MessageHolder(new RequestMovePieces(chessMove, chessEngine.isLastMoveCastle(), chessMoveMsg.getMoveId())));
             return;
         }
         chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
@@ -136,7 +136,7 @@ public class Chess extends TimerTask {
         expectedMove = id;
         RequestMove requestMove = new RequestMove(chessState.getTurn(), chessState.isActivePlayerRobot(), chessEngine.getMoves(), expectedMove);
         logger.debug(requestMove.toString());
-        chessMessageSender.send(new MessageHolder(RequestMove.class.getSimpleName(), requestMove));
+        chessMessageSender.send(new MessageHolder(requestMove));
         timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override
@@ -164,7 +164,7 @@ public class Chess extends TimerTask {
         logger.debug(boardStatus.toString());
         if (boardStatus.isStartingPositionSet()) {
             // Build board and send out
-            chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
+            chessMessageSender.send(new MessageHolder(new KnownBoardPositions(chessEngine.getKnownBoard())));
 
             chessEngine.newGame();
             chessState.setTurn(Player.White);
@@ -179,7 +179,7 @@ public class Chess extends TimerTask {
             // Set KnownBoardPositions
             chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
             KnownBoardPositions knownBoardPositions = new KnownBoardPositions(chessEngine.getKnownBoard());
-            MessageHolder mh = new MessageHolder(KnownBoardPositions.class.getSimpleName(), knownBoardPositions);
+            MessageHolder mh = new MessageHolder(knownBoardPositions);
             chessMessageSender.send(mh);
             requestMove(UUID.randomUUID());
         }

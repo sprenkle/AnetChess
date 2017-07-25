@@ -50,21 +50,21 @@ public class AnetBoardController {
         this.mid = boardProperties.getMid();
         this.rest = boardProperties.getRest();
 
-        messageReceiver.addMessageHandler(GCode.class.getSimpleName(), new MessageHandler<GCode>() {
+        messageReceiver.addMessageHandler(GCode.class.getName(), new MessageHandler<GCode>() {
             @Override
             public void handleMessage(GCode gcode) {
                 gCode(gcode);
             }
         });
 
-        messageReceiver.addMessageHandler(RequestMovePieces.class.getSimpleName(), new MessageHandler<RequestMovePieces>() {
+        messageReceiver.addMessageHandler(RequestMovePieces.class.getName(), new MessageHandler<RequestMovePieces>() {
             @Override
             public void handleMessage(RequestMovePieces requestMovePieces) {
                 requestMovePieces(requestMovePieces);
             }
         });
 
-        messageReceiver.addMessageHandler(PiecePositions.class.getSimpleName(), new MessageHandler<PiecePositions>() {
+        messageReceiver.addMessageHandler(PiecePositions.class.getName(), new MessageHandler<PiecePositions>() {
             @Override
             public void handleMessage(PiecePositions piecePositions) {
                 piecePositions(piecePositions);
@@ -169,20 +169,20 @@ public class AnetBoardController {
     public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {
         sendCommand(String.format("G1 Z%f", mid), "Set not to hit");
         sendCommand(String.format("G1 X0 Y%s Z%f", rest, mid), "Bring to Rest");
-        messageSender.send(new MessageHolder(BoardAtRest.class.getSimpleName(), new BoardAtRest(true)));
+        messageSender.send(new MessageHolder(new BoardAtRest(true)));
     }
 
     public void gCode(GCode gcode) {
         sendCommand(gcode.getGCode(), gcode.getNote());
         if (gcode.getWait()) {
             sendCommand(String.format("G4 P10"), "Waiting");
-            messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+            messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
         }
     }
 
     public void requestMovePieces(RequestMovePieces requestMovePieces) {
         logger.debug(String.format("Requesting move %s", requestMovePieces));
-        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getChessMove(), requestMovePieces.isCastle(), requestMovePieces.getUuid())));
+        messageSender.send(new MessageHolder(new RequestPiecePositions(requestMovePieces.getChessMove(), requestMovePieces.isCastle(), requestMovePieces.getUuid())));
     }
 
     public void piecePositions(PiecePositions piecePositions) {
@@ -196,7 +196,7 @@ public class AnetBoardController {
         String gcode = String.format("G1 X0 Y%s Z%f", rest, mid);
         sendCommand(gcode, "");
         moveIds.add(piecePositions.getUui());
-        messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
+        messageSender.send(new MessageHolder(new ConfirmedPieceMove(true)));
     }
 
     private void movePiece(double x, double y, double toX, double toY, double low, double mid, double high) {

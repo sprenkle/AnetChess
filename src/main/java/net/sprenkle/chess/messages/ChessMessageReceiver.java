@@ -15,6 +15,7 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -71,107 +72,17 @@ public class ChessMessageReceiver {
 
     public void handleDelivery(byte[] body) throws IOException {
         try {
-           
             MessageHolder mh = MessageHolder.fromBytes(body);
-            
-            if (eventMap.containsKey(mh.getClassName())) {
-                switch (mh.getClassName()) {
-                    case "StartGame":
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage((StartGame) mh.getObject(StartGame.class));
-                        break;
-                    case "ChessMoveMsg":
-                        ChessMoveMsg chessMove = (ChessMoveMsg) mh.getObject(ChessMoveMsg.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(chessMove);
-                        break;
-                    case "RequestMove":
-                        try {
-                            RequestMove requestMove = (RequestMove) mh.getObject(RequestMove.class);
-                            logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                            eventMap.get(mh.getClassName()).handleMessage(requestMove);
-                        } catch (Exception ex) {
-                            logger.error(ex.getMessage());
-                        }
-                        break;
-                    case "RequestBoardStatus":
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage((RequestBoardStatus) mh.getObject(RequestBoardStatus.class));
-                        break;
-                    case "BoardStatus":
-                        BoardStatus boardStatus = (BoardStatus) mh.getObject(BoardStatus.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(boardStatus);
-                        break;
-                    case "SetBoardRestPosition":
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage((SetBoardRestPosition) mh.getObject(SetBoardRestPosition.class));
-                        break;
-                    case "GCode":
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage((GCode) mh.getObject(GCode.class));
-                        break;
-                    case "RequestImage":
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage((RequestImage) mh.getObject(RequestImage.class));
-                        break;
-                    case "BoardImage":
-                        BoardImage bi = (BoardImage) mh.getObject(BoardImage.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), bi.getUuid()));
-                        eventMap.get(mh.getClassName()).handleMessage(bi);
-                        break;
-                    case "BoardAtRest":
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage((BoardAtRest) mh.getObject(BoardAtRest.class));
-                        break;
-                    case "RequestMovePieces":
-                        RequestMovePieces requestMovePieces = (RequestMovePieces) mh.getObject(RequestMovePieces.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(requestMovePieces);
-                        break;
-                    case "ConfirmedPieceMove":
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage((ConfirmedPieceMove) mh.getObject(ConfirmedPieceMove.class));
-                        break;
-                    case "RequestPiecePositions":
-                        RequestPiecePositions requestPiecePositions = (RequestPiecePositions) mh.getObject(RequestPiecePositions.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(requestPiecePositions);
-                        break;
-                    case "PiecePositions":
-                        PiecePositions piecePositions = (PiecePositions) mh.getObject(PiecePositions.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(piecePositions);
-                        break;
-                    case "KnownBoardPositions":
-                        KnownBoardPositions knownBoardPositions = (KnownBoardPositions) mh.getObject(KnownBoardPositions.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(knownBoardPositions);
-                        break;
-                    case "RequestPieceAdjust":
-                        RequestPieceAdjust requestPieceAdjust = (RequestPieceAdjust) mh.getObject(RequestPieceAdjust.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(requestPieceAdjust);
-                        break;
-                    case "PieceAdjust":
-                        PieceAdjust pieceAdjust = (PieceAdjust) mh.getObject(PieceAdjust.class);
-                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
-                        eventMap.get(mh.getClassName()).handleMessage(pieceAdjust);
-                        break;
-                    default:
-                        throw new Exception("Undefined Message");
-                }
+            if (mh.getClassName().equals(BoardImage.class.getName())) {
+                logger.info("Received BoardImage");
+            } else if (mh.getClassName().equals(KnownBoardPositions.class.getName())) {
+                logger.info("Received KnownBoardPosition");
+            } else {
+                logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
             }
+            eventMap.get(mh.getClassName()).handleMessage(mh.getObject());
         } catch (ClassNotFoundException ex) {
-            logger.debug(ex.getMessage());
-        } catch (Exception ex2) {
-            logger.debug(ex2.getMessage());
+            java.util.logging.Logger.getLogger(ChessMessageReceiver.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-//    public static void main(String[] args) throws Exception{
-//         ObjectGraph objectGraph = ObjectGraph.create(new ChessModule());
-//         ChessMessageReceiver chessMessageReceiver = objectGraph.get(ChessMessageReceiver.class);
-//         chessMessageReceiver.initialize();
-//    }
 }

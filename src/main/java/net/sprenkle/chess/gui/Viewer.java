@@ -145,7 +145,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     public void requestMove(RequestMove requestMove) throws Exception {
         if (requestMove.isRobot()) {
             ChessMoveMsg chessMove = new ChessMoveMsg(requestMove.getMoveId(), true, new ChessMove(requestMove.getTurn(), moveList.remove(0)));
-            messageSender.send(new MessageHolder(ChessMoveMsg.class.getSimpleName(), chessMove));
+            messageSender.send(new MessageHolder<ChessMoveMsg>(chessMove));
         }
     }
 
@@ -537,7 +537,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void recordPieceLocBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordPieceLocBtnActionPerformed
-        MessageHolder mh = new MessageHolder(GCode.class.getSimpleName(), new GCode("G1 X0 Y190 Z26", "Testing piece locations"));
+        MessageHolder<GCode> mh = new MessageHolder(new GCode("G1 X0 Y190 Z26", "Testing piece locations"));
         messageSender.send(mh);
         try {
             Thread.sleep(3000);
@@ -573,7 +573,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
             movePiece(piece.x, piece.y, position++, 0);
         }
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X%f Y%f Z26", orgX, orgY), "Testing piece locations"));
+        mh = new MessageHolder<GCode>(new GCode(String.format("G1 X%f Y%f Z26", orgX, orgY), "Testing piece locations"));
         messageSender.send(mh);
         logger.debug("Done recording pieces");
     }//GEN-LAST:event_recordPieceLocBtnActionPerformed
@@ -585,43 +585,43 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         int[] dest = calculateBoardPosition(boardX, boardY);
 
         String gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, mid);
-        MessageHolder mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Go to high offset"));
+        MessageHolder<GCode> mh = new MessageHolder<>(new GCode(gcode, "Go to high offset"));
         messageSender.send(mh);
 
         gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Go to Low offset"));
+        mh = new MessageHolder(new GCode(gcode, "Go to Low offset"));
         messageSender.send(mh);
 
         gcode = String.format("G1 X%s Y%s Z%s", x, y, low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move to center low"));
+        mh = new MessageHolder(new GCode(gcode, "Move to center low"));
         messageSender.send(mh);
 
         gcode = String.format("G1 X%s Y%s Z%s", x, y, high);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Lift up piece"));
+        mh = new MessageHolder(new GCode(gcode, "Lift up piece"));
         messageSender.send(mh);
 
         jog();
 
         gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1], high);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move to new position high"));
+        mh = new MessageHolder(new GCode(gcode, "Move to new position high"));
         messageSender.send(mh);
 
         gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1], low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Lower piece"));
+        mh = new MessageHolder(new GCode(gcode, "Lower piece"));
         messageSender.send(mh);
 
         gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1] + 9, low);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move to offset"));
+        mh = new MessageHolder(new GCode(gcode, "Move to offset"));
         messageSender.send(mh);
 
         gcode = String.format("G1 X%s Y%s Z%s", dest[0], dest[1] + 9, mid);
-        mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, "Move Crane up"));
+        mh = new MessageHolder(new GCode(gcode, "Move Crane up"));
         messageSender.send(mh);
 
     }
 
     private void sendCommand(String gcode, String comment) {
-        MessageHolder mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcode, comment));
+        MessageHolder mh = new MessageHolder(new GCode(gcode, comment));
         messageSender.send(mh);
     }
 
@@ -663,7 +663,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }//GEN-LAST:event_noneRdoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MessageHolder mh2 = new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X%s Y%s Z54", gcodeX.getText(), gcodeY.getText()), "Testing piece locations"));
+        MessageHolder mh2 = new MessageHolder(new GCode(String.format("G1 X%s Y%s Z54", gcodeX.getText(), gcodeY.getText()), "Testing piece locations"));
         messageSender.send(mh2);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -675,7 +675,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         moveList.add("c8h4");
         moveList.add("h4g4");
 
-        MessageHolder mh = new MessageHolder(StartGame.class.getSimpleName(), new StartGame(false, true));
+        MessageHolder mh = new MessageHolder(new StartGame(false, true));
         messageSender.send(mh);
     }//GEN-LAST:event_startGameBtnActionPerformed
 
@@ -712,7 +712,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }//GEN-LAST:event_prevImageActionPerformed
 
     private void SendImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendImageActionPerformed
-        MessageHolder mh = new MessageHolder(BoardImage.class.getSimpleName(), new BoardImage(imageList.get(imageIndex)));
+        MessageHolder mh = new MessageHolder(new BoardImage(imageList.get(imageIndex)));
         messageSender.send(mh);
     }//GEN-LAST:event_SendImageActionPerformed
 
@@ -721,13 +721,13 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        MessageHolder mh = new MessageHolder(GCode.class.getSimpleName(), new GCode(gcodetxt.getText(), "from viewer"));
+        MessageHolder mh = new MessageHolder(new GCode(gcodetxt.getText(), "from viewer"));
         messageSender.send(mh);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void requestImage() {
-        MessageHolder mh = new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID()));
+        MessageHolder mh = new MessageHolder(new RequestImage(UUID.randomUUID()));
         messageSender.send(mh);
     }
 
@@ -735,7 +735,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         if (!debugChk.isSelected()) {
             return;
         }
-        messageSender.send(new MessageHolder(BoardAtRest.class.getSimpleName(), new BoardAtRest(true)));
+        messageSender.send(new MessageHolder(new BoardAtRest(true)));
     }
 
     public void requestMovePieces(RequestMovePieces requestMovePieces) {
@@ -743,14 +743,14 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             return;
         }
         logger.debug(String.format("Requesting move %s", requestMovePieces));
-        messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getChessMove(), requestMovePieces.isCastle(), requestMovePieces.getUuid())));
+        messageSender.send(new MessageHolder(new RequestPiecePositions(requestMovePieces.getChessMove(), requestMovePieces.isCastle(), requestMovePieces.getUuid())));
     }
 
     public void piecePositions(PiecePositions piecePositions) {
         if (!debugChk.isSelected()) {
             return;
         }
-        messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
+        messageSender.send(new MessageHolder(new ConfirmedPieceMove(true)));
     }
 
     /**

@@ -132,7 +132,7 @@ public class ChessTest {
         verify(chessMessageSender, times(1)).send(any(MessageHolder.class));
 
 
-        RequestMove requestMove = (RequestMove) captor.getValue().getObject(RequestMove.class);
+        RequestMove requestMove = (RequestMove) captor.getValue().getObject();
         assertTrue("Verify it send the same player turn",Player.Black.equals(requestMove.getTurn()));
     }
 
@@ -157,7 +157,7 @@ public class ChessTest {
         instance.chessMoved(chessMoveMsg);
         verify(chessMessageSender).send(captor.capture()); 
         verify(chessMessageSender, times(1)).send(any(MessageHolder.class));
-        RequestMovePieces requestMovePieces = (RequestMovePieces) captor.getValue().getObject(RequestMovePieces.class);
+        RequestMovePieces requestMovePieces = (RequestMovePieces) captor.getValue().getObject();
         assertEquals("Verify a requestMovePiece is made with correct move.", chessMove.getMove(), requestMovePieces.getChessMove().getMove());
         assertEquals("Verify a requestMovePiece is made with correct turn.", chessMove.getTurn(), requestMovePieces.getChessMove().getTurn());
     }
@@ -183,7 +183,7 @@ public class ChessTest {
         instance.chessMoved(chessMoveMsg);
         verify(chessMessageSender).send(captor.capture()); 
         verify(chessMessageSender, times(1)).send(any(MessageHolder.class));
-        RequestMove requestMove = (RequestMove) captor.getValue().getObject(RequestMove.class);
+        RequestMove requestMove = (RequestMove) captor.getValue().getObject();
         assertTrue("Verify it send the same player turn",Player.Black.equals(requestMove.getTurn()));
         assertEquals(true, requestMove.isRobot());
     }

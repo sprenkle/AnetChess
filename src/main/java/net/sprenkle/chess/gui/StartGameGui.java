@@ -79,7 +79,7 @@ public class StartGameGui extends javax.swing.JFrame {
                                 break;
                         }
                         textArea.append(mh.getClassName() + "\n");
-                        textArea.append(mh.getObject(Object.class).toString() + "\n");
+                        textArea.append(mh.getObject().toString() + "\n");
                     } catch (ClassNotFoundException ex) {
                         ex.printStackTrace();
                     } catch (Exception ex) {
@@ -188,7 +188,7 @@ public class StartGameGui extends javax.swing.JFrame {
 
     private void startGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameBtnActionPerformed
         try {
-            MessageHolder mh = new MessageHolder(StartGame.class.getSimpleName(), new StartGame(true, true));
+            MessageHolder<StartGame> mh = new MessageHolder<>(new StartGame(true, true));
             channel.basicPublish(EXCHANGE_NAME, "", null, mh.toBytes());
             System.out.println(" [x] Sent '" + mh.getClassName() + "'");
         } catch (IOException ex) {

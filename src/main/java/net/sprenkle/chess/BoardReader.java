@@ -53,7 +53,7 @@ public class BoardReader {
         this.piecePositionsIdentifier = piecePositionsIdentifier;
         this.state = state;
 
-        messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
+        messageReceiver.addMessageHandler(RequestMove.class.getName(), new MessageHandler<RequestMove>() {
             @Override
             public void handleMessage(RequestMove requestMove) {
                 try {
@@ -63,7 +63,7 @@ public class BoardReader {
                 }
             }
         });
-        messageReceiver.addMessageHandler(RequestBoardStatus.class.getSimpleName(), new MessageHandler<RequestBoardStatus>() {
+        messageReceiver.addMessageHandler(RequestBoardStatus.class.getName(), new MessageHandler<RequestBoardStatus>() {
             @Override
             public void handleMessage(RequestBoardStatus requestBoardStatus) {
                 try {
@@ -73,7 +73,7 @@ public class BoardReader {
                 }
             }
         });
-        messageReceiver.addMessageHandler(BoardImage.class.getSimpleName(), new MessageHandler<BoardImage>() {
+        messageReceiver.addMessageHandler(BoardImage.class.getName(), new MessageHandler<BoardImage>() {
             @Override
             public void handleMessage(BoardImage boardImage) {
                 try {
@@ -83,7 +83,7 @@ public class BoardReader {
                 }
             }
         });
-        messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>() {
+        messageReceiver.addMessageHandler(StartGame.class.getName(), new MessageHandler<StartGame>() {
             @Override
             public void handleMessage(StartGame startGame) {
                 try {
@@ -93,7 +93,7 @@ public class BoardReader {
                 }
             }
         });
-        messageReceiver.addMessageHandler(RequestPiecePositions.class.getSimpleName(), new MessageHandler<RequestPiecePositions>() {
+        messageReceiver.addMessageHandler(RequestPiecePositions.class.getName(), new MessageHandler<RequestPiecePositions>() {
             @Override
             public void handleMessage(RequestPiecePositions requestPiecePositions) {
                 try {
@@ -103,7 +103,7 @@ public class BoardReader {
                 }
             }
         });
-        messageReceiver.addMessageHandler(KnownBoardPositions.class.getSimpleName(), new MessageHandler<KnownBoardPositions>() {
+        messageReceiver.addMessageHandler(KnownBoardPositions.class.getName(), new MessageHandler<KnownBoardPositions>() {
             @Override
             public void handleMessage(KnownBoardPositions knownBoardPositions) {
                 try {
@@ -114,7 +114,7 @@ public class BoardReader {
             }
         });
 
-        messageReceiver.addMessageHandler(SetBoardRestPosition.class.getSimpleName(), new MessageHandler<SetBoardRestPosition>() {
+        messageReceiver.addMessageHandler(SetBoardRestPosition.class.getName(), new MessageHandler<SetBoardRestPosition>() {
             @Override
             public void handleMessage(SetBoardRestPosition setBoardRestPosition) {
                 setBoardRestPosition(setBoardRestPosition);
@@ -141,7 +141,7 @@ public class BoardReader {
             requestedMove = requestMove;
             state.setHumanMove();
             logger.debug(String.format("Set state to %s", state.toString()));
-            messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+            messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
         }
     }
 
@@ -162,14 +162,14 @@ public class BoardReader {
                 if (boardCalculator.isInitialized()) {
                     BoardStatus boardStatus = new BoardStatus(true, true, true);
                     logger.debug(String.format("Sent %s", boardStatus.toString()));
-                    messageSender.send(new MessageHolder(BoardStatus.class.getSimpleName(), boardStatus));
+                    messageSender.send(new MessageHolder(boardStatus));
                     state.reset();
                 } else {
-                    messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+                    messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
                 }
             } catch (Exception ex) {
                 logger.error(ex.getLocalizedMessage());
-                messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+                messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
             }
         } else if (state.inState(BoardReaderState.CHECK_FOR_HUMAN_MOVE)) {
             try {
@@ -180,22 +180,22 @@ public class BoardReader {
                     state.reset();
                     ChessMove chessMove = new ChessMove(requestedMove.getTurn(), ChessUtil.convertToMove(move));
                     ChessMoveMsg chessMoveMsg = new ChessMoveMsg(requestedMove.getMoveId(), false, chessMove);
-                    messageSender.send(new MessageHolder(ChessMoveMsg.class.getSimpleName(), chessMoveMsg));
+                    messageSender.send(new MessageHolder(chessMoveMsg));
                 } else {
-                    messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+                    messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
                 }
             } catch (Exception ex) {
                 logger.error(ex.getLocalizedMessage());
-                messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+                messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
             }
         } else if (state.inState(BoardReaderState.CHECK_FOR_PIECE_POSITIONS)) {
             try {
                 PiecePositions piecePositions = piecePositionsIdentifier.processImage(boardImage, boardCalculator, requestPiecePositions);
                 state.reset();
-                messageSender.send(new MessageHolder(PiecePositions.class.getSimpleName(), piecePositions));
+                messageSender.send(new MessageHolder(piecePositions));
             } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
-                messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+                messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
             }
 
         } else if (state.inState(BoardReaderState.SET_REST_POSITION)) {
@@ -203,15 +203,15 @@ public class BoardReader {
             sendYBoardAdjust(marker.get(0).y);
             
             state.setGameSetup();
-            messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+            messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
         }
     }
     
     private void sendYBoardAdjust(int currentY){
             double change = (double) (53 - currentY) * -0.48;
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G91", "Relative Positioning")));
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 Y%s", change), "Set to board position 200")));
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G90", "Absolute Positioning")));
+            messageSender.send(new MessageHolder(new GCode("G91", "Relative Positioning")));
+            messageSender.send(new MessageHolder(new GCode(String.format("G1 Y%s", change), "Set to board position 200")));
+            messageSender.send(new MessageHolder(new GCode("G90", "Absolute Positioning")));
             //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G92 Y200", "Set position to rest")));
             //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G28 X0 Z0", "Home X and Z")));
             //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X0 Z%s", 57), "Set Hight", true)));
@@ -226,7 +226,7 @@ public class BoardReader {
 //    }
     public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
         state.setRestPosition();
-        messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+        messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
     }
 
     public void startGame(StartGame startGame) {
@@ -237,7 +237,7 @@ public class BoardReader {
     public void requestPiecePositions(RequestPiecePositions requestPiecePositions) {
         state.setPiecePosition();
         this.requestPiecePositions = requestPiecePositions;
-        messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+        messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
     }
 
     public void knownBoardPositions(KnownBoardPositions knownBoardPositions) {
@@ -245,8 +245,8 @@ public class BoardReader {
     }
 
     public void setBoardRestPosition(SetBoardRestPosition setBoardRestPosition) {
-        messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G4 P10", "Home X and Z")));
+        messageSender.send(new MessageHolder(new GCode("G4 P10", "Home X and Z")));
         /// state.setBoardPosition();
-        messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+        messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
     }
 }

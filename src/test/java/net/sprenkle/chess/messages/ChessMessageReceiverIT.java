@@ -48,7 +48,7 @@ public class ChessMessageReceiverIT {
         });
         
         RequestMove requestMove = new RequestMove(Player.White, true, "e2e4", id);
-        MessageHolder mh = new MessageHolder(RequestMove.class.getSimpleName(), requestMove);
+        MessageHolder mh = new MessageHolder(requestMove);
         
         try {
             uut.handleDelivery(mh.toBytes());

@@ -38,14 +38,14 @@ public class RobotMover {
         this.messageSender = messageSender;
         initializeEngine();
 
-        messageReceiver.addMessageHandler(StartGame.class.getSimpleName(), new MessageHandler<StartGame>() {
+        messageReceiver.addMessageHandler(StartGame.class.getName(),new MessageHandler<StartGame>() {
             @Override
             public void handleMessage(StartGame startGame) {
                 startGame(startGame);
             }
         });
 
-        messageReceiver.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
+        messageReceiver.addMessageHandler(RequestMove.class.getName(), new MessageHandler<RequestMove>() {
             @Override
             public void handleMessage(RequestMove requestMove) {
                 try {
@@ -92,7 +92,7 @@ public class RobotMover {
             }
             ChessMove chessMove = new ChessMove(requestMove.getTurn(), move);
             ChessMoveMsg chessMoveMsg = new ChessMoveMsg(requestMove.getMoveId(), true, chessMove);
-            messageSender.send(new MessageHolder(ChessMoveMsg.class.getSimpleName(), chessMoveMsg));
+            messageSender.send(new MessageHolder(chessMoveMsg));
             logger.debug(chessMove.toString());
         }
     }
