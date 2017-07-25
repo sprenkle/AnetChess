@@ -84,7 +84,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
         ChessMessageReceiver messageReceiver = new ChessMessageReceiver("Viewer", true);
 
-        messageReceiver.addMessageHandler(BoardImage.class.getSimpleName(), new MessageHandler<BoardImage>() {
+        messageReceiver.addMessageHandler(BoardImage.class.getName(), new MessageHandler<BoardImage>() {
             @Override
             public void handleMessage(BoardImage boardImage) {
                 try {

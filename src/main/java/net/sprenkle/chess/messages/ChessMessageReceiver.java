@@ -73,6 +73,7 @@ public class ChessMessageReceiver {
     public void handleDelivery(byte[] body) throws IOException {
         try {
             MessageHolder mh = MessageHolder.fromBytes(body);
+            if(!eventMap.containsKey(mh.getClassName())) return;
             if (mh.getClassName().equals(BoardImage.class.getName())) {
                 logger.info("Received BoardImage");
             } else if (mh.getClassName().equals(KnownBoardPositions.class.getName())) {
