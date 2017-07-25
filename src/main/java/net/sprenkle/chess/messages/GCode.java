@@ -14,10 +14,17 @@ import java.io.Serializable;
 public class GCode  implements Serializable{
     private final String gcode;
     private final String note;
+    private final boolean wait;
     
     public GCode(String gcode, String note){
+        this(gcode, note, false);
+    }
+
+
+    public GCode(String gcode, String note, boolean wait){
         this.gcode = gcode;
         this.note = note;
+        this.wait = wait;
     }
     
     public String getGCode(){
@@ -28,8 +35,12 @@ public class GCode  implements Serializable{
         return note;
     }
     
+    public boolean getWait(){
+        return wait;
+    }
+    
     @Override
     public String toString(){
-        return String.format("GCode %s", gcode);
+        return String.format("GCode %s %s %s", gcode, note, wait);
     }
 }

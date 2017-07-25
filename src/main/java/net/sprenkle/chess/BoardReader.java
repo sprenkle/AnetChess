@@ -11,7 +11,6 @@ import java.util.UUID;
 import java.util.logging.Level;
 import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
-import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
@@ -148,16 +147,28 @@ public class BoardReader {
 
     public void boardImage(BoardImage boardImage) {
         BufferedImage bImageFromConvert = boardImage.getBi();
-        //logger.debug("Received Image");
+
+//        ArrayList<PossiblePiece> boardMarker = boardCalculator.detectBoardMarker(bImageFromConvert);
+//        if (boardMarker.size() != 1 || boardMarker.get(0).y != 53) {
+//            sendYBoardAdjust(boardMarker.get(0).y);
+//            return;
+//        }
+
+      //  logger.debug(String.format("Marker y=%s\n", boardMarker.get(0).y));
         if (state.inState(BoardReaderState.CHECK_FOR_GAME_SETUP)) {
-            boardCalculator.setInitialized(false);
-            boardCalculator.initialLines(bImageFromConvert);
-            if (boardCalculator.isInitialized()) {
-                BoardStatus boardStatus = new BoardStatus(true, true, true);
-                logger.debug(String.format("Sent %s", boardStatus.toString()));
-                messageSender.send(new MessageHolder(BoardStatus.class.getSimpleName(), boardStatus));
-                state.reset();
-            } else {
+            try {
+                boardCalculator.setInitialized(false);
+                boardCalculator.initialLines(bImageFromConvert);
+                if (boardCalculator.isInitialized()) {
+                    BoardStatus boardStatus = new BoardStatus(true, true, true);
+                    logger.debug(String.format("Sent %s", boardStatus.toString()));
+                    messageSender.send(new MessageHolder(BoardStatus.class.getSimpleName(), boardStatus));
+                    state.reset();
+                } else {
+                    messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+                }
+            } catch (Exception ex) {
+                logger.error(ex.getLocalizedMessage());
                 messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
             }
         } else if (state.inState(BoardReaderState.CHECK_FOR_HUMAN_MOVE)) {
@@ -184,21 +195,26 @@ public class BoardReader {
                 messageSender.send(new MessageHolder(PiecePositions.class.getSimpleName(), piecePositions));
             } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
+                messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
             }
 
         } else if (state.inState(BoardReaderState.SET_REST_POSITION)) {
             List<PossiblePiece> marker = boardCalculator.detectBoardMarker(bImageFromConvert);
-            double change = (double)(53 - marker.get(0).y) * -0.48 ;
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G91", "Relative Positioning")));
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 Y%s", change), "Set to board position 200")));
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G90", "Absolute Positioning")));
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G92 Y200", "Set position to rest")));
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G28 X0 Z0", "Home X and Z")));
-            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X0 Z%s", 57), "Set Hight")));
-
+            sendYBoardAdjust(marker.get(0).y);
+            
             state.setGameSetup();
             messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
         }
+    }
+    
+    private void sendYBoardAdjust(int currentY){
+            double change = (double) (53 - currentY) * -0.48;
+            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G91", "Relative Positioning")));
+            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 Y%s", change), "Set to board position 200")));
+            messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G90", "Absolute Positioning")));
+            //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G92 Y200", "Set position to rest")));
+            //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G28 X0 Z0", "Home X and Z")));
+            //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X0 Z%s", 57), "Set Hight", true)));
     }
 
 //     
@@ -208,7 +224,6 @@ public class BoardReader {
 //            messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
 //        }
 //    }
-
     public void requestBoardStatus(RequestBoardStatus requestBoardStatus) throws Exception {
         state.setRestPosition();
         messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
@@ -229,8 +244,9 @@ public class BoardReader {
         boardCalculator.setKnownBoard(knownBoardPositions.getKnownPostions());
     }
 
-    public void setBoardRestPosition(SetBoardRestPosition setBoardRestPosition){
-       /// state.setBoardPosition();
+    public void setBoardRestPosition(SetBoardRestPosition setBoardRestPosition) {
+        messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G4 P10", "Home X and Z")));
+        /// state.setBoardPosition();
         messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
     }
 }

@@ -16,6 +16,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
+import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestBoardStatus;
@@ -91,6 +92,8 @@ public class Chess extends TimerTask {
     }
     
     public void startGame(StartGame startGame) {
+                chessMessageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G4 P10", "Home X and Z")));
+
        chessEngine.reset();
        chessMessageSender.send(new MessageHolder(KnownBoardPositions.class.getSimpleName(), new KnownBoardPositions(chessEngine.getKnownBoard())));
        chessMessageSender.send(new MessageHolder(RequestBoardStatus.class.getSimpleName(), new RequestBoardStatus()));
@@ -101,18 +104,21 @@ public class Chess extends TimerTask {
             logger.debug(String.format("Received Unknown move %s  Expected %s", chessMoveMsg.getMoveId(), expectedMove));
             return;
         }
+
+        expectedMove = null;
+        
         timer.cancel();
         logger.debug(String.format("Message received ChessMove %s", chessMoveMsg.toString()));
         if (!chessState.getTurn().equals(chessMoveMsg.getChessMove().getTurn())) {
             logger.debug("Player out of Turn Message");
-            requestMove();
+            requestMove(UUID.randomUUID());
             return;
         }
         String result = chessEngine.makeMove(chessMoveMsg.getChessMove().getMove());
         if (!result.equals("moveOk")) {
             //Todo send out a Color out of turn message
             //Todo send out a verify board posiion message
-            requestMove(); // need to request move again
+            requestMove(UUID.randomUUID()); // need to request move again
             return;
         }
         chessEngine.consoleOut(); // prints ascii board to console
@@ -123,11 +129,11 @@ public class Chess extends TimerTask {
             return;
         }
         chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
-        requestMove();
+        requestMove(UUID.randomUUID());
     }
 
-    private void requestMove() {
-        expectedMove = UUID.randomUUID();
+    private void requestMove(UUID id) {
+        expectedMove = id;
         RequestMove requestMove = new RequestMove(chessState.getTurn(), chessState.isActivePlayerRobot(), chessEngine.getMoves(), expectedMove);
         logger.debug(requestMove.toString());
         chessMessageSender.send(new MessageHolder(RequestMove.class.getSimpleName(), requestMove));
@@ -136,7 +142,7 @@ public class Chess extends TimerTask {
             @Override
             public void run() {
                 logger.debug("Move Timeout Activated.");
-                requestMove();
+                requestMove(expectedMove);
             }
         }, 2 * 60 * 1000);
     }
@@ -164,7 +170,7 @@ public class Chess extends TimerTask {
             chessState.setTurn(Player.White);
             chessState.setWhiteRobot(!boardStatus.isHumanSide());
             chessState.setBlackRobot(boardStatus.isHumanSide());
-            requestMove();
+            requestMove(UUID.randomUUID());
         }
     }
 
@@ -175,7 +181,7 @@ public class Chess extends TimerTask {
             KnownBoardPositions knownBoardPositions = new KnownBoardPositions(chessEngine.getKnownBoard());
             MessageHolder mh = new MessageHolder(KnownBoardPositions.class.getSimpleName(), knownBoardPositions);
             chessMessageSender.send(mh);
-            requestMove();
+            requestMove(UUID.randomUUID());
         }
     }
 

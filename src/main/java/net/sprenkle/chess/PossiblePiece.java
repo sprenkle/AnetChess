@@ -20,7 +20,8 @@ public class PossiblePiece {
     public int x;
     public int y;
     public Player color;
-    public double offFactor;
+    public double xOffFactor;
+    public double yOffFactor;
     public int col;
     public int row;
     public int rank;
@@ -36,6 +37,10 @@ public class PossiblePiece {
         this.row = row;
         this.color = color;
         this.rank = rank;
+    }
+    
+    public double getOffset(){
+        return xOffFactor + yOffFactor;
     }
  
     @Override

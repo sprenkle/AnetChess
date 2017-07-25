@@ -73,6 +73,7 @@ public class ChessMessageReceiver {
         try {
            
             MessageHolder mh = MessageHolder.fromBytes(body);
+            
             if (eventMap.containsKey(mh.getClassName())) {
                 switch (mh.getClassName()) {
                     case "StartGame":
@@ -146,6 +147,16 @@ public class ChessMessageReceiver {
                         KnownBoardPositions knownBoardPositions = (KnownBoardPositions) mh.getObject(KnownBoardPositions.class);
                         logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
                         eventMap.get(mh.getClassName()).handleMessage(knownBoardPositions);
+                        break;
+                    case "RequestPieceAdjust":
+                        RequestPieceAdjust requestPieceAdjust = (RequestPieceAdjust) mh.getObject(RequestPieceAdjust.class);
+                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
+                        eventMap.get(mh.getClassName()).handleMessage(requestPieceAdjust);
+                        break;
+                    case "PieceAdjust":
+                        PieceAdjust pieceAdjust = (PieceAdjust) mh.getObject(PieceAdjust.class);
+                        logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
+                        eventMap.get(mh.getClassName()).handleMessage(pieceAdjust);
                         break;
                     default:
                         throw new Exception("Undefined Message");

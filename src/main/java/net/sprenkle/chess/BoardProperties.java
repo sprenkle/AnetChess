@@ -29,7 +29,10 @@ public class BoardProperties {
     private int leftDetect;
     private int rightDetect;
 
-    
+    private int bottomHook;
+    private int topHook;
+    private int leftHook;
+    private int rightHook;
 
     private double pawnHeight;
     private double bishopHeight;
@@ -83,6 +86,11 @@ public class BoardProperties {
             rightDetect = Integer.parseInt(prop.getProperty("rightDetect"));
             bottomDetect = Integer.parseInt(prop.getProperty("bottomDetect"));
             topDetect = Integer.parseInt(prop.getProperty("topDetect"));
+
+            leftHook = Integer.parseInt(prop.getProperty("leftHook"));
+            rightHook = Integer.parseInt(prop.getProperty("rightHook"));
+            bottomHook = Integer.parseInt(prop.getProperty("bottomHook"));
+            topHook = Integer.parseInt(prop.getProperty("topHook"));
             
             pawnHeight = Double.parseDouble(prop.getProperty("pawnHeight"));
             bishopHeight = Double.parseDouble(prop.getProperty("bishopHeight"));
@@ -148,6 +156,13 @@ public class BoardProperties {
 
     public void saveParamChanges() {
         try {
+            Properties prop = new Properties();
+            InputStream input = null;
+
+            input = new FileInputStream("board.properties");
+            // load a properties file
+            prop.load(input);
+        
             Properties props = new Properties();
             props.setProperty("leftBoard", "" + getLeftBoard());
             props.setProperty("rightBoard", "" + getRightBoard());
@@ -650,5 +665,33 @@ public class BoardProperties {
      */
     public int getRightDetect() {
         return rightDetect;
+    }
+
+    /**
+     * @return the bottomHook
+     */
+    public int getBottomHook() {
+        return bottomHook;
+    }
+
+    /**
+     * @return the topHook
+     */
+    public int getTopHook() {
+        return topHook;
+    }
+
+    /**
+     * @return the leftHook
+     */
+    public int getLeftHook() {
+        return leftHook;
+    }
+
+    /**
+     * @return the rightHook
+     */
+    public int getRightHook() {
+        return rightHook;
     }
 }

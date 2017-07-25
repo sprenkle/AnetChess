@@ -69,7 +69,8 @@ public class PiecePositionsIdentifier {
         logger.debug(String.format("fromPiece x=%s, y=%s row=%s col=%s", fromPiece.x, fromPiece.y, fromPiece.row, fromPiece.col));
         double[] from = new double[2];
         logger.info(String.format("from Piece image x=%s, y=%s", from[0], from[1]));
-        from = calculateBoardPosition(moves[0], moves[1], piecePositionsBoard[fromPiece.row][fromPiece.col]);
+        from = calculateBoardPosition(moves[0], moves[1], piecePositionsBoard[fromPiece.col][fromPiece.row]);
+//        from = calculateBoardPosition(moves[0], moves[1]);
         double[] to = calculateBoardPosition(moves[2], moves[3]);
         List<PieceMove> moveList = new ArrayList<>();
 
@@ -102,8 +103,8 @@ public class PiecePositionsIdentifier {
     public double[] calculateBoardPosition(int x, int y, PossiblePiece piece) {
         double[] pos = calculateBoardPosition(x, y);
 
-        pos[0] += (piece.x - xLine[piece.col]) * -0.4308;
-        pos[1] += (piece.y - yLine[piece.row]) * 0.4308;
+        pos[0] +=  piece.xOffFactor * 0.4308;
+        pos[1] -=  piece.yOffFactor * 0.4308;
         
         return pos;
     }
@@ -134,5 +135,10 @@ public class PiecePositionsIdentifier {
                 return kingPickup; // king 
         }
         return 100;
+    }
+    
+    
+    public double[] getPieceOffset(PossiblePiece piece){
+        return null;
     }
 }

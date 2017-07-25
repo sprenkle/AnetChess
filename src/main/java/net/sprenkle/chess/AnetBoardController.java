@@ -25,6 +25,7 @@ import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.PiecePositions;
+import net.sprenkle.chess.messages.RequestImage;
 import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.RequestPiecePositions;
 import org.apache.log4j.PropertyConfigurator;
@@ -41,16 +42,13 @@ public class AnetBoardController {
     private final double rest;
     private final HashSet<UUID> moveIds = new HashSet<>();
 
-    
-
     private boolean homed = false;
 
     public AnetBoardController(MqChessMessageSender messageSender, ChessMessageReceiver messageReceiver, BoardProperties boardProperties) {
         this.messageSender = messageSender;
-        
+
         this.mid = boardProperties.getMid();
         this.rest = boardProperties.getRest();
-
 
         messageReceiver.addMessageHandler(GCode.class.getSimpleName(), new MessageHandler<GCode>() {
             @Override
@@ -137,17 +135,17 @@ public class AnetBoardController {
     }
 
     private void sendCommand(String command, String notes) {
-//        if (!homed) {
-//            executeGcode("G91", "Relative Positioning");
-//            executeGcode(String.format("G1 X0 Y0 Z%f", mid), "Bring up hook.");
-//            executeGcode("G90", "Absolute Positioning");
-//            executeGcode("G28 X0 Y0", "Home");
-//            executeGcode(String.format("G1 X%f Y%f", 0.0, 200.0), "");
-//            executeGcode("G28 Z0", "Home");
-//            executeGcode(String.format("G1 Z%f", mid), "Bring up hook.");
-//            executeGcode(String.format("G1 X%f Y%f", -15.0, rest), "Bring up hook.");
-//            homed = true;
-//        }
+        if (!homed) {
+            executeGcode("G91", "Relative Positioning");
+            executeGcode(String.format("G1 X0 Y0 Z%f", mid), "Bring up hook.");
+            executeGcode("G90", "Absolute Positioning");
+            executeGcode("G28 X0 Y0", "Home");
+            executeGcode(String.format("G1 X%f Y%f", 0.0, 200.0), "");
+            executeGcode("G28 Z0", "Home");
+            executeGcode(String.format("G1 Z%f", mid), "Bring up hook.");
+            executeGcode(String.format("G1 X%f Y%f", -15.0, rest), "Bring up hook.");
+            homed = true;
+        }
         executeGcode(command, notes);
     }
 
@@ -176,31 +174,35 @@ public class AnetBoardController {
 
     public void gCode(GCode gcode) {
         sendCommand(gcode.getGCode(), gcode.getNote());
+        if (gcode.getWait()) {
+            sendCommand(String.format("G4 P10"), "Waiting");
+            messageSender.send(new MessageHolder(RequestImage.class.getSimpleName(), new RequestImage(UUID.randomUUID())));
+        }
     }
-
-
 
     public void requestMovePieces(RequestMovePieces requestMovePieces) {
         logger.debug(String.format("Requesting move %s", requestMovePieces));
         messageSender.send(new MessageHolder(RequestPiecePositions.class.getSimpleName(), new RequestPiecePositions(requestMovePieces.getChessMove(), requestMovePieces.isCastle(), requestMovePieces.getUuid())));
     }
-    
-    
-    
-    public void piecePositions(PiecePositions piecePositions){
-        if(moveIds.contains(piecePositions.getUui())) return;
+
+    public void piecePositions(PiecePositions piecePositions) {
+        if (moveIds.contains(piecePositions.getUui())) {
+            return;
+        }
         piecePositions.getMoveList().forEach((pieceMove) -> {
-            movePiece(pieceMove.getFrom()[0], pieceMove.getFrom()[1], pieceMove.getTo()[0], 
+            movePiece(pieceMove.getFrom()[0], pieceMove.getFrom()[1], pieceMove.getTo()[0],
                     pieceMove.getTo()[1], pieceMove.getHeight(), piecePositions.getMid(), piecePositions.getHigh());
         });
+        String gcode = String.format("G1 X0 Y%s Z%f", rest, mid);
+        sendCommand(gcode, "");
         moveIds.add(piecePositions.getUui());
         messageSender.send(new MessageHolder(ConfirmedPieceMove.class.getSimpleName(), new ConfirmedPieceMove(true)));
     }
 
     private void movePiece(double x, double y, double toX, double toY, double low, double mid, double high) {
-        String gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, mid);
+        String gcode = String.format("G1 X%s Y%s Z%s", x, y + 12, low + 10);
         sendCommand(gcode, "");
-        gcode = String.format("G1 X%s Y%s Z%s", x, y + 9, low);
+        gcode = String.format("G1 X%s Y%s Z%s", x, y + 12, low);
         sendCommand(gcode, "");
         gcode = String.format("G1 X%s Y%s Z%s", x, y, low);
         sendCommand(gcode, "");
@@ -211,12 +213,14 @@ public class AnetBoardController {
         sendCommand(gcode, "");
         gcode = String.format("G1 X%s Y%s Z%s", toX, toY, low);
         sendCommand(gcode, "");
-        gcode = String.format("G1 X%s Y%s Z%s", toX, toY + 9, low);
+        gcode = String.format("G1 X%s Y%s Z%s", toX, toY + 12, low);
         sendCommand(gcode, "");
-        gcode = String.format("G1 X%s Y%s Z%s", toX, toY + 9, mid);
+        gcode = String.format("G1 X%s Y%s Z%s", toX, toY + 12, mid);
         sendCommand(gcode, "");
-        gcode = String.format("G1 X0 Y%s Z%f", rest, mid);
-        sendCommand(gcode, "");
+    }
+    
+    private void pieceAdjust(){
+        
     }
 
     private void jog() {

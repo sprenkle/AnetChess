@@ -177,6 +177,14 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             if (boardMarker.size() >= 1) {
                 logger.debug(String.format("Marker y=%s\n", boardMarker.get(0).y));
             }
+            ArrayList<PossiblePiece> hook = boardCalculator.detectHook(altBi);
+            if (hook.size() >= 1) {
+                logger.debug(String.format("hook x=%s\n", hook.get(0).x));
+            }
+            
+            int hookWidth = boardCalculator.getHookWidth(altBi);
+            logger.debug(String.format("hook Width=%s\n", hookWidth));
+            
             boardCalculator.showCircles(altBi);
 
         } catch (Exception e) {
