@@ -9,6 +9,6 @@ package net.sprenkle.chess.messages;
  *
  * @author david
  */
-public interface ChesssImageReceiver {
-        public void setListener(ChessImageListenerInterface listener);
+public interface ChessImageSender {
+        public void send(BoardImage boardImage);
 }

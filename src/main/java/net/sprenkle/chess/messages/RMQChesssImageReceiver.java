@@ -13,8 +13,10 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
@@ -22,30 +24,22 @@ import org.apache.log4j.Logger;
  *
  * @author david
  */
-public class ChessMessageReceiver {
+public class RMQChesssImageReceiver {
 
     static Logger logger = Logger.getLogger(ChessMessageReceiver.class.getSimpleName());
 
     private final String EXCHANGE_NAME = "CHESS";
     private final String name;
-    private final HashMap<String, MessageHandler> eventMap;
-    private final String bindingKey;
+    private MessageHandler messageHandler;
 
-    public ChessMessageReceiver(String name, boolean isRecievingImages) {
+    public RMQChesssImageReceiver(String name) {
         this.name = name;
-        eventMap = new HashMap<>();
-        if (isRecievingImages) {
-            // bindingKey = "#";
-        } else {
-            //  bindingKey = "*.none";
-        }
-        bindingKey = "#";
     }
 
-    public void addMessageHandler(String messageType, MessageHandler messageHandler) {
-        eventMap.put(messageType, messageHandler);
+    public void add(MessageHandler messageHandler){
+        this.messageHandler = messageHandler;
     }
-
+    
     public void initialize() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername("pi");
@@ -56,7 +50,7 @@ public class ChessMessageReceiver {
 
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, EXCHANGE_NAME, bindingKey);
+        channel.queueBind(queueName, EXCHANGE_NAME, null);
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
@@ -64,7 +58,7 @@ public class ChessMessageReceiver {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope,
                     AMQP.BasicProperties properties, byte[] body) throws IOException {
-                ChessMessageReceiver.this.handleDelivery(body);
+                RMQChesssImageReceiver.this.handleDelivery(body);
             }
         };
         channel.basicConsume(queueName, true, consumer);
@@ -72,16 +66,22 @@ public class ChessMessageReceiver {
 
     public void handleDelivery(byte[] body) throws IOException {
         try {
-            MessageHolder mh = MessageHolder.fromBytes(body);
-            if(!eventMap.containsKey(mh.getClassName())) return;
-            if (mh.getClassName().equals(BoardImage.class.getName())) {
-                logger.info("Received BoardImage ");
-            } else if (mh.getClassName().equals(KnownBoardPositions.class.getName())) {
-                logger.info("Received KnownBoardPosition");
-            } else {
-                logger.info(String.format("%s received %s %s", name, mh.getClassName(), new String(body, "UTF-8")));
+            ByteArrayInputStream bis = new ByteArrayInputStream(body);
+            ObjectInput in = null;
+            try {
+                in = new ObjectInputStream(bis);
+                BoardImage boardImage = (BoardImage)in.readObject();
+                logger.info(String.format("%s Received BoardImage %s",name, boardImage.getUuid()));
+                messageHandler.handleMessage(boardImage);
+            } finally {
+                try {
+                    if (in != null) {
+                        in.close();
+                    }
+                } catch (IOException ex) {
+                    // ignore close exception
+                }
             }
-            eventMap.get(mh.getClassName()).handleMessage(mh.getObject());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ChessMessageReceiver.class.getName()).log(Level.SEVERE, null, ex);
         }

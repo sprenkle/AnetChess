@@ -39,6 +39,7 @@ import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.PiecePositions;
+import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import net.sprenkle.chess.messages.RequestImage;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.RequestMovePieces;
@@ -82,9 +83,10 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         initComponents();
         messageSender = new MqChessMessageSender("Viewer");
 
-        ChessMessageReceiver messageReceiver = new ChessMessageReceiver("Viewer", true);
+        RMQChesssImageReceiver imageReceiver = new RMQChesssImageReceiver("Viewer");
 
-        messageReceiver.addMessageHandler(BoardImage.class.getName(), new MessageHandler<BoardImage>() {
+        imageReceiver.add(
+                new MessageHandler<BoardImage>() {
             @Override
             public void handleMessage(BoardImage boardImage) {
                 try {
@@ -95,8 +97,20 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             }
         });
 
+//        ChessMessageReceiver messageReceiver = new ChessMessageReceiver("Viewer", true);
+//
+//        messageReceiver.addMessageHandler(BoardImage.class.getName(), new MessageHandler<BoardImage>() {
+//            @Override
+//            public void handleMessage(BoardImage boardImage) {
+//                try {
+//                    boardImage(boardImage);
+//                } catch (Exception ex) {
+//                    java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
         try {
-            messageReceiver.initialize();
+            imageReceiver.initialize();
         } catch (Exception ex) {
             Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -158,7 +172,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         }
 
         imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
-   }
+    }
 
     private void showPieces(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
@@ -167,7 +181,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         } catch (Exception e) {
             e.printStackTrace();
         }
-       imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
+        imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
     }
 
     private void showNone(BufferedImage boardImage) {
@@ -181,10 +195,10 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             if (hook.size() >= 1) {
                 logger.debug(String.format("hook x=%s\n", hook.get(0).x));
             }
-            
+
             int hookWidth = boardCalculator.getHookWidth(altBi);
             logger.debug(String.format("hook Width=%s\n", hookWidth));
-            
+
             boardCalculator.showCircles(altBi);
 
         } catch (Exception e) {
@@ -199,7 +213,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         try {
             BufferedImage altBi = BlackWhite.thresholdImage(boardImage, 100);
             imageLbl.setIcon(new ImageIcon(altBi));
-    
+
             imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
         } catch (Exception e) {
             e.printStackTrace();

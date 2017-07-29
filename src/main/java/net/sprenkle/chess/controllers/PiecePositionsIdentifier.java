@@ -65,7 +65,7 @@ public class PiecePositionsIdentifier {
         int[] moves = ChessUtil.convertFromMove(requestPiecePositions.getChessMove().getMove());
         logger.debug(String.format("Converted to %s,%s  %s,%s", moves[0], moves[1], moves[2], moves[3]));
         PossiblePiece fromPiece = lastBoard[moves[0]][moves[1]];
-        PossiblePiece toPiece = lastBoard[moves[2]][moves[3]];
+        PossiblePiece toPiece = piecePositionsBoard[moves[2]][moves[3]];
         logger.debug(String.format("fromPiece x=%s, y=%s row=%s col=%s", fromPiece.x, fromPiece.y, fromPiece.row, fromPiece.col));
         double[] from = new double[2];
         logger.info(String.format("from Piece image x=%s, y=%s", from[0], from[1]));

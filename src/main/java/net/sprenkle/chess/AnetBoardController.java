@@ -24,6 +24,7 @@ import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.MessageHolder;
+import net.sprenkle.chess.messages.PieceAdjust;
 import net.sprenkle.chess.messages.PiecePositions;
 import net.sprenkle.chess.messages.RequestImage;
 import net.sprenkle.chess.messages.RequestMovePieces;
@@ -68,6 +69,13 @@ public class AnetBoardController {
             @Override
             public void handleMessage(PiecePositions piecePositions) {
                 piecePositions(piecePositions);
+            }
+        });
+
+        messageReceiver.addMessageHandler(PieceAdjust.class.getName(), new MessageHandler<PieceAdjust>() {
+            @Override
+            public void handleMessage(PieceAdjust pieceAdjust) {
+                piecePositions(pieceAdjust);
             }
         });
 
@@ -200,7 +208,9 @@ public class AnetBoardController {
     }
 
     private void movePiece(double x, double y, double toX, double toY, double low, double mid, double high) {
-        String gcode = String.format("G1 X%s Y%s Z%s", x, y + 12, low + 10);
+        String gcode = String.format("G1 X%s Y%s Z%s", x, y + 12, this.mid);
+        sendCommand(gcode, "");
+        gcode = String.format("G1 X%s Y%s Z%s", x, y + 12, low + 10);
         sendCommand(gcode, "");
         gcode = String.format("G1 X%s Y%s Z%s", x, y + 12, low);
         sendCommand(gcode, "");

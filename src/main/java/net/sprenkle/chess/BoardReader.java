@@ -27,6 +27,7 @@ import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHolder;
+import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import net.sprenkle.chess.messages.RequestImage;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -47,12 +48,23 @@ public class BoardReader {
 
     public BoardReader(BoardReaderState state, MqChessMessageSender messageSender,
             ChessMessageReceiver messageReceiver, BoardCalculator boardCalculator,
-            PiecePositionsIdentifier piecePositionsIdentifier) throws Exception {
+            PiecePositionsIdentifier piecePositionsIdentifier, RMQChesssImageReceiver imageReceiver) throws Exception {
         this.messageSender = messageSender;
         this.boardCalculator = boardCalculator;
         this.piecePositionsIdentifier = piecePositionsIdentifier;
         this.state = state;
 
+        imageReceiver.add(new MessageHandler<BoardImage>() {
+            @Override
+            public void handleMessage(BoardImage boardImage) {
+                try {
+                    boardImage(boardImage);
+                } catch (Exception ex) {
+                    java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
         messageReceiver.addMessageHandler(RequestMove.class.getName(), new MessageHandler<RequestMove>() {
             @Override
             public void handleMessage(RequestMove requestMove) {
@@ -68,16 +80,6 @@ public class BoardReader {
             public void handleMessage(RequestBoardStatus requestBoardStatus) {
                 try {
                     requestBoardStatus(requestBoardStatus);
-                } catch (Exception ex) {
-                    java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        messageReceiver.addMessageHandler(BoardImage.class.getName(), new MessageHandler<BoardImage>() {
-            @Override
-            public void handleMessage(BoardImage boardImage) {
-                try {
-                    boardImage(boardImage);
                 } catch (Exception ex) {
                     java.util.logging.Logger.getLogger(BoardReader.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -129,7 +131,7 @@ public class BoardReader {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
         BoardProperties bp = new BoardProperties();
         BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true),
-                new BoardCalculator(bp), new PiecePositionsIdentifier(bp));
+                new BoardCalculator(bp), new PiecePositionsIdentifier(bp), new RMQChesssImageReceiver("boardReader"));
     }
 
     public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {
