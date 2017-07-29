@@ -30,7 +30,6 @@ import net.sprenkle.chess.imaging.ImageUtil;
 import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.ChessImageListenerInterface;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;

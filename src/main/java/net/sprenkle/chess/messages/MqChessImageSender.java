@@ -22,7 +22,7 @@ import java.util.concurrent.TimeoutException;
 public class MqChessImageSender implements ChessImageSender {
 
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MqChessMessageSender.class.getSimpleName());
-    private static final String EXCHANGE_NAME = "CHESS";
+    private static final String EXCHANGE_NAME = "CHESSIMAGE";
     private ConnectionFactory factory;
     Connection connection;
     Channel channel;
