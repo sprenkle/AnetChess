@@ -28,7 +28,7 @@ public class RMQChesssImageReceiver {
 
     static Logger logger = Logger.getLogger(ChessMessageReceiver.class.getSimpleName());
 
-    private final String EXCHANGE_NAME = "CHESSIMAGE";
+    private final String EXCHANGE_NAME = "CHESSIMAGE2";
     private final String name;
     private MessageHandler messageHandler;
 
