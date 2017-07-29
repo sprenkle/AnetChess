@@ -51,7 +51,7 @@ public class MqChessImageSender implements ChessImageSender {
             out.writeObject(boardImage);
             out.flush();
             byte[] bytes = bos.toByteArray();
-            channel.basicPublish(EXCHANGE_NAME, null, null, bytes);
+            channel.basicPublish(EXCHANGE_NAME, "", null, bytes);
         } catch (IOException ex) {
             logger.error(ex.getMessage());
         } finally {
