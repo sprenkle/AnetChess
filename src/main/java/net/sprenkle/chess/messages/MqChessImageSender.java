@@ -9,11 +9,13 @@ import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.concurrent.TimeoutException;
+import net.sprenkle.chess.imaging.ImageUtil;
 
 /**
  *
@@ -22,7 +24,7 @@ import java.util.concurrent.TimeoutException;
 public class MqChessImageSender implements ChessImageSender {
 
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MqChessMessageSender.class.getSimpleName());
-    private static final String EXCHANGE_NAME = "CHESSIMAGE2";
+    private static final String EXCHANGE_NAME = "CHESSIMAGE";
     private ConnectionFactory factory;
     Connection connection;
     Channel channel;
@@ -61,5 +63,11 @@ public class MqChessImageSender implements ChessImageSender {
                 logger.error(ex.getMessage());
             }
         }
+    }
+    
+    public static void main(String[] arg) throws IOException{
+        BufferedImage bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\board1cec39d9-2820-48f1-963b-acb605ff2f2e.png");
+        MqChessImageSender is = new MqChessImageSender("this");
+        is.send(new BoardImage(bi));
     }
 }

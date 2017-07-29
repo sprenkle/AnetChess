@@ -27,8 +27,7 @@ import org.apache.log4j.Logger;
 public class RMQChesssImageReceiver {
 
     static Logger logger = Logger.getLogger(ChessMessageReceiver.class.getSimpleName());
-
-    private final String EXCHANGE_NAME = "CHESSIMAGE2";
+    private final String EXCHANGE_NAME = "CHESSIMAGE";
     private final String name;
     private MessageHandler messageHandler;
 
@@ -84,6 +83,15 @@ public class RMQChesssImageReceiver {
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ChessMessageReceiver.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void main(String[] arg){
+        RMQChesssImageReceiver ir = new RMQChesssImageReceiver("this");
+        try {
+            ir.initialize();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(RMQChesssImageReceiver.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
