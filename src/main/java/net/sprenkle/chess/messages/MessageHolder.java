@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,11 +21,13 @@ import java.util.logging.Logger;
 public class MessageHolder <T> implements Serializable {
     private final String jsonObject;
     private final String className;
+    private final String id;
     
     public MessageHolder(T object){
         this.className = object.getClass().getName();
         Gson gson = new GsonBuilder().create();
         jsonObject = gson.toJson(object);
+        id = UUID.randomUUID().toString();
     }
     
     public T getObject(){
@@ -57,6 +60,10 @@ public class MessageHolder <T> implements Serializable {
         Gson gson = new GsonBuilder().create();
         String message = new String(bytes, "UTF-8");
         return gson.fromJson(message, MessageHolder.class);
+    }
+    
+    public String getId(){
+        return id;
     }
 
     public static void main(String arg[]) throws IOException, ClassNotFoundException{

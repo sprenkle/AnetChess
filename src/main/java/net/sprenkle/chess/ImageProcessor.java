@@ -6,7 +6,7 @@
 package net.sprenkle.chess;
 
 import dagger.ObjectGraph;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import org.apache.log4j.PropertyConfigurator;
 
 /**

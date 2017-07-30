@@ -6,7 +6,7 @@
 package net.sprenkle.chess;
 
 import java.util.UUID;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.RequestMove;
@@ -54,7 +54,7 @@ public class RobotMoverTest {
         StartGame startGame = new StartGame(true, false);
         UCIInterface uci = mock(UCIInterface.class); 
         ChessMessageSender messageSender = mock(ChessMessageSender.class); 
-        ChessMessageReceiver messageReceiver = mock(ChessMessageReceiver.class);
+        RMQChessMessageReceiver messageReceiver = mock(RMQChessMessageReceiver.class);
         RobotMover instance = new RobotMover(uci, messageSender, messageReceiver);
         instance.startGame(startGame);
         verify(messageSender, times(0)).send(any(MessageHolder.class));
@@ -74,7 +74,7 @@ public class RobotMoverTest {
         when(uci.sendCommandAndWait(command, "bestmove")).thenReturn("bestmove a2a3");
         
         ChessMessageSender messageSender = mock(ChessMessageSender.class); 
-        ChessMessageReceiver messageReceiver = mock(ChessMessageReceiver.class);
+        RMQChessMessageReceiver messageReceiver = mock(RMQChessMessageReceiver.class);
         RobotMover instance = new RobotMover(uci, messageSender, messageReceiver);
         instance.requestMove(request);
 
@@ -94,7 +94,7 @@ public class RobotMoverTest {
         when(uci.sendCommandAndWait(command, "bestmove")).thenReturn("bestmove a2a3");
         
         ChessMessageSender messageSender = mock(ChessMessageSender.class); 
-        ChessMessageReceiver messageReceiver = mock(ChessMessageReceiver.class);
+        RMQChessMessageReceiver messageReceiver = mock(RMQChessMessageReceiver.class);
         RobotMover instance = new RobotMover(uci, messageSender, messageReceiver);
         instance.requestMove(request);
 

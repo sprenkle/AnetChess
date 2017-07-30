@@ -5,13 +5,14 @@
  */
 package net.sprenkle.chess.messages;
 
+import java.io.Serializable;
 import net.sprenkle.chess.PossiblePiece;
 
 /**
  *
  * @author david
  */
-public class KnownBoardPositions {
+public class KnownBoardPositions implements Serializable {
         private final PossiblePiece[][] knownBoard;
         
         public KnownBoardPositions(PossiblePiece[][] knownBoard){

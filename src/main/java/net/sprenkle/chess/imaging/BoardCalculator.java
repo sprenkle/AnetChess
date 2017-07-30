@@ -28,7 +28,6 @@ public class BoardCalculator {
     static Line[] horizontalLines = new Line[8];
     static Line[] verticalLines = new Line[8];
     private PossiblePiece[][] knownBoard = new PossiblePiece[8][8];
-    private PossiblePiece[][] piecePositions;
     private boolean initialized = false;
     private final int leftBoard;
     private final int rightBoard;
@@ -52,7 +51,7 @@ public class BoardCalculator {
     static double ySlope = 0.4271;
     static double xIntercept = 175.376;
     static double yIntercept = -165.4933;
-    private int threshHold = 110;
+    private int threshHold = 130;
 
     public BoardCalculator(BoardProperties boardProperties) {
         leftBoard = boardProperties.getLeftBoard();
@@ -139,6 +138,33 @@ public class BoardCalculator {
         g2.drawRect(leftHook, topHook, rightHook - leftHook, bottomHook - topHook);
     }
 
+    public ArrayList<PossiblePiece> detectPieceCircles(boolean[][] array) {
+        ArrayList<PossiblePiece> pieces = detectCircles(array, true);
+        PossiblePiece[][] tempPiecePositions = new PossiblePiece[8][8];
+        List<PossiblePiece> duplicates = new ArrayList<>();
+
+        // Get offset
+        pieces.forEach((piece) -> {
+            findOffFactor(piece);
+        });
+        pieces.sort((t1, t2) -> Double.compare(t1.getOffset(), t2.getOffset()));
+
+        for (PossiblePiece piece : pieces) {
+            if (tempPiecePositions[piece.col][piece.row] != null) {
+                logger.debug(String.format("Duplicate Piece %s,%s has offset of %s", piece.col, piece.row, piece.getOffset()));
+                duplicates.add(piece);
+                continue;
+            }
+            tempPiecePositions[piece.col][piece.row] = piece;
+        }
+
+        duplicates.forEach((piece) -> {
+            pieces.remove(piece);
+        });
+
+        return pieces;
+    }
+
     public ArrayList<PossiblePiece> detectCircles(boolean[][] array, boolean restrictArea) {
         int xOffset = restrictArea ? leftBoard : 0;
         int yOffset = restrictArea ? topBoard : 0;
@@ -186,21 +212,12 @@ public class BoardCalculator {
             boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
 
             detectedPieces = new ArrayList<>();
-            detectedPieces = detectCircles(array, true);
+            detectedPieces = detectPieceCircles(array);
 
             markLines(bi, g2);
 
-            if (detectedPieces.isEmpty()) {
+            if (detectedPieces == null || detectedPieces.size() != 32) {
                 return false;
-            }
-            detectedPieces.forEach(x -> findOffFactor(x));
-
-            detectedPieces.sort((e1, e2) -> Double.compare(e1.getOffset(), e2.getOffset()));
-            for (PossiblePiece detectedPiece : detectedPieces) {
-                PossiblePiece check = knownBoard[detectedPiece.col][detectedPiece.row];
-                if (check == null || !check.color.equals(detectedPiece.color)) {
-                    return false;
-                }
             }
 
             setInitialized(true);
@@ -315,15 +332,16 @@ public class BoardCalculator {
         ArrayList<PossiblePiece> pieces = detectCircles(array, leftHook, topHook);
         return pieces;
     }
-    
-    public int getHookWidth(BufferedImage bi){
+
+    public int getHookWidth(BufferedImage bi) {
         ArrayList<PossiblePiece> hooks = detectHook(bi);
-        if(hooks == null || hooks.size() != 1) return -1;
+        if (hooks == null || hooks.size() != 1) {
+            return -1;
+        }
         PossiblePiece hook = hooks.get(0);
-        
-        boolean[][] array = BlackWhite.convert(bi.getSubimage(hook.x-15, hook.y-15, 30, 30), threshHold);
-        
-        
+
+        boolean[][] array = BlackWhite.convert(bi.getSubimage(hook.x - 15, hook.y - 15, 30, 30), threshHold);
+
         int y = 15;
         while (array[15][y] && y > 0) {
             y--;
@@ -336,8 +354,61 @@ public class BoardCalculator {
         while (array[15][y] && y < array[0].length - 1) {
             y++;
         }
-        
+
         return y - top;
+    }
+
+    /**
+     * This method is used to sync what the chess engine knows is the board
+     * position with what the camera sees.
+     *
+     * Side effect - Sets the x and y image locations for the pieces.
+     *
+     * @param bi
+     * @param knownBoard
+     * @return true if camera and knownBoard are the same
+     */
+    public boolean verifyPiecePositions(BufferedImage bi, PossiblePiece[][] knownBoard) {
+        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
+        ArrayList<PossiblePiece> pieces = detectPieceCircles(array);
+        // Get offset
+//        if (!pieces.stream().map((piece) -> {
+//            findOffFactor(piece);
+//            return piece;
+//        }).noneMatch((piece) -> (knownBoard[piece.col][piece.row] == null))) {
+//            return false;
+//        }
+        
+        for(PossiblePiece piece : pieces){
+            findOffFactor(piece);
+            if(knownBoard[piece.col][piece.row] == null){
+                return false;
+            }
+        }
+        
+        
+        pieces.sort((t1, t2) -> Double.compare(t1.getOffset(), t2.getOffset()));
+
+        for (int x = 0; x < 7; x++) {
+            for (int y = 0; y < 7; y++) {
+                if (knownBoard[x][y] != null) {
+                    boolean foundMatchingPiece = false;
+                    for (PossiblePiece piece : pieces) {
+                        if (piece.col == x && piece.row == y) {
+                            knownBoard[x][y].x = piece.x;
+                            knownBoard[x][y].y = piece.y;
+                            foundMatchingPiece = true;
+                            break;
+                        }
+                    }
+                    if (!foundMatchingPiece) {
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        return true;
     }
 
     /**
@@ -362,7 +433,7 @@ public class BoardCalculator {
         ArrayList<PossiblePiece> pieces = detectCircles(array, true);
 
         int diff = 0;
-        piecePositions = new PossiblePiece[8][8];
+        PossiblePiece[][] tempPiecePositions = new PossiblePiece[8][8];
         // Get offset
         for (PossiblePiece piece : pieces) {
             markPiece(g2, piece.x, piece.y, piece.color);
@@ -374,7 +445,7 @@ public class BoardCalculator {
         for (PossiblePiece piece : pieces) {
             //logger.debug(String.format("Piece %s,%s has offset of %s", piece.col, piece.row, piece.offFactor));
 
-            if (piecePositions[piece.col][piece.row] != null) {
+            if (tempPiecePositions[piece.col][piece.row] != null) {
                 logger.debug(String.format("Duplicate Piece %s,%s has offset of %s", piece.col, piece.row, piece.getOffset()));
                 duplicates.add(piece);
                 continue;
@@ -389,7 +460,7 @@ public class BoardCalculator {
                     currentBoard[piece.col][piece.row] = piece;
                 }
             }
-            piecePositions[piece.col][piece.row] = piece;
+            tempPiecePositions[piece.col][piece.row] = piece;
         }
 
         duplicates.forEach((piece) -> {
@@ -413,15 +484,11 @@ public class BoardCalculator {
             logger.debug(String.format("Piece moved from %s,%s to %s,%s", lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row));
             rv = new int[]{lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row};
         } else if (changedPiece.size() == 2 && checkForCastle(changedPiece.get(0), changedPiece.get(1)) != null) {
-            return checkForCastle(changedPiece.get(0), changedPiece.get(1));
+            rv = checkForCastle(changedPiece.get(0), changedPiece.get(1));
         }
 
         drawLines(g2);
         return rv;
-    }
-
-    public PossiblePiece[][] getPiecePositions() {
-        return piecePositions;
     }
 
     private int[] checkForCastle(PossiblePiece p1, PossiblePiece p2) {

@@ -113,7 +113,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         } catch (Exception ex) {
             Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\board1cec39d9-2820-48f1-963b-acb605ff2f2e.png");
+        bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\cc0e2bad-d025-4b7b-bbf8-e4458e30b377.png");
         imageLbl.setIcon(new ImageIcon(bi));
 
         try (Stream<Path> paths = Files.walk(Paths.get("D:\\git\\Chess\\images\\game2"))) {

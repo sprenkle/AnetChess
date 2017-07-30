@@ -13,7 +13,10 @@ import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.BoardStatus;
+import net.sprenkle.chess.messages.ChessImageReceiver;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.ChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestBoardStatus;
@@ -39,16 +42,16 @@ import org.apache.log4j.PropertyConfigurator;
 public class BoardReader {
 
     static Logger logger = Logger.getLogger(BoardReader.class.getSimpleName());
-    private final MqChessMessageSender messageSender;
+    private final ChessMessageSender messageSender;
     private final BoardCalculator boardCalculator;
     private final PiecePositionsIdentifier piecePositionsIdentifier;
     private final BoardReaderState state;
     private RequestMove requestedMove;
     private RequestPiecePositions requestPiecePositions;
 
-    public BoardReader(BoardReaderState state, MqChessMessageSender messageSender,
+    public BoardReader(BoardReaderState state, ChessMessageSender messageSender,
             ChessMessageReceiver messageReceiver, BoardCalculator boardCalculator,
-            PiecePositionsIdentifier piecePositionsIdentifier, RMQChesssImageReceiver imageReceiver) throws Exception {
+            PiecePositionsIdentifier piecePositionsIdentifier, ChessImageReceiver imageReceiver) throws Exception {
         this.messageSender = messageSender;
         this.boardCalculator = boardCalculator;
         this.piecePositionsIdentifier = piecePositionsIdentifier;
@@ -64,7 +67,7 @@ public class BoardReader {
                 }
             }
         });
-        
+
         messageReceiver.addMessageHandler(RequestMove.class.getName(), new MessageHandler<RequestMove>() {
             @Override
             public void handleMessage(RequestMove requestMove) {
@@ -124,14 +127,8 @@ public class BoardReader {
         });
 
         messageReceiver.initialize();
+        imageReceiver.initialize();
         state.reset();
-    }
-
-    public static void main(String[] arg) throws Exception {
-        PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        BoardProperties bp = new BoardProperties();
-        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true),
-                new BoardCalculator(bp), new PiecePositionsIdentifier(bp), new RMQChesssImageReceiver("boardReader"));
     }
 
     public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {
@@ -155,8 +152,7 @@ public class BoardReader {
 //            sendYBoardAdjust(boardMarker.get(0).y);
 //            return;
 //        }
-
-      //  logger.debug(String.format("Marker y=%s\n", boardMarker.get(0).y));
+        //  logger.debug(String.format("Marker y=%s\n", boardMarker.get(0).y));
         if (state.inState(BoardReaderState.CHECK_FOR_GAME_SETUP)) {
             try {
                 boardCalculator.setInitialized(false);
@@ -193,6 +189,10 @@ public class BoardReader {
         } else if (state.inState(BoardReaderState.CHECK_FOR_PIECE_POSITIONS)) {
             try {
                 PiecePositions piecePositions = piecePositionsIdentifier.processImage(boardImage, boardCalculator, requestPiecePositions);
+                if (piecePositions == null) {
+                    messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
+                    return;
+                }
                 state.reset();
                 messageSender.send(new MessageHolder(piecePositions));
             } catch (Exception ex) {
@@ -203,20 +203,20 @@ public class BoardReader {
         } else if (state.inState(BoardReaderState.SET_REST_POSITION)) {
             List<PossiblePiece> marker = boardCalculator.detectBoardMarker(bImageFromConvert);
             sendYBoardAdjust(marker.get(0).y);
-            
+
             state.setGameSetup();
             messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
         }
     }
-    
-    private void sendYBoardAdjust(int currentY){
-            double change = (double) (53 - currentY) * -0.48;
-            messageSender.send(new MessageHolder(new GCode("G91", "Relative Positioning")));
-            messageSender.send(new MessageHolder(new GCode(String.format("G1 Y%s", change), "Set to board position 200")));
-            messageSender.send(new MessageHolder(new GCode("G90", "Absolute Positioning")));
-            //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G92 Y200", "Set position to rest")));
-            //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G28 X0 Z0", "Home X and Z")));
-            //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X0 Z%s", 57), "Set Hight", true)));
+
+    private void sendYBoardAdjust(int currentY) {
+        double change = (double) (53 - currentY) * -0.48;
+        messageSender.send(new MessageHolder(new GCode("G91", "Relative Positioning")));
+        messageSender.send(new MessageHolder(new GCode(String.format("G1 Y%s", change), "Set to board position 200")));
+        messageSender.send(new MessageHolder(new GCode("G90", "Absolute Positioning")));
+        //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G92 Y200", "Set position to rest")));
+        //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode("G28 X0 Z0", "Home X and Z")));
+        //messageSender.send(new MessageHolder(GCode.class.getSimpleName(), new GCode(String.format("G1 X0 Z%s", 57), "Set Hight", true)));
     }
 
 //     
@@ -251,4 +251,12 @@ public class BoardReader {
         /// state.setBoardPosition();
         messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
     }
+
+    public static void main(String[] arg) throws Exception {
+        PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
+        BoardProperties bp = new BoardProperties();
+        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new RMQChessMessageReceiver("BoardReader", true),
+                new BoardCalculator(bp), new PiecePositionsIdentifier(bp), new RMQChesssImageReceiver("boardReader"));
+    }
+
 }

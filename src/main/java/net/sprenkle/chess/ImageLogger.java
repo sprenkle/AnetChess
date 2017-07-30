@@ -11,8 +11,8 @@ import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sprenkle.chess.messages.BoardImage;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;
+import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 
 /**
  *
@@ -21,8 +21,8 @@ import net.sprenkle.chess.messages.MessageHandler;
 public class ImageLogger {
     public final String logDir = "D:\\git\\Chess\\images\\logger";
     
-    public ImageLogger(ChessMessageReceiver messageReceiver) {
-        messageReceiver.addMessageHandler(BoardImage.class.getSimpleName(), new MessageHandler<BoardImage>() {
+    public ImageLogger(RMQChesssImageReceiver messageReceiver) {
+        messageReceiver.add(new MessageHandler<BoardImage>() {
             @Override
             public void handleMessage(BoardImage boardImage) {
                 try {
@@ -46,6 +46,6 @@ public class ImageLogger {
     }
     
     public static void main(String[] arg){
-        ImageLogger imageLogger = new ImageLogger(new ChessMessageReceiver("ImageLogger", true));
+        ImageLogger imageLogger = new ImageLogger(new RMQChesssImageReceiver("ImageLogger"));
     }
 }

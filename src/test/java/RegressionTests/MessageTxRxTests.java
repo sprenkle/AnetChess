@@ -10,7 +10,7 @@ import net.sprenkle.chess.Chess;
 import net.sprenkle.chess.ChessControllerInterface;
 import net.sprenkle.chess.ChessState;
 import net.sprenkle.chess.messages.BoardStatus;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
@@ -24,7 +24,7 @@ import net.sprenkle.chess.messages.StartGame;
 public class MessageTxRxTests {
 
     public MessageTxRxTests() {
-        ChessMessageReceiver messageReceiver = new ChessMessageReceiver("MessageTxRxTests", true);
+        RMQChessMessageReceiver messageReceiver = new RMQChessMessageReceiver("MessageTxRxTests", true);
     }
 
     @org.junit.Test

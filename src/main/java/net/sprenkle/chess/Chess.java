@@ -5,7 +5,7 @@
  */
 package net.sprenkle.chess;
 
-import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.chess.messages.ChessMoveMsg;
@@ -15,6 +15,7 @@ import java.util.TimerTask;
 import java.util.UUID;
 import java.util.logging.Level;
 import net.sprenkle.chess.messages.BoardStatus;
+import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
@@ -58,7 +59,7 @@ public class Chess extends TimerTask {
         messageReceiver.addMessageHandler(ChessMoveMsg.class.getName(), new MessageHandler<ChessMoveMsg>() {
             @Override
             public void handleMessage(ChessMoveMsg chessMove) {
-                chessMoved(chessMove);
+                chessMoveMsg(chessMove);
             }
         });
 
@@ -83,30 +84,29 @@ public class Chess extends TimerTask {
         }
     }
 
-    public void setChessState(ChessState chessState){
+    public void setChessState(ChessState chessState) {
         this.chessState = chessState;
     }
-    
-    public void setExpectedMove(UUID uuid){
+
+    public void setExpectedMove(UUID uuid) {
         expectedMove = uuid;
     }
-    
-    public void startGame(StartGame startGame) {
-                chessMessageSender.send(new MessageHolder(new GCode("G4 P10", "Home X and Z")));
 
-       chessEngine.reset();
-       chessMessageSender.send(new MessageHolder(new KnownBoardPositions(chessEngine.getKnownBoard())));
-       chessMessageSender.send(new MessageHolder(new RequestBoardStatus()));
+    public void startGame(StartGame startGame) {
+        chessMessageSender.send(new MessageHolder(new GCode("G4 P10", "Home X and Z")));
+        chessMessageSender.send(new MessageHolder(new KnownBoardPositions(chessEngine.getKnownBoard())));
+        chessEngine.reset();
+        chessMessageSender.send(new MessageHolder(new RequestBoardStatus()));
     }
 
-    public void chessMoved(ChessMoveMsg chessMoveMsg) {
+    public void chessMoveMsg(ChessMoveMsg chessMoveMsg) {
         if (!chessMoveMsg.getMoveId().equals(expectedMove)) {
             logger.debug(String.format("Received Unknown move %s  Expected %s", chessMoveMsg.getMoveId(), expectedMove));
             return;
         }
 
         expectedMove = null;
-        
+
         timer.cancel();
         logger.debug(String.format("Message received ChessMove %s", chessMoveMsg.toString()));
         if (!chessState.getTurn().equals(chessMoveMsg.getChessMove().getTurn())) {
@@ -123,11 +123,15 @@ public class Chess extends TimerTask {
         }
         chessEngine.consoleOut(); // prints ascii board to console
 
+        // Updates known board
         if (chessState.isActivePlayerRobot()) {
             net.sprenkle.chess.messages.ChessMove chessMove = chessMoveMsg.getChessMove();
             chessMessageSender.send(new MessageHolder(new RequestMovePieces(chessMove, chessEngine.isLastMoveCastle(), chessMoveMsg.getMoveId())));
             return;
         }
+
+        chessMessageSender.send(new MessageHolder(new KnownBoardPositions(chessEngine.getKnownBoard())));
+
         chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
         requestMove(UUID.randomUUID());
     }
@@ -150,21 +154,20 @@ public class Chess extends TimerTask {
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
-//        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new ChessMessageReceiver("AnetBoardController", true));
-
-//        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new ChessMessageReceiver("BoardReader", true), 
+//        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new RMQChessMessageReceiver("AnetBoardController", true));
+//        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new RMQChessMessageReceiver("BoardReader", true), 
 //                new BoardCalculator(), new PiecePositionsIdentifier());
 //
-//        RobotMover robotMover = new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new ChessMessageReceiver("RobotMover", false));
-
-        Chess chess = new Chess(new ChessController(), new MqChessMessageSender("Chess"), new ChessMessageReceiver("Chess", false));
+//        RobotMover robotMover = new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new RMQChessMessageReceiver("RobotMover", false));
+        Chess chess = new Chess(new ChessController(), new MqChessMessageSender("Chess"), new RMQChessMessageReceiver("Chess", false));
     }
 
     public void boardStatus(BoardStatus boardStatus) {
         logger.debug(boardStatus.toString());
         if (boardStatus.isStartingPositionSet()) {
             // Build board and send out
-            chessMessageSender.send(new MessageHolder(new KnownBoardPositions(chessEngine.getKnownBoard())));
+            PossiblePiece[][] knownBoard = chessEngine.getKnownBoard();
+            chessMessageSender.send(new MessageHolder(new KnownBoardPositions(knownBoard)));
 
             chessEngine.newGame();
             chessState.setTurn(Player.White);
@@ -178,7 +181,8 @@ public class Chess extends TimerTask {
         if (confirmedPieceMove.getPieceMoved()) {
             // Set KnownBoardPositions
             chessState.setTurn(chessState.getTurn() == Player.White ? Player.Black : Player.White);
-            KnownBoardPositions knownBoardPositions = new KnownBoardPositions(chessEngine.getKnownBoard());
+            PossiblePiece[][] knownBoard = chessEngine.getKnownBoard();
+            KnownBoardPositions knownBoardPositions = new KnownBoardPositions(knownBoard);
             MessageHolder mh = new MessageHolder(knownBoardPositions);
             chessMessageSender.send(mh);
             requestMove(UUID.randomUUID());

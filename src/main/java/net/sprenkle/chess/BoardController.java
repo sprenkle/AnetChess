@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.sprenkle.chess.messages;
+package net.sprenkle.chess;
 
 /**
  *
  * @author david
  */
-public interface ChessMessageReceiver {
-    public void addMessageHandler(String messageType, MessageHandler messageHandler);
-    public void initialize() throws Exception;
+public interface BoardController {
+    void connect(String portName) throws Exception;
+    public void process();
+    public void executeGcode(String gcode, String notes);
 }

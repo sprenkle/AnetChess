@@ -5,10 +5,13 @@
  */
 package net.sprenkle.chess.messages;
 
+import java.io.IOException;
+
 /**
  *
  * @author david
  */
 public interface ChessImageReceiver {
-    
+    public void add(MessageHandler messageHandler);
+    public void initialize() throws Exception;
 }

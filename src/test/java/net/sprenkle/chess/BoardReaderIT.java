@@ -3,10 +3,11 @@ package net.sprenkle.chess;
 import java.util.UUID;
 import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.MqChessMessageSender;
 import net.sprenkle.chess.messages.RequestPiecePositions;
 import net.sprenkle.chess.messages.ChessMove;
+import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,12 +37,12 @@ public class BoardReaderIT {
         
    //         public BoardReader(
         MqChessMessageSender messageSender = mock(MqChessMessageSender.class);
-        ChessMessageReceiver messageReceiver  = mock(ChessMessageReceiver.class);
+        RMQChessMessageReceiver messageReceiver  = mock(RMQChessMessageReceiver.class);
         BoardCalculator boardCalculator = mock(BoardCalculator.class);
 
         BoardReaderState boardReaderState = new BoardReaderState();
         
-        BoardReader instance = new BoardReader(boardReaderState, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class));
+        BoardReader instance = new BoardReader(boardReaderState, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class), mock(RMQChesssImageReceiver.class));
 
         boardReaderState.setPiecePosition();
         

@@ -27,7 +27,7 @@ public class ChessMessageReceiverIT {
     public void testChessMoveMessage() {
         UUID id = UUID.randomUUID();
         
-        ChessMessageReceiver uut = new ChessMessageReceiver("test", true);
+        RMQChessMessageReceiver uut = new RMQChessMessageReceiver("test", true);
         
           uut.addMessageHandler(RequestMove.class.getSimpleName(), new MessageHandler<RequestMove>() {
             @Override

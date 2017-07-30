@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.imaging.ImageUtil;
 import net.sprenkle.chess.messages.BoardImage;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.MqChessMessageSender;
@@ -32,7 +32,7 @@ public class TestHarness extends javax.swing.JFrame {
     ArrayList<BufferedImage> imageList ;    
     ArrayList<MessageHolder> messageList;
     MqChessMessageSender messageSender = new MqChessMessageSender("TestHarness");
-    ChessMessageReceiver messageReceiver = new ChessMessageReceiver("TestHarness", true);
+    RMQChessMessageReceiver messageReceiver = new RMQChessMessageReceiver("TestHarness", true);
     
     /**
      * Creates new form TestHarness

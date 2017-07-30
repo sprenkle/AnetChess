@@ -9,9 +9,10 @@ import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
-import net.sprenkle.chess.messages.ChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.KnownBoardPositions;
 import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.RequestPiecePositions;
@@ -59,10 +60,10 @@ public class BoardReaderTest {
         System.out.println("requestMove");
         RequestMove requestMove = null;
         MqChessMessageSender messageSender = mock(MqChessMessageSender.class);
-        ChessMessageReceiver messageReceiver = mock(ChessMessageReceiver.class); 
+        RMQChessMessageReceiver messageReceiver = mock(RMQChessMessageReceiver.class); 
         BoardCalculator boardCalculator = mock(BoardCalculator.class);
         BoardReaderState state = new BoardReaderState();
-        BoardReader instance = new BoardReader(state, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class));
+        BoardReader instance = new BoardReader(state, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class), mock(RMQChesssImageReceiver.class));
 
         // Is robot 
         requestMove = new RequestMove(Player.White, true, "", null);

@@ -1,0 +1,399 @@
+2017-07-30 10:23:21,305 MqChessMessageSender  - Viewer sends net.sprenkle.chess.messages.StartGame  {"whiteRobot":false,"blackRobot":true,"whiteLevel":0,"blackLevel":0}
+2017-07-30 10:23:23,258 RMQChessMessageReceiver  - RobotMover id=4e696f92-11be-4e1a-8e62-be4b70095743 received net.sprenkle.chess.messages.StartGame {"jsonObject":"{\"whiteRobot\":false,\"blackRobot\":true,\"whiteLevel\":0,\"blackLevel\":0}","className":"net.sprenkle.chess.messages.StartGame","id":"4e696f92-11be-4e1a-8e62-be4b70095743"}
+2017-07-30 10:23:23,307 RMQChessMessageReceiver  - Chess id=4e696f92-11be-4e1a-8e62-be4b70095743 received net.sprenkle.chess.messages.StartGame {"jsonObject":"{\"whiteRobot\":false,\"blackRobot\":true,\"whiteLevel\":0,\"blackLevel\":0}","className":"net.sprenkle.chess.messages.StartGame","id":"4e696f92-11be-4e1a-8e62-be4b70095743"}
+2017-07-30 10:23:23,316 RMQChessMessageReceiver  - BoardReader id=4e696f92-11be-4e1a-8e62-be4b70095743 received net.sprenkle.chess.messages.StartGame {"jsonObject":"{\"whiteRobot\":false,\"blackRobot\":true,\"whiteLevel\":0,\"blackLevel\":0}","className":"net.sprenkle.chess.messages.StartGame","id":"4e696f92-11be-4e1a-8e62-be4b70095743"}
+2017-07-30 10:23:23,379 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.GCode  {"gcode":"G4 P10","note":"Home X and Z","wait":false}
+2017-07-30 10:23:23,392 RMQChessMessageReceiver  - AnetBoardController id=01a28e39-c093-491f-90dd-ef5660854b37 received net.sprenkle.chess.messages.GCode {"jsonObject":"{\"gcode\":\"G4 P10\",\"note\":\"Home X and Z\",\"wait\":false}","className":"net.sprenkle.chess.messages.GCode","id":"01a28e39-c093-491f-90dd-ef5660854b37"}
+2017-07-30 10:23:23,389 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.KnownBoardPositions  {"knownBoard":[[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":0,"rank":3},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":7,"rank":3}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":0,"rank":1},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":7,"rank":1}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":0,"rank":2},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":7,"rank":2}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":0,"rank":5},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":7,"rank":5}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":0,"rank":4},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":7,"rank":4}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":0,"rank":2},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":7,"rank":2}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":0,"rank":1},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":7,"rank":1}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":0,"rank":3},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":7,"rank":3}]]}
+2017-07-30 10:23:23,416 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.RequestBoardStatus  {}
+2017-07-30 10:23:23,428 RMQChessMessageReceiver  - BoardReader id=98857e61-236f-408f-8e86-401cc8c7107e received net.sprenkle.chess.messages.KnownBoardPositions {"jsonObject":"{\"knownBoard\":[[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":0,\"rank\":3},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":7,\"rank\":3}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":0,\"rank\":1},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":7,\"rank\":1}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":0,\"rank\":2},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":7,\"rank\":2}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":0,\"rank\":5},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":7,\"rank\":5}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":0,\"rank\":4},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":7,\"rank\":4}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":0,\"rank\":2},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":7,\"rank\":2}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":0,\"rank\":1},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":7,\"rank\":1}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":0,\"rank\":3},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":7,\"rank\":3}]]}","className":"net.sprenkle.chess.messages.KnownBoardPositions","id":"98857e61-236f-408f-8e86-401cc8c7107e"}
+2017-07-30 10:23:23,480 RMQChessMessageReceiver  - BoardReader id=1f02ef98-f8d3-422f-8b8b-37487ebf7626 received net.sprenkle.chess.messages.RequestBoardStatus {"jsonObject":"{}","className":"net.sprenkle.chess.messages.RequestBoardStatus","id":"1f02ef98-f8d3-422f-8b8b-37487ebf7626"}
+2017-07-30 10:23:23,581 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"52426b7c-13e9-48ef-9372-bdca106ecce0"}
+2017-07-30 10:23:23,716 BoardCalculator  - Marker y=53
+
+2017-07-30 10:23:23,754 BoardCalculator  - hook x=645
+
+2017-07-30 10:23:23,814 BoardCalculator  - hook Width=17
+
+2017-07-30 10:23:26,295 RMQChesssImageReceiver  - Viewer id=68ce3a34-de15-4a7d-9968-878aba083cb7 received net.sprenkle.chess.messages.BoardImage 68ce3a34-de15-4a7d-9968-878aba083cb7
+2017-07-30 10:23:26,297 BoardCalculator  - received image
+2017-07-30 10:23:26,338 BoardCalculator  - Marker y=53
+
+2017-07-30 10:23:26,353 BoardCalculator  - hook x=678
+
+2017-07-30 10:23:26,362 BoardCalculator  - hook Width=21
+
+2017-07-30 10:23:26,483 RMQChesssImageReceiver  - boardReader id=68ce3a34-de15-4a7d-9968-878aba083cb7 received net.sprenkle.chess.messages.BoardImage 68ce3a34-de15-4a7d-9968-878aba083cb7
+2017-07-30 10:23:26,623 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.GCode  {"gcode":"G91","note":"Relative Positioning","wait":false}
+2017-07-30 10:23:26,627 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.GCode  {"gcode":"G1 Y-0.0","note":"Set to board position 200","wait":false}
+2017-07-30 10:23:26,631 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.GCode  {"gcode":"G90","note":"Absolute Positioning","wait":false}
+2017-07-30 10:23:26,632 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"d483351a-6118-41ee-9579-207f0df9033d"}
+2017-07-30 10:23:26,636 RMQChessMessageReceiver  - AnetBoardController id=197fc307-0904-4597-b1e8-2228213769c9 received net.sprenkle.chess.messages.GCode {"jsonObject":"{\"gcode\":\"G91\",\"note\":\"Relative Positioning\",\"wait\":false}","className":"net.sprenkle.chess.messages.GCode","id":"197fc307-0904-4597-b1e8-2228213769c9"}
+2017-07-30 10:23:26,646 RMQChessMessageReceiver  - AnetBoardController id=57bcfb2a-a14a-45a1-9f5b-a98af113c767 received net.sprenkle.chess.messages.GCode {"jsonObject":"{\"gcode\":\"G1 Y-0.0\",\"note\":\"Set to board position 200\",\"wait\":false}","className":"net.sprenkle.chess.messages.GCode","id":"57bcfb2a-a14a-45a1-9f5b-a98af113c767"}
+2017-07-30 10:23:26,656 RMQChessMessageReceiver  - AnetBoardController id=317ed809-f718-4fbf-8c19-6efab1747450 received net.sprenkle.chess.messages.GCode {"jsonObject":"{\"gcode\":\"G90\",\"note\":\"Absolute Positioning\",\"wait\":false}","className":"net.sprenkle.chess.messages.GCode","id":"317ed809-f718-4fbf-8c19-6efab1747450"}
+2017-07-30 10:23:29,318 RMQChesssImageReceiver  - Viewer id=862e5b94-e9ef-4908-864c-5cab43e74c80 received net.sprenkle.chess.messages.BoardImage 862e5b94-e9ef-4908-864c-5cab43e74c80
+2017-07-30 10:23:29,322 BoardCalculator  - received image
+2017-07-30 10:23:29,326 RMQChesssImageReceiver  - boardReader id=862e5b94-e9ef-4908-864c-5cab43e74c80 received net.sprenkle.chess.messages.BoardImage 862e5b94-e9ef-4908-864c-5cab43e74c80
+2017-07-30 10:23:29,345 BoardCalculator  - Marker y=53
+
+2017-07-30 10:23:29,367 BoardCalculator  - hook x=678
+
+2017-07-30 10:23:29,378 BoardCalculator  - hook Width=21
+
+2017-07-30 10:23:29,556 BoardCalculator  - Number of pieces are 32
+2017-07-30 10:23:29,584 BoardReader  - Sent BoardStatus startingPositionSet=true humanSide=White isRestPosition=true
+2017-07-30 10:23:29,586 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.BoardStatus  {"isRestPosition":true,"startingPositionSet":true,"humanSide":true}
+2017-07-30 10:23:29,606 RMQChessMessageReceiver  - Chess id=5b3becb1-f366-4a04-8605-7f97690d07b3 received net.sprenkle.chess.messages.BoardStatus {"jsonObject":"{\"isRestPosition\":true,\"startingPositionSet\":true,\"humanSide\":true}","className":"net.sprenkle.chess.messages.BoardStatus","id":"5b3becb1-f366-4a04-8605-7f97690d07b3"}
+2017-07-30 10:23:29,619 Chess  - BoardStatus startingPositionSet=true humanSide=White isRestPosition=true
+2017-07-30 10:23:29,630 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.KnownBoardPositions  {"knownBoard":[[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":0,"rank":3},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":7,"rank":3}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":0,"rank":1},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":7,"rank":1}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":0,"rank":2},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":7,"rank":2}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":0,"rank":5},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":7,"rank":5}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":0,"rank":4},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":7,"rank":4}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":0,"rank":2},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":7,"rank":2}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":0,"rank":1},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":7,"rank":1}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":0,"rank":3},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":7,"rank":3}]]}
+2017-07-30 10:23:29,661 ChessController  - New Game
+2017-07-30 10:23:29,702 RMQChessMessageReceiver  - BoardReader id=34f734f0-764e-4fbe-bfc9-402b9491ccb3 received net.sprenkle.chess.messages.KnownBoardPositions {"jsonObject":"{\"knownBoard\":[[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":0,\"rank\":3},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":7,\"rank\":3}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":0,\"rank\":1},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":7,\"rank\":1}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":0,\"rank\":2},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":7,\"rank\":2}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":0,\"rank\":5},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":7,\"rank\":5}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":0,\"rank\":4},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":7,\"rank\":4}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":0,\"rank\":2},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":7,\"rank\":2}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":0,\"rank\":1},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":7,\"rank\":1}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":0,\"rank\":3},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":7,\"rank\":3}]]}","className":"net.sprenkle.chess.messages.KnownBoardPositions","id":"34f734f0-764e-4fbe-bfc9-402b9491ccb3"}
+2017-07-30 10:23:29,747 Chess  - RequestMove for White Human abf79284-e1d0-4acc-bcb8-ec8c1bb16eea position startpos moves 
+2017-07-30 10:23:29,748 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves ","moveId":"abf79284-e1d0-4acc-bcb8-ec8c1bb16eea"}
+2017-07-30 10:23:29,756 RMQChessMessageReceiver  - BoardReader id=a9ae11cf-e241-4d63-a683-2d8768c3f2d4 received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"abf79284-e1d0-4acc-bcb8-ec8c1bb16eea\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"a9ae11cf-e241-4d63-a683-2d8768c3f2d4"}
+2017-07-30 10:23:29,763 BoardReader  - Set state to net.sprenkle.chess.BoardReaderState@63f4e344
+2017-07-30 10:23:29,764 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"57a46d00-1f2a-4294-ab0d-1e6a0bb4388e"}
+2017-07-30 10:23:29,757 RMQChessMessageReceiver  - RobotMover id=a9ae11cf-e241-4d63-a683-2d8768c3f2d4 received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves \",\"moveId\":\"abf79284-e1d0-4acc-bcb8-ec8c1bb16eea\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"a9ae11cf-e241-4d63-a683-2d8768c3f2d4"}
+2017-07-30 10:23:32,240 RMQChesssImageReceiver  - Viewer id=0dff3310-e7fd-46b0-9b48-d8093eb78965 received net.sprenkle.chess.messages.BoardImage 0dff3310-e7fd-46b0-9b48-d8093eb78965
+2017-07-30 10:23:32,242 BoardCalculator  - received image
+2017-07-30 10:23:32,242 RMQChesssImageReceiver  - boardReader id=0dff3310-e7fd-46b0-9b48-d8093eb78965 received net.sprenkle.chess.messages.BoardImage 0dff3310-e7fd-46b0-9b48-d8093eb78965
+2017-07-30 10:23:32,263 BoardCalculator  - Marker y=53
+
+2017-07-30 10:23:32,300 BoardCalculator  - hook x=678
+
+2017-07-30 10:23:32,310 BoardCalculator  - hook Width=21
+
+2017-07-30 10:23:32,429 BoardCalculator  - Duplicate Piece 6,0 has offset of 38.0
+2017-07-30 10:23:32,430 BoardCalculator  - Duplicate Piece 6,7 has offset of 42.0
+2017-07-30 10:23:32,431 BoardCalculator  - Duplicate Piece 6,7 has offset of 46.0
+2017-07-30 10:23:32,433 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"b2dc5587-7e3f-4783-9ec1-adca2423b8df"}
+2017-07-30 10:23:35,018 RMQChesssImageReceiver  - Viewer id=b06a6eb0-3255-4819-9ed9-4086b02b32c8 received net.sprenkle.chess.messages.BoardImage b06a6eb0-3255-4819-9ed9-4086b02b32c8
+2017-07-30 10:23:35,022 BoardCalculator  - received image
+2017-07-30 10:23:35,029 RMQChesssImageReceiver  - boardReader id=b06a6eb0-3255-4819-9ed9-4086b02b32c8 received net.sprenkle.chess.messages.BoardImage b06a6eb0-3255-4819-9ed9-4086b02b32c8
+2017-07-30 10:23:35,044 BoardCalculator  - Marker y=53
+
+2017-07-30 10:23:35,057 BoardCalculator  - hook x=678
+
+2017-07-30 10:23:35,067 BoardCalculator  - hook Width=21
+
+2017-07-30 10:23:35,142 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"3f198eba-781e-4874-979f-6b977a4e015d"}
+2017-07-30 10:23:37,531 RMQChesssImageReceiver  - boardReader id=69997e0b-240a-4ff0-8e63-c8cede232da1 received net.sprenkle.chess.messages.BoardImage 69997e0b-240a-4ff0-8e63-c8cede232da1
+2017-07-30 10:23:37,532 RMQChesssImageReceiver  - Viewer id=69997e0b-240a-4ff0-8e63-c8cede232da1 received net.sprenkle.chess.messages.BoardImage 69997e0b-240a-4ff0-8e63-c8cede232da1
+2017-07-30 10:23:37,535 BoardCalculator  - received image
+2017-07-30 10:23:37,565 BoardCalculator  - hook x=678
+
+2017-07-30 10:23:37,576 BoardCalculator  - hook Width=21
+
+2017-07-30 10:23:37,641 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"40d18b08-c0a9-41cf-a15f-2b13d3ef877a"}
+2017-07-30 10:23:40,396 RMQChesssImageReceiver  - Viewer id=b7c631a2-9854-4b7a-976e-812e67d7e344 received net.sprenkle.chess.messages.BoardImage b7c631a2-9854-4b7a-976e-812e67d7e344
+2017-07-30 10:23:40,397 BoardCalculator  - received image
+2017-07-30 10:23:40,400 RMQChesssImageReceiver  - boardReader id=b7c631a2-9854-4b7a-976e-812e67d7e344 received net.sprenkle.chess.messages.BoardImage b7c631a2-9854-4b7a-976e-812e67d7e344
+2017-07-30 10:23:40,419 BoardCalculator  - Marker y=53
+
+2017-07-30 10:23:40,430 BoardCalculator  - hook x=678
+
+2017-07-30 10:23:40,441 BoardCalculator  - hook Width=21
+
+2017-07-30 10:23:40,447 BoardCalculator  - Difference in Piece 3,3 has offset of 2.0
+2017-07-30 10:23:40,448 BoardCalculator  - Duplicate Piece 6,0 has offset of 38.0
+2017-07-30 10:23:40,451 BoardCalculator  - Duplicate Piece 6,7 has offset of 44.0
+2017-07-30 10:23:40,451 BoardCalculator  - Piece moved from 3,1 to 3,3
+2017-07-30 10:23:40,452 BoardReader  - Found White move
+2017-07-30 10:23:40,456 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.ChessMoveMsg  {"moveId":"abf79284-e1d0-4acc-bcb8-ec8c1bb16eea","robot":false,"chessMove":{"turn":{"color":"White"},"move":"e2e4"}}
+2017-07-30 10:23:40,468 RMQChessMessageReceiver  - Chess id=04ba9172-bdc4-4404-9b10-1e099a8ca57a received net.sprenkle.chess.messages.ChessMoveMsg {"jsonObject":"{\"moveId\":\"abf79284-e1d0-4acc-bcb8-ec8c1bb16eea\",\"robot\":false,\"chessMove\":{\"turn\":{\"color\":\"White\"},\"move\":\"e2e4\"}}","className":"net.sprenkle.chess.messages.ChessMoveMsg","id":"04ba9172-bdc4-4404-9b10-1e099a8ca57a"}
+2017-07-30 10:23:40,475 Chess  - Message received ChessMove Id=abf79284-e1d0-4acc-bcb8-ec8c1bb16eea Human e2e4
+2017-07-30 10:23:40,482 ChessController  - e2e4
+2017-07-30 10:23:40,489 Chess  - RequestMove for Black Robot 07a34337-b71f-4a29-be81-a23f231af9cc position startpos moves e2e4 
+2017-07-30 10:23:40,490 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.RequestMove  {"turn":{"color":"Black"},"robot":true,"moveHistory":"position startpos moves e2e4 ","moveId":"07a34337-b71f-4a29-be81-a23f231af9cc"}
+2017-07-30 10:23:40,498 RMQChessMessageReceiver  - BoardReader id=2015f287-7a2e-4ddb-afb5-e38532e5091e received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"Black\"},\"robot\":true,\"moveHistory\":\"position startpos moves e2e4 \",\"moveId\":\"07a34337-b71f-4a29-be81-a23f231af9cc\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"2015f287-7a2e-4ddb-afb5-e38532e5091e"}
+2017-07-30 10:23:40,500 RMQChessMessageReceiver  - RobotMover id=2015f287-7a2e-4ddb-afb5-e38532e5091e received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"Black\"},\"robot\":true,\"moveHistory\":\"position startpos moves e2e4 \",\"moveId\":\"07a34337-b71f-4a29-be81-a23f231af9cc\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"2015f287-7a2e-4ddb-afb5-e38532e5091e"}
+2017-07-30 10:23:40,538 RobotMover  - RequestMove for Black Robot 07a34337-b71f-4a29-be81-a23f231af9cc position startpos moves e2e4 
+2017-07-30 10:23:59,959 RobotMover  - Made move -bestmove e7e5 ponder g1f3-
+2017-07-30 10:23:59,961 MqChessMessageSender  - RobotMover sends net.sprenkle.chess.messages.ChessMoveMsg  {"moveId":"07a34337-b71f-4a29-be81-a23f231af9cc","robot":true,"chessMove":{"turn":{"color":"Black"},"move":"e7e5"}}
+2017-07-30 10:23:59,968 RobotMover  - ChessMove Black to move, e7e5
+2017-07-30 10:23:59,969 RMQChessMessageReceiver  - Chess id=110e13ed-3692-466f-97b0-a53fd39e348a received net.sprenkle.chess.messages.ChessMoveMsg {"jsonObject":"{\"moveId\":\"07a34337-b71f-4a29-be81-a23f231af9cc\",\"robot\":true,\"chessMove\":{\"turn\":{\"color\":\"Black\"},\"move\":\"e7e5\"}}","className":"net.sprenkle.chess.messages.ChessMoveMsg","id":"110e13ed-3692-466f-97b0-a53fd39e348a"}
+2017-07-30 10:23:59,991 Chess  - Message received ChessMove Id=07a34337-b71f-4a29-be81-a23f231af9cc Robot e7e5
+2017-07-30 10:23:59,992 ChessController  - e7e5
+2017-07-30 10:24:00,007 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.RequestMovePieces  {"chessMove":{"turn":{"color":"Black"},"move":"e7e5"},"castle":false,"uuid":"07a34337-b71f-4a29-be81-a23f231af9cc"}
+2017-07-30 10:24:00,010 RMQChessMessageReceiver  - AnetBoardController id=71a7a126-9759-4266-913f-a77cfe821732 received net.sprenkle.chess.messages.RequestMovePieces {"jsonObject":"{\"chessMove\":{\"turn\":{\"color\":\"Black\"},\"move\":\"e7e5\"},\"castle\":false,\"uuid\":\"07a34337-b71f-4a29-be81-a23f231af9cc\"}","className":"net.sprenkle.chess.messages.RequestMovePieces","id":"71a7a126-9759-4266-913f-a77cfe821732"}
+2017-07-30 10:24:00,017 BoardProcessor  - Requesting move RequestMovePieces ChessMove Black to move, e7e5
+2017-07-30 10:24:00,019 MqChessMessageSender  - AnetBoardController sends net.sprenkle.chess.messages.RequestPiecePositions  {"chessMove":{"turn":{"color":"Black"},"move":"e7e5"},"castle":false,"uuid":"07a34337-b71f-4a29-be81-a23f231af9cc"}
+2017-07-30 10:24:00,022 RMQChessMessageReceiver  - BoardReader id=8f54befa-7eed-444c-be6b-643987453f8a received net.sprenkle.chess.messages.RequestPiecePositions {"jsonObject":"{\"chessMove\":{\"turn\":{\"color\":\"Black\"},\"move\":\"e7e5\"},\"castle\":false,\"uuid\":\"07a34337-b71f-4a29-be81-a23f231af9cc\"}","className":"net.sprenkle.chess.messages.RequestPiecePositions","id":"8f54befa-7eed-444c-be6b-643987453f8a"}
+2017-07-30 10:24:00,026 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"143a1289-ba26-4204-a336-da67625270fd"}
+2017-07-30 10:24:02,465 RMQChesssImageReceiver  - Viewer id=4a7b96d2-8a8b-4068-9be7-4c641ee610e1 received net.sprenkle.chess.messages.BoardImage 4a7b96d2-8a8b-4068-9be7-4c641ee610e1
+2017-07-30 10:24:02,470 BoardCalculator  - received image
+2017-07-30 10:24:02,467 RMQChesssImageReceiver  - boardReader id=4a7b96d2-8a8b-4068-9be7-4c641ee610e1 received net.sprenkle.chess.messages.BoardImage 4a7b96d2-8a8b-4068-9be7-4c641ee610e1
+2017-07-30 10:24:02,497 BoardCalculator  - Marker y=53
+
+2017-07-30 10:24:02,506 BoardCalculator  - hook x=678
+
+2017-07-30 10:24:02,517 BoardCalculator  - hook Width=21
+
+2017-07-30 10:24:02,527 BoardCalculator  - Duplicate Piece 6,0 has offset of 37.0
+2017-07-30 10:24:02,576 BoardCalculator  - Difference in Piece 3,3 has offset of 2.0
+2017-07-30 10:24:02,576 BoardCalculator  - Duplicate Piece 6,0 has offset of 37.0
+2017-07-30 10:24:02,578 BoardReader  - received e7e5
+2017-07-30 10:24:02,578 BoardReader  - Converted to 3,6  3,4
+2017-07-30 10:24:02,579 BoardReader  - fromPiece x=0, y=0 row=6 col=3
+2017-07-30 10:24:02,579 BoardReader  - from Piece image x=0.0, y=0.0
+2017-07-30 10:24:02,579 BoardReader  - No capture
+2017-07-30 10:24:02,584 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.PiecePositions  {"moveList":[{"from":[107.4,157.0],"to":[107.4,109.0],"height":20.0,"low":false}],"uui":"07a34337-b71f-4a29-be81-a23f231af9cc","high":95.0,"mid":54.0}
+2017-07-30 10:24:02,596 RMQChessMessageReceiver  - AnetBoardController id=ebf5a114-4e2f-48ce-a28a-f008dd1b648a received net.sprenkle.chess.messages.PiecePositions {"jsonObject":"{\"moveList\":[{\"from\":[107.4,157.0],\"to\":[107.4,109.0],\"height\":20.0,\"low\":false}],\"uui\":\"07a34337-b71f-4a29-be81-a23f231af9cc\",\"high\":95.0,\"mid\":54.0}","className":"net.sprenkle.chess.messages.PiecePositions","id":"ebf5a114-4e2f-48ce-a28a-f008dd1b648a"}
+2017-07-30 10:24:18,649 MqChessMessageSender  - AnetBoardController sends net.sprenkle.chess.messages.ConfirmedPieceMove  {"pieceMoved":true}
+2017-07-30 10:24:18,652 RMQChessMessageReceiver  - Chess id=19ad35b8-089e-493e-8a82-8329c0bb585f received net.sprenkle.chess.messages.ConfirmedPieceMove {"jsonObject":"{\"pieceMoved\":true}","className":"net.sprenkle.chess.messages.ConfirmedPieceMove","id":"19ad35b8-089e-493e-8a82-8329c0bb585f"}
+2017-07-30 10:24:18,662 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.KnownBoardPositions  {"knownBoard":[[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":0,"rank":3},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":0,"row":7,"rank":3}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":0,"rank":1},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":1,"row":7,"rank":1}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":0,"rank":2},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":2,"row":7,"rank":2}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":0,"rank":5},null,null,{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":3,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":4,"rank":0},null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":3,"row":7,"rank":5}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":0,"rank":4},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":4,"row":7,"rank":4}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":0,"rank":2},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":5,"row":7,"rank":2}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":0,"rank":1},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":6,"row":7,"rank":1}],[{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":0,"rank":3},{"x":0,"y":0,"color":{"color":"White"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":1,"rank":0},null,null,null,null,{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":6,"rank":0},{"x":0,"y":0,"color":{"color":"Black"},"xOffFactor":0.0,"yOffFactor":0.0,"col":7,"row":7,"rank":3}]]}
+2017-07-30 10:24:18,688 Chess  - RequestMove for White Human 4a1a00a3-c497-42aa-81e3-9a4339eb561a position startpos moves e2e4 e7e5 
+2017-07-30 10:24:18,693 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.RequestMove  {"turn":{"color":"White"},"robot":false,"moveHistory":"position startpos moves e2e4 e7e5 ","moveId":"4a1a00a3-c497-42aa-81e3-9a4339eb561a"}
+2017-07-30 10:24:18,699 RMQChessMessageReceiver  - RobotMover id=bdcc7ba1-0947-40ee-a1e5-053f7e3ceb09 received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves e2e4 e7e5 \",\"moveId\":\"4a1a00a3-c497-42aa-81e3-9a4339eb561a\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"bdcc7ba1-0947-40ee-a1e5-053f7e3ceb09"}
+2017-07-30 10:24:18,698 RMQChessMessageReceiver  - BoardReader id=ea4b66da-a050-4240-a38a-2b9c268c9417 received net.sprenkle.chess.messages.KnownBoardPositions {"jsonObject":"{\"knownBoard\":[[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":0,\"rank\":3},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":0,\"row\":7,\"rank\":3}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":0,\"rank\":1},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":1,\"row\":7,\"rank\":1}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":0,\"rank\":2},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":2,\"row\":7,\"rank\":2}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":0,\"rank\":5},null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":3,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":4,\"rank\":0},null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":3,\"row\":7,\"rank\":5}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":0,\"rank\":4},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":4,\"row\":7,\"rank\":4}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":0,\"rank\":2},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":5,\"row\":7,\"rank\":2}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":0,\"rank\":1},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":6,\"row\":7,\"rank\":1}],[{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":0,\"rank\":3},{\"x\":0,\"y\":0,\"color\":{\"color\":\"White\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":1,\"rank\":0},null,null,null,null,{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":6,\"rank\":0},{\"x\":0,\"y\":0,\"color\":{\"color\":\"Black\"},\"xOffFactor\":0.0,\"yOffFactor\":0.0,\"col\":7,\"row\":7,\"rank\":3}]]}","className":"net.sprenkle.chess.messages.KnownBoardPositions","id":"ea4b66da-a050-4240-a38a-2b9c268c9417"}
+2017-07-30 10:24:18,738 RMQChessMessageReceiver  - BoardReader id=bdcc7ba1-0947-40ee-a1e5-053f7e3ceb09 received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"White\"},\"robot\":false,\"moveHistory\":\"position startpos moves e2e4 e7e5 \",\"moveId\":\"4a1a00a3-c497-42aa-81e3-9a4339eb561a\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"bdcc7ba1-0947-40ee-a1e5-053f7e3ceb09"}
+2017-07-30 10:24:18,740 BoardReader  - Set state to net.sprenkle.chess.BoardReaderState@63f4e344
+2017-07-30 10:24:18,744 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"3a24b38d-4a3a-4134-a581-d4b1ba6e81f7"}
+2017-07-30 10:24:21,394 RMQChesssImageReceiver  - Viewer id=add85c6c-c577-4eff-bfff-1689246628ef received net.sprenkle.chess.messages.BoardImage add85c6c-c577-4eff-bfff-1689246628ef
+2017-07-30 10:24:21,395 BoardCalculator  - received image
+2017-07-30 10:24:21,399 RMQChesssImageReceiver  - boardReader id=add85c6c-c577-4eff-bfff-1689246628ef received net.sprenkle.chess.messages.BoardImage add85c6c-c577-4eff-bfff-1689246628ef
+2017-07-30 10:24:21,420 BoardCalculator  - Marker y=142
+
+2017-07-30 10:24:21,433 BoardCalculator  - hook x=542
+
+2017-07-30 10:24:21,442 BoardCalculator  - hook Width=-1
+
+2017-07-30 10:24:21,446 BoardCalculator  - Difference in Piece 6,3 has offset of 7.0
+2017-07-30 10:24:21,448 BoardCalculator  - Difference in Piece 1,3 has offset of 9.0
+2017-07-30 10:24:21,455 BoardCalculator  - Difference in Piece 2,3 has offset of 10.0
+2017-07-30 10:24:21,458 BoardCalculator  - Difference in Piece 0,3 has offset of 10.0
+2017-07-30 10:24:21,460 BoardCalculator  - Difference in Piece 4,3 has offset of 12.0
+2017-07-30 10:24:21,461 BoardCalculator  - Difference in Piece 3,5 has offset of 12.0
+2017-07-30 10:24:21,462 BoardCalculator  - Difference in Piece 7,2 has offset of 14.0
+2017-07-30 10:24:21,464 BoardCalculator  - Difference in Piece 7,3 has offset of 16.0
+2017-07-30 10:24:21,467 BoardCalculator  - Difference in Piece 5,2 has offset of 17.0
+2017-07-30 10:24:21,468 BoardCalculator  - Difference in Piece 5,3 has offset of 17.0
+2017-07-30 10:24:21,472 BoardCalculator  - Difference in Piece 0,2 has offset of 20.0
+2017-07-30 10:24:21,476 BoardCalculator  - Difference in Piece 2,2 has offset of 24.0
+2017-07-30 10:24:21,476 BoardCalculator  - Difference in Piece 3,2 has offset of 24.0
+2017-07-30 10:24:21,477 BoardCalculator  - Difference in Piece 1,2 has offset of 24.0
+2017-07-30 10:24:21,478 BoardCalculator  - Difference in Piece 4,2 has offset of 27.0
+2017-07-30 10:24:21,478 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"3b9ce197-871a-40b9-94d4-3fe61474b0bd"}
+2017-07-30 10:24:24,168 RMQChesssImageReceiver  - boardReader id=e9bd3d24-8d86-4d0b-91cd-c787998e0b0a received net.sprenkle.chess.messages.BoardImage e9bd3d24-8d86-4d0b-91cd-c787998e0b0a
+2017-07-30 10:24:24,179 RMQChesssImageReceiver  - Viewer id=e9bd3d24-8d86-4d0b-91cd-c787998e0b0a received net.sprenkle.chess.messages.BoardImage e9bd3d24-8d86-4d0b-91cd-c787998e0b0a
+2017-07-30 10:24:24,181 BoardCalculator  - received image
+2017-07-30 10:24:24,198 BoardCalculator  - Marker y=242
+
+2017-07-30 10:24:24,214 BoardCalculator  - hook Width=-1
+
+2017-07-30 10:24:24,218 BoardCalculator  - Difference in Piece 6,5 has offset of 5.0
+2017-07-30 10:24:24,218 BoardCalculator  - Difference in Piece 2,5 has offset of 9.0
+2017-07-30 10:24:24,220 BoardCalculator  - Difference in Piece 0,5 has offset of 9.0
+2017-07-30 10:24:24,221 BoardCalculator  - Difference in Piece 7,4 has offset of 10.0
+2017-07-30 10:24:24,221 BoardCalculator  - Difference in Piece 1,5 has offset of 10.0
+2017-07-30 10:24:24,223 BoardCalculator  - Difference in Piece 4,5 has offset of 11.0
+2017-07-30 10:24:24,223 BoardCalculator  - Difference in Piece 5,4 has offset of 12.0
+2017-07-30 10:24:24,225 BoardCalculator  - Difference in Piece 7,5 has offset of 14.0
+2017-07-30 10:24:24,225 BoardCalculator  - Difference in Piece 5,5 has offset of 17.0
+2017-07-30 10:24:24,225 BoardCalculator  - Difference in Piece 3,4 has offset of 19.0
+2017-07-30 10:24:24,226 BoardCalculator  - Difference in Piece 0,4 has offset of 20.0
+2017-07-30 10:24:24,226 BoardCalculator  - Difference in Piece 1,4 has offset of 21.0
+2017-07-30 10:24:24,226 BoardCalculator  - Difference in Piece 3,7 has offset of 22.0
+2017-07-30 10:24:24,228 BoardCalculator  - Difference in Piece 2,4 has offset of 23.0
+2017-07-30 10:24:24,228 BoardCalculator  - Difference in Piece 4,4 has offset of 24.0
+2017-07-30 10:24:24,229 BoardCalculator  - Difference in Piece 6,4 has offset of 26.0
+2017-07-30 10:24:24,233 BoardCalculator  - Duplicate Piece 0,5 has offset of 33.0
+2017-07-30 10:24:24,234 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"19f8f223-66f3-441b-8de7-4366604a3dae"}
+2017-07-30 10:24:26,892 RMQChesssImageReceiver  - Viewer id=0cb4650c-ffc5-4324-907e-84af6ec7ad28 received net.sprenkle.chess.messages.BoardImage 0cb4650c-ffc5-4324-907e-84af6ec7ad28
+2017-07-30 10:24:26,894 BoardCalculator  - received image
+2017-07-30 10:24:26,900 RMQChesssImageReceiver  - boardReader id=0cb4650c-ffc5-4324-907e-84af6ec7ad28 received net.sprenkle.chess.messages.BoardImage 0cb4650c-ffc5-4324-907e-84af6ec7ad28
+2017-07-30 10:24:26,906 BoardCalculator  - Marker y=242
+
+2017-07-30 10:24:26,914 BoardCalculator  - hook x=365
+
+2017-07-30 10:24:26,923 BoardCalculator  - hook Width=22
+
+2017-07-30 10:24:26,950 BoardCalculator  - Difference in Piece 6,5 has offset of 5.0
+2017-07-30 10:24:26,952 BoardCalculator  - Difference in Piece 2,5 has offset of 9.0
+2017-07-30 10:24:26,954 BoardCalculator  - Difference in Piece 0,5 has offset of 9.0
+2017-07-30 10:24:26,957 BoardCalculator  - Difference in Piece 7,4 has offset of 10.0
+2017-07-30 10:24:26,957 BoardCalculator  - Difference in Piece 1,5 has offset of 10.0
+2017-07-30 10:24:26,959 BoardCalculator  - Difference in Piece 4,5 has offset of 11.0
+2017-07-30 10:24:26,960 BoardCalculator  - Difference in Piece 5,4 has offset of 12.0
+2017-07-30 10:24:26,960 BoardCalculator  - Difference in Piece 7,5 has offset of 14.0
+2017-07-30 10:24:26,963 BoardCalculator  - Difference in Piece 5,5 has offset of 17.0
+2017-07-30 10:24:26,963 BoardCalculator  - Difference in Piece 3,4 has offset of 19.0
+2017-07-30 10:24:26,973 BoardCalculator  - Difference in Piece 0,4 has offset of 19.0
+2017-07-30 10:24:26,974 BoardCalculator  - Difference in Piece 1,4 has offset of 22.0
+2017-07-30 10:24:26,975 BoardCalculator  - Difference in Piece 3,7 has offset of 22.0
+2017-07-30 10:24:26,976 BoardCalculator  - Difference in Piece 2,4 has offset of 23.0
+2017-07-30 10:24:26,976 BoardCalculator  - Difference in Piece 4,4 has offset of 24.0
+2017-07-30 10:24:26,977 BoardCalculator  - Difference in Piece 6,4 has offset of 27.0
+2017-07-30 10:24:26,980 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"194bb8b2-e8c7-4635-9b8e-51f5fd1a4146"}
+2017-07-30 10:24:29,511 RMQChesssImageReceiver  - Viewer id=b40e82c1-8596-46e0-8922-8882298fab9b received net.sprenkle.chess.messages.BoardImage b40e82c1-8596-46e0-8922-8882298fab9b
+2017-07-30 10:24:29,516 BoardCalculator  - received image
+2017-07-30 10:24:29,512 RMQChesssImageReceiver  - boardReader id=b40e82c1-8596-46e0-8922-8882298fab9b received net.sprenkle.chess.messages.BoardImage b40e82c1-8596-46e0-8922-8882298fab9b
+2017-07-30 10:24:29,534 BoardCalculator  - Marker y=242
+
+2017-07-30 10:24:29,546 BoardCalculator  - hook x=341
+
+2017-07-30 10:24:29,553 BoardCalculator  - hook Width=-1
+
+2017-07-30 10:24:29,632 BoardCalculator  - Difference in Piece 6,5 has offset of 5.0
+2017-07-30 10:24:29,632 BoardCalculator  - Difference in Piece 2,5 has offset of 9.0
+2017-07-30 10:24:29,638 BoardCalculator  - Difference in Piece 0,5 has offset of 9.0
+2017-07-30 10:24:29,639 BoardCalculator  - Difference in Piece 7,4 has offset of 10.0
+2017-07-30 10:24:29,639 BoardCalculator  - Difference in Piece 1,5 has offset of 10.0
+2017-07-30 10:24:29,639 BoardCalculator  - Difference in Piece 4,5 has offset of 11.0
+2017-07-30 10:24:29,640 BoardCalculator  - Difference in Piece 5,4 has offset of 12.0
+2017-07-30 10:24:29,640 BoardCalculator  - Difference in Piece 7,5 has offset of 14.0
+2017-07-30 10:24:29,641 BoardCalculator  - Difference in Piece 5,5 has offset of 18.0
+2017-07-30 10:24:29,641 BoardCalculator  - Difference in Piece 3,4 has offset of 19.0
+2017-07-30 10:24:29,642 BoardCalculator  - Difference in Piece 0,4 has offset of 20.0
+2017-07-30 10:24:29,644 BoardCalculator  - Difference in Piece 1,4 has offset of 22.0
+2017-07-30 10:24:29,645 BoardCalculator  - Difference in Piece 3,7 has offset of 22.0
+2017-07-30 10:24:29,645 BoardCalculator  - Difference in Piece 2,4 has offset of 23.0
+2017-07-30 10:24:29,645 BoardCalculator  - Difference in Piece 4,4 has offset of 24.0
+2017-07-30 10:24:29,646 BoardCalculator  - Difference in Piece 6,4 has offset of 27.0
+2017-07-30 10:24:29,646 BoardCalculator  - Duplicate Piece 0,5 has offset of 33.0
+2017-07-30 10:24:29,647 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"2ac19d70-4d3d-4391-8232-2accda9e0fd7"}
+2017-07-30 10:24:32,182 RMQChesssImageReceiver  - Viewer id=d35afd07-206c-4f1e-9bea-e7b12b62abcd received net.sprenkle.chess.messages.BoardImage d35afd07-206c-4f1e-9bea-e7b12b62abcd
+2017-07-30 10:24:32,182 RMQChesssImageReceiver  - boardReader id=d35afd07-206c-4f1e-9bea-e7b12b62abcd received net.sprenkle.chess.messages.BoardImage d35afd07-206c-4f1e-9bea-e7b12b62abcd
+2017-07-30 10:24:32,188 BoardCalculator  - received image
+2017-07-30 10:24:32,205 BoardCalculator  - Marker y=242
+
+2017-07-30 10:24:32,217 BoardCalculator  - hook x=373
+
+2017-07-30 10:24:32,225 BoardCalculator  - hook Width=18
+
+2017-07-30 10:24:32,254 BoardCalculator  - Difference in Piece 6,5 has offset of 6.0
+2017-07-30 10:24:32,256 BoardCalculator  - Difference in Piece 2,5 has offset of 9.0
+2017-07-30 10:24:32,257 BoardCalculator  - Difference in Piece 0,5 has offset of 9.0
+2017-07-30 10:24:32,258 BoardCalculator  - Difference in Piece 7,4 has offset of 10.0
+2017-07-30 10:24:32,261 BoardCalculator  - Difference in Piece 1,5 has offset of 10.0
+2017-07-30 10:24:32,266 BoardCalculator  - Difference in Piece 4,5 has offset of 11.0
+2017-07-30 10:24:32,267 BoardCalculator  - Difference in Piece 5,4 has offset of 12.0
+2017-07-30 10:24:32,268 BoardCalculator  - Difference in Piece 7,5 has offset of 14.0
+2017-07-30 10:24:32,270 BoardCalculator  - Difference in Piece 5,5 has offset of 17.0
+2017-07-30 10:24:32,271 BoardCalculator  - Difference in Piece 3,4 has offset of 19.0
+2017-07-30 10:24:32,272 BoardCalculator  - Difference in Piece 0,4 has offset of 20.0
+2017-07-30 10:24:32,276 BoardCalculator  - Difference in Piece 1,4 has offset of 22.0
+2017-07-30 10:24:32,277 BoardCalculator  - Difference in Piece 3,7 has offset of 22.0
+2017-07-30 10:24:32,278 BoardCalculator  - Difference in Piece 4,4 has offset of 23.0
+2017-07-30 10:24:32,280 BoardCalculator  - Difference in Piece 2,4 has offset of 23.0
+2017-07-30 10:24:32,282 BoardCalculator  - Difference in Piece 6,4 has offset of 26.0
+2017-07-30 10:24:32,283 BoardCalculator  - Duplicate Piece 0,5 has offset of 33.0
+2017-07-30 10:24:32,286 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"58f8ec1b-7a35-44f7-b53f-bb4427e1f374"}
+2017-07-30 10:24:35,009 RMQChesssImageReceiver  - boardReader id=d81d4c45-efec-4bcc-9f9f-1eacd5d518f2 received net.sprenkle.chess.messages.BoardImage d81d4c45-efec-4bcc-9f9f-1eacd5d518f2
+2017-07-30 10:24:35,012 RMQChesssImageReceiver  - Viewer id=d81d4c45-efec-4bcc-9f9f-1eacd5d518f2 received net.sprenkle.chess.messages.BoardImage d81d4c45-efec-4bcc-9f9f-1eacd5d518f2
+2017-07-30 10:24:35,013 BoardCalculator  - received image
+2017-07-30 10:24:35,028 BoardCalculator  - Marker y=217
+
+2017-07-30 10:24:35,036 BoardCalculator  - hook x=370
+
+2017-07-30 10:24:35,045 BoardCalculator  - hook Width=19
+
+2017-07-30 10:24:35,062 BoardCalculator  - Difference in Piece 6,3 has offset of 6.0
+2017-07-30 10:24:35,062 BoardCalculator  - Difference in Piece 4,3 has offset of 7.0
+2017-07-30 10:24:35,063 BoardCalculator  - Difference in Piece 2,3 has offset of 9.0
+2017-07-30 10:24:35,065 BoardCalculator  - Difference in Piece 1,3 has offset of 11.0
+2017-07-30 10:24:35,065 BoardCalculator  - Difference in Piece 4,4 has offset of 15.0
+2017-07-30 10:24:35,066 BoardCalculator  - Difference in Piece 0,3 has offset of 17.0
+2017-07-30 10:24:35,067 BoardCalculator  - Difference in Piece 5,3 has offset of 18.0
+2017-07-30 10:24:35,067 BoardCalculator  - Difference in Piece 7,3 has offset of 18.0
+2017-07-30 10:24:35,068 BoardCalculator  - Difference in Piece 7,4 has offset of 18.0
+2017-07-30 10:24:35,068 BoardCalculator  - Difference in Piece 2,4 has offset of 18.0
+2017-07-30 10:24:35,069 BoardCalculator  - Difference in Piece 1,4 has offset of 19.0
+2017-07-30 10:24:35,069 BoardCalculator  - Difference in Piece 3,6 has offset of 20.0
+2017-07-30 10:24:35,070 BoardCalculator  - Difference in Piece 5,4 has offset of 21.0
+2017-07-30 10:24:35,070 BoardCalculator  - Difference in Piece 0,4 has offset of 23.0
+2017-07-30 10:24:35,071 BoardCalculator  - Difference in Piece 6,4 has offset of 25.0
+2017-07-30 10:24:35,072 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"5d3aae88-273c-47fb-b662-ab505f4b3196"}
+2017-07-30 10:24:37,645 RMQChesssImageReceiver  - Viewer id=f4cf3b53-297c-4cb2-8455-571f55c7cf10 received net.sprenkle.chess.messages.BoardImage f4cf3b53-297c-4cb2-8455-571f55c7cf10
+2017-07-30 10:24:37,646 BoardCalculator  - received image
+2017-07-30 10:24:37,652 RMQChesssImageReceiver  - boardReader id=f4cf3b53-297c-4cb2-8455-571f55c7cf10 received net.sprenkle.chess.messages.BoardImage f4cf3b53-297c-4cb2-8455-571f55c7cf10
+2017-07-30 10:24:37,664 BoardCalculator  - Marker y=139
+
+2017-07-30 10:24:37,674 BoardCalculator  - hook x=209
+
+2017-07-30 10:24:37,690 BoardCalculator  - hook Width=-1
+
+2017-07-30 10:24:37,695 BoardCalculator  - Difference in Piece 6,3 has offset of 11.0
+2017-07-30 10:24:37,696 BoardCalculator  - Difference in Piece 1,3 has offset of 13.0
+2017-07-30 10:24:37,698 BoardCalculator  - Difference in Piece 2,3 has offset of 13.0
+2017-07-30 10:24:37,698 BoardCalculator  - Difference in Piece 0,3 has offset of 14.0
+2017-07-30 10:24:37,698 BoardCalculator  - Difference in Piece 7,2 has offset of 17.0
+2017-07-30 10:24:37,699 BoardCalculator  - Difference in Piece 4,3 has offset of 17.0
+2017-07-30 10:24:37,699 BoardCalculator  - Difference in Piece 3,5 has offset of 18.0
+2017-07-30 10:24:37,700 BoardCalculator  - Difference in Piece 3,6 has offset of 18.0
+2017-07-30 10:24:37,701 BoardCalculator  - Difference in Piece 5,2 has offset of 20.0
+2017-07-30 10:24:37,702 BoardCalculator  - Difference in Piece 7,3 has offset of 20.0
+2017-07-30 10:24:37,702 BoardCalculator  - Difference in Piece 5,3 has offset of 23.0
+2017-07-30 10:24:37,703 BoardCalculator  - Difference in Piece 0,2 has offset of 25.0
+2017-07-30 10:24:37,704 BoardCalculator  - Difference in Piece 3,2 has offset of 27.0
+2017-07-30 10:24:37,704 BoardCalculator  - Difference in Piece 1,2 has offset of 27.0
+2017-07-30 10:24:37,705 BoardCalculator  - Difference in Piece 2,2 has offset of 28.0
+2017-07-30 10:24:37,707 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"11a421b9-4771-4102-9751-8bf20776f71a"}
+2017-07-30 10:24:40,418 RMQChesssImageReceiver  - Viewer id=032ce707-4d82-4749-8a9a-5221d04f5fa5 received net.sprenkle.chess.messages.BoardImage 032ce707-4d82-4749-8a9a-5221d04f5fa5
+2017-07-30 10:24:40,420 BoardCalculator  - received image
+2017-07-30 10:24:40,427 RMQChesssImageReceiver  - boardReader id=032ce707-4d82-4749-8a9a-5221d04f5fa5 received net.sprenkle.chess.messages.BoardImage 032ce707-4d82-4749-8a9a-5221d04f5fa5
+2017-07-30 10:24:40,437 BoardCalculator  - Marker y=53
+
+2017-07-30 10:24:40,445 BoardCalculator  - hook x=678
+
+2017-07-30 10:24:40,458 BoardCalculator  - hook Width=20
+
+2017-07-30 10:24:40,531 BoardCalculator  - Difference in Piece 1,0 has offset of 39.0
+2017-07-30 10:24:40,533 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"5d80d8b2-d3e1-4678-924e-74712d6d3324"}
+2017-07-30 10:24:43,427 RMQChesssImageReceiver  - boardReader id=2ce24e78-91b9-44ac-bd62-ff4e2750f41d received net.sprenkle.chess.messages.BoardImage 2ce24e78-91b9-44ac-bd62-ff4e2750f41d
+2017-07-30 10:24:43,436 RMQChesssImageReceiver  - Viewer id=2ce24e78-91b9-44ac-bd62-ff4e2750f41d received net.sprenkle.chess.messages.BoardImage 2ce24e78-91b9-44ac-bd62-ff4e2750f41d
+2017-07-30 10:24:43,440 BoardCalculator  - received image
+2017-07-30 10:24:43,461 BoardCalculator  - Marker y=53
+
+2017-07-30 10:24:43,471 BoardCalculator  - hook x=678
+
+2017-07-30 10:24:43,476 BoardCalculator  - Difference in Piece 7,5 has offset of 7.0
+2017-07-30 10:24:43,478 BoardCalculator  - Duplicate Piece 6,7 has offset of 46.0
+2017-07-30 10:24:43,480 BoardCalculator  - hook Width=20
+
+2017-07-30 10:24:43,482 BoardCalculator  - Piece moved from 2,0 to 7,5
+2017-07-30 10:24:43,483 BoardReader  - Found White move
+2017-07-30 10:24:43,490 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.ChessMoveMsg  {"moveId":"4a1a00a3-c497-42aa-81e3-9a4339eb561a","robot":false,"chessMove":{"turn":{"color":"White"},"move":"f1a6"}}
+2017-07-30 10:24:43,502 RMQChessMessageReceiver  - Chess id=1f6a52f0-20b3-479c-8655-a21839d993d8 received net.sprenkle.chess.messages.ChessMoveMsg {"jsonObject":"{\"moveId\":\"4a1a00a3-c497-42aa-81e3-9a4339eb561a\",\"robot\":false,\"chessMove\":{\"turn\":{\"color\":\"White\"},\"move\":\"f1a6\"}}","className":"net.sprenkle.chess.messages.ChessMoveMsg","id":"1f6a52f0-20b3-479c-8655-a21839d993d8"}
+2017-07-30 10:24:43,507 Chess  - Message received ChessMove Id=4a1a00a3-c497-42aa-81e3-9a4339eb561a Human f1a6
+2017-07-30 10:24:43,508 ChessController  - f1a6
+2017-07-30 10:24:43,520 Chess  - RequestMove for Black Robot 1bd1df66-f49d-4513-87ab-60330affc4e4 position startpos moves e2e4 e7e5 f1a6 
+2017-07-30 10:24:43,522 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.RequestMove  {"turn":{"color":"Black"},"robot":true,"moveHistory":"position startpos moves e2e4 e7e5 f1a6 ","moveId":"1bd1df66-f49d-4513-87ab-60330affc4e4"}
+2017-07-30 10:24:43,524 RMQChessMessageReceiver  - BoardReader id=dcfa2749-68ee-4037-9b58-76d6ce4fec76 received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"Black\"},\"robot\":true,\"moveHistory\":\"position startpos moves e2e4 e7e5 f1a6 \",\"moveId\":\"1bd1df66-f49d-4513-87ab-60330affc4e4\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"dcfa2749-68ee-4037-9b58-76d6ce4fec76"}
+2017-07-30 10:24:43,524 RMQChessMessageReceiver  - RobotMover id=dcfa2749-68ee-4037-9b58-76d6ce4fec76 received net.sprenkle.chess.messages.RequestMove {"jsonObject":"{\"turn\":{\"color\":\"Black\"},\"robot\":true,\"moveHistory\":\"position startpos moves e2e4 e7e5 f1a6 \",\"moveId\":\"1bd1df66-f49d-4513-87ab-60330affc4e4\"}","className":"net.sprenkle.chess.messages.RequestMove","id":"dcfa2749-68ee-4037-9b58-76d6ce4fec76"}
+2017-07-30 10:24:43,546 RobotMover  - RequestMove for Black Robot 1bd1df66-f49d-4513-87ab-60330affc4e4 position startpos moves e2e4 e7e5 f1a6 
+2017-07-30 10:24:47,901 RobotMover  - Made move -bestmove b7a6 ponder g1f3-
+2017-07-30 10:24:47,902 MqChessMessageSender  - RobotMover sends net.sprenkle.chess.messages.ChessMoveMsg  {"moveId":"1bd1df66-f49d-4513-87ab-60330affc4e4","robot":true,"chessMove":{"turn":{"color":"Black"},"move":"b7a6"}}
+2017-07-30 10:24:47,904 RobotMover  - ChessMove Black to move, b7a6
+2017-07-30 10:24:47,907 RMQChessMessageReceiver  - Chess id=8cac1b60-929b-4558-b7ad-ef9488904fd9 received net.sprenkle.chess.messages.ChessMoveMsg {"jsonObject":"{\"moveId\":\"1bd1df66-f49d-4513-87ab-60330affc4e4\",\"robot\":true,\"chessMove\":{\"turn\":{\"color\":\"Black\"},\"move\":\"b7a6\"}}","className":"net.sprenkle.chess.messages.ChessMoveMsg","id":"8cac1b60-929b-4558-b7ad-ef9488904fd9"}
+2017-07-30 10:24:47,910 Chess  - Message received ChessMove Id=1bd1df66-f49d-4513-87ab-60330affc4e4 Robot b7a6
+2017-07-30 10:24:47,912 ChessController  - b7a6
+2017-07-30 10:24:47,927 MqChessMessageSender  - Chess sends net.sprenkle.chess.messages.RequestMovePieces  {"chessMove":{"turn":{"color":"Black"},"move":"b7a6"},"castle":false,"uuid":"1bd1df66-f49d-4513-87ab-60330affc4e4"}
+2017-07-30 10:24:47,932 RMQChessMessageReceiver  - AnetBoardController id=791e4272-5579-426b-aa64-07d4ed94ee58 received net.sprenkle.chess.messages.RequestMovePieces {"jsonObject":"{\"chessMove\":{\"turn\":{\"color\":\"Black\"},\"move\":\"b7a6\"},\"castle\":false,\"uuid\":\"1bd1df66-f49d-4513-87ab-60330affc4e4\"}","className":"net.sprenkle.chess.messages.RequestMovePieces","id":"791e4272-5579-426b-aa64-07d4ed94ee58"}
+2017-07-30 10:24:47,938 BoardProcessor  - Requesting move RequestMovePieces ChessMove Black to move, b7a6
+2017-07-30 10:24:47,939 MqChessMessageSender  - AnetBoardController sends net.sprenkle.chess.messages.RequestPiecePositions  {"chessMove":{"turn":{"color":"Black"},"move":"b7a6"},"castle":false,"uuid":"1bd1df66-f49d-4513-87ab-60330affc4e4"}
+2017-07-30 10:24:47,943 RMQChessMessageReceiver  - BoardReader id=b13ffc54-91b7-4a01-a017-1d2d5e853dae received net.sprenkle.chess.messages.RequestPiecePositions {"jsonObject":"{\"chessMove\":{\"turn\":{\"color\":\"Black\"},\"move\":\"b7a6\"},\"castle\":false,\"uuid\":\"1bd1df66-f49d-4513-87ab-60330affc4e4\"}","className":"net.sprenkle.chess.messages.RequestPiecePositions","id":"b13ffc54-91b7-4a01-a017-1d2d5e853dae"}
+2017-07-30 10:24:47,958 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.RequestImage  {"messageId":"2a258815-2264-4f75-9dfc-f041456dee5a"}
+2017-07-30 10:24:50,461 RMQChesssImageReceiver  - boardReader id=cc0e2bad-d025-4b7b-bbf8-e4458e30b377 received net.sprenkle.chess.messages.BoardImage cc0e2bad-d025-4b7b-bbf8-e4458e30b377
+2017-07-30 10:24:50,471 RMQChesssImageReceiver  - Viewer id=cc0e2bad-d025-4b7b-bbf8-e4458e30b377 received net.sprenkle.chess.messages.BoardImage cc0e2bad-d025-4b7b-bbf8-e4458e30b377
+2017-07-30 10:24:50,475 BoardCalculator  - received image
+2017-07-30 10:24:50,495 BoardCalculator  - Marker y=53
+
+2017-07-30 10:24:50,505 BoardCalculator  - hook x=678
+
+2017-07-30 10:24:50,505 BoardCalculator  - Duplicate Piece 6,7 has offset of 43.0
+2017-07-30 10:24:50,506 BoardCalculator  - Duplicate Piece 6,7 has offset of 47.0
+2017-07-30 10:24:50,515 BoardCalculator  - hook Width=21
+
+2017-07-30 10:24:50,544 BoardCalculator  - Difference in Piece 7,5 has offset of 7.0
+2017-07-30 10:24:50,545 BoardCalculator  - Duplicate Piece 6,7 has offset of 43.0
+2017-07-30 10:24:50,547 BoardCalculator  - Duplicate Piece 6,7 has offset of 47.0
+2017-07-30 10:24:50,548 BoardReader  - received b7a6
+2017-07-30 10:24:50,549 BoardReader  - Converted to 6,6  7,5
+2017-07-30 10:24:50,550 BoardReader  - fromPiece x=0, y=0 row=6 col=6
+2017-07-30 10:24:50,551 BoardReader  - from Piece image x=0.0, y=0.0
+2017-07-30 10:24:50,552 BoardReader  - No capture
+2017-07-30 10:24:50,554 MqChessMessageSender  - boardReader sends net.sprenkle.chess.messages.PiecePositions  {"moveList":[{"from":[35.400000000000006,157.0],"to":[11.400000000000006,133.0],"height":20.0,"low":false}],"uui":"1bd1df66-f49d-4513-87ab-60330affc4e4","high":95.0,"mid":54.0}
+2017-07-30 10:24:50,560 RMQChessMessageReceiver  - AnetBoardController id=377284f0-7d76-4507-8221-14188a1c8bd5 received net.sprenkle.chess.messages.PiecePositions {"jsonObject":"{\"moveList\":[{\"from\":[35.400000000000006,157.0],\"to\":[11.400000000000006,133.0],\"height\":20.0,\"low\":false}],\"uui\":\"1bd1df66-f49d-4513-87ab-60330affc4e4\",\"high\":95.0,\"mid\":54.0}","className":"net.sprenkle.chess.messages.PiecePositions","id":"377284f0-7d76-4507-8221-14188a1c8bd5"}
+2017-07-30 10:25:05,916 MqChessMessageSender  - AnetBoardController sends net.sprenkle.chess.messages.ConfirmedPieceMove  {"pieceMoved":true}
+2017-07-30 10:25:05,920 RMQChessMessageReceiver  - Chess id=fd2c5685-686c-4c7d-b5c1-8ece2dd0cca3 received net.sprenkle.chess.messages.ConfirmedPieceMove {"jsonObject":"{\"pieceMoved\":true}","className":"net.sprenkle.chess.messages.ConfirmedPieceMove","id":"fd2c5685-686c-4c7d-b5c1-8ece2dd0cca3"}
