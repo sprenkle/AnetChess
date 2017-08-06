@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.StartGame;
@@ -19,7 +20,7 @@ import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.KnownBoardPositions;
@@ -78,7 +79,7 @@ public class Chess extends TimerTask {
         });
 
         try {
-            messageReceiver.initialize();
+            messageReceiver.initialize(new RabbitConfiguration());
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(Chess.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -154,12 +155,12 @@ public class Chess extends TimerTask {
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
-//        AnetBoardController anetBoardController = new AnetBoardController(new MqChessMessageSender("AnetBoardController"), new RMQChessMessageReceiver("AnetBoardController", true));
-//        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new RMQChessMessageReceiver("BoardReader", true), 
+//        AnetBoardController anetBoardController = new AnetBoardController(new RMQChessMessageSender("AnetBoardController"), new RMQChessMessageReceiver("AnetBoardController", true));
+//        BoardReader boardReader = new BoardReader(new BoardReaderState(), new RMQChessMessageSender("boardReader"), new RMQChessMessageReceiver("BoardReader", true), 
 //                new BoardCalculator(), new PiecePositionsIdentifier());
 //
-//        RobotMover robotMover = new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new RMQChessMessageReceiver("RobotMover", false));
-        Chess chess = new Chess(new ChessController(), new MqChessMessageSender("Chess"), new RMQChessMessageReceiver("Chess", false));
+//        RobotMover robotMover = new RobotMover(new StockFishUCI(), new RMQChessMessageSender("RobotMover"), new RMQChessMessageReceiver("RobotMover", false));
+        Chess chess = new Chess(new ChessController(), new RMQChessMessageSender("Chess", new RabbitConfiguration()), new RMQChessMessageReceiver("Chess", false));
     }
 
     public void boardStatus(BoardStatus boardStatus) {

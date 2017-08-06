@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
@@ -23,7 +24,8 @@ import javax.swing.ImageIcon;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.Player;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.RabbitConfiguration;
+import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.imaging.BlackWhite;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.imaging.ImageUtil;
@@ -36,7 +38,7 @@ import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MessageHolder;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.PiecePositions;
 import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import net.sprenkle.chess.messages.RequestImage;
@@ -45,6 +47,7 @@ import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.RequestPiecePositions;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.models.DetectedObject;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
@@ -70,7 +73,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     double high = 60;
     double mid = 26;
     LocalTime imageTime;
-    MqChessMessageSender messageSender;
+    RMQChessMessageSender messageSender;
 
     /**
      * Creates new form Viewer
@@ -80,7 +83,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
      */
     public Viewer() throws IOException, TimeoutException {
         initComponents();
-        messageSender = new MqChessMessageSender("Viewer");
+        messageSender = new RMQChessMessageSender("Viewer", new RabbitConfiguration());
 
         RMQChesssImageReceiver imageReceiver = new RMQChesssImageReceiver("Viewer");
 
@@ -109,7 +112,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 //            }
 //        });
         try {
-            imageReceiver.initialize();
+            imageReceiver.initialize(new RabbitConfiguration());
         } catch (Exception ex) {
             Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,13 +189,13 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     private void showNone(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
         try {
-            ArrayList<PossiblePiece> boardMarker = boardCalculator.detectBoardMarker(altBi);
+            List<DetectedObject> boardMarker = boardCalculator.detectBoardMarker(altBi);
             if (boardMarker.size() >= 1) {
-                logger.debug(String.format("Marker y=%s\n", boardMarker.get(0).y));
+                logger.debug(String.format("Marker y=%s\n", boardMarker.get(0).getY()));
             }
-            ArrayList<PossiblePiece> hook = boardCalculator.detectHook(altBi);
+            List<DetectedObject> hook = boardCalculator.detectHook(altBi);
             if (hook.size() >= 1) {
-                logger.debug(String.format("hook x=%s\n", hook.get(0).x));
+                logger.debug(String.format("hook x=%s\n", hook.get(0).getX()));
             }
 
             int hookWidth = boardCalculator.getHookWidth(altBi);
@@ -569,10 +572,10 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
         }
 
         boolean[][] array = BlackWhite.convert(bi, 100);
-        ArrayList<PossiblePiece> pieces = boardCalculator.detectCircles(array, false);
+ //       ArrayList<PossiblePiece> pieces = boardCalculator.detectCircles(array, false);
         int position = 0;
-        for (PossiblePiece piece : pieces) {
-            logger.debug(String.format("Piece at %s,%s", piece.x, piece.y));
+//        for (PossiblePiece piece : pieces) {
+//            logger.debug(String.format("Piece at %s,%s", piece.x, piece.y));
 //                int x = (int) (xSlope * piece.x + xIntercept + orgX);
 //                int y = (int) (ySlope * piece.y + yIntercept + 190);
 //                String gcode = String.format("G1 X%s Y%s Z%s", x, y, mid);
@@ -584,11 +587,11 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 //                    Logger.getLogger(Viewer.class.getName()).log(Level.SEVERE, null, ex);
 //                }
 
-            movePiece(piece.x, piece.y, position++, 0);
-        }
-        mh = new MessageHolder<GCode>(new GCode(String.format("G1 X%f Y%f Z26", orgX, orgY), "Testing piece locations"));
-        messageSender.send(mh);
-        logger.debug("Done recording pieces");
+//            movePiece(piece.x, piece.y, position++, 0);
+//        }
+//        mh = new MessageHolder<GCode>(new GCode(String.format("G1 X%f Y%f Z26", orgX, orgY), "Testing piece locations"));
+//        messageSender.send(mh);
+//        logger.debug("Done recording pieces");
     }//GEN-LAST:event_recordPieceLocBtnActionPerformed
 
     private void movePiece(int imageX, int imageY, int boardX, int boardY) {
@@ -730,7 +733,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
     }//GEN-LAST:event_SendImageActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        boardCalculator.syncImage(bi);        // TODO add your handling code here:
+       // boardCalculator.syncImage(bi);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

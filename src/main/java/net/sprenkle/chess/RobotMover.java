@@ -13,7 +13,7 @@ import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.MessageHandler;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.StartGame;
 import net.sprenkle.chess.messages.ChessMove;
@@ -57,7 +57,7 @@ public class RobotMover {
             }
         });
         try {
-            messageReceiver.initialize();
+            messageReceiver.initialize(new RabbitConfiguration());
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(RobotMover.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -148,7 +148,7 @@ public class RobotMover {
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
 
-        new RobotMover(new StockFishUCI(), new MqChessMessageSender("RobotMover"), new RMQChessMessageReceiver("RobotMover", false));
+        new RobotMover(new StockFishUCI(), new RMQChessMessageSender("RobotMover", new RabbitConfiguration()), new RMQChessMessageReceiver("RobotMover", false));
     }
 
 }

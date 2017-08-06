@@ -15,7 +15,7 @@ import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHandler;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.MessageHolder;
@@ -76,7 +76,7 @@ public class BoardProcessor {
         }
 
         try {
-            messageReceiver.initialize();
+            messageReceiver.initialize(new RabbitConfiguration());
         } catch (Exception ex) {
             Logger.getLogger(BoardProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,7 +99,7 @@ public class BoardProcessor {
 
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
-        BoardProcessor anetBoardController = new BoardProcessor(new MqChessMessageSender("AnetBoardController"), new RMQChessMessageReceiver("AnetBoardController", true), new BoardProperties(), new AnetController());
+        BoardProcessor anetBoardController = new BoardProcessor(new RMQChessMessageSender("AnetBoardController",new RabbitConfiguration()), new RMQChessMessageReceiver("AnetBoardController", true), new BoardProperties(), new AnetController());
     }
 
     public void requestBoardRestPosition(SetBoardRestPosition boardRestPosition) {

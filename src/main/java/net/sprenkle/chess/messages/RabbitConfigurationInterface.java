@@ -9,7 +9,11 @@ package net.sprenkle.chess.messages;
  *
  * @author david
  */
-public interface ChessImageReceiver {
-    public void add(MessageHandler messageHandler);
-    public void initialize(RabbitConfigurationInterface configuration) throws Exception;
+public interface RabbitConfigurationInterface {
+
+    public String getServer();
+
+    public String getUser();
+
+    public String getPassword();
 }

@@ -26,7 +26,7 @@ public class NonQueueChessImageReceiver implements ChessImageReceiver, ChessImag
     }
 
     @Override
-    public void initialize() throws Exception {
+    public void initialize(RabbitConfigurationInterface configuration) throws Exception {
     }
 
     @Override

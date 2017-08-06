@@ -42,7 +42,7 @@ public class NonQueueMessageTranRec implements ChessMessageReceiver, ChessMessag
     }
 
     @Override
-    public void initialize() throws Exception {
+    public void initialize(RabbitConfigurationInterface configuration) throws Exception {
     }
 
     @Override

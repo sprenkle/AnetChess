@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.models.PossiblePiece;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.SetBoardRestPosition;
@@ -32,6 +33,7 @@ import net.sprenkle.chess.messages.GCode;
 import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import net.sprenkle.chess.messages.RequestImage;
+import net.sprenkle.chess.models.DetectedObject;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -126,8 +128,8 @@ public class BoardReader {
             }
         });
 
-        messageReceiver.initialize();
-        imageReceiver.initialize();
+        messageReceiver.initialize(new RabbitConfiguration());
+        imageReceiver.initialize(new RabbitConfiguration());
         state.reset();
     }
 
@@ -201,8 +203,8 @@ public class BoardReader {
             }
 
         } else if (state.inState(BoardReaderState.SET_REST_POSITION)) {
-            List<PossiblePiece> marker = boardCalculator.detectBoardMarker(bImageFromConvert);
-            sendYBoardAdjust(marker.get(0).y);
+            List<DetectedObject> marker = boardCalculator.detectBoardMarker(bImageFromConvert);
+            sendYBoardAdjust(marker.get(0).getY());
 
             state.setGameSetup();
             messageSender.send(new MessageHolder(new RequestImage(UUID.randomUUID())));
@@ -255,7 +257,7 @@ public class BoardReader {
     public static void main(String[] arg) throws Exception {
         PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
         BoardProperties bp = new BoardProperties();
-        BoardReader boardReader = new BoardReader(new BoardReaderState(), new MqChessMessageSender("boardReader"), new RMQChessMessageReceiver("BoardReader", true),
+        BoardReader boardReader = new BoardReader(new BoardReaderState(), new RMQChessMessageSender("boardReader", new RabbitConfiguration()), new RMQChessMessageReceiver("BoardReader", true),
                 new BoardCalculator(bp), new PiecePositionsIdentifier(bp), new RMQChesssImageReceiver("boardReader"));
     }
 

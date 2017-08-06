@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.messages.KnownBoardPositions;
 import net.sprenkle.chess.messages.MessageHolder;
 import org.junit.After;

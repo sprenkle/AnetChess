@@ -15,26 +15,27 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.concurrent.TimeoutException;
+import net.sprenkle.chess.RabbitConfiguration;
 import net.sprenkle.chess.imaging.ImageUtil;
 
 /**
  *
  * @author david
  */
-public class MqChessImageSender implements ChessImageSender {
+public class RMQChessImageSender implements ChessImageSender {
 
-    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MqChessMessageSender.class.getSimpleName());
+    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(RMQChessMessageSender.class.getSimpleName());
     private static final String EXCHANGE_NAME = "CHESSIMAGE";
     private ConnectionFactory factory;
     Connection connection;
     Channel channel;
 
-    public MqChessImageSender(String name) {
+    public RMQChessImageSender(String name, RabbitConfigurationInterface configuration) {
         try {
             factory = new ConnectionFactory();
-            factory.setUsername("pi");
-            factory.setPassword("ferret");
-            factory.setHost("192.168.1.80");
+            factory.setUsername(configuration.getUser());
+            factory.setPassword(configuration.getPassword());
+            factory.setHost(configuration.getServer());
             connection = factory.newConnection();
             channel = connection.createChannel();
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
@@ -67,7 +68,7 @@ public class MqChessImageSender implements ChessImageSender {
     
     public static void main(String[] arg) throws IOException{
         BufferedImage bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\board1cec39d9-2820-48f1-963b-acb605ff2f2e.png");
-        MqChessImageSender is = new MqChessImageSender("this");
+        RMQChessImageSender is = new RMQChessImageSender("this", new RabbitConfiguration());
         is.send(new BoardImage(bi));
     }
 }

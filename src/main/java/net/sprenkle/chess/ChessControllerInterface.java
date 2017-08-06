@@ -5,6 +5,8 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.models.PossiblePiece;
+
 /**
  *
  * @author david

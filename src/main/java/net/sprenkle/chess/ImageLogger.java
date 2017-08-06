@@ -34,7 +34,7 @@ public class ImageLogger {
         });
         
         try {
-            messageReceiver.initialize();
+            messageReceiver.initialize(new RabbitConfiguration());
         } catch (Exception ex) {
             Logger.getLogger(ImageLogger.class.getName()).log(Level.SEVERE, null, ex);
         }

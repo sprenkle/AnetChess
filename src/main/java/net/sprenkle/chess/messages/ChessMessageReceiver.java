@@ -11,5 +11,5 @@ package net.sprenkle.chess.messages;
  */
 public interface ChessMessageReceiver {
     public void addMessageHandler(String messageType, MessageHandler messageHandler);
-    public void initialize() throws Exception;
+    public void initialize(RabbitConfigurationInterface configuration) throws Exception;
 }

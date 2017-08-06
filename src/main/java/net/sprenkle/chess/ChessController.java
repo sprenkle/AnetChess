@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.models.PossiblePiece;
 import java.util.ArrayList;
 import net.sprenkle.chess.exceptions.InvalidMoveException;
 import net.sprenkle.chess.pieces.Board;

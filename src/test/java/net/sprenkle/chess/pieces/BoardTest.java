@@ -7,7 +7,7 @@ package net.sprenkle.chess.pieces;
 
 import java.util.ArrayList;
 import net.sprenkle.chess.ChessController;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.exceptions.InvalidMoveException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -75,8 +75,8 @@ public class BoardTest {
         PossiblePiece[][] knownBoard = board.convertToCameraBoard();
         assertEquals(knownBoard[0][7], null);
         assertEquals(knownBoard[3][7], null);
-        assertEquals(knownBoard[1][7].rank, 5);
-        assertEquals(knownBoard[2][7].rank, 3);
+        assertEquals(knownBoard[1][7].objectId, 5);
+        assertEquals(knownBoard[2][7].objectId, 3);
         
         assertEquals(true, result);
         assertTrue(board.isLastMoveCastle());

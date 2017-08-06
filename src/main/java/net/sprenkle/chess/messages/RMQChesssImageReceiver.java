@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.util.logging.Level;
+import net.sprenkle.chess.RabbitConfiguration;
 
 /**
  *
@@ -34,15 +35,17 @@ public class RMQChesssImageReceiver implements ChessImageReceiver {
         this.name = name;
     }
 
+    @Override
     public void add(MessageHandler messageHandler) {
         this.messageHandler = messageHandler;
     }
 
-    public void initialize() throws Exception {
+    @Override
+    public void initialize(RabbitConfigurationInterface configuration) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setUsername("pi");
-        factory.setPassword("ferret");
-        factory.setHost("192.168.1.80");
+        factory.setUsername(configuration.getUser());
+        factory.setPassword(configuration.getPassword());
+        factory.setHost(configuration.getServer());
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
@@ -88,7 +91,7 @@ public class RMQChesssImageReceiver implements ChessImageReceiver {
     public static void main(String[] arg) {
         RMQChesssImageReceiver ir = new RMQChesssImageReceiver("this");
         try {
-            ir.initialize();
+            ir.initialize(new RabbitConfiguration());
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(RMQChesssImageReceiver.class.getName()).log(Level.SEVERE, null, ex);
         }

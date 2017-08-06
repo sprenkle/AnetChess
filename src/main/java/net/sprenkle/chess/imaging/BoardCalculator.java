@@ -13,8 +13,11 @@ import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.List;
 import net.sprenkle.chess.BoardProperties;
+import net.sprenkle.chess.ObjectDetector;
 import net.sprenkle.chess.Player;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.models.DetectedObject;
+import net.sprenkle.chess.models.GridObject;
+import net.sprenkle.chess.models.PossiblePiece;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.apache.log4j.Logger;
 
@@ -23,7 +26,7 @@ import org.apache.log4j.Logger;
  * @author david
  */
 public class BoardCalculator {
-
+    ObjectDetector objectDetector = new ObjectDetector();
     static Logger logger = Logger.getLogger(BoardCalculator.class.getSimpleName());
     static Line[] horizontalLines = new Line[8];
     static Line[] verticalLines = new Line[8];
@@ -43,7 +46,7 @@ public class BoardCalculator {
     private final int topHook;
 
     static Player humanColor;
-    private ArrayList<PossiblePiece> detectedPieces;
+//    private ArrayList<PossiblePiece> detectedPieces;
 
     static int lastNumPieces = 16;
 
@@ -91,29 +94,6 @@ public class BoardCalculator {
         return humanColor;
     }
 
-    public void syncImage(BufferedImage bi) {
-        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
-        Graphics2D g2 = bi.createGraphics();
-        BasicStroke stroke = new BasicStroke(2);
-        g2.setStroke(stroke);
-        g2.setColor(Color.GREEN);
-        drawLines(g2);
-        ArrayList<PossiblePiece> pieces = detectCircles(array, true);
-        pieces.forEach(x -> findOffFactor(x));
-
-        SimpleRegression srX = new SimpleRegression();
-        SimpleRegression srY = new SimpleRegression();
-        pieces.forEach((piece) -> {
-            markPiece(g2, piece.x, piece.y, piece.color);
-            double xB = 95.4 + ((3 - piece.col) * 24) + 12;
-            double yB = 193 - ((7 - piece.row) * 24 + 12);
-            srX.addData(piece.x, xB);
-            srY.addData(piece.y, yB);
-        });
-        g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
-        logger.info(String.format("X Slope=%s  Intercept=%s", srX.getSlope(), srX.getIntercept()));
-        logger.info(String.format("Y Slope=%s  Intercept=%s", srY.getSlope(), srY.getIntercept()));
-    }
 
     public void showCircles(BufferedImage bi) {
         boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
@@ -123,86 +103,34 @@ public class BoardCalculator {
         g2.setColor(Color.GREEN);
         drawLines(g2);
 
-        ArrayList<PossiblePiece> pieces = detectCircles(array, true);
-        pieces.forEach((piece) -> markPiece(g2, piece.x, piece.y, piece.color));
+        List<DetectedObject> pieces = objectDetector.detectObjects(array, leftBoard, topBoard);
+        pieces.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), piece.getColor()));
         g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
 
-        ArrayList<PossiblePiece> markers = detectBoardMarker(bi);
-        markers.forEach((piece) -> markPiece(g2, piece.x, piece.y, Color.CYAN));
+        List<DetectedObject> markers = detectBoardMarker(bi);
+        markers.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), Color.CYAN));
         g2.setColor(Color.YELLOW);
         g2.drawRect(leftDetect, topDetect, rightDetect - leftDetect, bottomDetect - topDetect);
 
-        ArrayList<PossiblePiece> hook = detectHook(bi);
-        hook.forEach((piece) -> markPiece(g2, piece.x, piece.y, Color.PINK));
+        List<DetectedObject> hook = detectHook(bi);
+        hook.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), Color.PINK));
         g2.setColor(Color.PINK);
         g2.drawRect(leftHook, topHook, rightHook - leftHook, bottomHook - topHook);
     }
 
-    public ArrayList<PossiblePiece> detectPieceCircles(boolean[][] array) {
-        ArrayList<PossiblePiece> pieces = detectCircles(array, true);
-        PossiblePiece[][] tempPiecePositions = new PossiblePiece[8][8];
-        List<PossiblePiece> duplicates = new ArrayList<>();
+//    public List<DetectedObject> detectPieceCircles(boolean[][] array) {
+//        List<DetectedObject> pieces = objectDetector.detectObjects(array, topDetect, topDetect);
+//        return pieces;
+//    }
 
-        // Get offset
-        pieces.forEach((piece) -> {
-            findOffFactor(piece);
-        });
-        pieces.sort((t1, t2) -> Double.compare(t1.getOffset(), t2.getOffset()));
+ 
 
-        for (PossiblePiece piece : pieces) {
-            if (tempPiecePositions[piece.col][piece.row] != null) {
-                logger.debug(String.format("Duplicate Piece %s,%s has offset of %s", piece.col, piece.row, piece.getOffset()));
-                duplicates.add(piece);
-                continue;
-            }
-            tempPiecePositions[piece.col][piece.row] = piece;
-        }
 
-        duplicates.forEach((piece) -> {
-            pieces.remove(piece);
-        });
-
-        return pieces;
-    }
-
-    public ArrayList<PossiblePiece> detectCircles(boolean[][] array, boolean restrictArea) {
-        int xOffset = restrictArea ? leftBoard : 0;
-        int yOffset = restrictArea ? topBoard : 0;
-        return detectCircles(array, xOffset, yOffset);
-    }
-
-    public ArrayList<PossiblePiece> detectCircles(boolean[][] array, int xOffset, int yOffset) {
-        ArrayList<PossiblePiece> pieces = new ArrayList<>();
-        for (int y = 6; y < array[0].length - 6; y++) {
-//                        logger.debug(String.format("y=%s",  y));
-            for (int x = 6; x < array.length - 6; x++) {
-                try {
-                    if (detectC(array, x, y, true)) {
-                        PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.White);
-                        pieces.add(piece);
-                        array[x][y] = true; // sets the color so it will not be detected again
-                        array[x + 1][y] = true;
-                        array[x][y + 1] = true;
-                        array[x + 1][y + 1] = true;
-                        x += 15;
-                    } else if (detectC(array, x, y, false)) {
-                        //                      logger.debug(String.format("x=%s y=%s", x, y));
-                        PossiblePiece piece = new PossiblePiece(x + xOffset, y + yOffset, Player.Black);
-                        pieces.add(piece);
-                        array[x][y] = false;
-                        array[x + 1][y] = false;
-                        array[x + 1][y] = false;
-                        array[x + 1][y + 1] = false;
-                        x += 15;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return pieces;
-    }
-
+    /**
+     * Just checks to see if there are 32 piece on the board, this needs to be looked at.
+     * @param bi
+     * @return 
+     */
     public boolean initialLines(BufferedImage bi) {
         Graphics2D g2 = bi.createGraphics();
 
@@ -211,17 +139,15 @@ public class BoardCalculator {
         if (!isInitialized()) {
             boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
 
-            detectedPieces = new ArrayList<>();
-            detectedPieces = detectPieceCircles(array);
+            List<DetectedObject> detectedPieces = objectDetector.detectObjects(array, topDetect, topDetect);
 
-            markLines(bi, g2);
+            markLines(bi,detectedPieces, g2);
 
             if (detectedPieces == null || detectedPieces.size() != 32) {
                 return false;
             }
 
             setInitialized(true);
-            humanColor = horizontalLines[0].start.color;
 
         }
         g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
@@ -234,7 +160,7 @@ public class BoardCalculator {
                 PossiblePiece piece = knownBoard[i][j];
                 if (piece != null) {
                     String p = "";
-                    switch (piece.rank) {
+                    switch (piece.objectId) {
                         case 0:
                             p = "P";
                             break;
@@ -264,21 +190,21 @@ public class BoardCalculator {
         }
     }
 
-    private void markLines(BufferedImage bi, Graphics2D g2) {
+    private void markLines(BufferedImage bi, List<DetectedObject> detectedPieces, Graphics2D g2) {
         g2.setColor(Color.GREEN);
         logger.debug("Number of pieces are " + detectedPieces.size());
-        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.y, b.y));
-        int minY = detectedPieces.get(0).y;
-        int maxY = detectedPieces.get(detectedPieces.size() - 1).y;
+        detectedPieces.sort((DetectedObject a, DetectedObject b) -> Integer.compare(a.getX(), b.getY()));
+        int minY = detectedPieces.get(0).getY();
+        int maxY = detectedPieces.get(detectedPieces.size() - 1).getY();
 
-        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.x, b.x));
+        detectedPieces.sort((DetectedObject a, DetectedObject b) -> Integer.compare(a.getX(), b.getX()));
         for (int i = 0; i < 8; i++) {
             SimpleRegression simpleRegression = new SimpleRegression(true);
             simpleRegression = new SimpleRegression(true);
             double avgX = 0;
             for (int j = 0; j < 4; j++) {
-                PossiblePiece point = detectedPieces.get(i * 4 + j);
-                avgX += point.x;
+                DetectedObject point = detectedPieces.get(i * 4 + j);
+                avgX += point.getX();
             }
             Point start = new Point((int) (avgX / 4), 0, Player.Black);
             Point end = new Point((int) (avgX / 4), bi.getHeight(), Player.Black);
@@ -286,21 +212,21 @@ public class BoardCalculator {
             verticalLines[i] = new Line(start, end);
         }
 
-        detectedPieces.sort((PossiblePiece a, PossiblePiece b) -> Integer.compare(a.y, b.y));
+        detectedPieces.sort((DetectedObject a, DetectedObject b) -> Integer.compare(a.getY(), b.getY()));
         for (int i = 0; i < 4; i++) {
             SimpleRegression simpleRegression = new SimpleRegression();
             double avgY = 0;
             for (int j = 0; j < 8; j++) {
-                PossiblePiece point = detectedPieces.get(i * 8 + j);
-                avgY += point.y;
+                DetectedObject point = detectedPieces.get(i * 8 + j);
+                avgY += point.getY();
                 //logger.debug(String.format("%s %s %s",i, point.x, point.y));
-                simpleRegression.addData(point.x, point.y);
+                simpleRegression.addData(point.getX(), point.getY());
             }
 
             minY = (int) (simpleRegression.getIntercept());
             maxY = (int) (bi.getWidth() * simpleRegression.getSlope() + simpleRegression.getIntercept());
-            Point start = new Point(0, (int) (avgY / 8), detectedPieces.get(i * 8).color);
-            Point end = new Point(bi.getWidth(), (int) (avgY / 8), detectedPieces.get(i * 8).color);
+            Point start = new Point(0, (int) (avgY / 8), detectedPieces.get(i * 8).getColor());
+            Point end = new Point(bi.getWidth(), (int) (avgY / 8), detectedPieces.get(i * 8).getColor());
             if (i < 2) {
                 horizontalLines[i] = new Line(start, end);
                 //              horizontal[i] = new Line(start,end); 
@@ -321,26 +247,26 @@ public class BoardCalculator {
         }
     }
 
-    public ArrayList<PossiblePiece> detectBoardMarker(BufferedImage bi) {
+    public List<DetectedObject> detectBoardMarker(BufferedImage bi) {
         boolean[][] array = BlackWhite.convert(bi.getSubimage(leftDetect, topDetect, rightDetect - leftDetect, bottomDetect - topDetect), threshHold);
-        ArrayList<PossiblePiece> pieces = detectCircles(array, leftDetect, topDetect);
+        List<DetectedObject> pieces = objectDetector.detectObjects(array, topDetect, topDetect);
         return pieces;
     }
 
-    public ArrayList<PossiblePiece> detectHook(BufferedImage bi) {
+    public List<DetectedObject> detectHook(BufferedImage bi) {
         boolean[][] array = BlackWhite.convert(bi.getSubimage(leftHook, topHook, rightHook - leftHook, bottomHook - topHook), threshHold);
-        ArrayList<PossiblePiece> pieces = detectCircles(array, leftHook, topHook);
+        List<DetectedObject> pieces = objectDetector.detectObjects(array, topDetect, topDetect);
         return pieces;
     }
 
     public int getHookWidth(BufferedImage bi) {
-        ArrayList<PossiblePiece> hooks = detectHook(bi);
+        List<DetectedObject> hooks = detectHook(bi);
         if (hooks == null || hooks.size() != 1) {
             return -1;
         }
-        PossiblePiece hook = hooks.get(0);
+        DetectedObject hook = hooks.get(0);
 
-        boolean[][] array = BlackWhite.convert(bi.getSubimage(hook.x - 15, hook.y - 15, 30, 30), threshHold);
+        boolean[][] array = BlackWhite.convert(bi.getSubimage(hook.getX() - 15, hook.getY() - 15, 30, 30), threshHold);
 
         int y = 15;
         while (array[15][y] && y > 0) {
@@ -370,18 +296,10 @@ public class BoardCalculator {
      */
     public boolean verifyPiecePositions(BufferedImage bi, PossiblePiece[][] knownBoard) {
         boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
-        ArrayList<PossiblePiece> pieces = detectPieceCircles(array);
-        // Get offset
-//        if (!pieces.stream().map((piece) -> {
-//            findOffFactor(piece);
-//            return piece;
-//        }).noneMatch((piece) -> (knownBoard[piece.col][piece.row] == null))) {
-//            return false;
-//        }
-        
-        for(PossiblePiece piece : pieces){
-            findOffFactor(piece);
-            if(knownBoard[piece.col][piece.row] == null){
+        List<GridObject> pieces = objectDetector.detectObjectsWithinGrid(array, topDetect, topDetect, verticalLines, horizontalLines);
+
+        for(GridObject piece : pieces){
+            if(knownBoard[piece.getCol()][piece.getRow()] == null){
                 return false;
             }
         }
@@ -393,10 +311,10 @@ public class BoardCalculator {
             for (int y = 0; y < 7; y++) {
                 if (knownBoard[x][y] != null) {
                     boolean foundMatchingPiece = false;
-                    for (PossiblePiece piece : pieces) {
-                        if (piece.col == x && piece.row == y) {
-                            knownBoard[x][y].x = piece.x;
-                            knownBoard[x][y].y = piece.y;
+                    for (GridObject piece : pieces) {
+                        if (piece.getCol() == x && piece.getRow() == y) {
+                            knownBoard[x][y].x = piece.getX();
+                            knownBoard[x][y].y = piece.getY();
                             foundMatchingPiece = true;
                             break;
                         }
@@ -416,51 +334,56 @@ public class BoardCalculator {
      * defined by leftBoard ...
      *
      * @param bi
+     * @param turn
+     * @param lastBoard
+     * @return 
+     * @throws java.lang.Exception
      */
     public int[] detectPieces(BufferedImage bi, Player turn, PossiblePiece[][] lastBoard) throws Exception {
         int[] rv = null;
 
-        Graphics2D g2 = bi.createGraphics();
+        Graphics2D g2 = bi.createGraphics(); // todo remove this
 
-        BasicStroke stroke = new BasicStroke(2);
-        g2.setStroke(stroke);
+        BasicStroke stroke = new BasicStroke(2); // todo remove this
+        g2.setStroke(stroke); // todo remove this
 
-        ArrayList<PossiblePiece> changedPiece = new ArrayList<>();
+        ArrayList<GridObject> changedPiece = new ArrayList<>();
 
-        PossiblePiece[][] currentBoard = new PossiblePiece[8][8];
+        GridObject[][] currentBoard = new GridObject[8][8];
 
         boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
-        ArrayList<PossiblePiece> pieces = detectCircles(array, true);
+        
+        List<GridObject> pieces = objectDetector.detectObjectsWithinGrid(array, topDetect, topDetect, verticalLines, horizontalLines);
+
 
         int diff = 0;
-        PossiblePiece[][] tempPiecePositions = new PossiblePiece[8][8];
+        GridObject[][] tempPiecePositions = new GridObject[8][8];
         // Get offset
-        for (PossiblePiece piece : pieces) {
-            markPiece(g2, piece.x, piece.y, piece.color);
-            findOffFactor(piece);
+        for (GridObject piece : pieces) {
+            markPiece(g2, piece.getX(), piece.getY(), piece.getColor());
         }
 
         pieces.sort((t1, t2) -> Double.compare(t1.getOffset(), t2.getOffset()));
-        List<PossiblePiece> duplicates = new ArrayList<>();
-        for (PossiblePiece piece : pieces) {
+        List<GridObject> duplicates = new ArrayList<>();
+        for (GridObject piece : pieces) {
             //logger.debug(String.format("Piece %s,%s has offset of %s", piece.col, piece.row, piece.offFactor));
 
-            if (tempPiecePositions[piece.col][piece.row] != null) {
-                logger.debug(String.format("Duplicate Piece %s,%s has offset of %s", piece.col, piece.row, piece.getOffset()));
+            if (tempPiecePositions[piece.getCol()][piece.getRow()] != null) {
+                logger.debug(String.format("Duplicate Piece %s,%s has offset of %s", piece.getCol(), piece.getRow(), piece.getOffset()));
                 duplicates.add(piece);
                 continue;
             }
             if (piece.getOffset() <= 200) {
-                if (knownBoard[piece.col][piece.row] == null || !knownBoard[piece.col][piece.row].color.equals(piece.color)) {
-                    logger.debug(String.format("Difference in Piece %s,%s has offset of %s", piece.col, piece.row, piece.getOffset()));
+                if (knownBoard[piece.getCol()][piece.getRow()] == null || !knownBoard[piece.getCol()][piece.getRow()].color.equals(piece.getColor())) {
+                    logger.debug(String.format("Difference in Piece %s,%s has offset of %s", piece.getCol(), piece.getRow(), piece.getOffset()));
                     diff++;
                     changedPiece.add(piece);
                 }
-                if (currentBoard[piece.col][piece.row] == null || currentBoard[piece.col][piece.row].getOffset() > piece.getOffset()) {
-                    currentBoard[piece.col][piece.row] = piece;
+                if (currentBoard[piece.getCol()][piece.getRow()] == null || currentBoard[piece.getCol()][piece.getRow()].getOffset() > piece.getOffset()) {
+                    currentBoard[piece.getCol()][piece.getRow()] = piece;
                 }
             }
-            tempPiecePositions[piece.col][piece.row] = piece;
+            tempPiecePositions[piece.getCol()][piece.getRow()] = piece;
         }
 
         duplicates.forEach((piece) -> {
@@ -480,9 +403,9 @@ public class BoardCalculator {
             }
         }
 
-        if (lastLocation.size() == 1 && changedPiece.size() == 1 && turn.equals(changedPiece.get(0).color)) {
-            logger.debug(String.format("Piece moved from %s,%s to %s,%s", lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row));
-            rv = new int[]{lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).col, changedPiece.get(0).row};
+        if (lastLocation.size() == 1 && changedPiece.size() == 1 && turn.equals(changedPiece.get(0).getColor())) {
+            logger.debug(String.format("Piece moved from %s,%s to %s,%s", lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).getCol(), changedPiece.get(0).getRow()));
+            rv = new int[]{lastLocation.get(0).col, lastLocation.get(0).row, changedPiece.get(0).getCol(), changedPiece.get(0).getRow()};
         } else if (changedPiece.size() == 2 && checkForCastle(changedPiece.get(0), changedPiece.get(1)) != null) {
             rv = checkForCastle(changedPiece.get(0), changedPiece.get(1));
         }
@@ -491,15 +414,15 @@ public class BoardCalculator {
         return rv;
     }
 
-    private int[] checkForCastle(PossiblePiece p1, PossiblePiece p2) {
-        if ((p1.row > 0 && p1.row < 7) || p1.row != p2.row) {
+    private int[] checkForCastle(GridObject p1, GridObject p2) {
+        if ((p1.getRow() > 0 && p1.getRow() < 7) || p1.getRow() != p2.getRow()) {
             return null;
         }
 
-        PossiblePiece king = null;
-        PossiblePiece rook = null;
+        GridObject king = null;
+        GridObject rook = null;
 
-        switch (p1.col) {
+        switch (p1.getCol()) {
             case 1:
                 king = p1;
                 break;
@@ -514,7 +437,7 @@ public class BoardCalculator {
                 break;
         }
 
-        switch (p2.col) {
+        switch (p2.getCol()) {
             case 1:
                 king = p2;
                 break;
@@ -529,44 +452,17 @@ public class BoardCalculator {
                 break;
         }
 
-        if (king == null || rook == null || Math.abs(king.col - rook.col) != 1) {
+        if (king == null || rook == null || Math.abs(king.getCol() - rook.getCol()) != 1) {
             return null;
         }
 
-        if (king.col == 2) {
-            return new int[]{3, king.row, king.col, king.row};
+        if (king.getCol() == 2) {
+            return new int[]{3, king.getRow(), king.getCol(), king.getRow()};
         } else {
-            return new int[]{3, king.row, king.col, king.row};
+            return new int[]{3, king.getRow(), king.getCol(), king.getRow()};
         }
     }
 
-    /**
-     * How far off from grid lines are points
-     *
-     * @param x
-     * @param y
-     * @return
-     */
-    private void findOffFactor(PossiblePiece piece) {
-        int xminDiff = 100000;
-        int yminDiff = 100000;
-        for (int i = 0; i < 8; i++) {
-            int xdiff = verticalLines[i].start.x - piece.x;
-            if (abs(xdiff) < xminDiff) {
-                xminDiff = abs(xdiff);
-                piece.col = i;
-            }
-
-            int ydiff = horizontalLines[i].start.y - piece.y;
-            if (ydiff < abs(yminDiff)) {
-                yminDiff = abs(ydiff);
-                piece.row = i;
-            }
-        }
-
-        piece.xOffFactor = xminDiff;
-        piece.yOffFactor = yminDiff;
-    }
 
     private void drawLines(Graphics2D g2) {
         for (int i = 0; i < 8; i++) {
@@ -594,204 +490,6 @@ public class BoardCalculator {
         g2.drawLine(x - size, y + size, x - size, y - size);
     }
 
-    public boolean detectC(boolean[][] array, int startX, int startY, boolean piece) {
-        int MAX_Distance = 3; // was 5
-        int top;
-        int bottom;
-        int left;
-        int right;
-
-        // Check to make sure the nodle mark is the circle color
-        if (array[startX][startY] == piece) {
-            return false;
-        }
-
-        // Find top of circle
-        int y = startY - 1;
-        while (array[startX][y] != piece && y > 0) {
-            y--;
-        }
-
-        // Checks that 3 pixels out from top are non circle color
-        if (y >= 3 && (array[startX][y - 1] != piece || array[startX][y - 2] != piece || array[startX][y - 3] != piece)) {
-            return false;
-        }
-
-        // Checks that length of mid to top is less than MAX_Distance
-        if (startY - y < MAX_Distance) {
-            //System.out.format("startY - y < 5  startY=%s y=%s\n", startY, y);
-            return false;
-        }
-
-        int t = y;
-        top = y;
-        int yUp = startY - y;
-        // Find bottom of circle
-        y = startY + 1;
-        while (array[startX][y] != piece && y < array[0].length - 1) {
-            y++;
-        }
-        // Check that length of mid to bottom are non circle color
-        if (y <= array[0].length - 4 && (array[startX][y + 1] != piece || array[startX][y + 2] != piece || array[startX][y + 3] != piece)) {
-            return false;
-        }
-        // Checks that the length of mid to bottom is less than MAX_Distance
-        if (y - startY < MAX_Distance) {
-            //System.out.format("y - startY < 5  startY=%s y=%s\n", startY, y);
-            return false;
-        }
-
-        int b = y;
-        int yDown = y - startY;
-        bottom = y;
-        // returns false if not in the middle of the circle
-        if (Math.abs(yUp - yDown) > 1) {
-            //System.out.format("Math.abs(yUp - yDown) > 3  yUp=%s yDown=%s\n", yUp, yDown);
-            return false;
-        }
-
-        // Find left of circle
-        int x = startX - 1;
-        while (array[x][startY] != piece && x > 0) {
-            x--;
-        }
-        // Checks that the mid to left is less than max distance
-        if (startX - x < MAX_Distance) {
-            return false;
-        }
-
-        // Find the right of the circle
-        int l = x;
-        int xLeft = startX - x;
-        left = x;
-        x = startX + 1;
-        while (array[x][startY] != piece && x < array.length - 1) {
-            x++;
-        }
-        // Checks that the mid to right is less than max distance
-        if (x - startX < MAX_Distance) {
-            return false;
-        }
-        int r = x;
-        int xRight = x - startX;
-        right = x;
-        // returns false if not in the middle of the circle
-        if (Math.abs(xLeft - xRight) > 1) {
-            return false;
-        }
-
-        if (array[l][t] != piece || array[r][t] != piece || array[l][b] != piece || array[r][b] != piece) {
-            return false;
-        }
-
-        if (array[l + 1][t] != piece || array[r - 1][t] != piece || array[l + 1][b] != piece || array[r - 1][b] != piece) {
-            return false;
-        }
-
-        if (array[l][t + 1] != piece || array[r][t + 1] != piece || array[l][b - 1] != piece || array[r][b - 1] != piece) {
-            return false;
-        }
-
-        if (array[l + 1][t + 1] != piece || array[r - 1][t + 1] != piece || array[l + 1][b - 1] != piece || array[r - 1][b - 1] != piece) {
-            return false;
-        }
-        //System.out.format("height=%s Width=%s\n", b - t, r - l);
-        if (b - t < 8 || b - t > 26 || r - l < 8 || r - l > 26) {
-            return false;
-        }
-
-        x = startX + 1;
-        y = startY + 1;
-        int rs = 0;
-        while (array[x][y] != piece && x < array.length - 1 && y < array.length - 1) {
-            x++;
-            y++;
-            rs++;
-        }
-        // x, y = first non circle square down right
-        //    System.out.format("%s %s %s %s\n", x, r, y, b);
-        for (int tx = x; tx < r; tx++) {
-            for (int ty = y; ty < b; ty++) {
-                if (array[tx][ty] != piece) {
-//                    return false;
-                }
-            }
-        }
-
-        x = startX - 1;
-        y = startY - 1;
-        int rs2 = 0;
-        while (array[x][y] != piece && x > 0 && y > 0) {
-            x--;
-            y--;
-            rs2++;
-        }
-        // x, y = first non circle square left up
-        if (true == true) {
-            return true;
-        }
-
-        for (int tx = x; tx > l; tx--) {
-            for (int ty = y; ty > t; ty--) {
-                if (array[tx][ty] != piece) {
-//                    return false;
-                }
-            }
-        }
-////////////////
-        if (Math.abs(rs - rs2) > 2) {
-            return false;
-        }
-
-        rs = rs + rs2;
-
-        x = startX - 1;
-        y = startY + 1;
-        int ls = 0;
-        while (array[x][y] != piece && x > 0 && y < array.length - 1) {
-            x--;
-            y++;
-            ls++;
-        }
-
-        for (int tx = x; tx > startX + x; tx++) {
-            for (int ty = startY; ty < startY + y; ty++) {
-                if (array[x][y] != piece) {
-                    return false;
-                }
-            }
-        }
-
-        x = startX + 1;
-        y = startY - 1;
-        int ls2 = 0;
-        while (array[x][y] != piece && x < array.length - 1 && y > 0) {
-            x++;
-            y--;
-            ls2++;
-        }
-
-        if (Math.abs(ls - ls2) > 3) {
-            return false;
-        }
-
-        ls = ls + ls2;
-
-        if (Math.abs(rs - ls) > 2) {
-            return false;
-        }
-
-        // Get ratio of black to white squares
-        for (int tx = x; tx > startX + x; tx++) {
-            for (int ty = startY; ty < startY + y; ty++) {
-                if (array[x][y] != piece) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
 
     /**
      * @return the initialized

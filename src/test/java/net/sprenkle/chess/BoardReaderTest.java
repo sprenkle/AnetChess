@@ -11,7 +11,7 @@ import net.sprenkle.chess.messages.BoardAtRest;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.KnownBoardPositions;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import net.sprenkle.chess.messages.RequestBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
@@ -59,7 +59,7 @@ public class BoardReaderTest {
     public void testRequestMove() throws Exception {
         System.out.println("requestMove");
         RequestMove requestMove = null;
-        MqChessMessageSender messageSender = mock(MqChessMessageSender.class);
+        RMQChessMessageSender messageSender = mock(RMQChessMessageSender.class);
         RMQChessMessageReceiver messageReceiver = mock(RMQChessMessageReceiver.class); 
         BoardCalculator boardCalculator = mock(BoardCalculator.class);
         BoardReaderState state = new BoardReaderState();

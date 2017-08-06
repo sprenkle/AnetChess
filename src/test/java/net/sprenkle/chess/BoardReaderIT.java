@@ -4,7 +4,7 @@ import java.util.UUID;
 import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.RMQChessMessageReceiver;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RequestPiecePositions;
 import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.RMQChesssImageReceiver;
@@ -36,7 +36,7 @@ public class BoardReaderIT {
         RequestPiecePositions requestPiecePositions = new RequestPiecePositions(new ChessMove(Player.White, "e7e6"), false, UUID.randomUUID());
         
    //         public BoardReader(
-        MqChessMessageSender messageSender = mock(MqChessMessageSender.class);
+        RMQChessMessageSender messageSender = mock(RMQChessMessageSender.class);
         RMQChessMessageReceiver messageReceiver  = mock(RMQChessMessageReceiver.class);
         BoardCalculator boardCalculator = mock(BoardCalculator.class);
 

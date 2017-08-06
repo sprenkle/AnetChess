@@ -8,7 +8,7 @@ package net.sprenkle.chess.controllers;
 import java.util.UUID;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.PiecePositions;

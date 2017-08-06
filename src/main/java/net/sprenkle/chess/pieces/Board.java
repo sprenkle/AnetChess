@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sprenkle.chess.ChessUtil;
 import net.sprenkle.chess.Player;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.exceptions.InvalidLocationException;
 import net.sprenkle.chess.exceptions.InvalidMoveException;
 

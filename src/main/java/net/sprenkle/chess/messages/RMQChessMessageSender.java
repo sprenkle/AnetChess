@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  *
  * @author david
  */
-public class MqChessMessageSender implements ChessMessageSender {
-    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MqChessMessageSender.class.getSimpleName());
+public class RMQChessMessageSender implements ChessMessageSender {
+    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(RMQChessMessageSender.class.getSimpleName());
 
     private static final String EXCHANGE_NAME = "CHESS";
     private final String name;
@@ -27,20 +27,18 @@ public class MqChessMessageSender implements ChessMessageSender {
     Connection connection;
     Channel channel;
 
-    public MqChessMessageSender(String name) {
+    public RMQChessMessageSender(String name, RabbitConfigurationInterface configuration) {
         this.name = name;
         try {
             factory = new ConnectionFactory();
-            factory.setUsername("pi");
-            factory.setPassword("ferret");
-            factory.setHost("192.168.1.80");
+            factory.setUsername(configuration.getUser());
+            factory.setPassword(configuration.getPassword());
+            factory.setHost(configuration.getServer());
             connection = factory.newConnection();
             channel = connection.createChannel();
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
-        } catch (IOException ex) {
-            Logger.getLogger(MqChessMessageSender.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (TimeoutException ex) {
-            Logger.getLogger(MqChessMessageSender.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | TimeoutException ex) {
+            Logger.getLogger(RMQChessMessageSender.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -57,7 +55,7 @@ public class MqChessMessageSender implements ChessMessageSender {
             channel.basicPublish(EXCHANGE_NAME, routingKey, null, messageHolder.toBytes());
 
         } catch (IOException ex) {
-            Logger.getLogger(MqChessMessageSender.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RMQChessMessageSender.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

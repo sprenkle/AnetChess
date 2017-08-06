@@ -42,15 +42,17 @@ public class RMQChessMessageReceiver implements ChessMessageReceiver {
         bindingKey = "#";
     }
 
+    @Override
     public void addMessageHandler(String messageType, MessageHandler messageHandler) {
         eventMap.put(messageType, messageHandler);
     }
 
-    public void initialize() throws Exception {
+    @Override
+    public void initialize(RabbitConfigurationInterface configuration) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setUsername("pi");
-        factory.setPassword("ferret");
-        factory.setHost("192.168.1.80");
+        factory.setUsername(configuration.getUser());
+        factory.setPassword(configuration.getPassword());
+        factory.setHost(configuration.getServer());
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 

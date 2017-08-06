@@ -9,7 +9,6 @@ package net.sprenkle.chess.messages;
  *
  * @author david
  */
-public interface ChessImageReceiver {
-    public void add(MessageHandler messageHandler);
-    public void initialize(RabbitConfigurationInterface configuration) throws Exception;
+public class RequestDetectedObjects {
+    
 }

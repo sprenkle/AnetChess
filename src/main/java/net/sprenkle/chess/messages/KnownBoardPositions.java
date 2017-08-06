@@ -6,7 +6,7 @@
 package net.sprenkle.chess.messages;
 
 import java.io.Serializable;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.models.PossiblePiece;
 
 /**
  *

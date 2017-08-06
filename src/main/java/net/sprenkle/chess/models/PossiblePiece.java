@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.sprenkle.chess;
+package net.sprenkle.chess.models;
+
+import net.sprenkle.chess.Player;
 
 /**
  *
@@ -24,7 +26,7 @@ public class PossiblePiece {
     public double yOffFactor;
     public int col;
     public int row;
-    public int rank;
+    public int objectId;
     
     public PossiblePiece(int x, int y, Player color){
         this.x = x;
@@ -36,7 +38,7 @@ public class PossiblePiece {
         this.col = col;
         this.row = row;
         this.color = color;
-        this.rank = rank;
+        this.objectId = rank;
     }
     
     public double getOffset(){
@@ -45,6 +47,6 @@ public class PossiblePiece {
  
     @Override
     public String toString(){
-        return String.format("%s %s %s,%s", rank, color, col, row);
+        return String.format("%s %s %s,%s", objectId, color, col, row);
     }
 }

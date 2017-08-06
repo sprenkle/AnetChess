@@ -15,12 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import net.sprenkle.chess.BoardReader;
+import net.sprenkle.chess.RabbitConfiguration;
 import net.sprenkle.chess.imaging.ImageUtil;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.MessageHolder;
-import net.sprenkle.chess.messages.MqChessMessageSender;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RequestImage;
 
 /**
@@ -31,7 +32,7 @@ public class TestHarness extends javax.swing.JFrame {
 
     ArrayList<BufferedImage> imageList ;    
     ArrayList<MessageHolder> messageList;
-    MqChessMessageSender messageSender = new MqChessMessageSender("TestHarness");
+    RMQChessMessageSender messageSender = new RMQChessMessageSender("TestHarness", new RabbitConfiguration());
     RMQChessMessageReceiver messageReceiver = new RMQChessMessageReceiver("TestHarness", true);
     
     /**

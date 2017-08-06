@@ -12,7 +12,7 @@ import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.ChessUtil;
 import net.sprenkle.chess.PieceMove;
-import net.sprenkle.chess.PossiblePiece;
+import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.PiecePositions;
@@ -89,12 +89,12 @@ public class PiecePositionsIdentifier {
             capture[0] = -25;
             capture[1] = captured++ * 24 + 10;
             logger.info(String.format("Capture Piece x=%s, y=%s", capture[0], capture[1]));
-            moveList.add(new PieceMove(to, capture, getPiecePickupHeight(toPiece.rank), false));
+            moveList.add(new PieceMove(to, capture, getPiecePickupHeight(toPiece.objectId), false));
         } else {
             logger.info(String.format("No capture"));
         }
 
-        moveList.add(new PieceMove(from, to, getPiecePickupHeight(fromPiece.rank), false));
+        moveList.add(new PieceMove(from, to, getPiecePickupHeight(fromPiece.objectId), false));
 
         PiecePositions piecePositions = new PiecePositions(moveList, mid, high, requestPiecePositions.getUuid());
         return piecePositions;

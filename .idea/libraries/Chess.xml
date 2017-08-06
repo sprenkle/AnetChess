@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Chess">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/stockfish-8-linux.zip!/" />
+      <root url="jar://$PROJECT_DIR$/stockfish-8-win.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
