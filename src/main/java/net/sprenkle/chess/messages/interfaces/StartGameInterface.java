@@ -5,12 +5,12 @@
  */
 package net.sprenkle.chess.messages.interfaces;
 
-import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.StartChessGame;
 
 /**
  *
  * @author david
  */
 public interface StartGameInterface {
-    public void recieve(StartGame startGame);
+    public void recieve(StartChessGame startGame);
 }

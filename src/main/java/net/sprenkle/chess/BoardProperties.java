@@ -12,12 +12,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
+import net.sprenkle.chess.imaging.Line;
+import net.sprenkle.chess.imaging.Point;
 
 /**
  *
  * @author david
  */
 public class BoardProperties {
+
+    /**
+     * @return the vLines
+     */
+    public Line[] getvLines() {
+        return vLines;
+    }
+
+    /**
+     * @return the hLines
+     */
+    public Line[] gethLines() {
+        return hLines;
+    }
 
     private int leftBoard;
     private int rightBoard;
@@ -45,28 +61,11 @@ public class BoardProperties {
     private double high;
     private double rest;
 
-    private double imageVertical;
-    private double imageHorizontal;
+    private int imageHeight;
+    private int imageWidth;
 
-    private double vLine1;
-    private double vLine2;
-    private double vLine3;
-    private double vLine4;
-    private double vLine5;
-    private double vLine6;
-    private double vLine7;
-    private double vLine8;
-
-    private double hLine1;
-    private double hLine2;
-    private double hLine3;
-    private double hLine4;
-    private double hLine5;
-    private double hLine6;
-    private double hLine7;
-    private double hLine8;
-    private double xLine[] = new double[8];
-    private double yLine[] = new double[8];
+    private Line[] vLines;
+    private Line[] hLines;
 
     public BoardProperties() {
         Properties prop = new Properties();
@@ -103,43 +102,27 @@ public class BoardProperties {
             high = Double.parseDouble(prop.getProperty("high"));
             rest = Double.parseDouble(prop.getProperty("rest"));
 
-            imageVertical = Double.parseDouble(prop.getProperty("imageVertical"));
-            imageHorizontal = Double.parseDouble(prop.getProperty("imageHorizontal"));
+            imageHeight = Integer.parseInt(prop.getProperty("imageHeight"));
+            imageWidth = Integer.parseInt(prop.getProperty("imageWidth"));
+            String[] vls = prop.getProperty("vLine").split(",");
+            String[] hls = prop.getProperty("hLine").split(",");
 
-            vLine1 = Double.parseDouble(prop.getProperty("vLine1"));
-            vLine2 = Double.parseDouble(prop.getProperty("vLine2"));
-            vLine3 = Double.parseDouble(prop.getProperty("vLine3"));
-            vLine4 = Double.parseDouble(prop.getProperty("vLine4"));
-            vLine5 = Double.parseDouble(prop.getProperty("vLine5"));
-            vLine6 = Double.parseDouble(prop.getProperty("vLine6"));
-            vLine7 = Double.parseDouble(prop.getProperty("vLine7"));
-            vLine8 = Double.parseDouble(prop.getProperty("vLine8"));
-            xLine[0] = vLine1;
-            xLine[1] = vLine1;
-            xLine[2] = vLine1;
-            xLine[3] = vLine1;
-            xLine[4] = vLine1;
-            xLine[5] = vLine1;
-            xLine[6] = vLine1;
-            xLine[7] = vLine1;
+            vLines = new Line[vls.length];
+            for(int x=0; x < vls.length; x++){
+                vLines[x] = new Line(
+                            new Point(Integer.parseInt(vls[x]), 0, Player.Black), 
+                            new Point(Integer.parseInt(vls[x]), imageHeight, Player.Black)
+                        );
+            }
+
+            hLines = new Line[hls.length];
+            for(int y=0; y < hls.length; y++){
+                hLines[y] = new Line(
+                            new Point(0, Integer.parseInt(hls[y]), Player.Black), 
+                            new Point(imageWidth, Integer.parseInt(hls[y]), Player.Black)
+                        );
+            }
             
-            hLine1 = Double.parseDouble(prop.getProperty("hLine1"));
-            hLine2 = Double.parseDouble(prop.getProperty("hLine2"));
-            hLine3 = Double.parseDouble(prop.getProperty("hLine3"));
-            hLine4 = Double.parseDouble(prop.getProperty("hLine4"));
-            hLine5 = Double.parseDouble(prop.getProperty("hLine5"));
-            hLine6 = Double.parseDouble(prop.getProperty("hLine6"));
-            hLine7 = Double.parseDouble(prop.getProperty("hLine7"));
-            hLine8 = Double.parseDouble(prop.getProperty("hLine8"));
-            yLine[0] = hLine1;
-            yLine[1] = hLine1;
-            yLine[2] = hLine1;
-            yLine[3] = hLine1;
-            yLine[4] = hLine1;
-            yLine[5] = hLine1;
-            yLine[6] = hLine1;
-            yLine[7] = hLine1;
-
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
@@ -348,254 +331,31 @@ public class BoardProperties {
     /**
      * @return the imageVertical
      */
-    public double getImageVertical() {
-        return imageVertical;
+    public int getImageHeight() {
+        return imageHeight;
     }
 
     /**
      * @param imageVertical the imageVertical to set
      */
-    public void setImageVertical(double imageVertical) {
-        this.imageVertical = imageVertical;
+    public void setHeight(int imageHeight) {
+        this.imageHeight = imageHeight;
     }
 
     /**
      * @return the imageHorizontal
      */
-    public double getImageHorizontal() {
-        return imageHorizontal;
+    public int getImageHorizontal() {
+        return imageWidth;
     }
 
     /**
      * @param imageHorizontal the imageHorizontal to set
      */
-    public void setImageHorizontal(double imageHorizontal) {
-        this.imageHorizontal = imageHorizontal;
+    public void setImageWidth(int imageWidth) {
+        this.imageWidth = imageWidth;
     }
 
-    /**
-     * @return the vLine1
-     */
-    public double getvLine1() {
-        return vLine1;
-    }
-
-    /**
-     * @param vLine1 the vLine1 to set
-     */
-    public void setvLine1(double vLine1) {
-        this.vLine1 = vLine1;
-    }
-
-    /**
-     * @return the vLine2
-     */
-    public double getvLine2() {
-        return vLine2;
-    }
-
-    /**
-     * @param vLine2 the vLine2 to set
-     */
-    public void setvLine2(double vLine2) {
-        this.vLine2 = vLine2;
-    }
-
-    /**
-     * @return the vLine3
-     */
-    public double getvLine3() {
-        return vLine3;
-    }
-
-    /**
-     * @param vLine3 the vLine3 to set
-     */
-    public void setvLine3(double vLine3) {
-        this.vLine3 = vLine3;
-    }
-
-    /**
-     * @return the vLine4
-     */
-    public double getvLine4() {
-        return vLine4;
-    }
-
-    /**
-     * @param vLine4 the vLine4 to set
-     */
-    public void setvLine4(double vLine4) {
-        this.vLine4 = vLine4;
-    }
-
-    /**
-     * @return the vLine5
-     */
-    public double getvLine5() {
-        return vLine5;
-    }
-
-    /**
-     * @param vLine5 the vLine5 to set
-     */
-    public void setvLine5(double vLine5) {
-        this.vLine5 = vLine5;
-    }
-
-    /**
-     * @return the vLine6
-     */
-    public double getvLine6() {
-        return vLine6;
-    }
-
-    /**
-     * @param vLine6 the vLine6 to set
-     */
-    public void setvLine6(double vLine6) {
-        this.vLine6 = vLine6;
-    }
-
-    /**
-     * @return the vLine7
-     */
-    public double getvLine7() {
-        return vLine7;
-    }
-
-    /**
-     * @param vLine7 the vLine7 to set
-     */
-    public void setvLine7(double vLine7) {
-        this.vLine7 = vLine7;
-    }
-
-    /**
-     * @return the vLine8
-     */
-    public double getvLine8() {
-        return vLine8;
-    }
-
-    /**
-     * @param vLine8 the vLine8 to set
-     */
-    public void setvLine8(double vLine8) {
-        this.vLine8 = vLine8;
-    }
-
-    /**
-     * @return the hLine1
-     */
-    public double gethLine1() {
-        return hLine1;
-    }
-
-    /**
-     * @param hLine1 the hLine1 to set
-     */
-    public void sethLine1(double hLine1) {
-        this.hLine1 = hLine1;
-    }
-
-    /**
-     * @return the hLine2
-     */
-    public double gethLine2() {
-        return hLine2;
-    }
-
-    /**
-     * @param hLine2 the hLine2 to set
-     */
-    public void sethLine2(double hLine2) {
-        this.hLine2 = hLine2;
-    }
-
-    /**
-     * @return the hLine3
-     */
-    public double gethLine3() {
-        return hLine3;
-    }
-
-    /**
-     * @param hLine3 the hLine3 to set
-     */
-    public void sethLine3(double hLine3) {
-        this.hLine3 = hLine3;
-    }
-
-    /**
-     * @return the hLine4
-     */
-    public double gethLine4() {
-        return hLine4;
-    }
-
-    /**
-     * @param hLine4 the hLine4 to set
-     */
-    public void sethLine4(double hLine4) {
-        this.hLine4 = hLine4;
-    }
-
-    /**
-     * @return the hLine5
-     */
-    public double gethLine5() {
-        return hLine5;
-    }
-
-    /**
-     * @param hLine5 the hLine5 to set
-     */
-    public void sethLine5(double hLine5) {
-        this.hLine5 = hLine5;
-    }
-
-    /**
-     * @return the hLine6
-     */
-    public double gethLine6() {
-        return hLine6;
-    }
-
-    /**
-     * @param hLine6 the hLine6 to set
-     */
-    public void sethLine6(double hLine6) {
-        this.hLine6 = hLine6;
-    }
-
-    /**
-     * @return the hLine7
-     */
-    public double gethLine7() {
-        return hLine7;
-    }
-
-    /**
-     * @param hLine7 the hLine7 to set
-     */
-    public void sethLine7(double hLine7) {
-        this.hLine7 = hLine7;
-    }
-
-    /**
-     * @return the hLine8
-     */
-    public double gethLine8() {
-        return hLine8;
-    }
-
-    /**
-     * @param hLine8 the hLine8 to set
-     */
-    public void sethLine8(double hLine8) {
-        this.hLine8 = hLine8;
-    }
 
     /**
      * @return the knightHeight
@@ -625,19 +385,6 @@ public class BoardProperties {
         this.queenHeight = queenHeight;
     }
 
-    /**
-     * @return the xLine
-     */
-    public double[] getxLine() {
-        return xLine;
-    }
-
-    /**
-     * @return the yLine
-     */
-    public double[] getyLine() {
-        return yLine;
-    }
 
     /**
      * @return the bottomDetect
@@ -694,4 +441,6 @@ public class BoardProperties {
     public int getRightHook() {
         return rightHook;
     }
+    
+   
 }

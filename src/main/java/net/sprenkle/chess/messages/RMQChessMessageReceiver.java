@@ -31,7 +31,7 @@ public class RMQChessMessageReceiver implements ChessMessageReceiver {
     private final HashMap<String, MessageHandler> eventMap;
     private final String bindingKey;
 
-    public RMQChessMessageReceiver(String name, boolean isRecievingImages) {
+    public RMQChessMessageReceiver(String name, boolean isRecievingImages) { //TODO remove the isRecievingImages
         this.name = name;
         eventMap = new HashMap<>();
         if (isRecievingImages) {

@@ -8,7 +8,7 @@ package net.sprenkle.chess;
 import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
-import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.StartChessGame;
 import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.RequestMove;
 import java.util.Timer;
@@ -19,9 +19,10 @@ import net.sprenkle.chess.messages.BoardStatus;
 import net.sprenkle.chess.messages.ChessMessageReceiver;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.GCode;
+import net.sprenkle.chess.messages.GameInformation;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.RMQChessMessageSender;
-import net.sprenkle.chess.messages.RequestBoardStatus;
+import net.sprenkle.chess.messages.RequestSetupAndBoardStatus;
 import net.sprenkle.chess.messages.RequestMovePieces;
 import net.sprenkle.chess.messages.KnownBoardPositions;
 import net.sprenkle.chess.messages.MessageHolder;
@@ -50,9 +51,9 @@ public class Chess extends TimerTask {
         this.chessMessageSender = chessMessageSender;
         chessState = new ChessState();
 
-        messageReceiver.addMessageHandler(StartGame.class.getName(), new MessageHandler<StartGame>() {
+        messageReceiver.addMessageHandler(StartChessGame.class.getName(), new MessageHandler<StartChessGame>() {
             @Override
-            public void handleMessage(StartGame startGame) {
+            public void handleMessage(StartChessGame startGame) {
                 startGame(startGame);
             }
         });
@@ -93,11 +94,16 @@ public class Chess extends TimerTask {
         expectedMove = uuid;
     }
 
-    public void startGame(StartGame startGame) {
+    /**
+     * This sends out a RequestSetupAndBoardStatus which is the message
+     * @param startGame 
+     */
+    public void startGame(StartChessGame startGame) {
+        chessMessageSender.send(new MessageHolder(new GameInformation("Start Chess Game")));
         chessMessageSender.send(new MessageHolder(new GCode("G4 P10", "Home X and Z")));
         chessMessageSender.send(new MessageHolder(new KnownBoardPositions(chessEngine.getKnownBoard())));
         chessEngine.reset();
-        chessMessageSender.send(new MessageHolder(new RequestBoardStatus()));
+        chessMessageSender.send(new MessageHolder(new RequestSetupAndBoardStatus()));
     }
 
     public void chessMoveMsg(ChessMoveMsg chessMoveMsg) {
@@ -110,18 +116,23 @@ public class Chess extends TimerTask {
 
         timer.cancel();
         logger.debug(String.format("Message received ChessMove %s", chessMoveMsg.toString()));
+
         if (!chessState.getTurn().equals(chessMoveMsg.getChessMove().getTurn())) {
+            chessMessageSender.send(new MessageHolder(new GameInformation("Player out of Turn Message")));
             logger.debug("Player out of Turn Message");
             requestMove(UUID.randomUUID());
             return;
         }
+        chessMessageSender.send(new MessageHolder(new GameInformation(String.format("ChessMove %s", chessMoveMsg.toString()))));
         String result = chessEngine.makeMove(chessMoveMsg.getChessMove().getMove());
         if (!result.equals("moveOk")) {
+            chessMessageSender.send(new MessageHolder(new GameInformation(String.format("Invalid Move %s", chessMoveMsg.toString()))));
             //Todo send out a Color out of turn message
             //Todo send out a verify board posiion message
             requestMove(UUID.randomUUID()); // need to request move again
             return;
         }
+        
         chessEngine.consoleOut(); // prints ascii board to console
 
         // Updates known board
@@ -141,6 +152,7 @@ public class Chess extends TimerTask {
         expectedMove = id;
         RequestMove requestMove = new RequestMove(chessState.getTurn(), chessState.isActivePlayerRobot(), chessEngine.getMoves(), expectedMove);
         logger.debug(requestMove.toString());
+        chessMessageSender.send(new MessageHolder(new GameInformation(requestMove.toString())));
         chessMessageSender.send(new MessageHolder(requestMove));
         timer = new Timer(true);
         timer.schedule(new TimerTask() {

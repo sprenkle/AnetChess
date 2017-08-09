@@ -15,7 +15,7 @@ import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.ConfirmedPieceMove;
 import net.sprenkle.chess.messages.MessageHandler;
-import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.StartChessGame;
 
 /**
  *

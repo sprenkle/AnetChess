@@ -5,14 +5,20 @@
  */
 package net.sprenkle.chess.messages;
 
+import java.io.Serializable;
+
 /**
  *
  * @author david
  */
-public class Message<T> {
-
-    public void send(StartChessGame messsage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class GameInformation implements Serializable{
+    private final String message;
+    
+    public GameInformation(String message){
+        this.message = message;
     }
     
+    public String getMessage(){
+        return message;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.states.BoardReaderState;
 import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardAtRest;
@@ -13,10 +14,10 @@ import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.KnownBoardPositions;
 import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RMQChesssImageReceiver;
-import net.sprenkle.chess.messages.RequestBoardStatus;
+import net.sprenkle.chess.messages.RequestSetupAndBoardStatus;
 import net.sprenkle.chess.messages.RequestMove;
 import net.sprenkle.chess.messages.RequestPiecePositions;
-import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.StartChessGame;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Test;
@@ -63,13 +64,13 @@ public class BoardReaderTest {
         RMQChessMessageReceiver messageReceiver = mock(RMQChessMessageReceiver.class); 
         BoardCalculator boardCalculator = mock(BoardCalculator.class);
         BoardReaderState state = new BoardReaderState();
-        BoardReader instance = new BoardReader(state, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class), mock(RMQChesssImageReceiver.class));
+        BoardReader instance = new BoardReader(state, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class), mock(RMQChesssImageReceiver.class), mock(BoardProperties.class));
 
         // Is robot 
         requestMove = new RequestMove(Player.White, true, "", null);
         instance.requestMove(requestMove);
         verify(messageSender, times(0)).send(null);
-        assertTrue("Robot Move should do nothing", state.inState(BoardReaderState.NONE));
+        assertTrue("Robot Move should do nothing", state.inState(BoardReaderState.START));
 
         // Not a robot move
         state.reset();

@@ -15,7 +15,7 @@ import net.sprenkle.chess.messages.ChessMoveMsg;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.messages.RMQChessMessageSender;
 import net.sprenkle.chess.messages.RequestMove;
-import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.StartChessGame;
 import net.sprenkle.chess.messages.ChessMove;
 import net.sprenkle.chess.messages.MessageHolder;
 import org.apache.log4j.Logger;
@@ -39,9 +39,9 @@ public class RobotMover {
         this.messageSender = messageSender;
         initializeEngine();
 
-        messageReceiver.addMessageHandler(StartGame.class.getName(),new MessageHandler<StartGame>() {
+        messageReceiver.addMessageHandler(StartChessGame.class.getName(),new MessageHandler<StartChessGame>() {
             @Override
-            public void handleMessage(StartGame startGame) {
+            public void handleMessage(StartChessGame startGame) {
                 startGame(startGame);
             }
         });
@@ -72,7 +72,7 @@ public class RobotMover {
     }
 
     // Messages that can be recieved
-    public void startGame(StartGame startGame) {
+    public void startGame(StartChessGame startGame) {
         uci.sendCommand("ucinewgame");
         uci.sendCommandAndWait("isready", "readyok");
     }

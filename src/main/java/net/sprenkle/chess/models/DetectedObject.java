@@ -16,6 +16,12 @@ public class DetectedObject {
     private final int y;
     private final Player color; // TODO This should be a object ID, so it would be a id for a black object or white object
     
+    public DetectedObject(DetectedObject detectedObject){
+        this.color = detectedObject.getColor();
+        this.x = detectedObject.getX();
+        this.y = detectedObject.getY();
+    }
+
     
     public DetectedObject(int x, int y, Player color){
         this.color = color;

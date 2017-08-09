@@ -5,6 +5,7 @@
  */
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.states.BoardReaderState;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -49,7 +50,7 @@ public class LoggerTester {
             nonQueueChessImageReceiver = new NonQueueChessImageReceiver();
 
             boardReader = new BoardReader(new BoardReaderState(), nonQueueMessageReceiver, nonQueueMessageReceiver,
-                    new BoardCalculator(new BoardProperties()), new PiecePositionsIdentifier(new BoardProperties()), nonQueueChessImageReceiver);
+                    new BoardCalculator(new BoardProperties()), new PiecePositionsIdentifier(new BoardProperties()), nonQueueChessImageReceiver, new BoardProperties());
             chess = new Chess(new ChessController(), nonQueueMessageReceiver, nonQueueMessageReceiver);
             //robotMover = new RobotMover(new StockFishUCI(), nonQueueMessageReceiver, nonQueueMessageReceiver);
             //boardProcessor = new BoardProcessor(nonQueueMessageReceiver, nonQueueMessageReceiver, new BoardProperties(), new TestController());

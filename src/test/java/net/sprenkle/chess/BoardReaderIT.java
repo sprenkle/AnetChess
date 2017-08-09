@@ -1,5 +1,6 @@
 package net.sprenkle.chess;
 
+import net.sprenkle.chess.states.BoardReaderState;
 import java.util.UUID;
 import net.sprenkle.chess.controllers.PiecePositionsIdentifier;
 import net.sprenkle.chess.imaging.BoardCalculator;
@@ -42,15 +43,14 @@ public class BoardReaderIT {
 
         BoardReaderState boardReaderState = new BoardReaderState();
         
-        BoardReader instance = new BoardReader(boardReaderState, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class), mock(RMQChesssImageReceiver.class));
+        BoardReader instance = new BoardReader(boardReaderState, messageSender, messageReceiver, boardCalculator, mock(PiecePositionsIdentifier.class), mock(RMQChesssImageReceiver.class), mock(BoardProperties.class));
 
-        boardReaderState.setPiecePosition();
+        boardReaderState.setState(BoardReaderState.CHECK_FOR_PIECE_POSITIONS);
         
       //  instance.calculateBoardPosition(5, 5);
         
         // TODO review the generated test code and remove the default call to fail.
     //    fail("The test case is a prototype.");
-        instance.boardImage(null);
     }
     
 }

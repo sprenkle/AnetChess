@@ -98,12 +98,14 @@
                               <Component id="gcodetxt" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="825" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="messageTxt" min="-2" pref="759" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Component id="startGameBtn" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -166,8 +168,11 @@
                       <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Component id="startGameBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="71" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="startGameBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="messageTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -353,6 +358,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="messageTxt">
     </Component>
   </SubComponents>
 </Form>

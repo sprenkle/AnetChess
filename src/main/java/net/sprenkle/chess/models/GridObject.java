@@ -11,7 +11,7 @@ import net.sprenkle.chess.Player;
  *
  * @author david
  */
-public class GridObject  {
+public class GridObject extends DetectedObject {
 
     private double xOffFactor;
     private double yOffFactor;
@@ -20,8 +20,21 @@ public class GridObject  {
     private DetectedObject detectedObject;
 
     public GridObject(DetectedObject detectedObject) {
-        this.detectedObject = detectedObject;
+        super(detectedObject);
     }
+
+//    public GridObject( detectedObject) {
+//        this.detectedObject = detectedObject;
+//    }
+
+    /**
+     *
+     * @param detectedObject
+     */
+
+//    public GridObject(DetectedObject detectedObject) {
+//        this.detectedObject = detectedObject;
+//    }
 
     public double getOffset() {
         return getxOffFactor() + getyOffFactor();
@@ -32,18 +45,18 @@ public class GridObject  {
         return String.format("%s,%s", getCol(), getRow());
     }
 
-    public int getX(){
+    public int getX() {
         return detectedObject.getX();
     }
-    
-    public int getY(){
+
+    public int getY() {
         return detectedObject.getY();
     }
-    
-    public Player getColor(){
+
+    public Player getColor() {
         return detectedObject.getColor();
     }
-    
+
     /**
      * @return the xOffFactor
      */

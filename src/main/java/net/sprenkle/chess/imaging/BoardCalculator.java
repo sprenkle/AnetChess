@@ -9,12 +9,14 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.List;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.ObjectDetector;
 import net.sprenkle.chess.Player;
+import net.sprenkle.chess.messages.ChessMessageSender;
+import net.sprenkle.chess.messages.GameInformation;
+import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.models.DetectedObject;
 import net.sprenkle.chess.models.GridObject;
 import net.sprenkle.chess.models.PossiblePiece;
@@ -44,6 +46,7 @@ public class BoardCalculator {
     private final int rightHook;
     private final int bottomHook;
     private final int topHook;
+    private final ChessMessageSender messageSender;
 
     static Player humanColor;
 //    private ArrayList<PossiblePiece> detectedPieces;
@@ -56,7 +59,9 @@ public class BoardCalculator {
     static double yIntercept = -165.4933;
     private int threshHold = 130;
 
-    public BoardCalculator(BoardProperties boardProperties) {
+    public BoardCalculator(BoardProperties boardProperties, ChessMessageSender messageSender) {
+        this.messageSender = messageSender;
+        
         leftBoard = boardProperties.getLeftBoard();
         rightBoard = boardProperties.getRightBoard();
         bottomBoard = boardProperties.getBottomBoard();
@@ -94,36 +99,51 @@ public class BoardCalculator {
         return humanColor;
     }
 
-
-    public void showCircles(BufferedImage bi) {
-        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
-        Graphics2D g2 = bi.createGraphics();
-        BasicStroke stroke = new BasicStroke(2);
-        g2.setStroke(stroke);
-        g2.setColor(Color.GREEN);
-        drawLines(g2);
-
-        List<DetectedObject> pieces = objectDetector.detectObjects(array, leftBoard, topBoard);
-        pieces.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), piece.getColor()));
-        g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
-
-        List<DetectedObject> markers = detectBoardMarker(bi);
-        markers.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), Color.CYAN));
-        g2.setColor(Color.YELLOW);
-        g2.drawRect(leftDetect, topDetect, rightDetect - leftDetect, bottomDetect - topDetect);
-
-        List<DetectedObject> hook = detectHook(bi);
-        hook.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), Color.PINK));
-        g2.setColor(Color.PINK);
-        g2.drawRect(leftHook, topHook, rightHook - leftHook, bottomHook - topHook);
+    public boolean verifyStartingPosition(List<GridObject> gridObjects){
+        if(gridObjects.size() == 32){
+            boolean[][] pieces = new boolean[8][];
+            gridObjects.forEach((gridObject) -> {
+                pieces[gridObject.getCol()][gridObject.getRow()] = true;
+            });
+            
+            for(int y = 0; y < 8; y++){
+                if(y == 2) y = 6;
+                for(int x = 0 ; x < 8; y++){
+                    if(!pieces[x][y]){
+                        messageSender.send(new MessageHolder(new GameInformation(String.format("No piece on %s,%s.", x, y))));
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        messageSender.send(new MessageHolder(new GameInformation(String.format("Should have 32 pieces, have %s.", gridObjects.size()))));
+        return false;
     }
-
-//    public List<DetectedObject> detectPieceCircles(boolean[][] array) {
-//        List<DetectedObject> pieces = objectDetector.detectObjects(array, topDetect, topDetect);
-//        return pieces;
+    
+    
+//    public void showCircles(BufferedImage bi) {
+//        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
+//        Graphics2D g2 = bi.createGraphics();
+//        BasicStroke stroke = new BasicStroke(2);
+//        g2.setStroke(stroke);
+//        g2.setColor(Color.GREEN);
+//        drawLines(g2);
+//
+//        List<DetectedObject> pieces = objectDetector.detectObjects(array, leftBoard, topBoard);
+//        pieces.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), piece.getColor()));
+//        g2.drawRect(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard);
+//
+//        List<DetectedObject> markers = detectBoardMarker(bi);
+//        markers.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), Color.CYAN));
+//        g2.setColor(Color.YELLOW);
+//        g2.drawRect(leftDetect, topDetect, rightDetect - leftDetect, bottomDetect - topDetect);
+//
+//        List<DetectedObject> hook = detectHook(bi);
+//        hook.forEach((piece) -> markPiece(g2, piece.getX(), piece.getY(), Color.PINK));
+//        g2.setColor(Color.PINK);
+//        g2.drawRect(leftHook, topHook, rightHook - leftHook, bottomHook - topHook);
 //    }
-
- 
 
 
     /**
@@ -183,7 +203,7 @@ public class BoardCalculator {
                     try {
                         g2.drawString(p, verticalLines[piece.col].start.x, horizontalLines[piece.row].start.y);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                       logger.error(e.getMessage()); 
                     }
                 }
             }
@@ -290,19 +310,14 @@ public class BoardCalculator {
      *
      * Side effect - Sets the x and y image locations for the pieces.
      *
-     * @param bi
+     * @param pieces
      * @param knownBoard
      * @return true if camera and knownBoard are the same
      */
-    public boolean verifyPiecePositions(BufferedImage bi, PossiblePiece[][] knownBoard) {
-        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
-        List<GridObject> pieces = objectDetector.detectObjectsWithinGrid(array, topDetect, topDetect, verticalLines, horizontalLines);
-
-        for(GridObject piece : pieces){
-            if(knownBoard[piece.getCol()][piece.getRow()] == null){
-                return false;
-            }
-        }
+    public boolean verifyPiecePositions(List<GridObject> pieces, PossiblePiece[][] knownBoard) {
+        if (!pieces.stream().noneMatch((piece) -> (knownBoard[piece.getCol()][piece.getRow()] == null))) {
+            return false;
+        } // todo add message that says image does not match Known Board
         
         
         pieces.sort((t1, t2) -> Double.compare(t1.getOffset(), t2.getOffset()));
@@ -320,6 +335,7 @@ public class BoardCalculator {
                         }
                     }
                     if (!foundMatchingPiece) {
+                        // todo add message that says image does not match Known Board
                         return false;
                     }
                 }
@@ -333,41 +349,21 @@ public class BoardCalculator {
      * The difference between detectCircles is that it takes in the limited area
      * defined by leftBoard ...
      *
-     * @param bi
+     * @param pieces
      * @param turn
      * @param lastBoard
      * @return 
      * @throws java.lang.Exception
      */
-    public int[] detectPieces(BufferedImage bi, Player turn, PossiblePiece[][] lastBoard) throws Exception {
+    public int[] detectPieces(List<GridObject> pieces, Player turn, PossiblePiece[][] lastBoard) throws Exception {
         int[] rv = null;
-
-        Graphics2D g2 = bi.createGraphics(); // todo remove this
-
-        BasicStroke stroke = new BasicStroke(2); // todo remove this
-        g2.setStroke(stroke); // todo remove this
-
         ArrayList<GridObject> changedPiece = new ArrayList<>();
-
         GridObject[][] currentBoard = new GridObject[8][8];
-
-        boolean[][] array = BlackWhite.convert(bi.getSubimage(leftBoard, topBoard, rightBoard - leftBoard, bottomBoard - topBoard), threshHold);
-        
-        List<GridObject> pieces = objectDetector.detectObjectsWithinGrid(array, topDetect, topDetect, verticalLines, horizontalLines);
-
-
         int diff = 0;
         GridObject[][] tempPiecePositions = new GridObject[8][8];
-        // Get offset
-        for (GridObject piece : pieces) {
-            markPiece(g2, piece.getX(), piece.getY(), piece.getColor());
-        }
-
         pieces.sort((t1, t2) -> Double.compare(t1.getOffset(), t2.getOffset()));
         List<GridObject> duplicates = new ArrayList<>();
         for (GridObject piece : pieces) {
-            //logger.debug(String.format("Piece %s,%s has offset of %s", piece.col, piece.row, piece.offFactor));
-
             if (tempPiecePositions[piece.getCol()][piece.getRow()] != null) {
                 logger.debug(String.format("Duplicate Piece %s,%s has offset of %s", piece.getCol(), piece.getRow(), piece.getOffset()));
                 duplicates.add(piece);
@@ -409,8 +405,6 @@ public class BoardCalculator {
         } else if (changedPiece.size() == 2 && checkForCastle(changedPiece.get(0), changedPiece.get(1)) != null) {
             rv = checkForCastle(changedPiece.get(0), changedPiece.get(1));
         }
-
-        drawLines(g2);
         return rv;
     }
 
@@ -471,15 +465,15 @@ public class BoardCalculator {
         }
     }
 
-    private void markPiece(Graphics2D g2, int x, int y, Player piece) {
-        Color color = Color.BLACK;
-        if (piece == Player.White) {
-            color = Color.RED;
-        } else {
-            color = Color.BLUE;
-        }
-        markPiece(g2, x, y, color);
-    }
+//    private void markPiece(Graphics2D g2, int x, int y, Player piece) {
+//        Color color = Color.BLACK;
+//        if (piece == Player.White) {
+//            color = Color.RED;
+//        } else {
+//            color = Color.BLUE;
+//        }
+//        markPiece(g2, x, y, color);
+//    }
 
     private void markPiece(Graphics2D g2, int x, int y, Color color) {
         int size = 8;

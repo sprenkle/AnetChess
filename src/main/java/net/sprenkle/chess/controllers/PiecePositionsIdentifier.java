@@ -17,6 +17,7 @@ import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.PiecePositions;
 import net.sprenkle.chess.messages.RequestPiecePositions;
+import net.sprenkle.chess.models.GridObject;
 import org.apache.log4j.Logger;
 
 /**
@@ -40,8 +41,6 @@ public class PiecePositionsIdentifier {
     private final double rookPickup;
     private final double queenPickup;
     private final double kingPickup;
-    private final double[] xLine;
-    private final double[] yLine;
 
     static Logger logger = Logger.getLogger(BoardReader.class.getSimpleName());
 
@@ -52,15 +51,15 @@ public class PiecePositionsIdentifier {
         rookPickup = boardProperties.getRookHeight();
         queenPickup = boardProperties.getQueenHeight();
         kingPickup = boardProperties.getKingHeight();
-        xLine = boardProperties.getxLine();
-        yLine = boardProperties.getyLine();
     }
 
-    public PiecePositions processImage(BoardImage boardImage, BoardCalculator boardCalculator, RequestPiecePositions requestPiecePositions) throws Exception {
-        BufferedImage bImageFromConvert = boardImage.getBi();
+    public PiecePositions processImage(List<GridObject> gridObjects, BoardCalculator boardCalculator, RequestPiecePositions requestPiecePositions) throws Exception {
         PossiblePiece[][] lastBoard = boardCalculator.getKnownBoard(); // needs to be before detect piece
-        if(!boardCalculator.verifyPiecePositions(bImageFromConvert, lastBoard)) return null;
-        boardCalculator.detectPieces(bImageFromConvert, requestPiecePositions.getChessMove().getTurn(), lastBoard);
+        if(!boardCalculator.verifyPiecePositions(gridObjects, lastBoard)) return null;
+        
+        //boardCalculator.detectPieces(gridObjects, requestPiecePositions.getChessMove().getTurn(), lastBoard);
+        
+        
         logger.debug(String.format("received %s", requestPiecePositions.getChessMove().getMove()));
         int[] moves = ChessUtil.convertFromMove(requestPiecePositions.getChessMove().getMove());
         logger.debug(String.format("Converted to %s,%s  %s,%s", moves[0], moves[1], moves[2], moves[3]));

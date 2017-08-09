@@ -10,7 +10,7 @@ import net.sprenkle.chess.messages.RMQChessMessageReceiver;
 import net.sprenkle.chess.messages.ChessMessageSender;
 import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.RequestMove;
-import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.StartChessGame;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,7 +51,7 @@ public class RobotMoverTest {
     public void testStartGame() {
         // Verify start of Chess engine is started
         System.out.println("startGame");
-        StartGame startGame = new StartGame(true, false);
+        StartChessGame startGame = new StartChessGame(true, false);
         UCIInterface uci = mock(UCIInterface.class); 
         ChessMessageSender messageSender = mock(ChessMessageSender.class); 
         RMQChessMessageReceiver messageReceiver = mock(RMQChessMessageReceiver.class);

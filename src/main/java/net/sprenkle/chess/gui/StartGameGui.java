@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sprenkle.chess.Chess;
 import net.sprenkle.chess.messages.MessageHolder;
-import net.sprenkle.chess.messages.StartGame;
+import net.sprenkle.chess.messages.StartChessGame;
 
 /**
  *
@@ -34,7 +34,7 @@ public class StartGameGui extends javax.swing.JFrame {
     Channel channel;
 
     /**
-     * Creates new form StartGame
+     * Creates new form StartChessGame
      *
      * @throws java.io.IOException
      * @throws java.util.concurrent.TimeoutException
@@ -188,7 +188,7 @@ public class StartGameGui extends javax.swing.JFrame {
 
     private void startGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameBtnActionPerformed
         try {
-            MessageHolder<StartGame> mh = new MessageHolder<>(new StartGame(true, true));
+            MessageHolder<StartChessGame> mh = new MessageHolder<>(new StartChessGame(true, true));
             channel.basicPublish(EXCHANGE_NAME, "", null, mh.toBytes());
             System.out.println(" [x] Sent '" + mh.getClassName() + "'");
         } catch (IOException ex) {
@@ -227,8 +227,9 @@ public class StartGameGui extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StartGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartChessGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         //</editor-fold>

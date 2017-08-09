@@ -13,15 +13,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.Player;
+import net.sprenkle.chess.RabbitConfiguration;
 import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.messages.KnownBoardPositions;
 import net.sprenkle.chess.messages.MessageHolder;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
+import net.sprenkle.chess.messages.RabbitConfigurationInterface;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 /**
  *
@@ -62,7 +66,7 @@ public class BoardCalculatorIT {
 
         BufferedImage bi = ImageUtil.loadImage("D:\\git\\Chess\\images\\unitTestImages\\startingposition.png");
         PossiblePiece[][] knownBoard = knownBoardPositions.getKnownPostions();
-        BoardCalculator instance = new BoardCalculator(new BoardProperties());
+        BoardCalculator instance = new BoardCalculator(new BoardProperties(), new RMQChessMessageSender("tes",mock(RabbitConfigurationInterface.class)));
         
         // Test if image and knownboard are equal
         boolean result = instance.verifyPiecePositions(bi, knownBoard);

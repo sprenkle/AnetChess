@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
  *
  * @author david
  */
-public class ObjectDetector {
+public class ObjectDetector implements ObjectDetectorInterface {
 
     static Logger logger = Logger.getLogger(ObjectDetector.class.getSimpleName());
 
@@ -30,6 +30,7 @@ public class ObjectDetector {
      * @param horizontalLines
      * @return 
      */
+    @Override
     public List<GridObject> detectObjectsWithinGrid(boolean[][] array, int xOffset, int yOffset, Line[] verticalLines, Line[] horizontalLines) {
         List<DetectedObject> pieces = detectObjects(array, xOffset, yOffset);
         GridObject[][] tempPiecePositions = new GridObject[verticalLines.length][horizontalLines.length];
@@ -67,6 +68,7 @@ public class ObjectDetector {
      * @param yOffset
      * @return 
      */
+    @Override
     public List<DetectedObject> detectObjects(boolean[][] array, int xOffset, int yOffset) {
         ArrayList<DetectedObject> pieces = new ArrayList<>();
         for (int y = 6; y < array[0].length - 6; y++) {
