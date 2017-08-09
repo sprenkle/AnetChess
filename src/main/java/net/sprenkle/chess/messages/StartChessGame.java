@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author david
  */
-public class StartGame implements Serializable {
+public class StartChessGame implements Serializable {
     private String gameId;
     private String whiteName;
     private String blackName;
@@ -20,7 +20,7 @@ public class StartGame implements Serializable {
     private int whiteLevel;
     private int blackLevel;
 
-    public StartGame(boolean whiteRobot, boolean blackRobot){
+    public StartChessGame(boolean whiteRobot, boolean blackRobot){
         this.whiteRobot = whiteRobot;
         this.blackRobot = blackRobot;
     }

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author david
  */
-public class RequestBoardStatus implements Serializable {
+public class RequestSetupAndBoardStatus implements Serializable {
     public String toString(){
         return this.getClass().getSimpleName();
     }
