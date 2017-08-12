@@ -25,7 +25,6 @@ import net.sprenkle.chess.BoardProperties;
 import net.sprenkle.chess.BoardReader;
 import net.sprenkle.chess.Player;
 import net.sprenkle.chess.RabbitConfiguration;
-import net.sprenkle.chess.models.PossiblePiece;
 import net.sprenkle.chess.imaging.BlackWhite;
 import net.sprenkle.chess.imaging.BoardCalculator;
 import net.sprenkle.chess.imaging.ImageUtil;
@@ -181,11 +180,11 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
 
     private void showPieces(BufferedImage boardImage) {
         BufferedImage altBi = ImageUtil.copyBi(boardImage);
-        try {
-            boardCalculator.detectPieces(altBi, Player.White, boardCalculator.getKnownBoard());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        todo fix try {
+//            boardCalculator.detectPieces(altBi, Player.White, boardCalculator.getKnownBoard());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         imageLbl.setIcon(new ImageIcon(createRotated(altBi)));
     }
 
@@ -204,7 +203,7 @@ public class Viewer extends javax.swing.JFrame implements ChessImageListenerInte
             int hookWidth = boardCalculator.getHookWidth(altBi);
             logger.debug(String.format("hook Width=%s\n", hookWidth));
 
-            boardCalculator.showCircles(altBi);
+            // TODO fix boardCalculator.showCircles(altBi);
 
         } catch (Exception e) {
             e.printStackTrace();

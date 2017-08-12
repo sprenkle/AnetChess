@@ -20,13 +20,18 @@ import net.sprenkle.chess.messages.RequestDetectedObjects;
 import net.sprenkle.chess.messages.MessageHandler;
 import net.sprenkle.chess.states.ObjectDetectorState;
 import net.sprenkle.chess.messages.MessageHolder;
+import net.sprenkle.chess.messages.RMQChessMessageReceiver;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
+import net.sprenkle.chess.messages.RMQChesssImageReceiver;
 import net.sprenkle.chess.messages.RequestImage;
 import net.sprenkle.chess.models.DetectedObject;
 import net.sprenkle.chess.messages.RequestGridObjects;
 import net.sprenkle.chess.models.GridObject;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
- *  This will be used to return DetectedObjects and GridObjects.   
+ * This will be used to return DetectedObjects and GridObjects.
+ *
  * @author david
  */
 public class ObjectDetectorService {
@@ -34,7 +39,7 @@ public class ObjectDetectorService {
     private final ObjectDetectorState state;
     private final ObjectDetectorInterface objectDetector;
     private final ChessMessageSender messageSender;
-    private int threshHold = 130;
+    private final int threshHold = 130;
 
     public ObjectDetectorService(ObjectDetectorState state, ObjectDetectorInterface objectDetector, ChessMessageSender messageSender, ChessMessageReceiver messageReceiver, ChessImageReceiver imageReceiver) {
         this.state = state;
@@ -99,31 +104,39 @@ public class ObjectDetectorService {
         }
 
     }
-    
-    private void processDetectedObjects(BufferedImage bi){
+
+    private void processDetectedObjects(BufferedImage bi) {
         RequestDetectedObjects requestDetectedObjects = (RequestDetectedObjects) state.getStateObject();
-                boolean[][] array = BlackWhite.convert(bi.getSubimage(
-                        requestDetectedObjects.getLeft(),
-                        requestDetectedObjects.getTop(),
-                        requestDetectedObjects.getRight() - requestDetectedObjects.getLeft(),
-                        requestDetectedObjects.getBottom() - requestDetectedObjects.getTop()), threshHold);
-                List<DetectedObject> detectedObjects = objectDetector.detectObjects(array, requestDetectedObjects.getLeft(), requestDetectedObjects.getTop());
-                messageSender.send(new MessageHolder(new DetectedObjects(detectedObjects)));
+        boolean[][] array = BlackWhite.convert(bi.getSubimage(
+                requestDetectedObjects.getLeft(),
+                requestDetectedObjects.getTop(),
+                requestDetectedObjects.getRight() - requestDetectedObjects.getLeft(),
+                requestDetectedObjects.getBottom() - requestDetectedObjects.getTop()), threshHold);
+        List<DetectedObject> detectedObjects = objectDetector.detectObjects(array, requestDetectedObjects.getLeft(), requestDetectedObjects.getTop());
+        messageSender.send(new MessageHolder(new DetectedObjects(detectedObjects)));
     }
-    
-    private void processGridObjects(BufferedImage bi){
+
+    private void processGridObjects(BufferedImage bi) {
         RequestGridObjects requestGridObjects = (RequestGridObjects) state.getStateObject();
-                boolean[][] array2 = BlackWhite.convert(bi.getSubimage(
-                        requestGridObjects.getLeft(),
-                        requestGridObjects.getTop(),
-                        requestGridObjects.getRight() - requestGridObjects.getLeft(),
-                        requestGridObjects.getBottom() - requestGridObjects.getTop()), threshHold);
-                List<GridObject> gridObjects = objectDetector.detectObjectsWithinGrid(array2,
-                        requestGridObjects.getLeft(),
-                        requestGridObjects.getTop(),
-                        requestGridObjects.getVerticalLines(),
-                        requestGridObjects.getHorizontalLines()
-                );
-                messageSender.send(new MessageHolder(new GridObjects(gridObjects)));
+        boolean[][] array2 = BlackWhite.convert(bi.getSubimage(
+                requestGridObjects.getLeft(),
+                requestGridObjects.getTop(),
+                requestGridObjects.getRight() - requestGridObjects.getLeft(),
+                requestGridObjects.getBottom() - requestGridObjects.getTop()), threshHold);
+        List<GridObject> gridObjects = objectDetector.detectObjectsWithinGrid(array2,
+                requestGridObjects.getLeft(),
+                requestGridObjects.getTop(),
+                requestGridObjects.getVerticalLines(),
+                requestGridObjects.getHorizontalLines()
+        );
+        messageSender.send(new MessageHolder(new GridObjects(gridObjects)));
     }
+
+    public static void main(String[] arg) throws Exception {
+        PropertyConfigurator.configure("D:\\git\\Chess\\src\\main\\java\\log4j.properties");
+        ObjectDetectorService objectDetectorService = new ObjectDetectorService(new ObjectDetectorState(), new ObjectDetector(), 
+                new RMQChessMessageSender("ObjectDetectorServicee", new RabbitConfiguration()), 
+                new RMQChessMessageReceiver("ObjectDetectorService", false), new RMQChesssImageReceiver("ObjectDetectorService"));
+    }
+
 }

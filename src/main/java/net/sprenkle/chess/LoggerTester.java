@@ -25,6 +25,7 @@ import net.sprenkle.chess.messages.BoardImage;
 import net.sprenkle.chess.messages.MessageHolder;
 import net.sprenkle.chess.messages.NonQueueChessImageReceiver;
 import net.sprenkle.chess.messages.NonQueueMessageTranRec;
+import net.sprenkle.chess.messages.RMQChessMessageSender;
 
 /**
  *
@@ -50,7 +51,7 @@ public class LoggerTester {
             nonQueueChessImageReceiver = new NonQueueChessImageReceiver();
 
             boardReader = new BoardReader(new BoardReaderState(), nonQueueMessageReceiver, nonQueueMessageReceiver,
-                    new BoardCalculator(new BoardProperties()), new PiecePositionsIdentifier(new BoardProperties()), nonQueueChessImageReceiver, new BoardProperties());
+                    new BoardCalculator(new BoardProperties(), new RMQChessMessageSender("LoggerTester", new RabbitConfiguration())), new PiecePositionsIdentifier(new BoardProperties()), nonQueueChessImageReceiver, new BoardProperties());
             chess = new Chess(new ChessController(), nonQueueMessageReceiver, nonQueueMessageReceiver);
             //robotMover = new RobotMover(new StockFishUCI(), nonQueueMessageReceiver, nonQueueMessageReceiver);
             //boardProcessor = new BoardProcessor(nonQueueMessageReceiver, nonQueueMessageReceiver, new BoardProperties(), new TestController());

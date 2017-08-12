@@ -10,8 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.sprenkle.chess.messages.RabbitConfigurationInterface;
 
 /**
@@ -38,6 +36,7 @@ public class RabbitConfiguration implements RabbitConfigurationInterface{
     /**
      * @return the server
      */
+    @Override
     public String getServer() {
         return server;
     }
@@ -45,6 +44,7 @@ public class RabbitConfiguration implements RabbitConfigurationInterface{
     /**
      * @return the user
      */
+    @Override
     public String getUser() {
         return user;
     }
@@ -52,6 +52,7 @@ public class RabbitConfiguration implements RabbitConfigurationInterface{
     /**
      * @return the password
      */
+    @Override
     public String getPassword() {
         return password;
     }
